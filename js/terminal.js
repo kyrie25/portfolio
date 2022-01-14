@@ -147,7 +147,7 @@ function print404() {
   const j = document.querySelector(".new-line");
   j.classList.remove("new-line");
   if (j.innerHTML.endsWith("|")) j.innerHTML = j.innerHTML.slice(0, -1);
-  j.innerHTML += "urmomgay";
+  j.innerHTML += "nahbro";
   writeLine(
     `bash: <span>404</span> - Page not found. Redirected to the main page in <span>24h</span>.......`
   );
