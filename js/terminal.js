@@ -59,7 +59,7 @@ document.addEventListener(
               break;
             default:
               d = false;
-              writeLine(`zsh: command not found: ${f}`);
+              writeLine(`bash: command not found: ${f}`);
               break;
           }
         }
