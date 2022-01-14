@@ -1,1 +1,1 @@
-# [rrat](https://kyrie25.github.io/portfolio)
+# [rrat](https://kyrie25.github.io)
