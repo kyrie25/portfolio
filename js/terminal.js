@@ -149,7 +149,7 @@ function print404() {
   if (j.innerHTML.endsWith("|")) j.innerHTML = j.innerHTML.slice(0, -1);
   j.innerHTML += "urmomgay";
   writeLine(
-    `zsh: <span>404</span> - Page not found. Redirected to the main page in <span>24h</span>.......`
+    `bash: <span>404</span> - Page not found. Redirected to the main page in <span>24h</span>.......`
   );
   inputLine("./main");
   switchToNewLine();
