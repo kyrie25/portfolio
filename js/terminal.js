@@ -177,6 +177,7 @@ function info() {
     "  <div>Proofreader/Translator/Developer(?)</div>\n" +
     "  <div><span>OS</span>: Windows/Linux</div>\n" +
     "  <div><span>rrat</span>: ogey</div>\n" +
+    "  <div><span>Granblue</span>: 32665418</div>\n" +
     "  <div><span>GitHub</span>: <a href=\"https://github.com/kyrie25\" target='_blank'>@kyrie25</a></div>\n" +
     "  <div><span>PreMiD</span>: <a href=\"https://premid.app/users/368399721494216706\" target='_blank'>Kyrie</a></div>\n" +
     "  <div><span>Discord</span>: <a href=\"https://discord.com/users/368399721494216706\" target='_blank'>Kyrie#5416</a></div>\n" +
