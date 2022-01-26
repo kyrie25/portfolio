@@ -159,7 +159,10 @@ function printk73eng1() {
 }
 
 function printmusic() {
-  inputLine("music");
+  const j = document.querySelector(".new-line");
+  j.classList.remove("new-line");
+  if (j.innerHTML.endsWith("|")) j.innerHTML = j.innerHTML.slice(0, -1);
+  j.innerHTML += "music";
   music();
   switchToNewLine();
 }
