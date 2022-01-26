@@ -149,7 +149,7 @@ function printk73eng1() {
   if (j.innerHTML.endsWith("|")) j.innerHTML = j.innerHTML.slice(0, -1);
   j.innerHTML += "Personal page";
   writeLine(
-    `bash: <span>Warning</span>: If you have no business here, please exit the page.%0D%0ARedirected to the invite link in <span>5s</span>.......`
+    `bash: <span>Warning</span>: If you have no business here, please exit the page. Redirected to the invite link in <span>5s</span>.......`
   );
   inputLine("./discord");
   switchToNewLine();
