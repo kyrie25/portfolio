@@ -50,6 +50,9 @@ document.addEventListener(
           const e = input.trim().split(" ");
           const f = e.shift().toLowerCase();
           switch (f) {
+            case "music":
+              music();
+              break;
             case "clear":
               clear();
               break;
@@ -155,6 +158,12 @@ function printk73eng1() {
   switchToNewLine();
 }
 
+function printmusic() {
+  inputLine("music");
+  music();
+  switchToNewLine();
+}
+
 function print404() {
   const j = document.querySelector(".new-line");
   j.classList.remove("new-line");
@@ -195,5 +204,20 @@ function info() {
     "  <div><span>Discord</span>: <a href=\"https://discord.com/users/368399721494216706\" target='_blank'>Kyrie#5416</a></div>\n" +
     "  <div><span>Steam</span>: <a href=\"https://steamcommunity.com/id/kyrie25\" target='_blank'>Kyrie</a></div>\n" +
     "  <div><span>premid.app</span>: <a href=\"https://premid.app\" target='_blank'>Download</a></div>\n" +
+    '  <div style="padding-bottom:10px; clear: both;">';
+}
+
+function music() {
+  terminal.innerHTML +=
+    '\n<img alt="icon" class="img" src="static/music_icon.png">\n' +
+    "  <div><span>kyrie25</span>@<span>github.io</span></div>\n" +
+    "  <div>---------------------</div>\n" +
+    "  <div><a href=\"https://open.spotify.com/playlist/5OoKLO2wXOqPL8qg2jrLt1?si=8893b3e69a004d5f\" target='_blank'>My Playlist</a></div>\n" +
+    "  <div><span>Jap shit:</span></div>\n" +
+    "  <div><a href=\"https://open.spotify.com/playlist/6G78HbtY90psDF1gt9D9Kq?si=0a47a3fb501a4b87\" target='_blank'>Touhou music</a></div>\n" +
+    "  <div><a href=\"https://www.youtube.com/watch?v=UIp6_0kct_U\" target='_blank'>Touhou music but deserves a separate link</a></div>\n" +
+    "  <div><a href=\"https://www.youtube.com/channel/UC10BM9XdLdrvB8japwmRUvA\" target='_blank'>Kanaria</a></div>\n" +
+    "  <div><a href=\"https://www.youtube.com/c/inabakumori\" target='_blank'>inabakumori</a></div>\n" +
+    "  <div>...and a ton others but too lazy to label, just click the playlist at the top ig</div>\n" +
     '  <div style="padding-bottom:10px; clear: both;">';
 }
