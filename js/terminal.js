@@ -151,7 +151,7 @@ function printk73eng1() {
   writeLine(
     `bash: <span>Warning</span>. If you have no business here, please exit the page.`
   );
-  inputLine("Redirected to the main page in <span>5s</span>.......");
+  inputLine("Redirected to the invite link in <span>5s</span>.......");
   switchToNewLine();
 }
 
