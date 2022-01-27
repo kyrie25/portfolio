@@ -243,9 +243,9 @@ function about() {
     "  <div><span>kyrie25</span>@<span>github.io</span></div>\n" +
     "  <div>---------------------</div>\n" +
     "  <div><span>About this page</span></div>\n" +
-    "  <div>This is my <span>first ever</span> website</div>\n" +
+    "  <div>This is my <span>first</span> website</div>\n" +
     "  <div>Basically a portfolio/'About Me'</div>\n" +
-    "  <div>It probably won't be updated at the time you're reading this</div>\n" +
+    "  <div>It probably won't be updated by the time you're reading this</div>\n" +
     "  <div>Credit to stuff I've used in this page:</div>\n" +
     "  <div><span>About 70% of the website</span>: Me</div>\n" +
     "  <div><span>Core script/functionality</span>: Generous stranger on GitHub, not sure who they were</div>\n" +
