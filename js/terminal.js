@@ -213,6 +213,7 @@ function ls() {
   writeLine(
     "<div>I could list the files, but it is better if you check it out on<a href=\"https://github.com/kyrie25/kyrie25.github.io\" target='_blank'>GitHub</a> yourself</div>"
   );
+  switchToNewLine();
 }
 
 function info() {
