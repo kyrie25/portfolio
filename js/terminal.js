@@ -56,6 +56,10 @@ document.addEventListener(
             case "about":
               about();
               break;
+            case "ls":
+            case "dir":
+              ls();
+              break;
             case "clear":
               clear();
               break;
@@ -203,6 +207,12 @@ function writeLine(l) {
 
 function clear() {
   terminal.innerHTML = "";
+}
+
+function ls() {
+  writeLine(
+    "<div>I could list the files, but it is better if you check it out on<a href=\"https://github.com/kyrie25/kyrie25.github.io\" target='_blank'>GitHub</a> yourself</div>"
+  );
 }
 
 function info() {
