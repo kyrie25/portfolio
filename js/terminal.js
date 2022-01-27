@@ -210,9 +210,9 @@ function clear() {
 }
 
 function ls() {
-  writeLine(
-    "<div>I could list the files, but it is better if you check it out on <a href=\"https://github.com/kyrie25/kyrie25.github.io\" target='_blank'>GitHub</a> yourself</div>"
-  );
+  terminal.innerHTML +=
+    '\nI could list the files, but it is better if you check it out on <a href="https://github.com/kyrie25/kyrie25.github.io">GitHub</a> yourself</div>\n' +
+    '  <div style="padding-bottom:10px; clear: both;">';
 }
 
 function info() {
