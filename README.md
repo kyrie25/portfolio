@@ -1,4 +1,4 @@
-# [rrat](https://kyrie25.github.io)
+# [rrat](https://kyrie25.me)
 
 Pretty fun project tbh
 
