@@ -211,7 +211,7 @@ function clear() {
 
 function ls() {
   terminal.innerHTML +=
-    '\nI could list the files, but it is better if you check it out on <a href="https://github.com/kyrie25/kyrie25.github.io">GitHub</a> yourself</div>\n' +
+    '\nI could list the files, but it is better if you check it out on <a href="https://github.com/kyrie25/portfolio">GitHub</a> yourself</div>\n' +
     '  <div style="padding-bottom:10px; clear: both;">';
 }
 
