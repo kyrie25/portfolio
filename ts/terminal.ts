@@ -150,7 +150,7 @@ function switchToNewLine(h: boolean) {
     if (i.innerHTML.endsWith("|")) i.innerHTML = i.innerHTML.slice(0, -1);
   }
   index = 0;
-  inputLine;
+  inputLine("");
 }
 
 function printk73eng1() {
@@ -162,7 +162,7 @@ function printk73eng1() {
     `bash: <span>Warning</span>: If you have no business here, please exit the page. Redirected to the invite link in <span>5s</span>.......`
   );
   inputLine("./discord");
-  switchToNewLine;
+  switchToNewLine(true);
 }
 
 function printmusic() {
@@ -171,7 +171,7 @@ function printmusic() {
   if (j.innerHTML.endsWith("|")) j.innerHTML = j.innerHTML.slice(0, -1);
   j.innerHTML += "music";
   music();
-  switchToNewLine;
+  switchToNewLine(true);
 }
 
 function printabout() {
@@ -180,7 +180,7 @@ function printabout() {
   if (j.innerHTML.endsWith("|")) j.innerHTML = j.innerHTML.slice(0, -1);
   j.innerHTML += "about";
   about();
-  switchToNewLine;
+  switchToNewLine(true);
 }
 
 function print404() {
@@ -192,7 +192,7 @@ function print404() {
     `bash: <span>404</span> - Page not found. Redirected to the main page in <span>5s</span>.......`
   );
   inputLine("./main");
-  switchToNewLine;
+  switchToNewLine(true);
 }
 
 function inputLine(k: string) {

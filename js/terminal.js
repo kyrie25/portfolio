@@ -160,7 +160,7 @@ function switchToNewLine(h) {
             i.innerHTML = i.innerHTML.slice(0, -1);
     }
     index = 0;
-    inputLine;
+    inputLine("");
 }
 function printk73eng1() {
     const j = document.querySelector(".new-line");
@@ -170,7 +170,7 @@ function printk73eng1() {
     j.innerHTML += "Personal page";
     writeLine(`bash: <span>Warning</span>: If you have no business here, please exit the page. Redirected to the invite link in <span>5s</span>.......`);
     inputLine("./discord");
-    switchToNewLine;
+    switchToNewLine(true);
 }
 function printmusic() {
     const j = document.querySelector(".new-line");
@@ -179,7 +179,7 @@ function printmusic() {
         j.innerHTML = j.innerHTML.slice(0, -1);
     j.innerHTML += "music";
     music();
-    switchToNewLine;
+    switchToNewLine(true);
 }
 function printabout() {
     const j = document.querySelector(".new-line");
@@ -188,7 +188,7 @@ function printabout() {
         j.innerHTML = j.innerHTML.slice(0, -1);
     j.innerHTML += "about";
     about();
-    switchToNewLine;
+    switchToNewLine(true);
 }
 function print404() {
     const j = document.querySelector(".new-line");
@@ -198,7 +198,7 @@ function print404() {
     j.innerHTML += "nahbro";
     writeLine(`bash: <span>404</span> - Page not found. Redirected to the main page in <span>5s</span>.......`);
     inputLine("./main");
-    switchToNewLine;
+    switchToNewLine(true);
 }
 function inputLine(k) {
     terminal.innerHTML += `\n<div class=\"new-line\">kyrie25@<span style=\"color: #b8d5ef\">github.io</span>:<span style=\"color: dodgerblue\">~</span>$ ${k ? k : ""}</div>`;
