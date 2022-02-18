@@ -1,4 +1,4 @@
-const terminal = document.querySelector(".terminal");
+const terminal = document.querySelector<HTMLDivElement>(".terminal");
 const base = `kyrie25@<span style="color: #b8d5ef">github.io</span>:<span style="color: dodgerblue">~</span>$ `;
 let array: string[] = [];
 let input = "";
@@ -8,7 +8,7 @@ let index = 0;
 let sw = true;
 
 function updateConsole() {
-  document.querySelector(".new-line").innerHTML = sw
+  document.querySelector<HTMLDivElement>(".new-line").innerHTML = sw
     ? index === 0
       ? base + input + "|"
       : base + input.slice(0, index) + "|" + input.slice(index)
@@ -154,7 +154,7 @@ function switchToNewLine(h: boolean) {
 }
 
 function printk73eng1() {
-  const j = document.querySelector(".new-line");
+  const j = document.querySelector<HTMLDivElement>(".new-line");
   j.classList.remove("new-line");
   if (j.innerHTML.endsWith("|")) j.innerHTML = j.innerHTML.slice(0, -1);
   j.innerHTML += "Personal page";
@@ -166,7 +166,7 @@ function printk73eng1() {
 }
 
 function printmusic() {
-  const j = document.querySelector(".new-line");
+  const j = document.querySelector<HTMLDivElement>(".new-line");
   j.classList.remove("new-line");
   if (j.innerHTML.endsWith("|")) j.innerHTML = j.innerHTML.slice(0, -1);
   j.innerHTML += "music";
@@ -175,7 +175,7 @@ function printmusic() {
 }
 
 function printabout() {
-  const j = document.querySelector(".new-line");
+  const j = document.querySelector<HTMLDivElement>(".new-line");
   j.classList.remove("new-line");
   if (j.innerHTML.endsWith("|")) j.innerHTML = j.innerHTML.slice(0, -1);
   j.innerHTML += "about";
@@ -184,7 +184,7 @@ function printabout() {
 }
 
 function print404() {
-  const j = document.querySelector(".new-line");
+  const j = document.querySelector<HTMLDivElement>(".new-line");
   j.classList.remove("new-line");
   if (j.innerHTML.endsWith("|")) j.innerHTML = j.innerHTML.slice(0, -1);
   j.innerHTML += "nahbro";

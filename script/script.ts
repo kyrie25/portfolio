@@ -7,14 +7,14 @@ setInterval(
     const d = c.valueOf() - b.valueOf();
     const e = Math.max(0, c.valueOf() - new Date().valueOf());
     const f = (100 - (100 * e) / d) / 100;
-    document.querySelector(".date-widget").innerHTML =
+    document.querySelector<HTMLDivElement>(".date-widget").innerHTML =
       '<svg class="date-display__icon" height="24" viewBox="0 0 24 24" width="24"><path d="M21 3h-3V1h-2v2H8V1H6v2H3v18h18V3zm-2 16H5V8h14v11zM7 10h5v5H7v-5z"></path></svg>' +
       new Date().toLocaleString("en-UK", {
         weekday: "short",
         month: "short",
         day: "numeric",
       });
-    document.querySelector(".time-widget").innerHTML =
+    document.querySelector<HTMLDivElement>(".time-widget").innerHTML =
       '<svg class="time__icon" height="24" viewBox="0 0 24 24" width="24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"></path></svg>' +
       new Date().toLocaleString("en-UK", {
         hour: "numeric",
