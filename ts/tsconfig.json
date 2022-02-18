@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES2021",
+    "removeComments": true,
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "newLine": "lf",
+    "noImplicitAny": true,
+    "noUnusedParameters": true,
+    "esModuleInterop": true,
+    "outDir": "../js/"
+  }
+}
