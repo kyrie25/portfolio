@@ -262,6 +262,7 @@ function about() {
     "  <div><span>Nazrin</span>: rrat</div>\n" +
     "  <div><span>Home page artwork</span>: <a href=\"https://www.pixiv.net/en/artworks/58056024\" target='_blank'>にしもん</a></div>\n" +
     "  <div><span>Music page artwork</span>: <a href=\"https://twitter.com/ramdayo1122/status/1480119998391918594\" target='_blank'>LAM</a></div>\n" +
+    "  <div><span>Home page artwork</span>: <a href=\"https://www.pixiv.net/en/artworks/47516247\" target='_blank'>にしもん</a></div>\n" +
     "  <div>Please support the respective owners of the works, they really are awesome <3</div>\n" +
     '  <div style="padding-bottom:10px; clear: both;">';
 }
