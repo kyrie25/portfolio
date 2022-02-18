@@ -10,6 +10,6 @@
     "noImplicitAny": true,
     "noUnusedParameters": true,
     "esModuleInterop": true,
-    "outDir": "../js/"
+    "outDir": "js"
   }
 }
