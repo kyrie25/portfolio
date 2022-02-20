@@ -153,18 +153,6 @@ function switchToNewLine(h: boolean) {
   inputLine("");
 }
 
-function printk73eng1() {
-  const j = document.querySelector<HTMLDivElement>(".new-line");
-  j.classList.remove("new-line");
-  if (j.innerHTML.endsWith("|")) j.innerHTML = j.innerHTML.slice(0, -1);
-  j.innerHTML += "Personal page";
-  writeLine(
-    `bash: <span>Warning</span>: If you have no business here, please exit the page. Redirected to the invite link in <span>5s</span>.......`
-  );
-  inputLine("./discord");
-  switchToNewLine(true);
-}
-
 function printmusic() {
   const j = document.querySelector<HTMLDivElement>(".new-line");
   j.classList.remove("new-line");
