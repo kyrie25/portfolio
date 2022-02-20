@@ -12,25 +12,33 @@ const terminalBox = document.querySelector<HTMLDivElement>(
   );
 let { hash } = window.location;
 
-if (hash === "") {
+function homeHash() {
+  hash = "";
   terminalBox.className = "space space--active";
   musicBox.className = "space";
   aboutBox.className = "space";
   styleSheet.href = "static/style.css";
+  clear();
   switchToNewLine(true);
   printinfo();
-} else if (hash === "#music") {
+}
+function musicHash() {
+  hash = "#music";
   terminalBox.className = "space";
   musicBox.className = "space space--active";
   aboutBox.className = "space";
   styleSheet.href = "static/style_music.css";
+  clear();
   switchToNewLine(true);
   printmusic();
-} else if (hash === "#about") {
+}
+function aboutHash() {
+  hash = "#about";
   terminalBox.className = "space";
   musicBox.className = "space";
   aboutBox.className = "space space--active";
   styleSheet.href = "static/style_about.css";
+  clear();
   switchToNewLine(true);
   printabout();
 }
