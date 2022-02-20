@@ -17,20 +17,20 @@ if (hash === "") {
   musicBox.className = "space";
   aboutBox.className = "space";
   styleSheet.href = "static/style.css";
-  clear();
+  switchToNewLine(true);
   printinfo();
 } else if (hash === "#music") {
   terminalBox.className = "space";
   musicBox.className = "space space--active";
   aboutBox.className = "space";
   styleSheet.href = "static/style_music.css";
-  clear();
+  switchToNewLine(true);
   printmusic();
 } else if (hash === "#about") {
   terminalBox.className = "space";
   musicBox.className = "space";
   aboutBox.className = "space space--active";
   styleSheet.href = "static/style_about.css";
-  clear();
+  switchToNewLine(true);
   printabout();
 }

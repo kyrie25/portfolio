@@ -5,7 +5,7 @@ if (hash === "") {
     musicBox.className = "space";
     aboutBox.className = "space";
     styleSheet.href = "static/style.css";
-    clear();
+    switchToNewLine(true);
     printinfo();
 }
 else if (hash === "#music") {
@@ -13,7 +13,7 @@ else if (hash === "#music") {
     musicBox.className = "space space--active";
     aboutBox.className = "space";
     styleSheet.href = "static/style_music.css";
-    clear();
+    switchToNewLine(true);
     printmusic();
 }
 else if (hash === "#about") {
@@ -21,6 +21,6 @@ else if (hash === "#about") {
     musicBox.className = "space";
     aboutBox.className = "space space--active";
     styleSheet.href = "static/style_about.css";
-    clear();
+    switchToNewLine(true);
     printabout();
 }
