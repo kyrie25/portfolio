@@ -1,6 +1,6 @@
 # [rrat](https://kyrie25.me)
 
-Pretty fun project tbh
+Pretty fun project tbh  
 **Note**: Technically can use APNG as background, but I don't want to bombard loading time with a 20mb (or more) file
 
 ```typescript
