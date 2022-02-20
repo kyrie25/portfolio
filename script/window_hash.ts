@@ -9,7 +9,13 @@ const terminalBox = document.querySelector<HTMLDivElement>(
   ),
   styleSheet = document.querySelector<HTMLLinkElement>(
     "head > link[rel='stylesheet']"
-  );
+  ),
+  { hash } = window.location;
+
+// Reloading purposes
+if (hash === "") homeHash();
+else if (hash === "#music") musicHash();
+else if (hash === "#about") aboutHash();
 
 function homeHash() {
   terminalBox.className = "space space--active";

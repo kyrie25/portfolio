@@ -1,4 +1,10 @@
-const terminalBox = document.querySelector("body > div.titlebar > div.spaces > div:nth-child(1)"), musicBox = document.querySelector("body > div.titlebar > div.spaces > div:nth-child(2)"), aboutBox = document.querySelector("body > div.titlebar > div.spaces > div:nth-child(3)"), styleSheet = document.querySelector("head > link[rel='stylesheet']");
+const terminalBox = document.querySelector("body > div.titlebar > div.spaces > div:nth-child(1)"), musicBox = document.querySelector("body > div.titlebar > div.spaces > div:nth-child(2)"), aboutBox = document.querySelector("body > div.titlebar > div.spaces > div:nth-child(3)"), styleSheet = document.querySelector("head > link[rel='stylesheet']"), { hash } = window.location;
+if (hash === "")
+    homeHash();
+else if (hash === "#music")
+    musicHash();
+else if (hash === "#about")
+    aboutHash();
 function homeHash() {
     terminalBox.className = "space space--active";
     musicBox.className = "space";
