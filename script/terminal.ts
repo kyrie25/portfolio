@@ -1,11 +1,11 @@
-const terminal = document.querySelector<HTMLDivElement>(".terminal");
-const base = `kyrie25@<span style="color: #b8d5ef">github.io</span>:<span style="color: dodgerblue">~</span>$ `;
-let array: string[] = [];
-let input = "";
-let lastIdx = -1;
-let lastCmd = "";
-let index = 0;
-let sw = true;
+const terminal = document.querySelector<HTMLDivElement>(".terminal"),
+  base = `kyrie25@<span style="color: #b8d5ef">github.io</span>:<span style="color: dodgerblue">~</span>$ `;
+let array: string[] = [],
+  input = "",
+  lastIdx = -1,
+  lastCmd = "",
+  index = 0,
+  sw = true;
 
 function updateConsole() {
   document.querySelector<HTMLDivElement>(".new-line").innerHTML = sw
@@ -151,6 +151,15 @@ function switchToNewLine(h: boolean) {
   }
   index = 0;
   inputLine("");
+}
+
+function printinfo() {
+  const j = document.querySelector<HTMLDivElement>(".new-line");
+  j.classList.remove("new-line");
+  if (j.innerHTML.endsWith("|")) j.innerHTML = j.innerHTML.slice(0, -1);
+  j.innerHTML += "info";
+  info();
+  switchToNewLine(true);
 }
 
 function printmusic() {
