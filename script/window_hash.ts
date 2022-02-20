@@ -10,10 +10,8 @@ const terminalBox = document.querySelector<HTMLDivElement>(
   styleSheet = document.querySelector<HTMLLinkElement>(
     "head > link[rel='stylesheet']"
   );
-let { hash } = window.location;
 
 function homeHash() {
-  hash = "";
   terminalBox.className = "space space--active";
   musicBox.className = "space";
   aboutBox.className = "space";
@@ -23,7 +21,6 @@ function homeHash() {
   printinfo();
 }
 function musicHash() {
-  hash = "#music";
   terminalBox.className = "space";
   musicBox.className = "space space--active";
   aboutBox.className = "space";
@@ -33,7 +30,6 @@ function musicHash() {
   printmusic();
 }
 function aboutHash() {
-  hash = "#about";
   terminalBox.className = "space";
   musicBox.className = "space";
   aboutBox.className = "space space--active";
