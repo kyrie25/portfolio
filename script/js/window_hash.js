@@ -1,4 +1,5 @@
-const terminalBox = document.querySelector("body > div.titlebar > div.spaces > div:nth-child(1)"), musicBox = document.querySelector("body > div.titlebar > div.spaces > div:nth-child(2)"), aboutBox = document.querySelector("body > div.titlebar > div.spaces > div:nth-child(3)"), styleSheet = document.querySelector("head > link[rel='stylesheet']"), { hash } = window.location;
+"use strict";
+const processBox = document.querySelectorAll("body > div.titlebar > div.spaces > div"), backgroundImage = document.querySelector(".background_image"), { hash } = window.location;
 if (hash === "")
     homeHash();
 else if (hash === "#music")
@@ -6,28 +7,28 @@ else if (hash === "#music")
 else if (hash === "#about")
     aboutHash();
 function homeHash() {
-    terminalBox.className = "space space--active";
-    musicBox.className = "space";
-    aboutBox.className = "space";
-    styleSheet.href = "static/style.css";
+    processBox[0].className = "space space--active";
+    processBox[1].className = "space";
+    processBox[2].className = "space";
+    backgroundImage.innerHTML.replace(/about_bg[.]jpg|music_bg[.]jpg/gm, "bg.jpg");
     clear();
     switchToNewLine(true);
     printinfo();
 }
 function musicHash() {
-    terminalBox.className = "space";
-    musicBox.className = "space space--active";
-    aboutBox.className = "space";
-    styleSheet.href = "static/style_music.css";
+    processBox[0].className = "space";
+    processBox[1].className = "space space--active";
+    processBox[2].className = "space";
+    backgroundImage.innerHTML.replace(/about_bg[.]jpg|bg[.]jpg/gm, "music_bg.jpg");
     clear();
     switchToNewLine(true);
     printmusic();
 }
 function aboutHash() {
-    terminalBox.className = "space";
-    musicBox.className = "space";
-    aboutBox.className = "space space--active";
-    styleSheet.href = "static/style_about.css";
+    processBox[0].className = "space";
+    processBox[1].className = "space";
+    processBox[2].className = "space space--active";
+    backgroundImage.innerHTML.replace(/music_bg[.]jpg|bg[.]jpg/gm, "about_bg.jpg");
     clear();
     switchToNewLine(true);
     printabout();

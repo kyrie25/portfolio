@@ -1,3 +1,4 @@
+"use strict";
 setInterval((function a() {
     const [b, c] = [new Date(), new Date()];
     b.setHours(0, 0, 0);

@@ -214,7 +214,7 @@ function ls() {
 
 function info() {
   terminal.innerHTML +=
-    '\n<img alt="icon" class="img" src="static/icon.png">\n' +
+    '\n<img alt="icon" class="img" src="static/img/icon.png">\n' +
     "  <div><span>kyrie25</span>@<span>github.io</span></div>\n" +
     "  <div>---------------------</div>\n" +
     "  <div>Proofreader/Translator/Developer(?)</div>\n" +
@@ -231,7 +231,7 @@ function info() {
 
 function music() {
   terminal.innerHTML +=
-    '\n<img alt="icon" class="img" src="static/music_icon.png">\n' +
+    '\n<img alt="icon" class="img" src="static/img/music_icon.png">\n' +
     "  <div><span>kyrie25</span>@<span>github.io</span></div>\n" +
     "  <div>---------------------</div>\n" +
     "  <div><a href=\"https://open.spotify.com/playlist/5OoKLO2wXOqPL8qg2jrLt1?si=8893b3e69a004d5f\" target='_blank'>My Playlist</a></div>\n" +
@@ -246,7 +246,7 @@ function music() {
 
 function about() {
   terminal.innerHTML +=
-    '\n<img alt="icon" class="img" src="static/about.png">\n' +
+    '\n<img alt="icon" class="img" src="static/img/about.png">\n' +
     "  <div><span>kyrie25</span>@<span>github.io</span></div>\n" +
     "  <div>---------------------</div>\n" +
     "  <div><span>About this page</span></div>\n" +

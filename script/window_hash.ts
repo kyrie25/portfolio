@@ -1,15 +1,8 @@
-const terminalBox = document.querySelector<HTMLDivElement>(
-    "body > div.titlebar > div.spaces > div:nth-child(1)"
+const processBox = document.querySelectorAll<HTMLDivElement>(
+    "body > div.titlebar > div.spaces > div"
   ),
-  musicBox = document.querySelector<HTMLDivElement>(
-    "body > div.titlebar > div.spaces > div:nth-child(2)"
-  ),
-  aboutBox = document.querySelector<HTMLDivElement>(
-    "body > div.titlebar > div.spaces > div:nth-child(3)"
-  ),
-  styleSheet = document.querySelector<HTMLLinkElement>(
-    "head > link[rel='stylesheet']"
-  ),
+  backgroundImage =
+    document.querySelector<HTMLStyleElement>(".background_image"),
   { hash } = window.location;
 
 // Reloading purposes
@@ -18,28 +11,37 @@ else if (hash === "#music") musicHash();
 else if (hash === "#about") aboutHash();
 
 function homeHash() {
-  terminalBox.className = "space space--active";
-  musicBox.className = "space";
-  aboutBox.className = "space";
-  styleSheet.href = "static/style.css";
+  processBox[0].className = "space space--active";
+  processBox[1].className = "space";
+  processBox[2].className = "space";
+  backgroundImage.innerHTML.replace(
+    /about_bg[.]jpg|music_bg[.]jpg/gm,
+    "bg.jpg"
+  );
   clear();
   switchToNewLine(true);
   printinfo();
 }
 function musicHash() {
-  terminalBox.className = "space";
-  musicBox.className = "space space--active";
-  aboutBox.className = "space";
-  styleSheet.href = "static/style_music.css";
+  processBox[0].className = "space";
+  processBox[1].className = "space space--active";
+  processBox[2].className = "space";
+  backgroundImage.innerHTML.replace(
+    /about_bg[.]jpg|bg[.]jpg/gm,
+    "music_bg.jpg"
+  );
   clear();
   switchToNewLine(true);
   printmusic();
 }
 function aboutHash() {
-  terminalBox.className = "space";
-  musicBox.className = "space";
-  aboutBox.className = "space space--active";
-  styleSheet.href = "static/style_about.css";
+  processBox[0].className = "space";
+  processBox[1].className = "space";
+  processBox[2].className = "space space--active";
+  backgroundImage.innerHTML.replace(
+    /music_bg[.]jpg|bg[.]jpg/gm,
+    "about_bg.jpg"
+  );
   clear();
   switchToNewLine(true);
   printabout();
