@@ -10,7 +10,9 @@ function homeHash() {
     processBox[0].className = "space space--active";
     processBox[1].className = "space";
     processBox[2].className = "space";
-    backgroundImage.innerHTML.replace(/about_bg[.]jpg|music_bg[.]jpg/gm, "bg.jpg");
+    backgroundImage.innerHTML = `body {
+      background-image: url('static/img/bg.jpg');
+    }`;
     clear();
     switchToNewLine(true);
     printinfo();
@@ -19,7 +21,9 @@ function musicHash() {
     processBox[0].className = "space";
     processBox[1].className = "space space--active";
     processBox[2].className = "space";
-    backgroundImage.innerHTML.replace(/about_bg[.]jpg|bg[.]jpg/gm, "music_bg.jpg");
+    backgroundImage.innerHTML = `body {
+      background-image: url('static/img/music_bg.jpg');
+    }`;
     clear();
     switchToNewLine(true);
     printmusic();
@@ -28,7 +32,9 @@ function aboutHash() {
     processBox[0].className = "space";
     processBox[1].className = "space";
     processBox[2].className = "space space--active";
-    backgroundImage.innerHTML.replace(/music_bg[.]jpg|bg[.]jpg/gm, "about_bg.jpg");
+    backgroundImage.innerHTML = `body {
+      background-image: url('static/img/about_bg.jpg');
+    }`;
     clear();
     switchToNewLine(true);
     printabout();
