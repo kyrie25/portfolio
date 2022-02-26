@@ -12,8 +12,8 @@
     "noImplicitAny": true,
     "noUnusedParameters": true,
     "esModuleInterop": true,
-    "outDir": "js",
     "importHelpers": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "script/js/"
   }
 }

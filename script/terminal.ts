@@ -217,9 +217,9 @@ function info() {
     '\n<img alt="icon" class="img" src="static/img/icon.png">\n' +
     "  <div><span>kyrie25</span>@<span>github.io</span></div>\n" +
     "  <div>---------------------</div>\n" +
-    "  <div><span>Proofreading</span>: <a href=\"https://premid.app\" target='_blank'>PreMiD</a>/<a href=\"https://lineageos.org\" target='_blank'>LineageOS</a></div>\n" +
-    "  <div><span>Translating</span>: <a href=\"https://premid.app\" target='_blank'>PreMiD</a>/<a href=\"https://lineageos.org\" target='_blank'>LineageOS</a>/<a href=\"https://www.ted.com\" target='_blank'>TED</a></div>\n" +
-    "  <div><span>Developing</span>: <a href=\"https://premid.app/store\" target='_blank'>PreMiD Presences</a>/Own projects</div>\n" +
+    "  <div><span>Proofreading</span>: <a href=\"https://premid.app\" target='_blank'>PreMiD</a> | <a href=\"https://lineageos.org\" target='_blank'>LineageOS</a></div>\n" +
+    "  <div><span>Translating</span>: <a href=\"https://premid.app\" target='_blank'>PreMiD</a> | <a href=\"https://lineageos.org\" target='_blank'>LineageOS</a> | <a href=\"https://www.ted.com\" target='_blank'>TED</a></div>\n" +
+    "  <div><span>Developing</span>: <a href=\"https://premid.app/store\" target='_blank'>PreMiD Presences</a> | Own projects</div>\n" +
     "  <div>---------------------</div>\n" +
     "  <div><span>Crowdin</span>: <a href=\"https://crowdin.com/profile/kyrie_25\" target='_blank'>kyrie_25</a></div>\n" +
     "  <div><span>GitHub</span>: <a href=\"https://github.com/kyrie25\" target='_blank'>@kyrie25</a></div>\n" +
