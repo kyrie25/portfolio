@@ -1,11 +1,21 @@
 "use strict";
 const processBox = document.querySelectorAll("body > div.titlebar > div.spaces > div"), backgroundImage = document.querySelector(".background_image"), { hash } = window.location;
-if (hash === "")
-    homeHash();
-else if (hash === "#music")
-    musicHash();
-else if (hash === "#about")
-    aboutHash();
+switch (hash) {
+    case "#music": {
+        musicHash();
+        break;
+    }
+    case "#about":
+        {
+            aboutHash();
+        }
+        break;
+    case "":
+    default: {
+        homeHash();
+        break;
+    }
+}
 function homeHash() {
     processBox[0].className = "space space--active";
     processBox[1].className = "space";

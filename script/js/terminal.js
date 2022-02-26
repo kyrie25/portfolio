@@ -1,11 +1,11 @@
 "use strict";
-const terminal = document.querySelector(".terminal"), base = `kyrie25@<span style="color: #b8d5ef">github.io</span>:<span style="color: dodgerblue">~</span>$ `;
-let array = [], input = "", lastIdx = -1, lastCmd = "", index = 0, sw = true;
+const terminal = document.querySelector(".terminal"), base = 'kyrie25@<span style="color: #b8d5ef">github.io</span>:<span style="color: dodgerblue">~</span>$ ', array = [];
+let input = "", lastIdx = -1, lastCmd = "", index = 0, sw = true;
 function updateConsole() {
     document.querySelector(".new-line").innerHTML = sw
         ? index === 0
-            ? base + input + "|"
-            : base + input.slice(0, index) + "|" + input.slice(index)
+            ? `${base + input}|`
+            : `${base + input.slice(0, index)}|${input.slice(index)}`
         : base + input;
 }
 document.addEventListener("keydown", function (a) {
@@ -41,12 +41,11 @@ document.addEventListener("keydown", function (a) {
         a.preventDefault();
         return;
     }
+    let d = input.length !== 0;
     switch (b) {
         case "Enter":
-            let d = input.length !== 0;
             if (d) {
-                const e = input.trim().split(" ");
-                const f = e.shift().toLowerCase();
+                const f = input.trim().split(" ").shift().toLowerCase();
                 switch (f) {
                     case "music":
                         music();
@@ -190,12 +189,12 @@ function print404() {
     if (j.innerHTML.endsWith("|"))
         j.innerHTML = j.innerHTML.slice(0, -1);
     j.innerHTML += "nahbro";
-    writeLine(`bash: <span>404</span> - Page not found. Redirected to the main page in <span>5s</span>.......`);
+    writeLine("bash: <span>404</span> - Page not found. Redirected to the main page in <span>5s</span>.......");
     inputLine("./main");
     switchToNewLine(true);
 }
 function inputLine(k) {
-    terminal.innerHTML += `\n<div class=\"new-line\">kyrie25@<span style=\"color: #b8d5ef\">github.io</span>:<span style=\"color: dodgerblue\">~</span>$ ${k ? k : ""}</div>`;
+    terminal.innerHTML += `\n<div class="new-line">kyrie25@<span style="color: #b8d5ef">github.io</span>:<span style="color: dodgerblue">~</span>$ ${k ? k : ""}</div>`;
 }
 function writeLine(l) {
     terminal.innerHTML += `<div>${l}</div>`;
