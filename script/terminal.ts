@@ -217,15 +217,14 @@ function info() {
     '\n<img alt="icon" class="img" src="static/img/icon.png">\n' +
     "  <div><span>kyrie25</span>@<span>github.io</span></div>\n" +
     "  <div>---------------------</div>\n" +
-    "  <div>Proofreader/Translator/Developer(?)</div>\n" +
-    "  <div><span>OS</span>: Windows/Linux</div>\n" +
-    "  <div><span>rrat</span>: ogey</div>\n" +
-    "  <div><span>Granblue</span>: 32665418</div>\n" +
+    "  <div><span>Proofreading</span>: <a href=\"https://premid.app\" target='_blank'>PreMiD</a>/<a href=\"https://lineageos.org\" target='_blank'>LineageOS</a></div>\n" +
+    "  <div><span>Translating</span>: <a href=\"https://premid.app\" target='_blank'>PreMiD</a>/<a href=\"https://lineageos.org\" target='_blank'>LineageOS</a>/<a href=\"https://www.ted.com\" target='_blank'>TED</a></div>\n" +
+    "  <div><span>Developing</span>: <a href=\"https://premid.app/store\" target='_blank'>PreMiD Presences</a>/Own projects</div>\n" +
+    "  <div>---------------------</div>\n" +
+    "  <div><span>Crowdin</span>: <a href=\"https://crowdin.com/profile/kyrie_25\" target='_blank'>kyrie_25</a></div>\n" +
     "  <div><span>GitHub</span>: <a href=\"https://github.com/kyrie25\" target='_blank'>@kyrie25</a></div>\n" +
     "  <div><span>PreMiD</span>: <a href=\"https://premid.app/users/368399721494216706\" target='_blank'>Kyrie</a></div>\n" +
     "  <div><span>Discord</span>: <a href=\"https://discord.com/users/368399721494216706\" target='_blank'>Kyrie#5416</a></div>\n" +
-    "  <div><span>Steam</span>: <a href=\"https://steamcommunity.com/id/kyrie25\" target='_blank'>Kyrie</a></div>\n" +
-    "  <div><span>premid.app</span>: <a href=\"https://premid.app\" target='_blank'>Download</a></div>\n" +
     '  <div style="padding-bottom:10px; clear: both;">';
 }
 
