@@ -1,7 +1,9 @@
 # [rrat](https://kyrie25.me)
 
-Pretty fun project tbh  
+Pretty fun project tbh, my small experiment to make functional code  
 **Note**: Technically can use APNG as background, but I don't want to bombard loading time with a 20mb (or more) file
+
+Run `yarn` to deploy all dependencies if you intend to clone this  
 
 ```typescript
 function about() {
