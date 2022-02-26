@@ -4,10 +4,7 @@ setInterval((function a() {
     b.setHours(0, 0, 0);
     c.setHours(0, 0, 0);
     c.setDate(c.getDate() + 1);
-    const f = (100 -
-        (100 * Math.max(0, c.valueOf() - new Date().valueOf())) / c.valueOf() -
-        b.valueOf()) /
-        100;
+    const d = c.valueOf() - b.valueOf(), e = Math.max(0, c.valueOf() - Date.now()), f = (100 - (100 * e) / d) / 100;
     document.querySelector(".date-widget").innerHTML = `<svg class="date-display__icon" height="24" viewBox="0 0 24 24" width="24"><path d="M21 3h-3V1h-2v2H8V1H6v2H3v18h18V3zm-2 16H5V8h14v11zM7 10h5v5H7v-5z"></path></svg>${new Date().toLocaleString("en-UK", {
         weekday: "short",
         month: "short",
@@ -58,8 +55,9 @@ function touchHandler(i) {
 }
 document.addEventListener("keydown", function (l) {
     window.event;
+    const m = l.key;
     if (l.altKey) {
-        switch (l.key) {
+        switch (m) {
             case "ArrowUp":
                 elem.style.top = `${elem.offsetTop - 20}px`;
                 break;
