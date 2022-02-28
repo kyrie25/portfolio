@@ -24,6 +24,11 @@ switch (hash) {
 }
 
 function homeHash() {
+	// Refreshes CSS animation
+	document.querySelector<HTMLDivElement>(".terminal").className =
+		"terminal_await-css";
+	document.querySelector<HTMLDivElement>(".terminal_await-css").className =
+		"terminal";
 	processBox[0].className = "space space--active";
 	processBox[1].className = "space";
 	processBox[2].className = "space";
@@ -35,6 +40,10 @@ function homeHash() {
 	printinfo();
 }
 function musicHash() {
+	document.querySelector<HTMLDivElement>(".terminal").className =
+		"terminal_await-css";
+	document.querySelector<HTMLDivElement>(".terminal_await-css").className =
+		"terminal";
 	processBox[0].className = "space";
 	processBox[1].className = "space space--active";
 	processBox[2].className = "space";
@@ -46,6 +55,10 @@ function musicHash() {
 	printmusic();
 }
 function aboutHash() {
+	document.querySelector<HTMLDivElement>(".terminal").className =
+		"terminal_await-css";
+	document.querySelector<HTMLDivElement>(".terminal_await-css").className =
+		"terminal";
 	processBox[0].className = "space";
 	processBox[1].className = "space";
 	processBox[2].className = "space space--active";
