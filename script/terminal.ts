@@ -259,7 +259,7 @@ function showSpark() {
 	const totalDraws =
 		Math.trunc(currentCrystals / 300) + currentTickets + current10Tickets * 10;
 	terminal.innerHTML +=
-		`\nYou currently have ${totalDraws}, with ${currentCrystals} crystals, ${currentTickets} tickets and ${current10Tickets} 10 tickets \n` +
+		`\nYou currently have ${totalDraws} draws, with ${currentCrystals} crystals, ${currentTickets} tickets and ${current10Tickets} 10 tickets \n` +
 		'  <div style="padding-bottom:10px; clear: both;">';
 }
 
