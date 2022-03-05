@@ -57,11 +57,11 @@ document.addEventListener("keydown", function (a) {
                                     (fa[3] && !fa[3].match(/^\d*$/)))
                                     invalidSpark();
                                 else {
-                                    localStorage.setItem("crystals", fa[2]);
+                                    localStorage.setItem("crystals", fa[1]);
                                     if (fa[2])
-                                        localStorage.setItem("tickets", fa[3]);
+                                        localStorage.setItem("tickets", fa[2]);
                                     if (fa[3])
-                                        localStorage.setItem("10tickets", fa[4]);
+                                        localStorage.setItem("10tickets", fa[3]);
                                     showSpark();
                                 }
                             }
@@ -246,9 +246,14 @@ function invalidSpark() {
             '  <div style="padding-bottom:10px; clear: both;">';
 }
 function showSpark() {
-    const currentCrystals = Number(localStorage.getItem("crystals")), currentTickets = Number(localStorage.getItem("tickets")), current10Tickets = Number(localStorage.getItem("10tickets")), totalDraws = Math.trunc(currentCrystals / 300) +
-        currentTickets +
-        current10Tickets * 10;
+    let currentCrystals = Number(localStorage.getItem("crystals")), currentTickets = Number(localStorage.getItem("tickets")), current10Tickets = Number(localStorage.getItem("10tickets"));
+    if (isNaN(currentCrystals))
+        currentCrystals = 0;
+    if (isNaN(currentTickets))
+        currentTickets = 0;
+    if (isNaN(current10Tickets))
+        current10Tickets = 0;
+    const totalDraws = Math.trunc(currentCrystals / 300) + currentTickets + current10Tickets * 10;
     terminal.innerHTML +=
         `\nYou currently have ${totalDraws}, with ${currentCrystals} crystals, ${currentTickets} tickets and ${current10Tickets} 10 tickets \n` +
             '  <div style="padding-bottom:10px; clear: both;">';
