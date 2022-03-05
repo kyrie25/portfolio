@@ -54,19 +54,19 @@ document.addEventListener(
 						f = fa.shift().toLowerCase();
 					switch (f) {
 						case "spark":
-							if (fa.length > 1) {
-								if (fa[1].toLowerCase() === "show") showSpark();
-								else if (fa[1].toLowerCase() === "set") {
+							if (fa.length >= 1) {
+								if (fa[0].toLowerCase() === "show") showSpark();
+								else if (fa[0].toLowerCase() === "set") {
 									if (
-										!fa[2].match(/^\d*$/) ||
-										!fa[3].match(/^\d*$/) ||
-										!fa[4].match(/^\d*$/)
+										!fa[1].match(/^\d*$/) ||
+										(fa[2] && !fa[2].match(/^\d*$/)) ||
+										(fa[3] && !fa[3].match(/^\d*$/))
 									)
 										invalidSpark();
 									else {
 										localStorage.setItem("crystals", fa[2]);
-										localStorage.setItem("tickets", fa[3]);
-										localStorage.setItem("10tickets", fa[4]);
+										if (fa[2]) localStorage.setItem("tickets", fa[3]);
+										if (fa[3]) localStorage.setItem("10tickets", fa[4]);
 										showSpark();
 									}
 								} else sparkInfo();
@@ -250,12 +250,9 @@ function invalidSpark() {
 }
 
 function showSpark() {
-	const currentCrystals =
-			(localStorage.getItem("crystals") as unknown as number) ?? 0,
-		currentTickets =
-			(localStorage.getItem("tickets") as unknown as number) ?? 0,
-		current10Tickets =
-			(localStorage.getItem("10tickets") as unknown as number) ?? 0,
+	const currentCrystals = Number(localStorage.getItem("crystals")),
+		currentTickets = Number(localStorage.getItem("tickets")),
+		current10Tickets = Number(localStorage.getItem("10tickets")),
 		totalDraws =
 			Math.trunc(currentCrystals / 300) +
 			currentTickets +
@@ -270,7 +267,7 @@ function sparkInfo() {
 		'\n<img alt="icon" class="img" src="static/img/spark_icon.png">\n' +
 		"  <div><span>kyrie25</span>@<span>github.io</span></div>\n" +
 		"  <div>---------------------</div>\n" +
-		"  <div><span>GBF Spark Counter</span>made by <a href=\"https://github.com/kyrie25\" target='_blank'>me</a></div>\n" +
+		"  <div><span>GBF Spark Counter</span> made by <a href=\"https://github.com/kyrie25\" target='_blank'>me</a></div>\n" +
 		"  <div>Because all Discord spark bots were dead at the time and I'm too lazy to host one</div>\n" +
 		"  <div>---------------------</div>\n" +
 		"  <div>Usage:</div>\n" +
