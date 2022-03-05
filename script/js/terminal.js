@@ -242,7 +242,7 @@ function ls() {
 }
 function invalidSpark() {
     terminal.innerHTML +=
-        "\nInvalid spark command\n" +
+        "\n<div>Invalid spark command</div>\n" +
             '  <div style="padding-bottom:10px; clear: both;">';
 }
 function showSpark() {
@@ -256,15 +256,18 @@ function showSpark() {
     const totalDraws = Math.trunc(currentCrystals / 300) + currentTickets + current10Tickets * 10;
     if (totalDraws < 300) {
         terminal.innerHTML +=
-            `\n<div>You currently have ${totalDraws} draws, with ${currentCrystals} crystals, ${currentTickets} tickets and ${current10Tickets} 10 tickets</div> \n` +
+            `\n<div>You currently have ${totalDraws} <span>draws</span>, with ${currentCrystals} <span>crystals</span>, ${currentTickets} <span>tickets</span> and ${current10Tickets} <span>10 tickets</span></div> \n` +
                 '  <div style="padding-bottom:10px; clear: both;">';
     }
     else {
         terminal.innerHTML +=
             '\n<img alt="icon" class="img" src="static/img/spark_300.png">\n' +
-                `  <div>You currently have ${totalDraws} draws, with ${currentCrystals} crystals, ${currentTickets} tickets and ${current10Tickets} 10 tickets</div> \n` +
+                `  <div>You currently have ${totalDraws} <span>draws</span>, with:</div> \n` +
+                `  <div>- ${currentCrystals} <span>crystals</span></div>\n` +
+                `  <div>- ${currentTickets} <span>tickets</span></div>\n` +
+                `  <div>- ${current10Tickets} <span>10 tickets</span></div>\n` +
                 "  <div>---------------------</div>\n" +
-                "  <div><span>Congratulations</span>! You have saved enough for a spark 🎉</div>\n" +
+                "  <div><span>Congratulations!</span> You have saved enough for a spark 🎉</div>\n" +
                 '  <div style="padding-bottom:10px; clear: both;">';
     }
 }
