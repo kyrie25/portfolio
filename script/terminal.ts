@@ -271,8 +271,8 @@ function sparkInfo() {
 		"  <div><span>GBF Spark Counter</span> made by <a href=\"https://github.com/kyrie25\" target='_blank'>me</a></div>\n" +
 		"  <div>Because all Discord spark bots were dead at the time and I'm too lazy to host one</div>\n" +
 		"  <div>---------------------</div>\n" +
-		"  <div>Usage:</div>\n" +
-		"  <div>'spark set <crystals> <tickets> <10tickets>'</div>\n" +
+		"  <div><span>Usage</span>:</div>\n" +
+		"  <div>'spark set (crystals) (tickets) (10tickets)'</div>\n" +
 		"  <div>eg: 'spark 25000 7 1' = 100 draws\n" +
 		"  <div>'spark show': Show your current spark count</div>\n" +
 		'  <div style="padding-bottom:10px; clear: both;">';
