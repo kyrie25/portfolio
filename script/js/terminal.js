@@ -45,8 +45,30 @@ document.addEventListener("keydown", function (a) {
     switch (b) {
         case "Enter":
             if (d) {
-                const f = input.trim().split(" ").shift().toLowerCase();
+                const fa = input.trim().split(" "), f = fa.shift().toLowerCase();
                 switch (f) {
+                    case "spark":
+                        if (fa.length > 1) {
+                            if (fa[1].toLowerCase() === "show")
+                                showSpark();
+                            else if (fa[1].toLowerCase() === "set") {
+                                if (!fa[2].match(/^\d*$/) ||
+                                    !fa[3].match(/^\d*$/) ||
+                                    !fa[4].match(/^\d*$/))
+                                    invalidSpark();
+                                else {
+                                    localStorage.setItem("crystals", fa[2]);
+                                    localStorage.setItem("tickets", fa[3]);
+                                    localStorage.setItem("10tickets", fa[4]);
+                                    showSpark();
+                                }
+                            }
+                            else
+                                sparkInfo();
+                        }
+                        else
+                            sparkInfo();
+                        break;
                     case "music":
                         music();
                         break;
@@ -156,6 +178,15 @@ function switchToNewLine(h) {
     index = 0;
     inputLine("");
 }
+function printspark() {
+    const j = document.querySelector(".new-line");
+    j.classList.remove("new-line");
+    if (j.innerHTML.endsWith("|"))
+        j.innerHTML = j.innerHTML.slice(0, -1);
+    j.innerHTML += "spark";
+    sparkInfo();
+    switchToNewLine(true);
+}
 function printinfo() {
     const j = document.querySelector(".new-line");
     j.classList.remove("new-line");
@@ -205,6 +236,33 @@ function clear() {
 function ls() {
     terminal.innerHTML +=
         '\nI could list the files, but it is better if you check it out on <a href="https://github.com/kyrie25/portfolio">GitHub</a> yourself</div>\n' +
+            '  <div style="padding-bottom:10px; clear: both;">';
+}
+function invalidSpark() {
+    terminal.innerHTML +=
+        "\nInvalid spark command\n" +
+            '  <div style="padding-bottom:10px; clear: both;">';
+}
+function showSpark() {
+    const currentCrystals = localStorage.getItem("crystals") ?? 0, currentTickets = localStorage.getItem("tickets") ?? 0, current10Tickets = localStorage.getItem("10tickets") ?? 0, totalDraws = Math.trunc(currentCrystals / 300) +
+        currentTickets +
+        current10Tickets * 10;
+    terminal.innerHTML +=
+        `\nYou currently have ${totalDraws}, with ${currentCrystals} crystals, ${currentTickets} tickets and ${current10Tickets} 10 tickets \n` +
+            '  <div style="padding-bottom:10px; clear: both;">';
+}
+function sparkInfo() {
+    terminal.innerHTML +=
+        '\n<img alt="icon" class="img" src="static/img/spark_icon.png">\n' +
+            "  <div><span>kyrie25</span>@<span>github.io</span></div>\n" +
+            "  <div>---------------------</div>\n" +
+            "  <div><span>GBF Spark Counter</span>made by <a href=\"https://github.com/kyrie25\" target='_blank'>me</a></div>\n" +
+            "  <div>Because all Discord spark bots were dead at the time and I'm too lazy to host one</div>\n" +
+            "  <div>---------------------</div>\n" +
+            "  <div>Usage:</div>\n" +
+            "  <div>'spark set <crystals> <tickets> <10tickets>'</div>\n" +
+            "  <div>eg: 'spark 25000 7 1' = 100 draws\n" +
+            "  <div>'spark show': Show your current spark count</div>\n" +
             '  <div style="padding-bottom:10px; clear: both;">';
 }
 function info() {

@@ -15,6 +15,11 @@ switch (hash) {
 			aboutHash();
 		}
 		break;
+	case "#spark":
+		{
+			sparkHash();
+		}
+		break;
 	case "":
 	default: {
 		homeHash();
@@ -26,16 +31,10 @@ function homeHash() {
 	processBox[0].className = "space space--active";
 	processBox[1].className = "space";
 	processBox[2].className = "space";
+	processBox[3].className = "space";
 	dynamicCSS.innerHTML = `html {
       background-image: url('static/img/bg.jpg');
     }`;
-	// Refreshes CSS animation
-	dynamicCSS.innerHTML = `html {
-		background-image: url('static/img/bg.jpg');
-	  }
-	  .terminal {
-		animation: fadein 0.5s ease-in;
-	}`;
 	clear();
 	switchToNewLine(true);
 	printinfo();
@@ -44,15 +43,10 @@ function musicHash() {
 	processBox[0].className = "space";
 	processBox[1].className = "space space--active";
 	processBox[2].className = "space";
+	processBox[3].className = "space";
 	dynamicCSS.innerHTML = `html {
       background-image: url('static/img/music_bg.jpg');
     }`;
-	dynamicCSS.innerHTML = `html {
-		background-image: url('static/img/music_bg.jpg');
-	  }
-	  .terminal {
-		animation: fadein 0.5s ease-in;
-	}`;
 	clear();
 	switchToNewLine(true);
 	printmusic();
@@ -61,16 +55,23 @@ function aboutHash() {
 	processBox[0].className = "space";
 	processBox[1].className = "space";
 	processBox[2].className = "space space--active";
+	processBox[3].className = "space";
 	dynamicCSS.innerHTML = `html {
       background-image: url('static/img/about_bg.jpg');
     }`;
-	dynamicCSS.innerHTML = `html {
-		background-image: url('static/img/about_bg.jpg');
-	  }
-	  .terminal {
-		animation: fadein 0.5s ease-in;
-	}`;
 	clear();
 	switchToNewLine(true);
 	printabout();
+}
+function sparkHash() {
+	processBox[0].className = "space";
+	processBox[1].className = "space";
+	processBox[2].className = "space";
+	processBox[3].className = "space space--active";
+	dynamicCSS.innerHTML = `html {
+      background-image: url('static/img/spark_bg.jpg');
+    }`;
+	clear();
+	switchToNewLine(true);
+	printspark();
 }
