@@ -52,9 +52,9 @@ document.addEventListener("keydown", function (a) {
                             if (fa[0].toLowerCase() === "show")
                                 showSpark();
                             else if (fa[0].toLowerCase() === "set") {
-                                if (!fa[1].match(/^\d*$/) ||
-                                    (fa[2] && !fa[2].match(/^\d*$/)) ||
-                                    (fa[3] && !fa[3].match(/^\d*$/)))
+                                if (isNaN(Number(fa[1])) ||
+                                    (fa[2] && isNaN(Number(fa[2]))) ||
+                                    (fa[3] && isNaN(Number(fa[3]))))
                                     invalidSpark();
                                 else {
                                     localStorage.setItem("crystals", fa[1]);
@@ -237,7 +237,7 @@ function clear() {
 }
 function ls() {
     terminal.innerHTML +=
-        '\nI could list the files, but it is better if you check it out on <a href="https://github.com/kyrie25/portfolio">GitHub</a> yourself</div>\n' +
+        '\n<div>I could list the files, but it is better if you check it out on <a href="https://github.com/kyrie25/portfolio">GitHub</a> yourself</div>\n' +
             '  <div style="padding-bottom:10px; clear: both;">';
 }
 function invalidSpark() {
@@ -254,9 +254,19 @@ function showSpark() {
     if (isNaN(current10Tickets))
         current10Tickets = 0;
     const totalDraws = Math.trunc(currentCrystals / 300) + currentTickets + current10Tickets * 10;
-    terminal.innerHTML +=
-        `\nYou currently have ${totalDraws} draws, with ${currentCrystals} crystals, ${currentTickets} tickets and ${current10Tickets} 10 tickets \n` +
-            '  <div style="padding-bottom:10px; clear: both;">';
+    if (totalDraws < 300) {
+        terminal.innerHTML +=
+            `\n<div>You currently have ${totalDraws} draws, with ${currentCrystals} crystals, ${currentTickets} tickets and ${current10Tickets} 10 tickets</div> \n` +
+                '  <div style="padding-bottom:10px; clear: both;">';
+    }
+    else {
+        terminal.innerHTML +=
+            '\n<img alt="icon" class="img" src="static/img/spark_300.png">\n' +
+                `  <div>You currently have ${totalDraws} draws, with ${currentCrystals} crystals, ${currentTickets} tickets and ${current10Tickets} 10 tickets</div> \n` +
+                "  <div>---------------------</div>\n" +
+                "  <div><span>Congratulations</span>! You have saved enough for a spark 🎉</div>\n" +
+                '  <div style="padding-bottom:10px; clear: both;">';
+    }
 }
 function sparkInfo() {
     terminal.innerHTML +=
