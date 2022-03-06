@@ -65,6 +65,8 @@ document.addEventListener("keydown", function (a) {
                                     showSpark();
                                 }
                             }
+                            else if (fa[0].toLowerCase() === "reset")
+                                resetSpark();
                             else
                                 sparkInfo();
                         }
@@ -245,6 +247,12 @@ function invalidSpark() {
         "\n<div>Invalid spark command</div>\n" +
             '  <div style="padding-bottom:10px; clear: both;">';
 }
+function resetSpark() {
+    localStorage.clear();
+    terminal.innerHTML +=
+        "\n<div>Spark count resetted</div>\n" +
+            '  <div style="padding-bottom:10px; clear: both;">';
+}
 function showSpark() {
     let currentCrystals = Number(localStorage.getItem("crystals")), currentTickets = Number(localStorage.getItem("tickets")), current10Tickets = Number(localStorage.getItem("10tickets"));
     if (isNaN(currentCrystals))
@@ -257,6 +265,7 @@ function showSpark() {
     if (totalDraws < 300) {
         terminal.innerHTML +=
             `\n<div>You currently have ${totalDraws} <span>draws</span>, with ${currentCrystals} <span>crystals</span>, ${currentTickets} <span>tickets</span> and ${current10Tickets} <span>10 tickets</span></div> \n` +
+                `<div>You have saved <span>${((totalDraws / 300) * 100).toFixed(2)}%</span> for a spark</div>\n` +
                 '  <div style="padding-bottom:10px; clear: both;">';
     }
     else {
@@ -276,13 +285,15 @@ function sparkInfo() {
         '\n<img alt="icon" class="img" src="static/img/spark_icon.png">\n' +
             "  <div><span>kyrie25</span>@<span>github.io</span></div>\n" +
             "  <div>---------------------</div>\n" +
-            "  <div><span>GBF Spark Counter</span> made by <a href=\"https://github.com/kyrie25\" target='_blank'>me</a></div>\n" +
+            "  <div><span>GBF Spark Calculator</span> made by <a href=\"https://github.com/kyrie25\" target='_blank'>me</a></div>\n" +
             "  <div>Because all Discord spark bots were dead at the time and I'm too lazy to host one</div>\n" +
             "  <div>---------------------</div>\n" +
             "  <div><span>Usage</span>:</div>\n" +
             "  <div>'spark set (crystals) (tickets) (10tickets)'</div>\n" +
             "  <div>eg: 'spark 25000 7 1' = 100 draws\n" +
             "  <div>'spark show': Show your current spark count</div>\n" +
+            "  <div>'spark reset': Reset your spark count</div>\n" +
+            "  <div><span>Note</span>: All data is stored locally and the source code can be read <a href=\"https://github.com/kyrie25/portfolio\" target='_blank'>here</a> if you don't believe me</div>\n" +
             '  <div style="padding-bottom:10px; clear: both;">';
 }
 function info() {
