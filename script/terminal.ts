@@ -298,7 +298,7 @@ function sparkInfo() {
 		"  <div>eg: 'spark 25000 7 1' = 100 draws\n" +
 		"  <div>'spark show': Show your current spark count</div>\n" +
 		"  <div>'spark reset': Reset your spark count</div>\n" +
-		"  <div><span>Note</span>: All data is stored locally and the source code can be read <a href=\"https://github.com/kyrie25/portfolio\" target='_blank'>here</a> if you don't believe me</div>\n" +
+		"  <div><span>Note</span>: All data is stored locally and the source code can be read <a href=\"https://github.com/kyrie25/portfolio\" target='_blank'>here</a></div>\n" +
 		'  <div style="padding-bottom:10px; clear: both;">';
 }
 
