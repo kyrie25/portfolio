@@ -1,19 +1,19 @@
 {
-  "compilerOptions": {
-    "module": "CommonJS",
-    "target": "ES2021",
-    "strict": true,
-    "strictNullChecks": false,
-    "removeComments": true,
-    "noEmitOnError": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "newLine": "lf",
-    "noImplicitAny": true,
-    "noUnusedParameters": true,
-    "esModuleInterop": true,
-    "importHelpers": true,
-    "forceConsistentCasingInFileNames": true,
-    "outDir": "script/js/"
-  }
+	"compilerOptions": {
+		"module": "CommonJS",
+		"target": "ES2021",
+		"strict": true,
+		"strictNullChecks": false,
+		"removeComments": true,
+		"noEmitOnError": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUnusedLocals": true,
+		"newLine": "lf",
+		"noImplicitAny": true,
+		"noUnusedParameters": true,
+		"esModuleInterop": true,
+		"importHelpers": true,
+		"forceConsistentCasingInFileNames": true,
+		"outDir": "script/js/"
+	}
 }
