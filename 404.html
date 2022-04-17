@@ -1,36 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-	<base href="https://kyrie25.me/" />
-	<meta
+	<base href="https://kyrie25.me/" /><meta
 		http-equiv="Content-Security-Policy"
 		content="upgrade-insecure-requests"
 	/>
 	<meta charset="utf-8" />
-	<meta content="website" property="og:type" />
-	<meta content="kyrie25.github.io" property="og:url" />
-	<meta content="kyrie25.github.io" property="og:title" />
-	<meta
+	<meta content="website" property="og:type" /><meta
+		content="kyrie25.github.io"
+		property="og:url"
+	/><meta content="kyrie25.github.io" property="og:title" /><meta
 		content="https://avatars.githubusercontent.com/u/77577746?v=4"
 		property="og:image"
-	/>
-	<meta content="summary" name="twitter:card" />
-	<meta content="kyrie25.github.io" name="twitter:site" />
-	<meta content="kyrie25.github.io" name="twitter:title" />
-	<meta content="rrat" name="twitter:description" />
-	<meta content="width=device-width,initial-scale=1" name="viewport" />
-	<style class="dynamic_css" type="text/css">
-		html {
-			background-image: url("static/img/bg.jpg");
-		}
-	</style>
-	<link href="static/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-	<link href="static/style.css" rel="stylesheet" />
-	<title>Kyrie's site</title>
+	/><meta content="summary" name="twitter:card" /><meta
+		content="kyrie25.github.io"
+		name="twitter:site"
+	/><meta content="kyrie25.github.io" name="twitter:title" /><meta
+		content="rrat"
+		name="twitter:description"
+	/><meta content="width=device-width,initial-scale=1" name="viewport" /><link
+		href="static/favicon.ico"
+		rel="shortcut icon"
+		type="image/x-icon"
+	/><link href="static/style.css" rel="stylesheet" /><meta
+		http-equiv="refresh"
+		content="5;url=https://kyrie25.me"
+	/><title>Kyrie's site</title>
 	<div class="titlebar">
 		<div class="spaces">
 			<div
 				class="space space--active"
-				onclick="window.location.hash = ''; javascript:homeHash()"
+				onclick='window.location="https://github.com/kyrie25"'
 			>
 				1
 				<svg height="24" viewBox="0 0 24 24" width="24">
@@ -39,10 +38,7 @@
 					/>
 				</svg>
 			</div>
-			<div
-				class="space"
-				onclick="window.location.hash = '#music'; javascript:musicHash()"
-			>
+			<div class="space" onclick='window.location="https://kyrie25.me/music"'>
 				2
 				<svg height="24" viewBox="0 0 24 24" width="24">
 					<path
@@ -52,10 +48,7 @@
 					/>
 				</svg>
 			</div>
-			<div
-				class="space"
-				onclick="window.location.hash = '#about'; javascript:aboutHash()"
-			>
+			<div class="space" onclick='window.location="https://kyrie25.me/about"'>
 				3
 				<svg height="24" viewBox="0 0 24 24" width="24">
 					<path
@@ -78,13 +71,6 @@
 					/>
 				</svg>
 			</div>
-			<div
-				class="space"
-				onclick="window.location.hash = '#spark'; javascript:sparkHash()"
-			>
-				4
-				<img src="/static/img/spark_pbox.png" alt="GBF" />
-			</div>
 			<div class="space" onclick='window.location="https://github.com/kyrie25"'>
 				+
 			</div>
@@ -96,19 +82,25 @@
 		</div>
 	</div>
 	<div class="terminal">
-		<noscript>
-			<div>
-				kyrie25@ <span style="color: #fce2ed">github.io</span>:
-				<span style="color: #1e90ff">~</span>$ ./noscript
+		<noscript
+			><div>
+				kyrie25@<span style="color: #90ee90">github.io</span>:<span
+					style="color: #1e90ff"
+					>~</span
+				>$ ./noscript
 			</div>
 			<div>please enable <span>javascript</span></div>
 			<div class="new-line">
-				kyrie25@ <span style="color: #fce2ed">github.io</span>:
-				<span style="color: #1e90ff">~</span>$ enable javascript
-			</div>
-		</noscript>
+				kyrie25@<span style="color: #90ee90">github.io</span>:<span
+					style="color: #1e90ff"
+					>~</span
+				>$ enable javascript
+			</div></noscript
+		>
 	</div>
-	<script type="text/javascript" src="script/js/terminal.js"></script>
-	<script type="text/javascript" src="script/js/script.js"></script>
-	<script type="text/javascript" src="script/js/window_hash.js"></script>
+	<script type="text/javascript" src="script/dist/terminal.js"></script>
+	<script type="text/javascript" src="script/dist/script.js"></script>
+	<script>
+		print404();
+	</script>
 </html>
