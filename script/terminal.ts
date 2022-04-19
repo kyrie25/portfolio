@@ -54,22 +54,27 @@ document.addEventListener(
 					switch (f) {
 						case "spark":
 							if (fa.length >= 1) {
-								if (fa[0].toLowerCase() === "show") showSpark();
-								else if (fa[0].toLowerCase() === "set") {
-									if (
-										isNaN(Number(fa[1])) ||
-										(fa[2] && isNaN(Number(fa[2]))) ||
-										(fa[3] && isNaN(Number(fa[3])))
-									)
-										invalidSpark();
-									else {
-										localStorage.setItem("crystals", fa[1]);
-										if (fa[2]) localStorage.setItem("tickets", fa[2]);
-										if (fa[3]) localStorage.setItem("10tickets", fa[3]);
+								switch (fa[0].toLowerCase()) {
+									case "show":
 										showSpark();
-									}
-								} else if (fa[0].toLowerCase() === "reset") resetSpark();
-								else sparkInfo();
+										break;
+									case "set":
+										for (let i = 1; i < 4; i++) {
+											if (fa[i] && isNaN(Number(fa[i]))) invalidSpark();
+											else {
+												localStorage.setItem("crystals", fa[1]);
+												if (fa[2]) localStorage.setItem("tickets", fa[2]);
+												if (fa[3]) localStorage.setItem("10tickets", fa[3]);
+												showSpark();
+											}
+										}
+										break;
+									case "reset":
+										resetSpark();
+										break;
+									default:
+										sparkInfo();
+								}
 							} else sparkInfo();
 							break;
 						case "music":
@@ -88,6 +93,9 @@ document.addEventListener(
 						case "info":
 						case "neofetch":
 							info();
+							break;
+						case "sudo":
+							sudo();
 							break;
 						default:
 							d = false;
@@ -161,6 +169,7 @@ setInterval(
 	500
 );
 
+//#region Function hell
 function switchToNewLine(h: boolean) {
 	if (input.length !== 0) array.push(input);
 	lastIdx = -1;
@@ -235,6 +244,16 @@ function writeLine(l: string) {
 
 function clear() {
 	terminal.innerHTML = "";
+}
+
+function help() {
+	terminal.innerHTML +=
+		"\n<div>List of commands available:\nspark\nmusic\nabout\nls\ndir\nclear\ninfo\nneofetch\nsudo</div>\n" +
+		'  <div style="padding-bottom:10px; clear: both;">';
+}
+
+function sudo() {
+	window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 }
 
 function ls() {
@@ -352,3 +371,4 @@ function about() {
 		"  <div>Please support the respective owners of the works, they really are awesome <3</div>\n" +
 		'  <div style="padding-bottom:10px; clear: both;">';
 }
+//#endregion
