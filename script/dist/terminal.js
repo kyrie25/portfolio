@@ -55,8 +55,10 @@ document.addEventListener("keydown", function (a) {
                                     break;
                                 case "set":
                                     for (let i = 1; i < 4; i++) {
-                                        if (fa[i] && isNaN(Number(fa[i])))
+                                        if (fa[i] && isNaN(Number(fa[i]))) {
                                             invalidSpark();
+                                            break;
+                                        }
                                         else {
                                             localStorage.setItem("crystals", fa[1]);
                                             if (fa[2])
@@ -64,6 +66,7 @@ document.addEventListener("keydown", function (a) {
                                             if (fa[3])
                                                 localStorage.setItem("10tickets", fa[3]);
                                             showSpark();
+                                            break;
                                         }
                                     }
                                     break;
@@ -93,6 +96,9 @@ document.addEventListener("keydown", function (a) {
                     case "info":
                     case "neofetch":
                         info();
+                        break;
+                    case "help":
+                        help();
                         break;
                     case "sudo":
                         sudo();
