@@ -16,6 +16,29 @@
 	backdrop-filter: blur(8px);
 	font-family: "JetBrains Mono", monospace;
 
+	.space {
+		display: flex;
+		align-items: center;
+		margin-right: 5px;
+		padding: 3px 6px;
+		font-size: 11px;
+		color: #1e2737;
+		background-color: #fff;
+		border-radius: 3px;
+		box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+		cursor: pointer;
+
+		img {
+			flex: 0 0 11px;
+			width: 11px;
+			height: 11px;
+			margin-right: 6px;
+			fill: currentColor;
+			-webkit-transform: translateZ(0);
+			transform: translateZ(0);
+		}
+	}
+
 	.process {
 		position: absolute;
 		top: 6px;
