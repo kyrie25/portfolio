@@ -1,0 +1,90 @@
+.react-clock {
+	display: block;
+	position: relative;
+
+	*,
+	*:before,
+	*:after {
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	.react-clock__face {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		border: 1px solid white;
+		border-radius: 50%;
+	}
+	.react-clock__hand {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 50%;
+		right: 50%;
+	}
+	.react-clock__hand__body {
+		position: absolute;
+		background-color: white;
+		transform: translateX(-50%);
+	}
+	.react-clock__mark {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 50%;
+		right: 50%;
+	}
+	.react-clock__mark__body {
+		position: absolute;
+		background-color: white;
+		transform: translateX(-50%);
+	}
+	.react-clock__mark__number {
+		position: absolute;
+		left: -40px;
+		width: 80px;
+		text-align: center;
+	}
+	.react-clock__second-hand__body {
+		background-color: red;
+	}
+
+	.react-clock {
+		background-color: white;
+		border-radius: 50%;
+	}
+	.react-clock__face {
+		border: 3px solid white;
+		background-color: black;
+	}
+	.react-clock__second-hand {
+		transition: transform cubic-bezier(0.68, 0, 0.27, 1.55) 0.2s;
+	}
+	.react-clock__second-hand__body:before {
+		content: "";
+		display: block;
+		width: 7px;
+		height: 7px;
+		position: absolute;
+		bottom: 20%;
+		left: 50%;
+		background-color: red;
+		border-radius: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+	.react-clock__second-hand__body:after {
+		content: "";
+		display: block;
+		width: 10px;
+		height: 10px;
+		position: absolute;
+		top: 0;
+		left: 50%;
+		background-color: red;
+		border-radius: 50%;
+		transform: translateX(-50%);
+	}
+}
