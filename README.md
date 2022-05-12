@@ -4,4 +4,4 @@
 
 _Why?_ Because I'm bored.
 
-For the original page refer to the `legacy` branch of this repository.
+For the original page refer to the [`legacy`](https://github.com/kyrie25/portfolio/tree/legacy) branch of this repository.
