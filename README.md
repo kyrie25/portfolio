@@ -1,12 +1,12 @@
 # [rrat](https://kyrie25.me)
 
-My website (re)written in React & Sass. Pretty barebone.
+My website (re)written in React & Sass. Pretty barebone. Might add some stuff in the future/bring back features in the legacy site.
 
 _Why?_ I was bored.
 
 ## Preview
 
-![msedge_uORKOyk8Ve](https://user-images.githubusercontent.com/77577746/168082361-a2592076-0488-45e7-afde-347800feec43.gif)
+![msedge_a89xJ6OEgn](https://user-images.githubusercontent.com/77577746/168086615-ad24955e-2bad-45b7-b400-86c6ec80ce04.gif)
 
 ## Archive
 
