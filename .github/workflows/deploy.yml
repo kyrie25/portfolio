@@ -1,0 +1,17 @@
+name: deploy
+on: push
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v3
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3.1.0
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: npm i
+      - name: Deploy
+        run: npm run deploy
