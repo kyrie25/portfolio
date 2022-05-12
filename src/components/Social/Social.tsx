@@ -1,4 +1,5 @@
 import React from "react";
+// import FadeIn from "react-fade-in";
 import "./Social.scss";
 
 class Social extends React.Component {

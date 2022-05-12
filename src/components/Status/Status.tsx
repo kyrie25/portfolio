@@ -1,5 +1,6 @@
 import React from "react";
 import LocalClock from "../Clock/Clock";
+// import FadeIn from "react-fade-in";
 import "./Status.scss";
 
 class Status extends React.Component {
