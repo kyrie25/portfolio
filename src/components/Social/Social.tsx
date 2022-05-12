@@ -18,7 +18,7 @@ class Social extends React.Component {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							kyrie_25
+							Crowdin
 						</a>
 					</div>
 					<div className="button__wrapper" id="github">
@@ -28,7 +28,7 @@ class Social extends React.Component {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							@kyrie25
+							GitHub
 						</a>
 					</div>
 					<div className="button__wrapper" id="premid">
@@ -38,7 +38,7 @@ class Social extends React.Component {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							Kyrie
+							PreMiD
 						</a>
 					</div>
 					<div className="button__wrapper" id="discord">
@@ -48,7 +48,7 @@ class Social extends React.Component {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							Kyrie#5416
+							Discord
 						</a>
 					</div>
 					<div className="button__wrapper" id="twitter">
@@ -58,7 +58,7 @@ class Social extends React.Component {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							_kyrie_25
+							Twitter
 						</a>
 					</div>
 				</div>

@@ -20,16 +20,26 @@ div.social__container {
 		color: rgb(57, 48, 182);
 		border-radius: 20px;
 
+		#github {
+			background-color: #000;
+		}
+
+		#crowdin {
+			background-color: #2e3340;
+		}
+
+		#premid {
+			background-color: #7289da;
+		}
+
+		#discord {
+			background-color: #5865f2;
+		}
+
 		div.button__wrapper {
 			z-index: 0;
 			overflow: hidden;
 			margin-bottom: 16px;
-			transition: box-shadow 0.25s cubic-bezier(0.08, 0.59, 0.29, 0.99) 0s,
-				color 0.25s cubic-bezier(0.08, 0.59, 0.29, 0.99) 0s,
-				border-color 0.25s cubic-bezier(0.08, 0.59, 0.29, 0.99) 0s,
-				transform 0.25s cubic-bezier(0.08, 0.59, 0.29, 0.99) 0s,
-				background-color 0.25s cubic-bezier(0.08, 0.59, 0.29, 0.99) 0s;
-			border: 2px solid rgb(79, 124, 254);
 			border-radius: 20px;
 			background-color: rgb(79, 124, 254);
 			color: rgb(255, 255, 255);
@@ -65,23 +75,11 @@ div.social__container {
 				white-space: normal;
 				background: none;
 				color: inherit;
-				transition: box-shadow 0.25s cubic-bezier(0.08, 0.59, 0.29, 0.99) 0s,
-					border-color 0.25s cubic-bezier(0.08, 0.59, 0.29, 0.99) 0s,
-					transform 0.25s cubic-bezier(0.08, 0.59, 0.29, 0.99) 0s,
-					background-color 0.25s cubic-bezier(0.08, 0.59, 0.29, 0.99) 0s;
 				font-family: Karla, sans-serif;
 				font-size: 16px;
 				font-weight: 700;
 				box-sizing: border-box;
 				-webkit-font-smoothing: antialiased;
-			}
-		}
-
-		div.button__wrapper:hover {
-			background-color: rgb(255, 255, 255);
-
-			a {
-				color: rgb(79, 124, 254);
 			}
 		}
 	}
