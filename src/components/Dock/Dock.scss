@@ -1,0 +1,52 @@
+.dock {
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(27, 34, 45, 0.8);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+	z-index: 1;
+	-webkit-backdrop-filter: blur(8px);
+	backdrop-filter: blur(8px);
+	text-align: center;
+
+	img {
+		max-height: 100%;
+		float: left;
+		flex: 0 0 30px;
+		bottom: 5px;
+		margin-top: 5px;
+		margin-right: 10px;
+		clear: both;
+		fill: currentColor;
+		-webkit-transform: translateZ(0);
+		transform: translateZ(0);
+	}
+
+	p {
+		position: relative;
+		text-align: center;
+		overflow: auto;
+		display: block;
+		align-items: center;
+		padding: 10px;
+		font-size: 20px;
+		color: #fff;
+		border-radius: 3px;
+		box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+
+		a {
+			color: inherit;
+			text-decoration: inherit;
+
+			span {
+				color: #6fa8e7;
+				text-shadow: 0 0 5px;
+			}
+		}
+	}
+}

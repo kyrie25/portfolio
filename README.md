@@ -8,6 +8,12 @@ _Why?_ I was bored.
 
 ![msedge_a89xJ6OEgn](https://user-images.githubusercontent.com/77577746/168086615-ad24955e-2bad-45b7-b400-86c6ec80ce04.gif)
 
+## Building
+
+Repository is licensed under GPL-3.0. Third party dependencies & modules are used under their respective licenses.
+
+Run `npm i` to install all dependencies if you intend to clone (and/or) modify this.
+
 ## Archive
 
 For the original page refer to the [`legacy`](https://github.com/kyrie25/portfolio/tree/legacy) branch of this repository.
