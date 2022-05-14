@@ -33,6 +33,7 @@ div.social__container {
 				transform 0.25s cubic-bezier(0.08, 0.59, 0.29, 0.99) 0s,
 				background-color 0.25s cubic-bezier(0.08, 0.59, 0.29, 0.99) 0s;
 
+			// TODO: Make dynamic rulesets from JSON
 			&#github {
 				border: 2px solid #000;
 				background-color: #000;

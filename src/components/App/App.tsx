@@ -3,6 +3,7 @@ import Status from "../Status/Status";
 import Titlebar from "../Titlebar/Titlebar";
 import Social from "../Social/Social";
 import Dock from "../Dock/Dock";
+import "./App.scss";
 
 class App extends React.Component {
 	constructor(props) {

@@ -1,0 +1,34 @@
+{
+	"accounts": [
+		{
+			"id": "crowdin",
+			"name": "Crowdin",
+			"link": "https://crowdin.com/profile/kyrie_25",
+			"color": "#2e3340"
+		},
+		{
+			"id": "github",
+			"name": "GitHub",
+			"link": "https://github.com/kyrie25",
+			"color": "#fff"
+		},
+		{
+			"id": "premid",
+			"name": "PreMiD",
+			"link": "https://premid.app/users/368399721494216706",
+			"color": "#7289da"
+		},
+		{
+			"id": "discord",
+			"name": "Discord",
+			"link": "https://discord.com/users/368399721494216706",
+			"color": "#5865f2"
+		},
+		{
+			"id": "twitter",
+			"name": "Twitter",
+			"link": "https://twitter.com/_kyrie_25",
+			"color": "#00acee"
+		}
+	]
+}

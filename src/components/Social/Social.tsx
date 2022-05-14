@@ -1,6 +1,7 @@
 import React from "react";
 import FadeIn from "react-fade-in";
 import "./Social.scss";
+import manifest from "./manifest.json";
 
 class Social extends React.Component {
 	constructor(props) {
@@ -13,56 +14,20 @@ class Social extends React.Component {
 				<p>My social links</p>
 				<div className="button__container">
 					<FadeIn>
-						<div className="button__wrapper" id="crowdin">
-							<a
-								title="Crowdin"
-								href="https://crowdin.com/profile/kyrie_25"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								Crowdin
-							</a>
-						</div>
-						<div className="button__wrapper" id="github">
-							<a
-								title="GitHub"
-								href="https://github.com/kyrie25"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								GitHub
-							</a>
-						</div>
-						<div className="button__wrapper" id="premid">
-							<a
-								title="PreMiD"
-								href="https://premid.app/users/368399721494216706"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								PreMiD
-							</a>
-						</div>
-						<div className="button__wrapper" id="discord">
-							<a
-								title="Discord"
-								href="https://discord.com/users/368399721494216706"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								Discord
-							</a>
-						</div>
-						<div className="button__wrapper" id="twitter">
-							<a
-								title="Twitter"
-								href="https://twitter.com/_kyrie_25"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								Twitter
-							</a>
-						</div>
+						{manifest.accounts.map((value, index) => {
+							return (
+								<div key={index} className="button__wrapper" id={value.id}>
+									<a
+										title={value.name}
+										href={value.link}
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										{value.name}
+									</a>
+								</div>
+							);
+						})}
 					</FadeIn>
 				</div>
 			</div>
