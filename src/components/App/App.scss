@@ -18,7 +18,7 @@ html {
 			background: rgba(0, 0, 0, 0.4);
 			background-blend-mode: darken;
 			z-index: -1;
-			position: absolute;
+			position: fixed;
 			top: 0%;
 			left: 0%;
 			width: 100%;
@@ -36,6 +36,16 @@ html {
 			clear: both;
 			position: relative;
 			z-index: 2;
+
+			@media screen and (max-width: 600px) {
+				& {
+					flex-direction: row;
+				}
+				[class$="__container"] {
+					width: 100% !important;
+					margin: 2vh 0 5vh 0 !important;
+				}
+			}
 		}
 	}
 }

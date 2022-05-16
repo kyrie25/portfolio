@@ -18,8 +18,8 @@ class App extends React.Component {
 				<div className="container">
 					<Status />
 					<Social />
+					<Dock />
 				</div>
-				<Dock />
 			</>
 		);
 	}
