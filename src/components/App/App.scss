@@ -1,4 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap");
+@keyframes fadein {
+	0% {
+		opacity: 0.5;
+	}
+	to {
+		opacity: 1;
+	}
+}
 
 body,
 html {
@@ -15,8 +23,7 @@ html {
 		width: 100%;
 
 		div.background {
-			background: rgba(0, 0, 0, 0.4);
-			background-blend-mode: darken;
+			animation: fadein 0.5s ease-in;
 			z-index: -1;
 			position: fixed;
 			top: 0%;
@@ -25,6 +32,8 @@ html {
 			height: 100%;
 			filter: blur(4px);
 			-webkit-filter: blur(4px);
+			background: rgba(0, 0, 0, 0.4);
+			background-blend-mode: darken;
 			background-image: url(../../../public/bg.jpg);
 			background-position: center top;
 			background-repeat: no-repeat;
