@@ -14,9 +14,15 @@ _Why?_ I was bored.
 
 ## Building
 
+Run `npm i` to install all dependencies if you intend to clone (and/or) modify this.
+
+## Licensing
+
 Repository is licensed under GPL-3.0. Third party dependencies & modules are used under their respective licenses.
 
-Run `npm i` to install all dependencies if you intend to clone (and/or) modify this.
+_tl;dr_: Feel free to use/modify/redistribute this project to your liking, but you have to keep it **free & open source** (under GPL-3.0 or other compatible licenses), as it is my intention to keep it that way 💕
+
+Give this project a star if you liked it, credit this repository if you want others to also use this shabby project of mine, and yeah, have fun messing around.
 
 ## Archive
 
