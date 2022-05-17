@@ -5,12 +5,12 @@ My website (re)written in React & Sass. Pretty barebone. Might add some stuff in
 _Why?_ I was bored.
 
 ### TODO
+
 - [ ] Add tabs & multiple pages
 
 ## Preview
 
 ![msedge_QHvyPoAYzT](https://user-images.githubusercontent.com/77577746/168268228-dbb8fb2f-f280-4936-8d1d-a19e893ba9cb.gif)
-
 
 ## Building
 
