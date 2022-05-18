@@ -27,6 +27,7 @@
 		"web-vitals": "^2.1.4"
 	},
 	"scripts": {
+		"lint:ci": "prettier --check . && eslint .",
 		"lint": "prettier --write . && eslint --fix .",
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d build",
