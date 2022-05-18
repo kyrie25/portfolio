@@ -1,14 +1,17 @@
 # [rrat](https://kyrie25.me)
 
-My website (re)written in React & Sass. Pretty barebone. Might add some stuff in the future/bring back features in the legacy site.
+My website (re)written in React & Sass. Pretty barebone.
 
 _Why?_ I was bored.
 
 ### TODO
 
-- [ ] Add tabs & multiple pages
+- [x] Add tabs & multiple pages
+- [ ] Fetch recently played songs from Spotify/Last.fm
 
 ## Preview
+
+_(This is pretty outdated lol)_
 
 ![msedge_QHvyPoAYzT](https://user-images.githubusercontent.com/77577746/168268228-dbb8fb2f-f280-4936-8d1d-a19e893ba9cb.gif)
 

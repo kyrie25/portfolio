@@ -1,0 +1,31 @@
+{
+	"languages": [
+		{
+			"name": "Typescript",
+			"url": "http://typescriptlang.org/",
+			"image": "https://raw.githubusercontent.com/kyrie25/Github-Profile-Readme-Logos/master/programming%20languages/typescript.svg"
+		},
+		{
+			"name": "React",
+			"url": "https://reactjs.org/",
+			"image": "https://raw.githubusercontent.com/kyrie25/Github-Profile-Readme-Logos/master/frameworks/react.svg"
+		},
+		{
+			"name": "Sass",
+			"url": "https://sass-lang.com/",
+			"image": "https://i.imgur.com/LPgNCIg.png"
+		},
+		{
+			"name": "Node.js",
+			"url": "https://nodejs.org/en/",
+			"image": "https://raw.githubusercontent.com/kyrie25/Github-Profile-Readme-Logos/master/frameworks/nodejs.svg"
+		}
+	],
+	"platform": [
+		{
+			"name": "GitHub Pages",
+			"url": "https://pages.github.com/",
+			"image": "https://raw.githubusercontent.com/kyrie25/Github-Profile-Readme-Logos/master/cloud/github.svg"
+		}
+	]
+}

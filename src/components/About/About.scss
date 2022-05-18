@@ -1,0 +1,44 @@
+div.about__container {
+	background-color: rgba(0, 0, 0, 0.2);
+	padding-bottom: 10vh;
+	position: absolute;
+	display: flex;
+	margin: 10vh 0 15vh 0;
+	flex-direction: column;
+	width: 100%;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+
+	P {
+		font-size: large;
+	}
+
+	.icons__wrapper {
+		height: 60px;
+		width: 100%;
+		align-content: center;
+		justify-content: center;
+		align-items: center;
+
+		svg,
+		img {
+			margin-left: 5px;
+			margin-right: 5px;
+			fill: rgb(0, 0, 0);
+			max-width: 100%;
+			max-height: 100%;
+		}
+	}
+
+	a {
+		color: inherit;
+		text-decoration: inherit;
+
+		&:hover {
+			color: #6fa8e7;
+			text-shadow: 0 0 5px;
+		}
+	}
+}

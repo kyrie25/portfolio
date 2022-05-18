@@ -18,6 +18,10 @@ html {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 
+	::-webkit-scrollbar {
+		display: none;
+	}
+
 	#root {
 		clear: both;
 		width: 100%;
@@ -34,11 +38,24 @@ html {
 			-webkit-filter: blur(4px);
 			background: rgba(0, 0, 0, 0.4);
 			background-blend-mode: darken;
-			background-image: url(../../../public/bg.jpg);
+			background-image: url(../../../public/img/bg.jpg);
 			background-position: center top;
 			background-repeat: no-repeat;
 			background-size: cover;
 			margin: 0;
+			transition: background-image 0.8s ease-in;
+
+			&[id="1"] {
+				background-image: url(../../../public/img/bg.jpg);
+			}
+
+			&[id="2"] {
+				background-image: url(../../../public/img/music_bg.jpg);
+			}
+
+			&[id="3"] {
+				background-image: url(../../../public/img/about_bg.jpg);
+			}
 		}
 
 		div.container {
@@ -51,8 +68,8 @@ html {
 					flex-direction: row;
 				}
 				[class$="__container"] {
-					width: 100% !important;
-					margin: 2vh 0 5vh 0 !important;
+					width: 100%;
+					margin: 2vh 0 4vh 0;
 				}
 			}
 		}

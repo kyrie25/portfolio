@@ -16,7 +16,42 @@
 	backdrop-filter: blur(8px);
 	font-family: "JetBrains Mono", monospace;
 
-	.space {
+	.spaces {
+		display: flex;
+		align-items: center;
+		padding: 0 5px;
+
+		.space {
+			display: flex;
+			align-items: center;
+			margin-right: 5px;
+			padding: 3px 6px;
+			font-size: 11px;
+			background-color: rgba(57, 70, 94, 0.81);
+			border-radius: 3px;
+			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+			cursor: pointer;
+
+			&.space--active {
+				color: #1e2737;
+				background-color: #fff;
+			}
+
+			svg {
+				flex: 0 0 11px;
+				width: 11px;
+				height: 11px;
+				margin-right: 6px;
+				fill: currentColor;
+				-webkit-transform: translateZ(0);
+				transform: translateZ(0);
+				margin-left: 6px;
+				opacity: 0.5;
+			}
+		}
+	}
+
+	.code-btn {
 		display: flex;
 		align-items: center;
 		margin-right: 5px;
@@ -52,7 +87,7 @@
 
 		@media screen and (max-width: 375px) {
 			& {
-				position: relative !important;
+				display: none;
 			}
 		}
 	}
