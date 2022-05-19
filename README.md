@@ -19,6 +19,14 @@ _(This is pretty outdated lol)_
 
 Run `npm i` to install all dependencies if you intend to clone (and/or) modify this.
 
+### Core components
+
+Below are the list of components/modules that needs further attention if you decide modify & use your own instances of it:
+
+- [use-last-fm](https://github.com/alii/use-last-fm)
+- [lanyard](https://github.com/Phineas/lanyard)
+- [react-clock](https://github.com/wojtekmaj/react-clock) and the `Clock.tsx` file
+
 ## Licensing
 
 Repository is licensed under GPL-3.0. Third party dependencies & modules are used under their respective licenses.
