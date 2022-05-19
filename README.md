@@ -21,7 +21,7 @@ Run `npm i` to install all dependencies if you intend to clone (and/or) modify t
 
 ### Core components
 
-Below are the list of components/modules that needs further attention if you decide modify & use your own instances of it:
+Below are the list of components/modules that needs further attention if you decide to modify & use your own instances of it:
 
 - [use-last-fm](https://github.com/alii/use-last-fm)
 - [lanyard](https://github.com/Phineas/lanyard)
