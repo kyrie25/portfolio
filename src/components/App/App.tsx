@@ -1,15 +1,16 @@
 import React from "react";
 
 // Present in all tabs
-import Titlebar from "../Titlebar/Titlebar";
-import Dock from "../Dock/Dock";
+import Titlebar from "./Titlebar/Titlebar";
+import Dock from "./Dock/Dock";
 
 // Home page components
-import Status from "../Status/Status";
-import Social from "../Social/Social";
+import Status from "../Home/Status/Status";
+import Social from "../Home/Social/Social";
 
-// Music page component
-import Music from "../Music/Music";
+// Music page components
+import Playlist from "../Music/Playlist/Playlist";
+import Streams from "../Music/Streams/Streams";
 
 // About page component
 import About from "../About/About";
@@ -53,7 +54,8 @@ class App extends React.Component<
 			case "music": {
 				return (
 					<>
-						<Music />
+						<Playlist />
+						<Streams />
 					</>
 				);
 			}

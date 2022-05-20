@@ -1,8 +1,9 @@
 import React from "react";
 import FadeIn from "react-fade-in";
-import "./Music.scss";
 
-class Music extends React.Component {
+import "../Music.scss";
+
+class Playlist extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -20,19 +21,8 @@ class Music extends React.Component {
 						></iframe>
 					</div>
 				</div>
-				<div className="vid__container">
-					<p>Current obsession</p>
-					<div className="iframe__container">
-						<iframe
-							src="https://www.youtube.com/embed/P_CSdxSGfaA"
-							title="YouTube video player"
-							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-							allowFullScreen
-						></iframe>
-					</div>
-				</div>
 			</FadeIn>
 		);
 	}
 }
-export default Music;
+export default Playlist;

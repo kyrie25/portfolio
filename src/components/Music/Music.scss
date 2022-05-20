@@ -1,4 +1,4 @@
-div.vid__container {
+div.streams__container {
 	float: right;
 }
 
@@ -7,7 +7,7 @@ div.playlist__container {
 }
 
 div.playlist__container,
-div.vid__container {
+div.streams__container {
 	display: flex;
 	margin: 15vh 0 15vh 0;
 	flex-direction: column;
@@ -21,14 +21,65 @@ div.vid__container {
 		font-size: large;
 	}
 
-	.iframe__container {
-		background: rgba(0, 0, 0, 0.1);
+	[class$="__container"] {
+		background: rgba(0, 0, 0, 0.2);
 		margin: 2vh 2vw 2vh 2vw;
 		display: flex;
-		justify-content: center;
-		align-items: center;
+		justify-content: initial;
+		align-items: flex-start;
 		text-align: center;
+		height: 55vh;
 		width: 75%;
+		flex-direction: column;
+		overflow: scroll;
+
+		.song__wrapper {
+			display: flex;
+			height: 60px;
+			width: 100%;
+			margin: 2vh 2vw 2vh 2vw;
+
+			.song {
+				justify-content: left;
+				display: flex;
+				text-align: left;
+				align-items: center;
+				width: 100%;
+
+				.title {
+					font-size: large;
+				}
+
+				.artist {
+					font-size: small;
+				}
+
+				a {
+					color: inherit;
+					text-decoration: inherit;
+
+					&:hover {
+						color: #6fa8e7;
+						text-shadow: 0 0 5px;
+					}
+				}
+				p {
+					width: 100%;
+				}
+			}
+
+			img {
+				max-height: 100%;
+				float: left;
+				flex: 0 0 30px;
+				bottom: 5px;
+				margin-right: 10px;
+				clear: both;
+				fill: currentColor;
+				-webkit-transform: translateZ(0);
+				transform: translateZ(0);
+			}
+		}
 
 		iframe {
 			height: 380px;

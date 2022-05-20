@@ -7,7 +7,7 @@ _Why?_ I was bored.
 ### TODO
 
 - [x] Add tabs & multiple pages
-- [ ] Fetch recently played songs from Spotify/Last.fm
+- [x] Fetch recently played songs from Spotify/Last.fm
 
 ## Preview
 
