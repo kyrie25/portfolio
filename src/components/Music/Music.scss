@@ -78,6 +78,13 @@ div.streams__container {
 				fill: currentColor;
 				-webkit-transform: translateZ(0);
 				transform: translateZ(0);
+
+				&#now-playing {
+					float: right;
+					max-height: 30px;
+					margin-right: 50px;
+					margin-top: 10px;
+				}
 			}
 		}
 

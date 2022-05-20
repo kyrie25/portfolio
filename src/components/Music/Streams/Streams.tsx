@@ -56,17 +56,41 @@ class Streams extends React.Component<
 					<div className="streams__container">
 						<p>Recently played</p>
 						<div className="songs__container">
-							{songs.map((song, index) => (
-								<div className="song__wrapper" key={index}>
-									<img src={song.image[song.image.length - 1]["#text"]}></img>
-									<div className="song" id={index.toString()}>
-										<a href={song.url}>
-											<p className="title">{song.name}</p>
-											<p className="artist">{song.artist["#text"]}</p>
-										</a>
-									</div>
-								</div>
-							))}
+							{songs.map((song, index) => {
+								if (song["@attr"]?.nowplaying === "true") {
+									return (
+										<div className="song__wrapper" key={index}>
+											<img
+												src={song.image[song.image.length - 1]["#text"]}
+											></img>
+											<div className="song" id={index.toString()}>
+												<a href={song.url}>
+													<p className="title">{song.name}</p>
+													<p className="artist">{song.artist["#text"]}</p>
+												</a>
+											</div>
+											<img
+												src={require("./icon/now_playing.gif")}
+												id="now-playing"
+											/>
+										</div>
+									);
+								} else {
+									return (
+										<div className="song__wrapper" key={index}>
+											<img
+												src={song.image[song.image.length - 1]["#text"]}
+											></img>
+											<div className="song" id={index.toString()}>
+												<a href={song.url}>
+													<p className="title">{song.name}</p>
+													<p className="artist">{song.artist["#text"]}</p>
+												</a>
+											</div>
+										</div>
+									);
+								}
+							})}
 						</div>
 					</div>
 				</FadeIn>
