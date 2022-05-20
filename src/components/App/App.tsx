@@ -5,15 +5,15 @@ import Titlebar from "./Titlebar/Titlebar";
 import Dock from "./Dock/Dock";
 
 // Home page components
-import Status from "../Home/Status/Status";
-import Social from "../Home/Social/Social";
+import Status from "../Pages/Home/Status/Status";
+import Social from "../Pages/Home/Social/Social";
 
 // Music page components
-import Playlist from "../Music/Playlist/Playlist";
-import Streams from "../Music/Streams/Streams";
+import Playlist from "../Pages/Music/Playlist/Playlist";
+import Streams from "../Pages/Music/Streams/Streams";
 
 // About page component
-import About from "../About/About";
+import About from "../Pages/About/About";
 
 import "./App.scss";
 
