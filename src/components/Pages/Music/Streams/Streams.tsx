@@ -61,7 +61,11 @@ class Streams extends React.Component<
 									return (
 										<div className="song__wrapper" key={index}>
 											<img
-												src={song.image[song.image.length - 1]["#text"]}
+												alt={song.name}
+												src={
+													song.image[song.image.length - 1]["#text"] ||
+													"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+												}
 											></img>
 											<div className="song" id={index.toString()}>
 												<a href={song.url}>
@@ -70,6 +74,7 @@ class Streams extends React.Component<
 												</a>
 											</div>
 											<img
+												alt="Now Playing"
 												src={require("./icon/now_playing.gif")}
 												id="now-playing"
 											/>
@@ -79,7 +84,11 @@ class Streams extends React.Component<
 									return (
 										<div className="song__wrapper" key={index}>
 											<img
-												src={song.image[song.image.length - 1]["#text"]}
+												alt={song.name}
+												src={
+													song.image[song.image.length - 1]["#text"] ||
+													"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+												}
 											></img>
 											<div className="song" id={index.toString()}>
 												<a href={song.url}>

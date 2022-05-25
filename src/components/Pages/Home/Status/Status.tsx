@@ -22,7 +22,7 @@ class Status extends React.Component {
 						>
 							<img
 								alt="Lanyard"
-								src="https://lanyard-profile-readme.vercel.app/api/368399721494216706"
+								src="https://lanyard-profile-readme.vercel.app/api/368399721494216706?bg=transparentecf&hideDiscrim=false&borderRadius=30px&idleMessage=I%27m%20probably%20sleeping"
 							/>
 						</a>
 					</div>
