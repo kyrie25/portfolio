@@ -27,14 +27,6 @@ Below are the list of components/modules that needs further attention if you dec
 - [lanyard](https://github.com/Phineas/lanyard)
 - [react-clock](https://github.com/wojtekmaj/react-clock) and the `Clock.tsx` file
 
-## Licensing
-
-Repository is licensed under GPL-3.0. Third party dependencies & modules are used under their respective licenses.
-
-_tl;dr_: Feel free to use/modify/redistribute this project to your liking, but you have to keep it **free & open source** (under GPL-3.0 or other compatible licenses), as it is my intention to keep it that way 💕
-
-Give this project a star if you liked it, credit this repository if you want others to also use this shabby project of mine, and yeah, have fun messing around.
-
 ## Archive
 
 For the original page refer to the [`legacy`](https://github.com/kyrie25/portfolio/tree/legacy) branch of this repository.
