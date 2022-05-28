@@ -22,7 +22,7 @@ class Status extends React.Component {
 						>
 							<img
 								alt="Lanyard"
-								src="https://lanyard.kyrie25.me/api/368399721494216706?bg=23283d&borderRadius=30px"
+								src="https://lanyard.kyrie25.me/api/368399721494216706?borderRadius=30px"
 							/>
 						</a>
 					</div>
