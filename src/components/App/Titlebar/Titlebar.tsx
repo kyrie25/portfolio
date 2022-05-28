@@ -82,7 +82,7 @@ class Titlebar extends React.Component<
 					<img title="GitHub logo" src={require("./img/github.png")}></img>
 					Source code
 				</div>
-				<div className="process">kyrie25@github.io:~</div>
+				<div className="process">guest@kyrie25.me:~</div>
 			</div>
 		);
 	}
