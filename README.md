@@ -11,9 +11,7 @@ _Why?_ I was bored.
 
 ## Preview
 
-_(This is pretty outdated lol)_
-
-![msedge_QHvyPoAYzT](https://user-images.githubusercontent.com/77577746/168268228-dbb8fb2f-f280-4936-8d1d-a19e893ba9cb.gif)
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/77577746/170812530-1cae68cf-cd1c-465e-b78c-f4347a5c8cb4.gif)
 
 ## Building
 
