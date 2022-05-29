@@ -38,23 +38,19 @@ html {
 			-webkit-filter: blur(4px);
 			background: rgba(0, 0, 0, 0.4);
 			background-blend-mode: darken;
-			background-image: url(../../../public/img/bg.jpg);
+			background-image: url(../public/img/bg.jpg);
 			background-position: center top;
 			background-repeat: no-repeat;
 			background-size: cover;
 			margin: 0;
 			transition: background-image 0.8s ease-in;
 
-			&[id="1"] {
-				background-image: url(../../../public/img/bg.jpg);
-			}
-
 			&[id="2"] {
-				background-image: url(../../../public/img/music_bg.jpg);
+				background-image: url(../public/img/music_bg.jpg);
 			}
 
 			&[id="3"] {
-				background-image: url(../../../public/img/about_bg.jpg);
+				background-image: url(../public/img/about_bg.jpg);
 			}
 		}
 

@@ -1,4 +1,3 @@
-/* eslint-disable no-one-time-vars/no-one-time-vars */
 import React from "react";
 import FadeIn from "react-fade-in";
 import { Track } from "use-last-fm";
@@ -24,12 +23,8 @@ class Streams extends React.Component<
 	}
 
 	componentDidMount() {
-		// Replace variable values with your chosen Last.fm username & API key
-		const username = "kyrie25",
-			apiKey = "0ce7260f5b1e3045c195c4dc12c0af87";
-
 		fetch(
-			`http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${apiKey}&format=json&limit=10`
+			`http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${process.env.REACT_APP_LASTFM_USERNAME}&api_key=${process.env.REACT_APP_LASTFM_API_KEY}&format=json&limit=10`
 		)
 			.then(res => res.json())
 			.then(

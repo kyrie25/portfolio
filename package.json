@@ -1,8 +1,12 @@
 {
 	"name": "portfolio",
-	"version": "2.3.0",
+	"version": "2.4.0",
 	"author": {
 		"name": "Kyrie"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/kyrie25/portfolio.git"
 	},
 	"homepage": "https://kyrie25.me",
 	"private": true,
@@ -56,6 +60,7 @@
 		]
 	},
 	"devDependencies": {
+		"dotenv-webpack": "^7.1.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-eqeqeq-fix": "^1.0.3",
 		"eslint-plugin-no-one-time-vars": "^2.4.1",

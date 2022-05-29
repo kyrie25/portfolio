@@ -2,8 +2,20 @@ import { useLastFM } from "use-last-fm";
 import "./Dock.scss";
 
 const Dock = () => {
-	// Replace parameters with your (chosen) LastFM username and API key
-	const lastFM = useLastFM("kyrie25", "0ce7260f5b1e3045c195c4dc12c0af87");
+	if (
+		!process.env.REACT_APP_LASTFM_USERNAME ||
+		!process.env.REACT_APP_LASTFM_API_KEY
+	) {
+		return (
+			<div className="dock">
+				<p>Last.fm Username/API Key not provided</p>
+			</div>
+		);
+	}
+	const lastFM = useLastFM(
+		process.env.REACT_APP_LASTFM_USERNAME,
+		process.env.REACT_APP_LASTFM_API_KEY
+	);
 	if (lastFM.status !== "playing") {
 		return (
 			<div className="dock">
