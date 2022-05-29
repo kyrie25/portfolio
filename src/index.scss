@@ -45,6 +45,10 @@ html {
 			margin: 0;
 			transition: background-image 0.8s ease-in;
 
+			// Preload images
+			content: url(../public/img/bg.jpg) url(../public/img/music_bg.jpg)
+				url(../public/img/about_bg.jpg);
+
 			&[id="2"] {
 				background-image: url(../public/img/music_bg.jpg);
 			}
