@@ -121,6 +121,26 @@ class Streams extends React.Component<
 					</div>
 				</FadeIn>
 			);
+		} else {
+			return (
+				<FadeIn>
+					<div className="streams__container">
+						<p>Recently played</p>
+						<div className="songs__container">
+							<p>
+								Unexpected error occurred, double-check your API key/Username
+								provided
+							</p>
+							<p>
+								API fetch URL:
+								`http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=$
+								{process.env.REACT_APP_LASTFM_USERNAME}&api_key=$
+								{process.env.REACT_APP_LASTFM_API_KEY}&format=json&limit=10`
+							</p>
+						</div>
+					</div>
+				</FadeIn>
+			);
 		}
 	}
 }
