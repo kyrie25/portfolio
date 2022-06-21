@@ -1,5 +1,5 @@
 import React from "react";
-import FadeIn from "react-fade-in";
+import FadeIn from "../../../Components/FadeIn/FadeIn";
 import { Track } from "use-last-fm";
 
 import "../Music.scss";
