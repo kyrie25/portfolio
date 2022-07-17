@@ -30,6 +30,11 @@ div.about__container {
 			fill: rgb(0, 0, 0);
 			max-width: 100%;
 			max-height: 100%;
+			animation: floatdown 0.2s ease-in-out;
+			&:hover {
+				cursor: pointer;
+				animation: floatup 0.2s ease-in-out forwards;
+			}
 		}
 	}
 
@@ -41,5 +46,22 @@ div.about__container {
 			color: #6fa8e7;
 			text-shadow: 0 0 5px;
 		}
+	}
+}
+
+@keyframes floatup {
+	from {
+		transform: translateY(0);
+	}
+	to {
+		transform: translateY(-5px);
+	}
+}
+@keyframes floatdown {
+	from {
+		transform: translateY(-5px);
+	}
+	to {
+		transform: translateY(0);
 	}
 }
