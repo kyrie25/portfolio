@@ -28,7 +28,7 @@ const Dock = () => {
 		<div className="dock">
 			<img
 				alt="Now playing"
-				src={lastFM.song.art || require("./icon/now_playing.gif")}
+				src={lastFM.song.art || require("../../assets/now_playing.gif")}
 			/>
 			<p>
 				Listening to:&nbsp;

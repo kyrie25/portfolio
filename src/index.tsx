@@ -2,19 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 // Present in all tabs
-import Titlebar from "./Titlebar/Titlebar";
-import Dock from "./Dock/Dock";
+import Titlebar from "./components/Titlebar/Titlebar";
+import Dock from "./components/Dock/Dock";
 
 // Home page components
-import Status from "./Pages/Home/Status/Status";
-import Social from "./Pages/Home/Social/Social";
+import Status from "./components/Pages/Home/Status/Status";
+import Social from "./components/Pages/Home/Social/Social";
 
 // Music page components
-import Playlist from "./Pages/Music/Playlist/Playlist";
-import Streams from "./Pages/Music/Streams/Streams";
+import Playlist from "./components/Pages/Music/Playlist/Playlist";
+import Streams from "./components/Pages/Music/Streams/Streams";
 
 // About page component
-import About from "./Pages/About/About";
+import About from "./components/Pages/About/About";
 
 import "./index.scss";
 
@@ -28,64 +28,62 @@ class App extends React.Component<
 		this.state = {
 			activeTab: "home"
 		};
-
-		this.renderSelectedTab = this.renderSelectedTab.bind(this);
-		this.dynamicBackground = this.dynamicBackground.bind(this);
-		this.handleTabSelect = this.handleTabSelect.bind(this);
-	}
-
-	dynamicBackground() {
-		switch (this.state.activeTab) {
-			case "music":
-				return "2";
-			case "about":
-				return "3";
-			case "home":
-			default:
-				return "1";
-		}
 	}
 
 	handleTabSelect(tab: string) {
 		this.setState({ activeTab: tab });
 	}
 
-	renderSelectedTab() {
-		switch (this.state.activeTab) {
-			case "music": {
-				return (
-					<>
-						<Playlist />
-						<Streams />
-					</>
-				);
-			}
-			case "about": {
-				return (
-					<>
-						<About />
-					</>
-				);
-			}
-			case "home":
-			default: {
-				return (
+	render() {
+		const activeTabComponent = {
+			home: {
+				image: require("./assets/bg/bg.jpg"),
+				components: (
 					<>
 						<Status />
 						<Social />
 					</>
-				);
+				)
+			},
+			music: {
+				image: require("./assets/bg/music_bg.jpg"),
+				components: (
+					<>
+						<Playlist />
+						<Streams />
+					</>
+				)
+			},
+			about: {
+				image: require("./assets/bg/about_bg.jpg"),
+				components: <About />
 			}
-		}
-	}
+		};
 
-	render() {
 		return (
 			<>
-				<Titlebar onTabSelect={this.handleTabSelect} />
-				<div className="background" id={this.dynamicBackground()} />
+				<Titlebar onTabSelect={this.handleTabSelect.bind(this)} />
+				<div
+					className="background"
+					style={{
+						backgroundImage: `url(${
+							activeTabComponent[this.state.activeTab].image
+						}`,
+						content: (() => {
+							// Get every image property from all tabs
+							const images: string[] = [];
+							// Return a list of images
+							for (const value of Object.values(activeTabComponent).map(
+								value => value.image
+							))
+								images.push(`url(${value})`);
+
+							return images.join(" ");
+						})()
+					}}
+				/>
 				<div className="container">
-					<this.renderSelectedTab />
+					{activeTabComponent[this.state.activeTab].components}
 					<Dock />
 				</div>
 			</>

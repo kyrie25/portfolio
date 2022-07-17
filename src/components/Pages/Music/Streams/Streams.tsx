@@ -1,5 +1,5 @@
 import React from "react";
-import FadeIn from "../../../Components/FadeIn/FadeIn";
+import FadeIn from "../../../../utils/FadeIn/FadeIn";
 import { Track } from "use-last-fm";
 
 import "../Music.scss";
@@ -70,7 +70,7 @@ class Streams extends React.Component<
 											</div>
 											<img
 												alt="Now Playing"
-												src={require("./icon/now_playing.gif")}
+												src={require("../../../../assets/now_playing.gif")}
 												id="now-playing"
 											/>
 										</div>

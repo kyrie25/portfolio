@@ -1,5 +1,5 @@
 import React from "react";
-import FadeIn from "../../Components/FadeIn/FadeIn";
+import FadeIn from "../../../utils/FadeIn/FadeIn";
 import "./About.scss";
 import manifest from "./manifest.json";
 
@@ -40,9 +40,9 @@ class About extends React.Component {
 							);
 						})}
 					</div>
-					<p>Hosted on:</p>
+					<p>Projects I'm working on:</p>
 					<div className="icons__wrapper">
-						{manifest.platform.map((value, index) => {
+						{manifest.projects.map((value, index) => {
 							return (
 								<a
 									href={value.url}

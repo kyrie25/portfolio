@@ -21,11 +21,21 @@
 			"image": "https://raw.githubusercontent.com/kyrie25/Github-Profile-Readme-Logos/master/frameworks/nodejs.svg"
 		}
 	],
-	"platform": [
+	"projects": [
 		{
-			"name": "GitHub Pages",
-			"url": "https://pages.github.com/",
-			"image": "https://raw.githubusercontent.com/kyrie25/Github-Profile-Readme-Logos/master/cloud/github.svg"
+			"name": "Spicetify",
+			"url": "https://github.com/spicetify/",
+			"image": "https://avatars.githubusercontent.com/u/100136310?s=200&v=4"
+		},
+		{
+			"name": "Recodive",
+			"url": "https://recodive.com/",
+			"image": "https://avatars.githubusercontent.com/u/83870652?s=200&v=4"
+		},
+		{
+			"name": "Comfy",
+			"url": "https://github.com/Comfy-Themes/",
+			"image": "https://avatars.githubusercontent.com/u/105914820?s=200&v=4"
 		}
 	]
 }

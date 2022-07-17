@@ -11,13 +11,14 @@ class Titlebar extends React.Component<
 		this.state = {
 			activeTab: "home"
 		};
-
-		this.changeTab = this.changeTab.bind(this);
 	}
 
-	changeTab(tab: string) {
-		this.setState({ activeTab: tab });
-		this.props.onTabSelect(tab);
+	changeTab(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+		this.setState({ activeTab: e.currentTarget.id });
+		this.props.onTabSelect(e.currentTarget.id);
+		e.currentTarget.classList.add("space--active");
+		for (const space of document.querySelectorAll(".space"))
+			if (space !== e.currentTarget) space.classList.remove("space--active");
 	}
 
 	render() {
@@ -25,11 +26,10 @@ class Titlebar extends React.Component<
 			<div className="titlebar">
 				<div className="spaces">
 					<div
-						className={
-							this.state.activeTab === "home" ? "space space--active" : "space"
-						}
-						onClick={() => {
-							this.changeTab("home");
+						className="space space--active"
+						id="home"
+						onClick={e => {
+							this.changeTab(e);
 						}}
 					>
 						1
@@ -38,11 +38,10 @@ class Titlebar extends React.Component<
 						</svg>
 					</div>
 					<div
-						className={
-							this.state.activeTab === "music" ? "space space--active" : "space"
-						}
-						onClick={() => {
-							this.changeTab("music");
+						className="space"
+						id="music"
+						onClick={e => {
+							this.changeTab(e);
 						}}
 					>
 						2
@@ -55,11 +54,10 @@ class Titlebar extends React.Component<
 						</svg>
 					</div>
 					<div
-						className={
-							this.state.activeTab === "about" ? "space space--active" : "space"
-						}
-						onClick={() => {
-							this.changeTab("about");
+						className="space"
+						id="about"
+						onClick={e => {
+							this.changeTab(e);
 						}}
 					>
 						3
@@ -79,7 +77,10 @@ class Titlebar extends React.Component<
 						(window.location.href = "https://github.com/kyrie25/portfolio")
 					}
 				>
-					<img title="GitHub logo" src={require("./img/github.png")}></img>
+					<img
+						title="GitHub logo"
+						src={require("../../assets/github.png")}
+					></img>
 					Source code
 				</div>
 				<div className="process">guest@kyrie25.me:~</div>
