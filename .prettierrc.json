@@ -1,7 +1,7 @@
 {
 	"trailingComma": "none",
 	"useTabs": true,
-	"endOfLine": "lf",
+	"endOfLine": "auto",
 	"proseWrap": "never",
 	"semi": true,
 	"quoteProps": "as-needed",
