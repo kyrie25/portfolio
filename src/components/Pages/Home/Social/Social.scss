@@ -32,51 +32,10 @@ div.social__container {
 				border-color 0.25s cubic-bezier(0.08, 0.59, 0.29, 0.99) 0s,
 				transform 0.25s cubic-bezier(0.08, 0.59, 0.29, 0.99) 0s,
 				background-color 0.25s cubic-bezier(0.08, 0.59, 0.29, 0.99) 0s;
+			border: 2px solid;
 
-			// TODO: Make dynamic rulesets from JSON
-			&#github {
-				border: 2px solid #000;
-				background-color: #000;
-				&:hover {
-					color: #000;
-					background-color: #fff;
-				}
-			}
-
-			&#crowdin {
-				border: 2px solid #2e3340;
-				background-color: #2e3340;
-				&:hover {
-					color: #2e3340;
-					background-color: #fff;
-				}
-			}
-
-			&#premid {
-				border: 2px solid #7289da;
-				background-color: #7289da;
-				&:hover {
-					color: #7289da;
-					background-color: #fff;
-				}
-			}
-
-			&#discord {
-				border: 2px solid #5865f2;
-				background-color: #5865f2;
-				&:hover {
-					color: #5865f2;
-					background-color: #fff;
-				}
-			}
-
-			&#twitter {
-				background-color: #00acee;
-				border: 2px solid #00acee;
-				&:hover {
-					color: #00acee;
-					background-color: #fff;
-				}
+			&:hover {
+				background-color: #fff !important;
 			}
 
 			*,
