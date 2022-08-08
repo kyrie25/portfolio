@@ -22,31 +22,23 @@ class App extends React.Component<
 	Record<string, unknown>,
 	{ activeTab: string }
 > {
+	activeTabComponent: {
+		[s: string]: { image: string; components: JSX.Element };
+	};
 	constructor(props) {
 		super(props);
 		Object.assign(this, props);
 		this.state = {
 			activeTab: "home"
 		};
-	}
 
-	handleTabSelect(tab: string) {
-		this.setState({ activeTab: tab });
-	}
-
-	render() {
-		const activeTabComponent = {
+		this.activeTabComponent = {
 			home: {
-				image: require("./assets/bg/bg.jpg"),
-				components: (
-					<>
-						<Status />
-						<Social />
-					</>
-				)
+				image: `url(${require("./assets/bg/bg.jpg")})`,
+				components: <About />
 			},
 			music: {
-				image: require("./assets/bg/music_bg.jpg"),
+				image: `url(${require("./assets/bg/music_bg.jpg")})`,
 				components: (
 					<>
 						<Playlist />
@@ -55,35 +47,41 @@ class App extends React.Component<
 				)
 			},
 			about: {
-				image: require("./assets/bg/about_bg.jpg"),
-				components: <About />
+				image: `url(${require("./assets/bg/about_bg.jpg")})`,
+				components: (
+					<>
+						<Status />
+						<Social />
+					</>
+				)
 			}
 		};
+	}
 
+	handleTabSelect(tab: string) {
+		this.setState({ activeTab: tab });
+	}
+
+	preloadImage() {
+		return Object.values(this.activeTabComponent)
+			.map(value => value.image)
+			.join(" ");
+	}
+
+	render() {
 		return (
 			<>
 				<Titlebar onTabSelect={this.handleTabSelect.bind(this)} />
 				<div
 					className="background"
 					style={{
-						backgroundImage: `url(${
-							activeTabComponent[this.state.activeTab].image
-						}`,
-						content: (() => {
-							// Get every image property from all tabs
-							const images: string[] = [];
-							// Return a list of images
-							for (const value of Object.values(activeTabComponent).map(
-								value => value.image
-							))
-								images.push(`url(${value})`);
-
-							return images.join(" ");
-						})()
+						backgroundImage:
+							this.activeTabComponent[this.state.activeTab].image,
+						content: this.preloadImage()
 					}}
 				/>
 				<div className="container">
-					{activeTabComponent[this.state.activeTab].components}
+					{this.activeTabComponent[this.state.activeTab].components}
 					<Dock />
 				</div>
 			</>

@@ -13,7 +13,7 @@ class About extends React.Component {
 			<FadeIn>
 				<div className="about__container">
 					<p>
-						Made from scratch by{" "}
+						Hi! 👋 I am{" "}
 						<a
 							title="GitHub"
 							href="https://github.com/kyrie25"
@@ -21,10 +21,12 @@ class About extends React.Component {
 							rel="noopener noreferrer"
 						>
 							kyrie25
-						</a>{" "}
-						with 🔥 and 💕
+						</a>
+						, a student studying somewhere in 🇻🇳. Writes stuff in my free time,
+						mostly in TypeScript, can vary depending on what my project
+						requires. Navigate the tabs to see what I am up to.
 					</p>
-					<p>Languages/frameworks used:</p>
+					<p>Stuff I used to make this:</p>
 					<div className="icons__wrapper">
 						{manifest.languages.map((value, index) => {
 							return (
@@ -56,16 +58,10 @@ class About extends React.Component {
 							);
 						})}
 					</div>
-					<p>
-						This project serves more as a template/concept than an actual
-						portfolio, more features will come later!
-					</p>
-					<p>Feel free to clone this project and make it yours.</p>
-					<p>
-						DM me on <a href="https://twitter.com/_kyrie_25">Twitter</a>/
-						<a href="https://discord.com/users/368399721494216706">Discord</a>{" "}
-						if you need to contact.
-					</p>
+					<img
+						alt="Lanyard"
+						src="https://lanyard.kyrie25.me/api/368399721494216706?borderRadius=30px"
+					/>
 				</div>
 			</FadeIn>
 		);

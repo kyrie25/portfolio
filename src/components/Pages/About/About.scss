@@ -1,9 +1,9 @@
 div.about__container {
-	background-color: rgba(0, 0, 0, 0.2);
+	background-color: rgba(0, 0, 0, 0.1);
 	padding-bottom: 10vh;
 	position: absolute;
 	display: flex;
-	margin: 10vh 0 15vh 0;
+	margin: 5vh 0 15vh 0;
 	flex-direction: column;
 	width: 100%;
 	align-content: center;
@@ -11,8 +11,16 @@ div.about__container {
 	align-items: center;
 	text-align: center;
 
-	P {
+	p {
 		font-size: large;
+		span {
+			color: #6fa8e7;
+			text-shadow: 0 0 5px;
+		}
+	}
+
+	> img {
+		margin-top: 2%;
 	}
 
 	.icons__wrapper {
