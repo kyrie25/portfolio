@@ -20,7 +20,7 @@ class Social extends React.Component {
 	render() {
 		return (
 			<div className="social__container">
-				<p>My social links</p>
+				<p>Contact me</p>
 				<div className="button__container">
 					<FadeIn>
 						{manifest.accounts.map((value, index) => {

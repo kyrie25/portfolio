@@ -42,7 +42,7 @@ class About extends React.Component {
 							);
 						})}
 					</div>
-					<p>Projects I'm working on:</p>
+					<p>Projects I'm working on/have had experience in:</p>
 					<div className="icons__wrapper">
 						{manifest.projects.map((value, index) => {
 							return (
@@ -53,7 +53,11 @@ class About extends React.Component {
 									target="_blank"
 									rel="noopener noreferrer"
 								>
-									<img title={value.name} src={value.image}></img>
+									<img
+										title={value.name}
+										src={value.image}
+										alt={value.name}
+									></img>
 								</a>
 							);
 						})}

@@ -30,7 +30,7 @@ function LocalClock() {
 
 	return (
 		<div>
-			<p>Local time:</p>
+			<p>Local time</p>
 			<Clock value={value} />
 		</div>
 	);
