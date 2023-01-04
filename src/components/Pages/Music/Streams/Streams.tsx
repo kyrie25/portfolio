@@ -23,6 +23,14 @@ class Streams extends React.Component<
 	}
 
 	componentDidMount() {
+		const cachedSongs = JSON.parse(localStorage.getItem("songs") || "[]");
+		if (cachedSongs.length > 0) {
+			this.setState({
+				fetched: true,
+				songs: cachedSongs
+			});
+		}
+
 		fetch(
 			`http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${process.env.REACT_APP_LASTFM_USERNAME}&api_key=${process.env.REACT_APP_LASTFM_API_KEY}&format=json&limit=10`
 		)
@@ -33,6 +41,10 @@ class Streams extends React.Component<
 						fetched: true,
 						songs: result.recenttracks.track
 					});
+					localStorage.setItem(
+						"songs",
+						JSON.stringify(result.recenttracks.track)
+					);
 				},
 				error => {
 					this.setState({

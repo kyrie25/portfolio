@@ -16,7 +16,7 @@ class App extends React.Component<
 	Record<string, unknown>,
 	{ activeTab: string }
 > {
-	activeTabComponent: {
+	tabComponents: {
 		[s: string]: JSX.Element;
 	};
 	constructor(props) {
@@ -26,7 +26,7 @@ class App extends React.Component<
 			activeTab: "about"
 		};
 
-		this.activeTabComponent = {
+		this.tabComponents = {
 			about: <About />,
 			music: <Music />,
 			home: <Home />
@@ -42,7 +42,7 @@ class App extends React.Component<
 	}
 
 	preloadImage() {
-		return Object.keys(this.activeTabComponent)
+		return Object.keys(this.tabComponents)
 			.map(value => this.getImage(value))
 			.join(" ");
 	}
@@ -53,7 +53,7 @@ class App extends React.Component<
 				<Titlebar
 					onTabSelect={this.handleTabSelect.bind(this)}
 					activeTab={this.state.activeTab}
-					tabs={Object.keys(this.activeTabComponent)}
+					tabs={Object.keys(this.tabComponents)}
 				/>
 				<div
 					className="background"
@@ -63,7 +63,7 @@ class App extends React.Component<
 					}}
 				/>
 				<div className="container">
-					{this.activeTabComponent[this.state.activeTab]}
+					{this.tabComponents[this.state.activeTab]}
 				</div>
 				<Dock />
 			</>
