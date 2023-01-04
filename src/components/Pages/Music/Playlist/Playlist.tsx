@@ -3,11 +3,7 @@ import FadeIn from "../../../../utils/FadeIn/FadeIn";
 
 import "../Music.scss";
 
-class Playlist extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
+class Playlist extends React.PureComponent {
 	render() {
 		return (
 			<FadeIn>

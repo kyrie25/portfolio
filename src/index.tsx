@@ -5,16 +5,10 @@ import ReactDOM from "react-dom/client";
 import Titlebar from "./components/Titlebar/Titlebar";
 import Dock from "./components/Dock/Dock";
 
-// Home page components
-import Status from "./components/Pages/Home/Status/Status";
-import Social from "./components/Pages/Home/Social/Social";
-
-// Music page components
-import Playlist from "./components/Pages/Music/Playlist/Playlist";
-import Streams from "./components/Pages/Music/Streams/Streams";
-
-// About page component
-import About from "./components/Pages/About/About";
+// Tabs
+import Home from "./components/Pages/Home";
+import Music from "./components/Pages/Music";
+import About from "./components/Pages/About";
 
 import "./index.scss";
 
@@ -23,39 +17,24 @@ class App extends React.Component<
 	{ activeTab: string }
 > {
 	activeTabComponent: {
-		[s: string]: { image: string; components: JSX.Element };
+		[s: string]: JSX.Element;
 	};
 	constructor(props) {
 		super(props);
 		Object.assign(this, props);
 		this.state = {
-			activeTab: "home"
+			activeTab: "about"
 		};
 
 		this.activeTabComponent = {
-			home: {
-				image: `url(${require("./assets/bg/bg.jpg")})`,
-				components: <About />
-			},
-			music: {
-				image: `url(${require("./assets/bg/music_bg.jpg")})`,
-				components: (
-					<>
-						<Playlist />
-						<Streams />
-					</>
-				)
-			},
-			about: {
-				image: `url(${require("./assets/bg/about_bg.jpg")})`,
-				components: (
-					<>
-						<Status />
-						<Social />
-					</>
-				)
-			}
+			about: <About />,
+			music: <Music />,
+			home: <Home />
 		};
+	}
+
+	getImage(tab: string) {
+		return `url(${require(`./assets/bg/${tab}_bg.jpg`)})`;
 	}
 
 	handleTabSelect(tab: string) {
@@ -63,27 +42,30 @@ class App extends React.Component<
 	}
 
 	preloadImage() {
-		return Object.values(this.activeTabComponent)
-			.map(value => value.image)
+		return Object.keys(this.activeTabComponent)
+			.map(value => this.getImage(value))
 			.join(" ");
 	}
 
 	render() {
 		return (
 			<>
-				<Titlebar onTabSelect={this.handleTabSelect.bind(this)} />
+				<Titlebar
+					onTabSelect={this.handleTabSelect.bind(this)}
+					activeTab={this.state.activeTab}
+					tabs={Object.keys(this.activeTabComponent)}
+				/>
 				<div
 					className="background"
 					style={{
-						backgroundImage:
-							this.activeTabComponent[this.state.activeTab].image,
+						backgroundImage: this.getImage(this.state.activeTab),
 						content: this.preloadImage()
 					}}
 				/>
 				<div className="container">
-					{this.activeTabComponent[this.state.activeTab].components}
-					<Dock />
+					{this.activeTabComponent[this.state.activeTab]}
 				</div>
+				<Dock />
 			</>
 		);
 	}
