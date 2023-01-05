@@ -64,7 +64,10 @@ class App extends React.Component<
 						cache={this.state.componentState}
 					/>
 				</div>
-				<Dock callback={this.cacheValue.bind(this)} />
+				<Dock
+					cache={this.state.componentState}
+					callback={this.cacheValue.bind(this)}
+				/>
 			</>
 		);
 	}
