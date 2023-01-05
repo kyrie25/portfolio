@@ -28,9 +28,8 @@ const Dock = (props: {
 		);
 	}
 
-	useEffect(() => {
+	if (lastFM.song.name !== props.cache.currentSong)
 		props.callback("currentSong", lastFM.song.name);
-	}, [lastFM.song.name, props]);
 
 	return (
 		<div className="dock">
