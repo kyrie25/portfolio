@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import { useLastFM } from "use-last-fm";
 import "./Dock.scss";
 
@@ -25,7 +24,7 @@ const Dock = (props: { callback: (key: string, value: any) => void }) => {
 		);
 	}
 
-	useCallback(() => props.callback("currentSong", lastFM.song.name), []);
+	props.callback("currentSong", lastFM.song.name);
 
 	return (
 		<div className="dock">
