@@ -5,7 +5,10 @@ import { Track } from "use-last-fm";
 import "../Music.scss";
 
 class Streams extends React.Component<
-	Record<string, unknown>,
+	{
+		cache: Record<string, unknown>;
+		callback: (key: string, value: any) => void;
+	},
 	{
 		fetched: boolean;
 		songs: Track[];
@@ -23,36 +26,42 @@ class Streams extends React.Component<
 	}
 
 	componentDidMount() {
-		const cachedSongs = JSON.parse(localStorage.getItem("songs") || "[]");
-		if (cachedSongs.length > 0) {
+		const cachedSongs = this.props.cache.songs as Track[] | undefined,
+			cached = !!cachedSongs?.length,
+			currentlyPlaying = this.props.cache.currentSong as string | undefined;
+
+		if (cached) {
 			this.setState({
 				fetched: true,
 				songs: cachedSongs
 			});
 		}
 
-		fetch(
-			`http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${process.env.REACT_APP_LASTFM_USERNAME}&api_key=${process.env.REACT_APP_LASTFM_API_KEY}&format=json&limit=10`
-		)
-			.then(res => res.json())
-			.then(
-				result => {
-					this.setState({
-						fetched: true,
-						songs: result.recenttracks.track
-					});
-					localStorage.setItem(
-						"songs",
-						JSON.stringify(result.recenttracks.track)
-					);
-				},
-				error => {
-					this.setState({
-						fetched: true,
-						error
-					});
-				}
-			);
+		if (
+			!currentlyPlaying ||
+			!cached ||
+			currentlyPlaying !== cachedSongs[0].name
+		) {
+			fetch(
+				`http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${process.env.REACT_APP_LASTFM_USERNAME}&api_key=${process.env.REACT_APP_LASTFM_API_KEY}&format=json&limit=10`
+			)
+				.then(res => res.json())
+				.then(
+					result => {
+						this.setState({
+							fetched: true,
+							songs: result.recenttracks.track
+						});
+						this.props.callback("songs", result.recenttracks.track);
+					},
+					error => {
+						this.setState({
+							fetched: true,
+							error
+						});
+					}
+				);
+		}
 	}
 
 	render() {

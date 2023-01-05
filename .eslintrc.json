@@ -53,8 +53,6 @@
 		"template-curly-spacing": "error",
 		"no-console": "warn",
 		"no-var": "error",
-		"@typescript-eslint/no-explicit-any": "error",
-		"@typescript-eslint/no-unused-vars": "error",
 		"no-eval": "warn",
 		"no-undefined": "error",
 		"no-eq-null": "error",
@@ -91,10 +89,9 @@
 		"unicorn/require-number-to-fixed-digits-argument": "error",
 		"unicorn/throw-new-error": "error",
 		"unicorn/no-unreadable-array-destructuring": "error",
-		"unicorn/prefer-query-selector": "error",
 		"unicorn/prefer-dom-node-text-content": "error"
 	},
 	"reportUnusedDisableDirectives": true,
 	"noInlineConfig": false,
-	"plugins": ["@typescript-eslint", "prettier", "no-one-time-vars", "unicorn"]
+	"plugins": ["@typescript-eslint", "prettier", "unicorn"]
 }

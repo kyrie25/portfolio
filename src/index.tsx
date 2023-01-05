@@ -6,30 +6,20 @@ import Titlebar from "./components/Titlebar/Titlebar";
 import Dock from "./components/Dock/Dock";
 
 // Tabs
-import Home from "./components/Pages/Home";
-import Music from "./components/Pages/Music";
-import About from "./components/Pages/About";
+import { Tabs } from "./Tabs";
 
 import "./index.scss";
 
 class App extends React.Component<
 	Record<string, unknown>,
-	{ activeTab: string }
+	{ activeTab: string; componentState: Record<string, unknown> }
 > {
-	tabComponents: {
-		[s: string]: JSX.Element;
-	};
 	constructor(props) {
 		super(props);
 		Object.assign(this, props);
 		this.state = {
-			activeTab: "about"
-		};
-
-		this.tabComponents = {
-			about: <About />,
-			music: <Music />,
-			home: <Home />
+			activeTab: "about",
+			componentState: {}
 		};
 	}
 
@@ -42,18 +32,24 @@ class App extends React.Component<
 	}
 
 	preloadImage() {
-		return Object.keys(this.tabComponents)
+		return Object.keys(Tabs)
 			.map(value => this.getImage(value))
 			.join(" ");
 	}
 
+	cacheValue(key: string, value: unknown) {
+		this.setState({
+			componentState: { ...this.state.componentState, [key]: value }
+		});
+	}
+
 	render() {
+		const ActiveTab = Tabs[this.state.activeTab].component;
 		return (
 			<>
 				<Titlebar
 					onTabSelect={this.handleTabSelect.bind(this)}
 					activeTab={this.state.activeTab}
-					tabs={Object.keys(this.tabComponents)}
 				/>
 				<div
 					className="background"
@@ -63,9 +59,12 @@ class App extends React.Component<
 					}}
 				/>
 				<div className="container">
-					{this.tabComponents[this.state.activeTab]}
+					<ActiveTab
+						callback={this.cacheValue.bind(this)}
+						cache={this.state.componentState}
+					/>
 				</div>
-				<Dock />
+				<Dock callback={this.cacheValue.bind(this)} />
 			</>
 		);
 	}
