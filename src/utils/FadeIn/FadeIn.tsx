@@ -25,7 +25,6 @@ export default function FadeIn(props: PropsWithChildren<Props>) {
 				? props.transitionDuration
 				: 400,
 		delay = typeof props.delay === "number" ? props.delay : 50,
-		// eslint-disable-next-line no-one-time-vars/no-one-time-vars
 		WrapperTag = props.wrapperTag || "div",
 		ChildTag = props.childTag || "div",
 		visible = typeof props.visible === "undefined" ? true : props.visible;
