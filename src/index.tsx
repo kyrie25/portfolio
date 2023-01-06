@@ -34,7 +34,7 @@ class App extends React.Component<
 	componentDidMount(): void {
 		for (const value of Object.keys(Tabs)) {
 			const img = new Image();
-			img.src = this.getImage(value);
+			img.src = require(`./assets/bg/${value}_bg.jpg`);
 		}
 	}
 
