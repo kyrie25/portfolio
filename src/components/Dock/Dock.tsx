@@ -1,10 +1,9 @@
-import { useEffect } from "react";
 import { useLastFM } from "use-last-fm";
 import "./Dock.scss";
 
 const Dock = (props: {
 	cache: Record<string, unknown>;
-	callback: (key: string, value: any) => void;
+	callback: (key: string, value) => void;
 }) => {
 	if (
 		!process.env.REACT_APP_LASTFM_USERNAME ||
@@ -32,7 +31,7 @@ const Dock = (props: {
 		props.callback("currentSong", lastFM.song.name);
 
 	return (
-		<div className="dock">
+		<footer className="dock">
 			<img
 				alt="Now playing"
 				src={lastFM.song.art || require("../../assets/now_playing.gif")}
@@ -43,7 +42,7 @@ const Dock = (props: {
 					<span>{lastFM.song.name}</span> by <span>{lastFM.song.artist}</span>
 				</a>
 			</p>
-		</div>
+		</footer>
 	);
 };
 export default Dock;

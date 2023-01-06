@@ -24,20 +24,24 @@ div.streams__container {
 	[class$="__container"] {
 		background: rgba(0, 0, 0, 0.2);
 		margin: 2vh 2vw 2vh 2vw;
+		border-radius: 10px;
 		display: flex;
 		justify-content: initial;
 		align-items: flex-start;
 		text-align: center;
 		height: 55vh;
 		width: 75%;
+		padding: 0;
 		flex-direction: column;
 		overflow: scroll;
 
 		.song__wrapper {
 			display: flex;
 			height: 60px;
-			width: 90%;
-			margin: 2vh 2vw 2vh 2vw;
+			width: 95%;
+			padding-bottom: 2vh;
+			margin: 2vh 1vw 2vh 1vw;
+			border-bottom: white solid 1px;
 
 			.song {
 				justify-content: left;

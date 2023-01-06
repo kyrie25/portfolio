@@ -31,7 +31,7 @@ class Titlebar extends React.Component<
 	render() {
 		const TabArray = Object.entries(Tabs);
 		return (
-			<div className="titlebar">
+			<header className="titlebar">
 				<div className="spaces">
 					{TabArray.map(tab => (
 						<div
@@ -43,9 +43,14 @@ class Titlebar extends React.Component<
 							}}
 						>
 							{TabArray.indexOf(tab) + 1}
-							<svg height="24" viewBox="0 0 24 24" width="24">
-								{tab[1].icon}
-							</svg>
+							{typeof tab[1].icon !== "string" && (
+								<svg height="24" viewBox="0 0 24 24" width="24">
+									{tab[1].icon}
+								</svg>
+							)}
+							{typeof tab[1].icon === "string" && (
+								<img src={tab[1].icon} width="24" height="24" alt={tab[0]} />
+							)}
 						</div>
 					))}
 				</div>
@@ -62,7 +67,7 @@ class Titlebar extends React.Component<
 					Source code
 				</div>
 				<div className="process">guest@kyrie25.me:~</div>
-			</div>
+			</header>
 		);
 	}
 }

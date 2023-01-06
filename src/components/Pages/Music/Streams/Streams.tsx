@@ -7,7 +7,7 @@ import "../Music.scss";
 class Streams extends React.Component<
 	{
 		cache: Record<string, unknown>;
-		callback: (key: string, value: any) => void;
+		callback: (key: string, value) => void;
 	},
 	{
 		fetched: boolean;
@@ -71,52 +71,34 @@ class Streams extends React.Component<
 				<FadeIn>
 					<div className="streams__container">
 						<p>Recently played</p>
-						<div className="songs__container">
+						<ul className="songs__container">
 							{songs.map((song, index) => {
-								if (song["@attr"]?.nowplaying === "true") {
-									return (
-										<div className="song__wrapper" key={index}>
-											<img
-												alt={song.name}
-												src={
-													song.image[song.image.length - 1]["#text"] ||
-													"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
-												}
-											></img>
-											<div className="song" id={index.toString()}>
-												<a href={song.url}>
-													<p className="title">{song.name}</p>
-													<p className="artist">{song.artist["#text"]}</p>
-												</a>
-											</div>
+								return (
+									<li className="song__wrapper" key={index}>
+										<img
+											alt={song.name}
+											src={
+												song.image[song.image.length - 1]["#text"] ||
+												"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+											}
+										></img>
+										<div className="song" id={index.toString()}>
+											<a href={song.url}>
+												<p className="title">{song.name}</p>
+												<p className="artist">{song.artist["#text"]}</p>
+											</a>
+										</div>
+										{song["@attr"]?.nowplaying === "true" && (
 											<img
 												alt="Now Playing"
 												src={require("../../../../assets/now_playing.gif")}
 												id="now-playing"
 											/>
-										</div>
-									);
-								} else {
-									return (
-										<div className="song__wrapper" key={index}>
-											<img
-												alt={song.name}
-												src={
-													song.image[song.image.length - 1]["#text"] ||
-													"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
-												}
-											></img>
-											<div className="song" id={index.toString()}>
-												<a href={song.url}>
-													<p className="title">{song.name}</p>
-													<p className="artist">{song.artist["#text"]}</p>
-												</a>
-											</div>
-										</div>
-									);
-								}
+										)}
+									</li>
+								);
 							})}
-						</div>
+						</ul>
 					</div>
 				</FadeIn>
 			);
@@ -152,12 +134,14 @@ class Streams extends React.Component<
 								Unexpected error occurred, double-check your API key/Username
 								provided
 							</p>
-							<p>
-								API fetch URL:
-								`http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=$
-								{process.env.REACT_APP_LASTFM_USERNAME}&api_key=$
-								{process.env.REACT_APP_LASTFM_API_KEY}&format=json&limit=10`
-							</p>
+							{process.env.REACT_APP_ENV !== "production" && (
+								<p>
+									API fetch URL:
+									`http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=$
+									{process.env.REACT_APP_LASTFM_USERNAME}&api_key=$
+									{process.env.REACT_APP_LASTFM_API_KEY}&format=json&limit=10`
+								</p>
+							)}
 						</div>
 					</div>
 				</FadeIn>

@@ -31,10 +31,11 @@ class App extends React.Component<
 		this.setState({ activeTab: tab });
 	}
 
-	preloadImage() {
-		return Object.keys(Tabs)
-			.map(value => this.getImage(value))
-			.join(" ");
+	componentDidMount(): void {
+		for (const value of Object.keys(Tabs)) {
+			const img = new Image();
+			img.src = this.getImage(value);
+		}
 	}
 
 	cacheValue(key: string, value: unknown) {
@@ -54,8 +55,7 @@ class App extends React.Component<
 				<div
 					className="background"
 					style={{
-						backgroundImage: this.getImage(this.state.activeTab),
-						content: this.preloadImage()
+						backgroundImage: this.getImage(this.state.activeTab)
 					}}
 				/>
 				<div className="container">

@@ -1,0 +1,27 @@
+.spark-input__container {
+	padding-bottom: 10vh;
+	margin: 5vh 0 15vh 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	.spark-input__input-section {
+		display: flex;
+		width: 75%;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+
+		.spark-input__container__input__item {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+
+			input {
+				width: 130px;
+			}
+		}
+	}
+}
