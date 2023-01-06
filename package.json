@@ -14,7 +14,7 @@
 		"@types/node": "^18.11.18",
 		"@types/react": "^18.0.15",
 		"@types/react-clock": "^3.0.1",
-		"@types/react-dom": "^18.0.6",
+		"@types/react-dom": "^18.0.10",
 		"dotenv-webpack": "^8.0.0",
 		"gh-pages": "^4.0.0",
 		"prettier": "^2.7.1",
