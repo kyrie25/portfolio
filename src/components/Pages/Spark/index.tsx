@@ -54,7 +54,7 @@ const Spark = React.memo(() => {
 		<FadeIn>
 			<div className="spark-input__container">
 				<h2 className="spark-input__container__title">
-					GBF Spark Calculator (WIP)
+					<span>GBF</span> Spark Calculator (WIP)
 				</h2>
 				<div className="spark-input__input-section">
 					{Object.keys(sparkImages).map(key => {
@@ -81,7 +81,12 @@ const Spark = React.memo(() => {
 					<button onClick={resetSpark}>Reset</button>
 				</div>
 				<div className="spark-input__container__result">
-					<h2>Result: {calculateSpark()}</h2>
+					<h3>
+						You currently have <span>{Math.trunc(calculateSpark())}</span>{" "}
+						draws, for a total of{" "}
+						<span>{((calculateSpark() / 300) * 100).toFixed(2)}%</span> of a
+						spark
+					</h3>
 				</div>
 			</div>
 		</FadeIn>

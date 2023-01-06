@@ -24,7 +24,7 @@ class App extends React.Component<
 	}
 
 	getImage(tab: string) {
-		return `url(${require(`./assets/bg/${tab}_bg.jpg`)})`;
+		return require(`./assets/bg/${tab}_bg.jpg`);
 	}
 
 	handleTabSelect(tab: string) {
@@ -34,7 +34,7 @@ class App extends React.Component<
 	componentDidMount(): void {
 		for (const value of Object.keys(Tabs)) {
 			const img = new Image();
-			img.src = require(`./assets/bg/${value}_bg.jpg`);
+			img.src = this.getImage(value);
 		}
 	}
 
@@ -55,7 +55,7 @@ class App extends React.Component<
 				<div
 					className="background"
 					style={{
-						backgroundImage: this.getImage(this.state.activeTab)
+						backgroundImage: `url(${this.getImage(this.state.activeTab)})`
 					}}
 				/>
 				<div className="container">
