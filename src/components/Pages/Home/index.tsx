@@ -5,8 +5,8 @@ import Status from "./Status/Status";
 const Home = React.memo(() => {
 	return (
 		<>
-			<Social />
 			<Status />
+			<Social />
 		</>
 	);
 });

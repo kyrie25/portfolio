@@ -5,7 +5,7 @@ import Streams from "./Streams/Streams";
 const Music = React.memo(
 	(props: {
 		cache: Record<string, unknown>;
-		callback: (key: string, value: any) => void;
+		callback: (key: string, value) => void;
 	}) => {
 		return (
 			<>

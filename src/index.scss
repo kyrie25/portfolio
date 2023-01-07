@@ -46,8 +46,12 @@ html {
 
 		div.container {
 			clear: both;
-			position: relative;
+			position: absolute;
 			z-index: 2;
+			top: 28px;
+			left: 0;
+			height: calc(100% - 78px);
+			width: 100%;
 
 			@media screen and (max-width: 600px) {
 				& {
@@ -56,6 +60,9 @@ html {
 				[class$="__container"] {
 					width: 100%;
 					margin: 2vh 0 4vh 0;
+				}
+				> div:last-child [class$="__container"] {
+					margin-bottom: 10vh;
 				}
 			}
 		}

@@ -63,7 +63,7 @@ const Spark = React.memo(() => {
 		<FadeIn>
 			<div className="spark-input__container">
 				<h2 className="spark-input__container__title">
-					<span>GBF</span> Spark Calculator (WIP)
+					<span>GBF</span> Spark Calculator
 				</h2>
 				<div className="spark-input__input-section">
 					{Object.keys(sparkMetadata).map(key => {
@@ -94,8 +94,7 @@ const Spark = React.memo(() => {
 				</div>
 				<div className="spark-input__container__result">
 					<h3>
-						You currently have <span>{Math.trunc(calculateSpark())}</span>{" "}
-						draws, for a total of{" "}
+						<span>{Math.trunc(calculateSpark())}</span> draws, total of{" "}
 						<span>{((calculateSpark() / 300) * 100).toFixed(2)}%</span> of a
 						spark
 					</h3>
@@ -105,6 +104,16 @@ const Spark = React.memo(() => {
 							style={{
 								width: `${(calculateSpark() / 300) * 100}%`
 							}}
+						/>
+						<span className="spark-input__container__result-progress-bar__unit-notation">
+							100
+						</span>
+						<span className="spark-input__container__result-progress-bar__unit-notation">
+							200
+						</span>
+						<img
+							src={require("../../../assets/spark/Cerulean_Spark.png")}
+							alt="Spark"
 						/>
 					</div>
 				</div>

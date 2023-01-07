@@ -49,6 +49,10 @@
 				margin-left: 6px;
 				opacity: 0.5;
 			}
+
+			img {
+				opacity: 1;
+			}
 		}
 	}
 
@@ -86,7 +90,7 @@
 		pointer-events: none;
 		touch-action: none;
 
-		@media screen and (max-width: 375px) {
+		@media screen and (max-width: 600px) {
 			& {
 				display: none;
 			}
