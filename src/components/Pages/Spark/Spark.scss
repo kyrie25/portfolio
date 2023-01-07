@@ -104,6 +104,7 @@ span {
 				align-items: center;
 				position: absolute;
 				top: 0;
+				pointer-events: none;
 
 				// choose id
 				&:nth-of-type(1) {
