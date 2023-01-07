@@ -4,9 +4,9 @@ span {
 }
 
 .spark-input__container {
-	background: rgba(0, 0, 0, 0.2);
+	background: rgba(0, 0, 0, 0.4);
 	padding-bottom: 10vh;
-	margin: 5vh 0 15vh 0;
+	margin: 28px 0 15vh 0;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -27,6 +27,68 @@ span {
 
 			input {
 				width: 130px;
+				height: 20px;
+				border: #6fa8e7 solid 1px;
+				color: #6fa8e7;
+				border-radius: 5px;
+				-moz-appearance: textfield;
+				background: transparent;
+				font-size: larger;
+				text-align: center;
+				box-shadow: 0 0 5px;
+
+				&:focus-visible {
+					outline: none;
+					box-shadow: 0 0 5px 5px;
+				}
+
+				&::-webkit-inner-spin-button,
+				&::-webkit-outer-spin-button {
+					-webkit-appearance: none;
+				}
+			}
+		}
+	}
+
+	.spark-input__container__button {
+		margin: 2.5vh 0 0 0;
+
+		button {
+			height: 40px;
+			font-size: larger;
+			background: transparent;
+			border: #6fa8e7 solid 1px;
+			border-radius: 5px;
+			color: #6fa8e7;
+			box-shadow: 0 0 5px;
+			padding: 5px 10px;
+			cursor: pointer;
+
+			&:hover {
+				box-shadow: 0 0 5px 5px;
+			}
+		}
+	}
+	.spark-input__container__result {
+		text-align: center;
+
+		&-progress-bar {
+			width: 75vw;
+			height: 40px;
+			background: transparent;
+			border-radius: 5px;
+			margin: 10px 0;
+			overflow: hidden;
+			border: #6fa8e7 solid 2px;
+			color: #6fa8e7;
+			box-shadow: 0 0 5px;
+
+			&__progress {
+				width: 0%;
+				height: 100%;
+				background: #6fa8e7;
+				box-shadow: 0 0 5px 5px;
+				transition: width 0.5s ease-in-out;
 			}
 		}
 	}

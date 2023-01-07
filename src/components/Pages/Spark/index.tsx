@@ -23,10 +23,19 @@ const Spark = React.memo(() => {
 
 	const [spark, setSpark] = React.useState(savedSpark);
 
-	const sparkImages = {
-		"10Ticket": require("../../../assets/spark/10Ticket.jpg"),
-		Ticket: require("../../../assets/spark/Ticket.png"),
-		Crystals: require("../../../assets/spark/Crystal.jpg")
+	const sparkMetadata = {
+		"10Ticket": {
+			image: require("../../../assets/spark/10Ticket.jpg"),
+			string: "10-Part Ticket"
+		},
+		Ticket: {
+			image: require("../../../assets/spark/Ticket.png"),
+			string: "Ticket"
+		},
+		Crystals: {
+			image: require("../../../assets/spark/Crystal.jpg"),
+			string: "Crystals"
+		}
 	};
 
 	const saveSpark = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +66,7 @@ const Spark = React.memo(() => {
 					<span>GBF</span> Spark Calculator (WIP)
 				</h2>
 				<div className="spark-input__input-section">
-					{Object.keys(sparkImages).map(key => {
+					{Object.keys(sparkMetadata).map(key => {
 						return (
 							<div
 								className="spark-input__container__input__item"
@@ -65,7 +74,10 @@ const Spark = React.memo(() => {
 								id={key}
 								onChange={saveSpark}
 							>
-								<img src={sparkImages[key]} alt={key} />
+								<h4 className="spark-input__container__input__item-title">
+									{sparkMetadata[key].string}
+								</h4>
+								<img src={sparkMetadata[key].image} alt={key} />
 								<input
 									type="number"
 									id={key}
@@ -87,6 +99,14 @@ const Spark = React.memo(() => {
 						<span>{((calculateSpark() / 300) * 100).toFixed(2)}%</span> of a
 						spark
 					</h3>
+					<div className="spark-input__container__result-progress-bar">
+						<div
+							className="spark-input__container__result-progress-bar__progress"
+							style={{
+								width: `${(calculateSpark() / 300) * 100}%`
+							}}
+						/>
+					</div>
 				</div>
 			</div>
 		</FadeIn>
