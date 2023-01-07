@@ -48,6 +48,7 @@ html {
 			clear: both;
 			position: relative;
 			z-index: 2;
+			top: 28px;
 
 			@media screen and (max-width: 600px) {
 				& {
