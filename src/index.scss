@@ -34,7 +34,7 @@ html {
 			width: 100%;
 			height: 100%;
 			-webkit-filter: blur(4px);
-			filter: blur(4px);
+			filter: blur(4px) brightness(0.6);
 			background: rgba(0, 0, 0, 0.4);
 			background-blend-mode: hard-light;
 			background-position: center top;
@@ -45,14 +45,9 @@ html {
 		}
 
 		div.container {
-			background: rgba(0, 0, 0, 0.4);
 			clear: both;
-			position: absolute;
+			position: relative;
 			z-index: 2;
-			top: 28px;
-			left: 0;
-			height: calc(100% - 78px);
-			width: 100%;
 
 			@media screen and (max-width: 600px) {
 				& {
