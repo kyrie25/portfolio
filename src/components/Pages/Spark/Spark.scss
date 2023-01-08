@@ -1,14 +1,3 @@
-@keyframes shine {
-	to {
-		background-position: 300% center;
-	}
-}
-@keyframes shine-reversed {
-	to {
-		background-position: -300% center;
-	}
-}
-
 span {
 	color: #6fa8e7;
 	text-shadow: 0 0 5px;
@@ -133,20 +122,13 @@ span {
 				width: 0%;
 				height: 100%;
 				background: linear-gradient(
-					90deg,
+					135deg,
 					rgba(253, 49, 22, 1),
 					rgba(254, 241, 49, 1),
 					rgba(62, 135, 20, 1),
 					rgba(51, 66, 195, 1),
-					rgba(247, 163, 238, 1),
-					rgba(247, 163, 238, 1),
-					rgba(51, 66, 195, 1),
-					rgba(62, 135, 20, 1),
-					rgba(254, 241, 49, 1),
-					rgba(253, 49, 22, 1)
+					rgba(247, 163, 238, 1)
 				);
-				background-size: 300%;
-				animation: shine 30s linear infinite;
 				background-position: left;
 				box-shadow: 0 0 5px 5px;
 				transition: width 0.8s ease-in-out;
