@@ -4,8 +4,7 @@ span {
 }
 
 .spark-input__container {
-	padding-bottom: 10vh;
-	margin: 28px 0 15vh 0;
+	margin-bottom: 15vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -33,9 +32,10 @@ span {
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
+			position: relative;
 
 			input {
-				width: 130px;
+				width: 120px;
 				height: 20px;
 				border: #6fa8e7 solid 1px;
 				color: #6fa8e7;
@@ -60,15 +60,15 @@ span {
 	}
 
 	.spark-input__container__button {
-		margin: 2.5vh 0 0 0;
+		margin-top: 6vh;
 
 		button {
 			height: 40px;
 			font-size: larger;
 			background: transparent;
-			border: #6fa8e7 solid 1px;
+			border: whitesmoke solid 1px;
 			border-radius: 5px;
-			color: #6fa8e7;
+			color: whitesmoke;
 			box-shadow: 0 0 5px;
 			padding: 5px 10px;
 			cursor: pointer;
