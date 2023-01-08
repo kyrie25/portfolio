@@ -95,6 +95,10 @@ span {
 			border: #6fa8e7 solid 2px;
 			box-shadow: 0 0 5px;
 
+			&.filled {
+				box-shadow: 0 0 5px 3px;
+			}
+
 			span {
 				color: whitesmoke;
 				border-left: 1px solid whitesmoke;
@@ -125,8 +129,9 @@ span {
 					rgba(51, 66, 195, 1) 75%,
 					rgba(247, 163, 238, 1) 100%
 				);
+				background-position: left;
 				box-shadow: 0 0 5px 5px;
-				transition: width 0.8s ease-in-out;
+				transition: width 0.3s ease-in-out;
 			}
 
 			img {
