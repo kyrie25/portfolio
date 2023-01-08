@@ -59,11 +59,11 @@ const Spark = React.memo(() => {
 		localStorage.setItem("spark", JSON.stringify({}));
 	};
 
-	const progressBarColorManipulation = () => {
+	/* const progressBarColorManipulation = () => {
 		if (calculateSpark() === 0 || calculateSpark() >= 300) return "100%";
 		const sparkCount = 300 / calculateSpark();
 		return `${100 / (1 / sparkCount)}%`;
-	};
+	}; */
 
 	return (
 		<FadeIn>
@@ -112,8 +112,8 @@ const Spark = React.memo(() => {
 						<div
 							className="spark-input__container__result-progress-bar__progress"
 							style={{
-								width: `${(calculateSpark() / 300) * 100}%`,
-								backgroundSize: progressBarColorManipulation()
+								width: `${(calculateSpark() / 300) * 100}%`
+								// backgroundSize: progressBarColorManipulation()
 							}}
 						/>
 						<span className="spark-input__container__result-progress-bar__unit-notation">
