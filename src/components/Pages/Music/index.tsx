@@ -7,6 +7,7 @@ const Music = React.memo(
 		cache: Record<string, unknown>;
 		callback: (key: string, value) => void;
 	}) => {
+		console.log(props);
 		return (
 			<>
 				<Playlist />

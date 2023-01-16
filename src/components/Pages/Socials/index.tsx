@@ -2,7 +2,7 @@ import React from "react";
 import Social from "./Social/Social";
 import Status from "./Status/Status";
 
-const Home = React.memo(() => {
+const Socials = React.memo(() => {
 	return (
 		<>
 			<Status />
@@ -11,4 +11,4 @@ const Home = React.memo(() => {
 	);
 });
 
-export default Home;
+export default Socials;

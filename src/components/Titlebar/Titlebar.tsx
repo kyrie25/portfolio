@@ -1,45 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Tabs } from "../../Tabs";
 import "./Titlebar.scss";
 
-class Titlebar extends React.Component<
-	{ onTabSelect: (arg0: string) => void; activeTab: string },
-	{ activeTab: string }
-> {
-	constructor(props) {
-		super(props);
-		Object.assign(this, props);
-		this.state = {
-			activeTab: props.activeTab
-		};
-	}
+const Titlebar = React.memo(
+	(props: { onTabSelect: (arg0: string) => void; activeTab: any }) => {
+		const [activeTab, setActiveTab] = React.useState(props.activeTab);
+		const location = useLocation();
 
-	changeTab(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-		this.setState({ activeTab: e.currentTarget.id });
-		this.props.onTabSelect(e.currentTarget.id);
-		e.currentTarget.classList.add("space--active");
-		for (const space of document.querySelectorAll(".space"))
-			if (space !== e.currentTarget) space.classList.remove("space--active");
-	}
+		function changeTab(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+			setActiveTab(e.currentTarget.id);
+			props.onTabSelect(e.currentTarget.id);
+			e.currentTarget.classList.add("space--active");
+			for (const space of document.querySelectorAll(".space"))
+				if (space !== e.currentTarget) space.classList.remove("space--active");
+		}
 
-	componentDidMount(): void {
-		document
-			.querySelector(`#${this.state.activeTab}`)
-			?.classList.add("space--active");
-	}
+		useEffect(() => {
+			props.onTabSelect(activeTab);
+			document.getElementById(activeTab)?.classList.add("space--active");
+			for (const space of document.querySelectorAll(".space"))
+				if (space.id !== activeTab) space.classList.remove("space--active");
+		}, [activeTab]);
 
-	render() {
+		useEffect(() => {
+			setActiveTab(location.pathname.slice(1) || "about");
+		}, [location]);
+
 		const TabArray = Object.entries(Tabs);
+
 		return (
 			<header className="titlebar">
 				<div className="spaces">
 					{TabArray.map(tab => (
-						<div
+						<Link
+							to={tab[1].path}
 							className="space"
 							id={tab[0]}
 							key={tab[0]}
 							onClick={e => {
-								this.changeTab(e);
+								changeTab(e);
 							}}
 						>
 							{TabArray.indexOf(tab) + 1}
@@ -51,7 +51,7 @@ class Titlebar extends React.Component<
 							{typeof tab[1].icon === "string" && (
 								<img src={tab[1].icon} width="24" height="24" alt={tab[0]} />
 							)}
-						</div>
+						</Link>
 					))}
 				</div>
 				<div
@@ -70,5 +70,5 @@ class Titlebar extends React.Component<
 			</header>
 		);
 	}
-}
+);
 export default Titlebar;

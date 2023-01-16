@@ -1,5 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import {
+	createBrowserRouter,
+	Outlet,
+	Route,
+	RouterProvider,
+	Routes
+} from "react-router-dom";
 
 // Present in all tabs
 import Titlebar from "./components/Titlebar/Titlebar";
@@ -18,7 +25,7 @@ class App extends React.Component<
 		super(props);
 		Object.assign(this, props);
 		this.state = {
-			activeTab: "about",
+			activeTab: location.pathname.slice(1) || "about",
 			componentState: {}
 		};
 	}
@@ -45,7 +52,6 @@ class App extends React.Component<
 	}
 
 	render() {
-		const ActiveTab = Tabs[this.state.activeTab].component;
 		return (
 			<>
 				<Titlebar
@@ -59,10 +65,23 @@ class App extends React.Component<
 					}}
 				/>
 				<div className="container">
-					<ActiveTab
-						callback={this.cacheValue.bind(this)}
-						cache={this.state.componentState}
-					/>
+					<Routes>
+						{Object.entries(Tabs).map(([key, value]) => {
+							return (
+								<Route
+									key={key}
+									path={value.path}
+									element={
+										<value.component
+											cache={this.state.componentState}
+											callback={this.cacheValue.bind(this)}
+										/>
+									}
+								/>
+							);
+						})}
+					</Routes>
+					<Outlet />
 				</div>
 				<Dock
 					cache={this.state.componentState}
@@ -75,8 +94,15 @@ class App extends React.Component<
 
 export default App;
 
+const router = createBrowserRouter([
+	{
+		path: "/*",
+		element: <App />
+	}
+]);
+
 ReactDOM.createRoot(document.querySelector("#root") as HTMLElement).render(
 	<React.StrictMode>
-		<App />
+		<RouterProvider router={router} />
 	</React.StrictMode>
 );
