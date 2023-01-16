@@ -43,7 +43,7 @@ class Streams extends React.Component<
 			currentlyPlaying !== cachedSongs[0].name
 		) {
 			fetch(
-				`http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${process.env.REACT_APP_LASTFM_USERNAME}&api_key=${process.env.REACT_APP_LASTFM_API_KEY}&format=json&limit=10`
+				`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${process.env.REACT_APP_LASTFM_USERNAME}&api_key=${process.env.REACT_APP_LASTFM_API_KEY}&format=json&limit=10`
 			)
 				.then(res => res.json())
 				.then(
@@ -137,7 +137,7 @@ class Streams extends React.Component<
 							{process.env.REACT_APP_ENV !== "production" && (
 								<p>
 									API fetch URL:
-									`http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=$
+									`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=$
 									{process.env.REACT_APP_LASTFM_USERNAME}&api_key=$
 									{process.env.REACT_APP_LASTFM_API_KEY}&format=json&limit=10`
 								</p>
