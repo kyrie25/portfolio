@@ -4,51 +4,45 @@ import { Tabs } from "../../Tabs";
 import "./Titlebar.scss";
 
 const Titlebar = React.memo(
-	(props: { onTabSelect: (arg0: string) => void; activeTab: any }) => {
+	(props: { onTabSelect: (arg0: string) => void; activeTab: string }) => {
 		const [activeTab, setActiveTab] = React.useState(props.activeTab);
 		const location = useLocation();
 
-		function changeTab(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
-			setActiveTab(e.currentTarget.id);
-			props.onTabSelect(e.currentTarget.id);
-			e.currentTarget.classList.add("space--active");
+		function changeTab(tabClicked: string) {
+			setActiveTab(tabClicked);
+			props.onTabSelect(tabClicked);
+			document.getElementById(tabClicked)?.classList.add("space--active");
 			for (const space of document.querySelectorAll(".space"))
-				if (space !== e.currentTarget) space.classList.remove("space--active");
+				if (space.id !== tabClicked) space.classList.remove("space--active");
 		}
 
 		useEffect(() => {
-			props.onTabSelect(activeTab);
-			document.getElementById(activeTab)?.classList.add("space--active");
-			for (const space of document.querySelectorAll(".space"))
-				if (space.id !== activeTab) space.classList.remove("space--active");
-		}, [activeTab]);
+			changeTab(props.activeTab);
+		}, [props.activeTab]);
 
 		useEffect(() => {
-			setActiveTab(location.pathname.slice(1) || "about");
-		}, [location]);
-
-		const TabArray = Object.entries(Tabs);
+			changeTab(location.pathname.slice(1) || "about");
+		}, [activeTab, location]);
 
 		return (
 			<header className="titlebar">
 				<div className="spaces">
-					{TabArray.map(tab => (
+					{Object.entries(Tabs).map((tab, index) => (
 						<Link
 							to={tab[1].path}
 							className="space"
 							id={tab[0]}
 							key={tab[0]}
 							onClick={e => {
-								changeTab(e);
+								changeTab(e.currentTarget.id);
 							}}
 						>
-							{TabArray.indexOf(tab) + 1}
-							{typeof tab[1].icon !== "string" && (
+							{index + 1}
+							{typeof tab[1].icon !== "string" ? (
 								<svg height="24" viewBox="0 0 24 24" width="24">
 									{tab[1].icon}
 								</svg>
-							)}
-							{typeof tab[1].icon === "string" && (
+							) : (
 								<img src={tab[1].icon} width="24" height="24" alt={tab[0]} />
 							)}
 						</Link>

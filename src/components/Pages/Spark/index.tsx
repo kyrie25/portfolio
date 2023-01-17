@@ -78,7 +78,6 @@ const Spark = React.memo(() => {
 								className="spark-input__container__input__item"
 								key={key}
 								id={key}
-								onChange={saveSpark}
 							>
 								<h4 className="spark-input__container__input__item-title">
 									{sparkMetadata[key].string}
@@ -90,6 +89,7 @@ const Spark = React.memo(() => {
 									placeholder="0"
 									min={0}
 									value={spark[key]}
+									onChange={saveSpark}
 								/>
 							</div>
 						);
