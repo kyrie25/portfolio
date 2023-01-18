@@ -25,7 +25,7 @@ class App extends React.Component<
 		super(props);
 		Object.assign(this, props);
 		this.state = {
-			activeTab: location.pathname.slice(1) || "about",
+			activeTab: location.pathname.slice(1) || Object.keys(Tabs)[0],
 			componentState: {}
 		};
 	}

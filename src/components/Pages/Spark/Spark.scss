@@ -1,14 +1,14 @@
-span {
-	color: #6fa8e7;
-	text-shadow: 0 0 5px;
-}
-
 .spark-input__container {
 	margin-bottom: 15vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
+	span {
+		color: #6fa8e7;
+		text-shadow: 0 0 5px;
+	}
 
 	.spark-input__input-section {
 		display: flex;
