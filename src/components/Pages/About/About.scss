@@ -46,12 +46,12 @@ div.about__container {
 	}
 
 	a {
-		color: inherit;
+		color: #6fa8e7;
+		text-shadow: 0 0 5px;
 		text-decoration: inherit;
 
 		&:hover {
-			color: #6fa8e7;
-			text-shadow: 0 0 5px;
+			text-shadow: 0 0 5px 5px;
 		}
 	}
 }
