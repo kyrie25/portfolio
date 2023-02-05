@@ -4,15 +4,6 @@ My website (re)written in React & Sass. Pretty barebone.
 
 _Why?_ I was bored.
 
-### TODO
-
-- [x] Add tabs & multiple pages
-- [x] Fetch recently played songs from Spotify/Last.fm
-
-## Preview
-
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/77577746/170812530-1cae68cf-cd1c-465e-b78c-f4347a5c8cb4.gif)
-
 ## Building
 
 Run `npm i` to install all dependencies if you intend to clone (and/or) modify this.
