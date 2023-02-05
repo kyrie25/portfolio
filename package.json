@@ -24,7 +24,7 @@
 		"lint:ci": "prettier --check . && eslint .",
 		"lint": "prettier --write . && eslint --fix .",
 		"start": "vite",
-		"build": "npm run lint && tsc && vite build",
+		"build": "tsc && vite build",
 		"serve": "npm run build && vite preview"
 	},
 	"browserslist": {
