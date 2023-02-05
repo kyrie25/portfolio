@@ -31,7 +31,7 @@ class App extends React.Component<
 	}
 
 	getImage(tab: string) {
-		return require(`./assets/bg/${tab}_bg.jpg`);
+		return `/bg/${tab}_bg.jpg`;
 	}
 
 	handleTabSelect(tab: string) {

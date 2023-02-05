@@ -1,5 +1,5 @@
 import React from "react";
-import FadeIn from "../../../utils/FadeIn/FadeIn";
+import FadeIn from "utils/FadeIn";
 
 import "./Spark.scss";
 
@@ -25,15 +25,15 @@ const Spark = React.memo(() => {
 
 	const sparkMetadata = {
 		"10Ticket": {
-			image: require("../../../assets/spark/10Ticket.jpg"),
+			image: "/spark/10Ticket.jpg",
 			string: "10-Part Ticket"
 		},
 		Ticket: {
-			image: require("../../../assets/spark/Ticket.png"),
+			image: "/spark/Ticket.png",
 			string: "Ticket"
 		},
 		Crystals: {
-			image: require("../../../assets/spark/Crystal.jpg"),
+			image: "/spark/Crystal.jpg",
 			string: "Crystals"
 		}
 	};
@@ -122,10 +122,7 @@ const Spark = React.memo(() => {
 						<span className="spark-input__container__result-progress-bar__unit-notation">
 							200
 						</span>
-						<img
-							src={require("../../../assets/spark/Cerulean_Spark.png")}
-							alt="Spark"
-						/>
+						<img src="spark/Cerulean_Spark.png" alt="Spark" />
 					</div>
 				</div>
 			</div>

@@ -1,8 +1,9 @@
 import React from "react";
-import FadeIn from "../../../../utils/FadeIn/FadeIn";
+import FadeIn from "utils/FadeIn";
 import { Track } from "use-last-fm";
 
 import "../Music.scss";
+import nowPlaying from "assets/now_playing.gif";
 
 class Streams extends React.Component<
 	{
@@ -43,7 +44,9 @@ class Streams extends React.Component<
 			currentlyPlaying !== cachedSongs[0].name
 		) {
 			fetch(
-				`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${process.env.REACT_APP_LASTFM_USERNAME}&api_key=${process.env.REACT_APP_LASTFM_API_KEY}&format=json&limit=10`
+				`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${
+					import.meta.env.VITE_LASTFM_USERNAME
+				}&api_key=${import.meta.env.VITE_LASTFM_API_KEY}&format=json&limit=10`
 			)
 				.then(res => res.json())
 				.then(
@@ -91,7 +94,7 @@ class Streams extends React.Component<
 										{song["@attr"]?.nowplaying === "true" && (
 											<img
 												alt="Now Playing"
-												src={require("../../../../assets/now_playing.gif")}
+												src={nowPlaying}
 												id="now-playing"
 											/>
 										)}
@@ -134,12 +137,13 @@ class Streams extends React.Component<
 								Unexpected error occurred, double-check your API key/Username
 								provided
 							</p>
-							{process.env.REACT_APP_ENV !== "production" && (
+							{import.meta.env.VITE_ENV !== "production" && (
 								<p>
 									API fetch URL:
 									`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=$
-									{process.env.REACT_APP_LASTFM_USERNAME}&api_key=$
-									{process.env.REACT_APP_LASTFM_API_KEY}&format=json&limit=10`
+									{import.meta.env.VITE_LASTFM_USERNAME}&api_key=$
+									{import.meta.env.VITE_LASTFM_API_KEY}
+									&format=json&limit=10`
 								</p>
 							)}
 						</div>

@@ -1,7 +1,8 @@
 {
 	"compilerOptions": {
-		"target": "es6",
+		"target": "ESNext",
 		"lib": ["dom", "dom.iterable", "esnext"],
+		"types": ["vite/client", "vite-plugin-svgr/client"],
 		"allowJs": true,
 		"skipLibCheck": true,
 		"esModuleInterop": true,
@@ -15,7 +16,13 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"noEmit": true,
-		"jsx": "react-jsx"
+		"jsx": "react-jsx",
+		"paths": {
+			"@/*": ["./src/*"],
+			"components/*": ["./src/components/*"],
+			"utils/*": ["./src/utils/*"],
+			"assets/*": ["./src/assets/*"]
+		}
 	},
 	"include": ["src"]
 }

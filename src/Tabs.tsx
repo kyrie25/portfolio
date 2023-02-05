@@ -3,6 +3,8 @@ import Home from "./components/Pages/Socials";
 import Music from "./components/Pages/Music";
 import Spark from "./components/Pages/Spark";
 
+import sparkIcon from "./assets/spark_icon.png";
+
 export const Tabs = {
 	about: {
 		path: "/",
@@ -39,6 +41,6 @@ export const Tabs = {
 	spark: {
 		path: "/spark",
 		component: Spark,
-		icon: require("./assets/spark_icon.png")
+		icon: sparkIcon
 	}
 };

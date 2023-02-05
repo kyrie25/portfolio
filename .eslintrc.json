@@ -16,8 +16,8 @@
 	},
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
-		"ecmaVersion": 2021,
-		"project": "tsconfig.json"
+		"ecmaVersion": "latest",
+		"sourceType": "module"
 	},
 	"rules": {
 		"semi": ["error", "always", { "omitLastInOneLineBlock": true }],

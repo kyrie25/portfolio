@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Tabs } from "../../Tabs";
+import { Tabs } from "@/Tabs";
 import "./Titlebar.scss";
 
 const Titlebar = React.memo(

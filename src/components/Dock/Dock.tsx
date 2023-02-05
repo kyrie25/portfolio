@@ -1,13 +1,15 @@
 import { useLastFM } from "use-last-fm";
 import "./Dock.scss";
 
+import nowPlaying from "assets/now_playing.gif";
+
 const Dock = (props: {
 	cache: Record<string, unknown>;
 	callback: (key: string, value) => void;
 }) => {
 	if (
-		!process.env.REACT_APP_LASTFM_USERNAME ||
-		!process.env.REACT_APP_LASTFM_API_KEY
+		!import.meta.env.VITE_LASTFM_USERNAME ||
+		!import.meta.env.VITE_LASTFM_API_KEY
 	) {
 		return (
 			<div className="dock">
@@ -16,8 +18,8 @@ const Dock = (props: {
 		);
 	}
 	const lastFM = useLastFM(
-		process.env.REACT_APP_LASTFM_USERNAME,
-		process.env.REACT_APP_LASTFM_API_KEY
+		import.meta.env.VITE_LASTFM_USERNAME,
+		import.meta.env.VITE_LASTFM_API_KEY
 	);
 	if (lastFM.status !== "playing") {
 		return (
@@ -32,10 +34,7 @@ const Dock = (props: {
 
 	return (
 		<footer className="dock">
-			<img
-				alt="Now playing"
-				src={lastFM.song.art || require("../../assets/now_playing.gif")}
-			/>
+			<img alt="Now playing" src={lastFM.song.art || nowPlaying} />
 			<p>
 				Listening to:&nbsp;
 				<a href={lastFM.song.url}>
