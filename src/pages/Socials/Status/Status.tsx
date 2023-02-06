@@ -1,6 +1,6 @@
 import React from "react";
 import LocalClock from "../Clock/Clock";
-import FadeIn from "utils/FadeIn";
+import FadeIn from "@/components/FadeIn";
 import "./Status.scss";
 import Lanyard from "@/components/Lanyard";
 

@@ -1,6 +1,6 @@
 import Lanyard from "@/components/Lanyard";
 import React from "react";
-import FadeIn from "utils/FadeIn";
+import FadeIn from "@/components/FadeIn";
 import "./About.scss";
 import manifest from "./manifest.json";
 

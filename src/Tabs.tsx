@@ -1,7 +1,7 @@
-import About from "./components/Pages/About";
-import Home from "./components/Pages/Socials";
-import Music from "./components/Pages/Music";
-import Spark from "./components/Pages/Spark";
+import About from "./pages/About";
+import Home from "./pages/Socials";
+import Music from "./pages/Music";
+import Spark from "./pages/Spark";
 
 import sparkIcon from "./assets/spark_icon.png";
 

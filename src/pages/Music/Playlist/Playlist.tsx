@@ -1,5 +1,5 @@
 import React from "react";
-import FadeIn from "utils/FadeIn";
+import FadeIn from "@/components/FadeIn";
 
 import "../Music.scss";
 
