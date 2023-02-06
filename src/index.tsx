@@ -9,8 +9,8 @@ import {
 } from "react-router-dom";
 
 // Present in all tabs
-import Titlebar from "./components/Titlebar/Titlebar";
-import Dock from "./components/Dock/Dock";
+import Titlebar from "./components/Titlebar";
+import Dock from "./components/Dock";
 
 // Tabs
 import { Tabs } from "./Tabs";
