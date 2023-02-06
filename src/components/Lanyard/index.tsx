@@ -19,17 +19,15 @@ const Lanyard = () => {
 		);
 	}
 
-	const { data } = useLanyard(import.meta.env.VITE_DISCORD_ID);
+	const { data, revalidate } = useLanyard(import.meta.env.VITE_DISCORD_ID);
 	const activities = data?.activities.filter(activity => activity.type === 0);
 	let activity = Array.isArray(activities) ? activities[0] : activities;
 	const hasTimestamp =
 		!!activity?.timestamps?.start || !!activity?.timestamps?.end;
 
-	const [, forceUpdate] = useReducer(x => x + 1, 0);
-
 	useEffect(() => {
 		const counter = setInterval(() => {
-			forceUpdate();
+			revalidate();
 			return () => clearInterval(counter);
 		}, 1000);
 	}, []);

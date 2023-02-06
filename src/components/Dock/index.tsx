@@ -12,21 +12,10 @@ const Dock = () => {
 			</div>
 		);
 	}
-	const { data } = useLanyard(import.meta.env.VITE_DISCORD_ID);
-	const [state, setState] = React.useState(data?.spotify);
+	const { data, revalidate } = useLanyard(import.meta.env.VITE_DISCORD_ID);
 
 	useEffect(() => {
-		const interval = setInterval(() => {
-			fetch(
-				`https://api.lanyard.rest/v1/users/${import.meta.env.VITE_DISCORD_ID}`
-			).then(res => {
-				res.json().then(({ data: user }) => {
-					if (user?.spotify?.song !== state?.song) setState(user?.spotify);
-				});
-			});
-			return () => clearInterval(interval);
-			// Updates every 10 seconds
-		}, 5000);
+		revalidate();
 	}, []);
 
 	if (!data?.spotify) {
@@ -37,15 +26,15 @@ const Dock = () => {
 		);
 	}
 
-	const spotify = state || data?.spotify;
+	const { spotify } = data;
 
 	return (
 		<footer className="dock">
-			<img alt={spotify?.album} src={spotify?.album_art_url || nowPlaying} />
+			<img alt={spotify.album} src={spotify.album_art_url || nowPlaying} />
 			<p>
 				Listening to:&nbsp;
-				<a href={`https://open.spotify.com/track/${spotify?.track_id}`}>
-					<span>{spotify?.song}</span> by <span>{spotify?.artist}</span>
+				<a href={`https://open.spotify.com/track/${spotify.track_id}`}>
+					<span>{spotify.song}</span> by <span>{spotify.artist}</span>
 				</a>
 			</p>
 		</footer>
