@@ -11,6 +11,7 @@ div.about__container {
 	text-align: center;
 
 	p {
+		margin: 2vh;
 		font-size: large;
 		span {
 			color: #6fa8e7;
@@ -19,26 +20,25 @@ div.about__container {
 	}
 
 	> :last-child {
-		margin-top: 2%;
+		margin-top: 10px;
 	}
 
 	.icons__wrapper {
-		display: table;
-		height: 60px;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
 		align-content: center;
 		justify-content: center;
 		align-items: center;
-
-		a {
-			display: table-cell;
-			vertical-align: middle;
-		}
+		background-color: rgba($color: #000000, $alpha: 0.5);
+		border-radius: 10px;
+		border: #eee solid 1px;
+		padding: 10px;
 
 		svg,
 		img {
 			margin-left: 5px;
 			margin-right: 5px;
-			fill: rgb(0, 0, 0);
 			height: 60px;
 			animation: floatdown 0.2s ease-in-out;
 			&:hover {
