@@ -12,7 +12,7 @@ Run `npm i` to install all dependencies if you intend to clone (and/or) modify t
 
 Below are the list of components/modules that needs further attention if you decide to modify & use your own instances of it:
 
-- [use-last-fm](https://github.com/alii/use-last-fm)
+- [use-lanyard](https://github.com/alii/use-lanyard)
 - [lanyard](https://github.com/Phineas/lanyard)
 - [react-clock](https://github.com/wojtekmaj/react-clock) and the `Clock.tsx` file
 
