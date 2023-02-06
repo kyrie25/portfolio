@@ -1,6 +1,6 @@
 import Lanyard from "@/components/Lanyard";
 import React from "react";
-import FadeIn from "../../../utils/FadeIn";
+import FadeIn from "utils/FadeIn";
 import "./About.scss";
 import manifest from "./manifest.json";
 
@@ -22,7 +22,7 @@ const About = React.memo(() => {
 					mostly in TypeScript, can vary depending on what my project requires.
 					Navigate the tabs to see what I am up to.
 				</p>
-				<p>Stuff I used to make this:</p>
+				<p>My tech stack:</p>
 				<div className="icons__wrapper">
 					{manifest.languages.map((value, index) => {
 						return (

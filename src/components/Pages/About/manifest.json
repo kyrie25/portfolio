@@ -6,9 +6,19 @@
 			"image": "https://raw.githubusercontent.com/kyrie25/Github-Profile-Readme-Logos/master/programming%20languages/typescript.svg"
 		},
 		{
+			"name": "Javascript",
+			"url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+			"image": "https://raw.githubusercontent.com/kyrie25/Github-Profile-Readme-Logos/master/programming%20languages/javascript.svg"
+		},
+		{
 			"name": "React",
 			"url": "https://reactjs.org/",
 			"image": "https://raw.githubusercontent.com/kyrie25/Github-Profile-Readme-Logos/master/frameworks/react.svg"
+		},
+		{
+			"name": "Go",
+			"url": "https://go.dev/",
+			"image": "https://go.dev/blog/go-brand/Go-Logo/SVG/Go-Logo_Blue.svg"
 		},
 		{
 			"name": "Sass",
@@ -19,6 +29,26 @@
 			"name": "Node.js",
 			"url": "https://nodejs.org/en/",
 			"image": "https://raw.githubusercontent.com/kyrie25/Github-Profile-Readme-Logos/master/frameworks/nodejs.svg"
+		},
+		{
+			"name": "Vite",
+			"url": "https://vitejs.dev/",
+			"image": "https://avatars.githubusercontent.com/u/65625612?s=200&v=4"
+		},
+		{
+			"name": "Heroku",
+			"url": "https://www.heroku.com/",
+			"image": "https://raw.githubusercontent.com/kyrie25/Github-Profile-Readme-Logos/master/cloud/github.svg"
+		},
+		{
+			"name": "Vercel",
+			"url": "https://vercel.com/",
+			"image": "https://avatars.githubusercontent.com/u/14985020?s=200&v=4"
+		},
+		{
+			"name": "VS Code",
+			"url": "https://code.visualstudio.com/",
+			"image": "https://raw.githubusercontent.com/kyrie25/Github-Profile-Readme-Logos/master/text%20editors/vscode.svg"
 		}
 	],
 	"projects": [

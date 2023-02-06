@@ -23,13 +23,16 @@ div.about__container {
 	}
 
 	.icons__wrapper {
-		display: flex;
-		flex-direction: row;
+		display: table;
 		height: 60px;
-		width: 100%;
 		align-content: center;
 		justify-content: center;
 		align-items: center;
+
+		a {
+			display: table-cell;
+			vertical-align: middle;
+		}
 
 		svg,
 		img {
@@ -42,6 +45,7 @@ div.about__container {
 				cursor: pointer;
 				animation: floatup 0.2s ease-in-out forwards;
 			}
+			border-radius: 10px;
 		}
 	}
 
@@ -49,10 +53,6 @@ div.about__container {
 		color: #6fa8e7;
 		text-shadow: 0 0 5px;
 		text-decoration: inherit;
-
-		&:hover {
-			text-shadow: 0 0 5px 5px;
-		}
 	}
 }
 
