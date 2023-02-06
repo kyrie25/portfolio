@@ -1,3 +1,4 @@
+import Lanyard from "@/components/Lanyard";
 import React from "react";
 import FadeIn from "../../../utils/FadeIn";
 import "./About.scss";
@@ -57,12 +58,7 @@ const About = React.memo(() => {
 						);
 					})}
 				</div>
-				<a href="https://github.com/kyrie25/lanyard-profile-readme">
-					<img
-						alt="Lanyard"
-						src="https://lanyard.kyrie25.me/api/368399721494216706?borderRadius=30px"
-					/>
-				</a>
+				<Lanyard />
 			</div>
 		</FadeIn>
 	);

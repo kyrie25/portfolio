@@ -26,6 +26,12 @@
 		fill: currentColor;
 		-webkit-transform: translateZ(0);
 		transform: translateZ(0);
+		transition: transform 0.25s ease-out;
+		z-index: 1;
+
+		&:hover {
+			transform: scale(5) translateY(-20px);
+		}
 	}
 
 	p {

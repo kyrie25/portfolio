@@ -1,6 +1,6 @@
 {
 	"name": "portfolio",
-	"version": "2.7.0",
+	"version": "2.8.0",
 	"author": {
 		"name": "Kyrie"
 	},
@@ -18,7 +18,7 @@
 		"react-router-dom": "^6.6.2",
 		"sass": "^1.57.1",
 		"typescript": "^4.9.4",
-		"use-last-fm": "^0.6.1"
+		"use-lanyard": "^1.4.2"
 	},
 	"scripts": {
 		"lint:ci": "prettier --check . && eslint .",

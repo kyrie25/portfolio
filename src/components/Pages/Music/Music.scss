@@ -22,7 +22,7 @@ div.streams__container {
 	}
 
 	[class$="__container"] {
-		background: rgba(0, 0, 0, 0.2);
+		background: rgba(0, 0, 0, 0.5);
 		margin: 2vh 2vw 2vh 2vw;
 		border-radius: 10px;
 		display: flex;
@@ -42,6 +42,8 @@ div.streams__container {
 			padding-bottom: 2vh;
 			margin: 2vh 1vw 2vh 1vw;
 			border-bottom: white solid 1px;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 
 			.song {
 				justify-content: left;

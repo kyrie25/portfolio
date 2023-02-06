@@ -5,7 +5,7 @@ import svgrPlugin from "vite-plugin-svgr";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	preview: {
+	server: {
 		host: "localhost.kyrie25.me",
 		port: 80,
 		open: true,

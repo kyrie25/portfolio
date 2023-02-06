@@ -30,10 +30,6 @@ class App extends React.Component<
 		};
 	}
 
-	getImage(tab: string) {
-		return `/bg/${tab}_bg.jpg`;
-	}
-
 	handleTabSelect(tab: string) {
 		this.setState({ activeTab: tab });
 	}
@@ -41,7 +37,7 @@ class App extends React.Component<
 	componentDidMount(): void {
 		for (const value of Object.keys(Tabs)) {
 			const img = new Image();
-			img.src = this.getImage(value);
+			img.src = `/assets/bg/${value}_bg.jpg`;
 		}
 	}
 
@@ -61,7 +57,7 @@ class App extends React.Component<
 				<div
 					className="background"
 					style={{
-						backgroundImage: `url(${this.getImage(this.state.activeTab)})`
+						backgroundImage: `url(/assets/bg/${this.state.activeTab}_bg.jpg)`
 					}}
 				/>
 				<div className="container">
@@ -83,10 +79,7 @@ class App extends React.Component<
 					</Routes>
 					<Outlet />
 				</div>
-				<Dock
-					cache={this.state.componentState}
-					callback={this.cacheValue.bind(this)}
-				/>
+				<Dock />
 			</>
 		);
 	}

@@ -25,15 +25,15 @@ const Spark = React.memo(() => {
 
 	const sparkMetadata = {
 		"10Ticket": {
-			image: "/spark/10Ticket.jpg",
+			image: "/assets/spark/10Ticket.jpg",
 			string: "10-Part Ticket"
 		},
 		Ticket: {
-			image: "/spark/Ticket.png",
+			image: "/assets/spark/Ticket.png",
 			string: "Ticket"
 		},
 		Crystals: {
-			image: "/spark/Crystal.jpg",
+			image: "/assets/spark/Crystal.jpg",
 			string: "Crystals"
 		}
 	};

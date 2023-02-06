@@ -1,6 +1,5 @@
 import React from "react";
 import FadeIn from "utils/FadeIn";
-import { Track } from "use-last-fm";
 
 import "../Music.scss";
 import nowPlaying from "assets/now_playing.gif";
@@ -12,7 +11,7 @@ class Streams extends React.Component<
 	},
 	{
 		fetched: boolean;
-		songs: Track[];
+		songs: any[];
 		error: null;
 	}
 > {
@@ -27,7 +26,7 @@ class Streams extends React.Component<
 	}
 
 	componentDidMount() {
-		const cachedSongs = this.props.cache.songs as Track[] | undefined,
+		const cachedSongs = this.props.cache.songs as any[] | undefined,
 			cached = !!cachedSongs?.length,
 			currentlyPlaying = this.props.cache.currentSong as string | undefined;
 
@@ -96,6 +95,7 @@ class Streams extends React.Component<
 												alt="Now Playing"
 												src={nowPlaying}
 												id="now-playing"
+												loading="lazy"
 											/>
 										)}
 									</li>

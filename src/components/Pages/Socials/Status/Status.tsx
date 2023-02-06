@@ -2,6 +2,7 @@ import React from "react";
 import LocalClock from "../Clock/Clock";
 import FadeIn from "utils/FadeIn";
 import "./Status.scss";
+import Lanyard from "@/components/Lanyard";
 
 class Status extends React.Component {
 	constructor(props) {
@@ -16,15 +17,7 @@ class Status extends React.Component {
 						<LocalClock></LocalClock>
 					</div>
 					<div className="status">
-						<a
-							title="Discord"
-							href="https://discord.com/users/368399721494216706"
-						>
-							<img
-								alt="Lanyard"
-								src="https://lanyard.kyrie25.me/api/368399721494216706?borderRadius=30px"
-							/>
-						</a>
+						<Lanyard />
 					</div>
 				</div>
 			</FadeIn>

@@ -1,27 +1,35 @@
-import { useLastFM } from "use-last-fm";
+import React, { useEffect } from "react";
 import "./Dock.scss";
 
 import nowPlaying from "assets/now_playing.gif";
+import { useLanyard } from "use-lanyard";
 
-const Dock = (props: {
-	cache: Record<string, unknown>;
-	callback: (key: string, value) => void;
-}) => {
-	if (
-		!import.meta.env.VITE_LASTFM_USERNAME ||
-		!import.meta.env.VITE_LASTFM_API_KEY
-	) {
+const Dock = () => {
+	if (!import.meta.env.VITE_DISCORD_ID) {
 		return (
 			<div className="dock">
-				<p>Last.fm Username/API Key not provided</p>
+				<p>Discord ID not provided</p>
 			</div>
 		);
 	}
-	const lastFM = useLastFM(
-		import.meta.env.VITE_LASTFM_USERNAME,
-		import.meta.env.VITE_LASTFM_API_KEY
-	);
-	if (lastFM.status !== "playing") {
+	const { data } = useLanyard(import.meta.env.VITE_DISCORD_ID);
+	const [state, setState] = React.useState(data?.spotify);
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			fetch(
+				`https://api.lanyard.rest/v1/users/${import.meta.env.VITE_DISCORD_ID}`
+			).then(res => {
+				res.json().then(({ data: user }) => {
+					if (user?.spotify?.song !== state?.song) setState(user?.spotify);
+				});
+			});
+			return () => clearInterval(interval);
+			// Updates every 10 seconds
+		}, 5000);
+	}, []);
+
+	if (!data?.spotify) {
 		return (
 			<div className="dock">
 				<p>Not listening to anything</p>
@@ -29,19 +37,19 @@ const Dock = (props: {
 		);
 	}
 
-	if (lastFM.song.name !== props.cache.currentSong)
-		props.callback("currentSong", lastFM.song.name);
+	const spotify = state || data?.spotify;
 
 	return (
 		<footer className="dock">
-			<img alt="Now playing" src={lastFM.song.art || nowPlaying} />
+			<img alt={spotify?.album} src={spotify?.album_art_url || nowPlaying} />
 			<p>
 				Listening to:&nbsp;
-				<a href={lastFM.song.url}>
-					<span>{lastFM.song.name}</span> by <span>{lastFM.song.artist}</span>
+				<a href={`https://open.spotify.com/track/${spotify?.track_id}`}>
+					<span>{spotify?.song}</span> by <span>{spotify?.artist}</span>
 				</a>
 			</p>
 		</footer>
 	);
 };
+
 export default Dock;
