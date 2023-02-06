@@ -5,7 +5,7 @@ import {
 	getFlags,
 	processDiscordImage
 } from "@/utils/utils";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { Activity, useLanyard } from "use-lanyard";
 
 import "./Lanyard.scss";
@@ -25,11 +25,11 @@ const Lanyard = () => {
 	const hasTimestamp =
 		!!activity?.timestamps?.start || !!activity?.timestamps?.end;
 
-	const [, setTime] = useState(0);
+	const [, forceUpdate] = useReducer(x => x + 1, 0);
 
 	useEffect(() => {
 		const counter = setInterval(() => {
-			setTime(Date.now());
+			forceUpdate();
 			return () => clearInterval(counter);
 		}, 1000);
 	}, []);
