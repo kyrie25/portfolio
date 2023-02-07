@@ -30,7 +30,7 @@
 		z-index: 1;
 
 		&:hover {
-			transform: scale(5) translateY(-20px);
+			transform: scale(5) translateY(-20px) translateX(var(--x));
 		}
 	}
 
