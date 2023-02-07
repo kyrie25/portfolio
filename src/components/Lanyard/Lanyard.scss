@@ -159,15 +159,15 @@
 				-webkit-animation: wave 8s linear infinite;
 				animation: wave 8s linear infinite;
 				z-index: 1;
-				filter: brightness(0) saturate(100%) invert(74%) sepia(32%)
-					saturate(7271%) hue-rotate(199deg) brightness(90%) contrast(89%);
+				filter: brightness(0) saturate(100%) invert(65%) sepia(41%)
+					saturate(4807%) hue-rotate(98deg) brightness(95%) contrast(77%);
 			}
 
 			&.wave-secondary {
 				-webkit-animation: wave-reverse 8s linear infinite;
 				animation: wave-reverse 8s linear infinite;
-				filter: brightness(0) saturate(100%) invert(16%) sepia(18%)
-					saturate(1501%) hue-rotate(188deg) brightness(97%) contrast(91%);
+				filter: brightness(0) saturate(100%) invert(16%) sepia(8%)
+					saturate(5990%) hue-rotate(109deg) brightness(94%) contrast(85%);
 			}
 		}
 
