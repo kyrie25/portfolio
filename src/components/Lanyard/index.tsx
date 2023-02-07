@@ -5,7 +5,7 @@ import {
 	getFlags,
 	processDiscordImage
 } from "@/utils/utils";
-import { useEffect, useReducer, useState } from "react";
+import { useEffect } from "react";
 import { Activity, useLanyard } from "use-lanyard";
 
 import "./Lanyard.scss";
@@ -40,41 +40,20 @@ const Lanyard = () => {
 		);
 	}
 
-	let borderColor = "#747F8D",
-		avatarExtension = "webp",
-		statusExtension = "webp";
+	const avatarExtension = data.discord_user.avatar?.startsWith("a_")
+			? "gif"
+			: "webp",
+		statusExtension = data.activities[0]?.emoji?.animated ? "gif" : "webp";
+
 	const idleMessage = "I'm not currently doing anything!";
-
-	if (data.activities[0]?.emoji?.animated) statusExtension = "gif";
-	if (data.discord_user.avatar && data.discord_user.avatar.startsWith("a_"))
-		avatarExtension = "gif";
 	const avatar = `https://cdn.discordapp.com/avatars/${data.discord_user.id}/${data.discord_user.avatar}.${avatarExtension}?size=256`;
-
-	switch (data.discord_status) {
-		case "online":
-			borderColor = "#43B581";
-			break;
-		case "idle":
-			borderColor = "#FAA61A";
-			break;
-		case "dnd":
-			borderColor = "#F04747";
-			break;
-		case "offline":
-			borderColor = "#747F8D";
-			break;
-	}
 
 	let userStatus: Activity | null = null;
 	if (data.activities[0] && data.activities[0].type === 4)
 		userStatus = data.activities[0];
 
 	const flags: string[] = getFlags(data.discord_user.public_flags);
-	if (
-		(data.discord_user.avatar && data.discord_user.avatar.includes("a_")) ||
-		userStatus?.emoji?.id
-	)
-		flags.push("Nitro");
+	if (avatarExtension === "gif" || userStatus?.emoji?.id) flags.push("Nitro");
 
 	const isSpotify = data.listening_to_spotify === true && !activity;
 	const hasStatus =
@@ -98,14 +77,14 @@ const Lanyard = () => {
 			href="https://github.com/kyrie25/lanyard-profile-readme"
 		>
 			<div className="profile">
-				<div className="profile-avatar">
-					<img
-						src={avatar}
-						alt="avatar"
-						style={{
-							borderColor
-						}}
-					/>
+				<div
+					className={concatClassname(
+						"profile-avatar",
+						data.discord_status,
+						true
+					)}
+				>
+					<img src={avatar} alt="avatar" />
 				</div>
 				<div className="profile-info">
 					<div

@@ -36,6 +36,23 @@
 				top: 50%;
 				left: 50%;
 				transform: translate(-50%, -50%);
+				border-color: #747f8d;
+			}
+
+			&.online > img {
+				border-color: #43b581;
+			}
+
+			&.idle > img {
+				border-color: #faa61a;
+			}
+
+			&.dnd > img {
+				border-color: #f04747;
+			}
+
+			&.offline > img {
+				border-color: #747f8d;
 			}
 		}
 
@@ -204,7 +221,6 @@
 					margin-top: -3px;
 
 					&-name {
-						font-size: 0.75rem;
 						color: #ddd8d8;
 						margin-bottom: 15px;
 					}
