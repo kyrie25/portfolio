@@ -122,7 +122,7 @@ const Spark = React.memo(() => {
 						<span className="spark-input__container__result-progress-bar__unit-notation">
 							200
 						</span>
-						<img src="spark/Cerulean_Spark.png" alt="Spark" />
+						<img src="assets/spark/Cerulean_Spark.png" alt="Spark" />
 					</div>
 				</div>
 			</div>
