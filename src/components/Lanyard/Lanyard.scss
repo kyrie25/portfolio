@@ -13,24 +13,24 @@
 	text-align: left;
 	text-decoration: none !important;
 	text-shadow: none !important;
-	transition: height 3s ease-in-out;
 
 	&.has-banner {
 		height: auto;
 		transition: height 3s ease-in-out;
 
-		&:hover .banner.hidden {
+		&:hover .banner {
 			height: 140px;
 		}
 	}
 
 	.banner {
+		height: 40px;
 		width: 100%;
 		border-radius: inherit;
 		transition: height 0.5s ease-in-out;
 
 		&.hidden {
-			height: 40px;
+			display: none;
 		}
 
 		img {

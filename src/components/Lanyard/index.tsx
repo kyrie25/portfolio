@@ -35,7 +35,7 @@ const Lanyard = React.memo(
 			!!activity?.timestamps?.start || !!activity?.timestamps?.end;
 
 		useEffect(() => {
-			if (!bannerID) {
+			if (!bannerID && !props.cache.hidden) {
 				fetch(
 					`https://dacoolbot.kyrie25.me/?id=${import.meta.env.VITE_DISCORD_ID}`
 				)
@@ -99,9 +99,15 @@ const Lanyard = React.memo(
 		}
 
 		return (
-			<div className={concatClassname("lanyard", "has-banner", !!bannerID)}>
-				{!!bannerID && (
-					<div className={concatClassname("banner", "hidden", props.hidden)}>
+			<div
+				className={concatClassname(
+					"lanyard",
+					"has-banner",
+					!!bannerID && !props.hidden
+				)}
+			>
+				{!!bannerID && !props.hidden && (
+					<div className="banner">
 						<img src={banner} alt="banner" />
 					</div>
 				)}

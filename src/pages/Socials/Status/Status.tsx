@@ -13,23 +13,14 @@ const Status = React.memo(
 		return (
 			<FadeIn>
 				<div className="status__container">
-					{!props.cache.banner && (
-						<div className="clock clock__container">
-							<LocalClock></LocalClock>
-						</div>
-					)}
-					{!!props.cache.banner && <p>{"Status"}</p>}
-					<div
-						className={concatClassname(
-							"status",
-							"has-banner",
-							!!props.cache.banner
-						)}
-					>
+					<div className="clock clock__container">
+						<LocalClock></LocalClock>
+					</div>
+					<div className="status">
 						<Lanyard
 							cache={props.cache}
 							setCache={props.callback}
-							hidden={false}
+							hidden={true}
 						/>
 					</div>
 				</div>

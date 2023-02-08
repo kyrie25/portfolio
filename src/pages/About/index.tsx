@@ -65,7 +65,7 @@ const About = React.memo(
 					<Lanyard
 						cache={props.cache}
 						setCache={props.callback}
-						hidden={true}
+						hidden={false}
 					/>
 				</div>
 			</FadeIn>
