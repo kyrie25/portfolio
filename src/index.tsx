@@ -41,6 +41,10 @@ class App extends React.Component<
 		}
 	}
 
+	componentDidUpdate(): void {
+		document.title = Tabs[this.state.activeTab].title ?? "Kyrie's site";
+	}
+
 	cacheValue(key: string, value: unknown) {
 		this.setState({
 			componentState: { ...this.state.componentState, [key]: value }

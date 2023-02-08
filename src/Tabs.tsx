@@ -39,6 +39,7 @@ export const Tabs = {
 		)
 	},
 	spark: {
+		title: "GBF Spark Calculator",
 		path: "/spark",
 		component: Spark,
 		icon: sparkIcon
