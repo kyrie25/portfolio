@@ -1,10 +1,4 @@
-import React, {
-	DetailedHTMLProps,
-	ImgHTMLAttributes,
-	ReactEventHandler,
-	SyntheticEvent,
-	useEffect
-} from "react";
+import { SyntheticEvent, useEffect } from "react";
 import "./Dock.scss";
 
 import nowPlaying from "assets/now_playing.gif";

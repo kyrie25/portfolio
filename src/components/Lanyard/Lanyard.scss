@@ -13,6 +13,31 @@
 	text-align: left;
 	text-decoration: none !important;
 	text-shadow: none !important;
+	transition: height 3s ease-in-out;
+
+	&.has-banner {
+		height: auto;
+		transition: height 3s ease-in-out;
+
+		&:hover .banner.hidden {
+			height: 140px;
+		}
+	}
+
+	.banner {
+		width: 100%;
+		border-radius: inherit;
+		transition: height 0.5s ease-in-out;
+
+		&.hidden {
+			height: 40px;
+		}
+
+		img {
+			border-radius: 20px 20px 0 0;
+			width: 100%;
+		}
+	}
 
 	.profile {
 		width: 400px;
@@ -20,6 +45,9 @@
 		inset: 0;
 		display: flex;
 		flex-direction: row;
+		background-color: inherit;
+		z-index: 1;
+		border-radius: 20px 20px 0 0;
 
 		.profile-avatar {
 			display: flex;
@@ -202,6 +230,8 @@
 	.activity {
 		height: 120px;
 		width: 400px;
+		background-color: inherit;
+		border-radius: 0 0 20px 20px;
 
 		.activity-info {
 			display: flex;

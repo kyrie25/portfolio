@@ -7,6 +7,12 @@ div.status__container {
 	align-content: center;
 	justify-content: space-between;
 
+	> p {
+		margin: 5vh 5vw 5vh 5vw;
+		font-size: large;
+		text-align: center;
+	}
+
 	.clock__container {
 		margin: 2vh 2vw 2vh 2vw;
 		display: flex;
@@ -23,10 +29,15 @@ div.status__container {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		text-align: center;
 
 		> div {
 			max-width: 100%;
 			max-height: 100%;
+		}
+
+		&.has-banner {
+			margin: 2vh 2vw 2vh 2vw;
 		}
 	}
 }
