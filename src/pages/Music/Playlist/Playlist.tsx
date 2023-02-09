@@ -1,5 +1,6 @@
 import React from "react";
 import FadeIn from "@/components/FadeIn";
+import { SPOTIFY_WEB_URL } from "@/utils/constants";
 
 import "../Music.scss";
 
@@ -11,7 +12,7 @@ class Playlist extends React.PureComponent {
 					<p>Spotify playlist</p>
 					<div className="iframe__container">
 						<iframe
-							src="https://open.spotify.com/embed/playlist/5OoKLO2wXOqPL8qg2jrLt1?utm_source=generator"
+							src={`${SPOTIFY_WEB_URL}/embed/playlist/5OoKLO2wXOqPL8qg2jrLt1?utm_source=generator`}
 							allowFullScreen={true}
 							allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
 						></iframe>

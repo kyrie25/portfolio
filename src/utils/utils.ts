@@ -1,4 +1,5 @@
 import { hexToRgb, Color, Solver } from "./colorFilter";
+import { DISCORD_CDN } from "./constants";
 
 export const formatTime = (timestamps?: { start: number; end?: number }) => {
 	if (!timestamps) return;
@@ -95,7 +96,7 @@ export const processDiscordImage = (imageHash: string, appID?: `${bigint}`) => {
 				"mp:external/",
 				""
 		  )}`
-		: `https://cdn.discordapp.com/app-assets/${appID}/${imageHash}.png`;
+		: `${DISCORD_CDN}/app-assets/${appID}/${imageHash}.png`;
 };
 
 export const concatClassname = (

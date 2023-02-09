@@ -3,6 +3,7 @@ import FadeIn from "@/components/FadeIn";
 
 import "../Music.scss";
 import nowPlaying from "assets/now_playing.gif";
+import { LASTFM_API } from "@/utils/constants";
 
 class Streams extends React.Component<
 	{
@@ -43,7 +44,7 @@ class Streams extends React.Component<
 			currentlyPlaying !== cachedSongs[0].name
 		) {
 			fetch(
-				`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${
+				`${LASTFM_API}?method=user.getrecenttracks&user=${
 					import.meta.env.VITE_LASTFM_USERNAME
 				}&api_key=${import.meta.env.VITE_LASTFM_API_KEY}&format=json&limit=10`
 			)
@@ -139,11 +140,11 @@ class Streams extends React.Component<
 							</p>
 							{import.meta.env.VITE_ENV !== "production" && (
 								<p>
-									API fetch URL:
-									`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=$
-									{import.meta.env.VITE_LASTFM_USERNAME}&api_key=$
+									API fetch URL: {LASTFM_API}
+									?method=user.getrecenttracks&user=
+									{import.meta.env.VITE_LASTFM_USERNAME}&api_key=
 									{import.meta.env.VITE_LASTFM_API_KEY}
-									&format=json&limit=10`
+									&format=json&limit=10
 								</p>
 							)}
 						</div>

@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+import { DISCORD_CDN, PERSONAL_API } from "@/utils/constants";
 import {
 	concatClassname,
 	formatTime,
@@ -36,9 +37,7 @@ const Lanyard = React.memo(
 
 		useEffect(() => {
 			if (!bannerID && !props.cache.hidden) {
-				fetch(
-					`https://dacoolbot.kyrie25.me/?id=${import.meta.env.VITE_DISCORD_ID}`
-				)
+				fetch(`${PERSONAL_API}/discord/${import.meta.env.VITE_DISCORD_ID}`)
 					.then(async res => {
 						const json = await res.json();
 						if (json.banner) {
@@ -70,8 +69,8 @@ const Lanyard = React.memo(
 			bannerExtension = bannerID?.startsWith("a_") ? "gif" : "webp";
 
 		const idleMessage = "I'm not currently doing anything!";
-		const avatar = `https://cdn.discordapp.com/avatars/${data.discord_user.id}/${data.discord_user.avatar}.${avatarExtension}?size=256`;
-		const banner = `https://cdn.discordapp.com/banners/${data.discord_user.id}/${bannerID}.${bannerExtension}?size=256`;
+		const avatar = `${DISCORD_CDN}/avatars/${data.discord_user.id}/${data.discord_user.avatar}.${avatarExtension}?size=256`;
+		const banner = `${DISCORD_CDN}/banners/${data.discord_user.id}/${bannerID}.${bannerExtension}?size=256`;
 
 		let userStatus: Activity | null = null;
 		if (data.activities[0] && data.activities[0].type === 4)
@@ -149,7 +148,7 @@ const Lanyard = React.memo(
 						<h1 className="profile-info-status">
 							{userStatus?.emoji?.id && (
 								<img
-									src={`https://cdn.discordapp.com/emojis/${userStatus.emoji.id}.${statusExtension}`}
+									src={`${DISCORD_CDN}/emojis/${userStatus.emoji.id}.${statusExtension}`}
 									alt="status"
 								/>
 							)}

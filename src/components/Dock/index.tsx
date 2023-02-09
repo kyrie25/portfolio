@@ -3,6 +3,7 @@ import "./Dock.scss";
 
 import nowPlaying from "assets/now_playing.gif";
 import { useLanyard } from "use-lanyard";
+import { SPOTIFY_WEB_URL } from "@/utils/constants";
 
 const Dock = () => {
 	if (!import.meta.env.VITE_DISCORD_ID) {
@@ -63,7 +64,7 @@ const Dock = () => {
 			/>
 			<p>
 				Listening to:&nbsp;
-				<a href={`https://open.spotify.com/track/${spotify.track_id}`}>
+				<a href={`${SPOTIFY_WEB_URL}/track/${spotify.track_id}`}>
 					<span>{spotify.song}</span> by <span>{spotify.artist}</span>
 				</a>
 			</p>
