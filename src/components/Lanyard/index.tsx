@@ -78,7 +78,8 @@ const Lanyard = React.memo(
 			userStatus = data.activities[0];
 
 		const flags: string[] = getFlags(data.discord_user.public_flags);
-		if (avatarExtension === "gif" || userStatus?.emoji?.id) flags.push("Nitro");
+		if (avatarExtension === "gif" || userStatus?.emoji?.id || bannerID)
+			flags.push("Nitro");
 
 		const isSpotify = data.listening_to_spotify === true && !activity;
 		const hasStatus =
