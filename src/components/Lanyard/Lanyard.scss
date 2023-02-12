@@ -18,16 +18,18 @@
 		height: auto;
 		transition: height 3s ease-in-out;
 
-		&:hover .banner {
-			height: 140px;
+		.profile,
+		.wave-container {
+			background-color: rgba($color: #000000, $alpha: 0.5);
 		}
 	}
 
 	.banner {
-		height: 40px;
+		height: 0;
 		border-radius: inherit;
 		transition: height 0.5s ease-in-out;
-		border: #101320 10px solid;
+		// border: #101320 10px solid;
+		z-index: 1;
 
 		&.hidden {
 			display: none;
@@ -48,7 +50,6 @@
 		background-color: inherit;
 		z-index: 1;
 		border-radius: 20px 20px 0 0;
-		box-shadow: 0px 0px 50px 5px #101320;
 
 		.profile-avatar {
 			display: flex;
@@ -173,8 +174,10 @@
 		position: relative;
 		width: 100%;
 		height: 21px;
+		z-index: 2;
 		// css hacky
 		margin-bottom: -1px;
+		background: none;
 
 		> div {
 			position: absolute;
