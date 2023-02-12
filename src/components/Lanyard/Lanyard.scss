@@ -2,6 +2,8 @@
 	width: 400px;
 	height: 200px;
 	inset: 0;
+	position: relative;
+	overflow: hidden;
 	background-color: #101320;
 	color: #fff;
 	font-family: "Century Gothic", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -19,13 +21,16 @@
 		transition: height 3s ease-in-out;
 
 		.profile,
-		.wave-container {
+		.wave-container,
+		.activity.idle {
 			background-color: rgba($color: #000000, $alpha: 0.5);
 		}
 	}
 
 	.banner {
-		height: 0;
+		height: 100%;
+		position: absolute;
+		left: -25%;
 		border-radius: inherit;
 		transition: height 0.5s ease-in-out;
 		// border: #101320 10px solid;
@@ -37,7 +42,7 @@
 
 		img {
 			border-radius: 20px 20px 0 0;
-			width: 100%;
+			height: 100%;
 		}
 	}
 
@@ -218,9 +223,9 @@
 	.activity.idle {
 		display: flex;
 		flex-direction: row;
-		height: 150px;
 		justify-content: center;
 		align-items: center;
+		z-index: 1;
 
 		.activity-idle {
 			font-style: italic;
