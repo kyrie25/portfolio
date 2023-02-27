@@ -68,8 +68,8 @@ const Lanyard = React.memo(
 			bannerExtension = bannerID?.startsWith("a_") ? "gif" : "webp";
 
 		const idleMessage = "I'm not currently doing anything!";
-		const avatar = `${DISCORD_CDN}/avatars/${data.discord_user.id}/${data.discord_user.avatar}.${avatarExtension}?size=256`;
-		const banner = `${DISCORD_CDN}/banners/${data.discord_user.id}/${bannerID}.${bannerExtension}?size=256`;
+		const avatar = `${DISCORD_CDN}/avatars/${data.discord_user.id}/${data.discord_user.avatar}.${avatarExtension}?size=4096`;
+		const banner = `${DISCORD_CDN}/banners/${data.discord_user.id}/${bannerID}.${bannerExtension}?size=4096`;
 
 		let userStatus: Activity | null = null;
 		if (data.activities[0] && data.activities[0].type === 4)
