@@ -15,11 +15,11 @@
 	text-align: left;
 	text-decoration: none !important;
 	text-shadow: none !important;
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-size: cover;
 
 	&.has-banner {
-		height: auto;
-		transition: height 3s ease-in-out;
-
 		.profile,
 		.wave-container,
 		.activity.idle {
@@ -239,7 +239,7 @@
 	.activity {
 		height: 120px;
 		width: 400px;
-		background-color: inherit;
+		// background-color: inherit;
 		border-radius: 0 0 20px 20px;
 
 		.activity-info {

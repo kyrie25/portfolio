@@ -3,7 +3,6 @@ import LocalClock from "../Clock/Clock";
 import FadeIn from "@/components/FadeIn";
 import "./Status.scss";
 import Lanyard from "@/components/Lanyard";
-import { concatClassname } from "@/utils/utils";
 
 const Status = React.memo(
 	(props: {
@@ -17,11 +16,7 @@ const Status = React.memo(
 						<LocalClock></LocalClock>
 					</div>
 					<div className="status">
-						<Lanyard
-							cache={props.cache}
-							setCache={props.callback}
-							hidden={true}
-						/>
+						<Lanyard cache={props.cache} setCache={props.callback} />
 					</div>
 				</div>
 			</FadeIn>

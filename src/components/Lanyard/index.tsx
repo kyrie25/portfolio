@@ -16,7 +16,6 @@ const Lanyard = React.memo(
 	(props: {
 		cache: Record<string, any>;
 		setCache: (key: string, value) => void;
-		hidden: boolean;
 	}) => {
 		if (!import.meta.env.VITE_DISCORD_ID) {
 			return (
@@ -100,17 +99,11 @@ const Lanyard = React.memo(
 
 		return (
 			<div
-				className={concatClassname(
-					"lanyard",
-					"has-banner",
-					!!bannerID && !props.hidden
-				)}
+				className={concatClassname("lanyard", "has-banner", !!bannerID)}
+				style={{
+					backgroundImage: `url(${banner})`
+				}}
 			>
-				{!!bannerID && !props.hidden && (
-					<div className="banner">
-						<img src={banner} alt="banner" />
-					</div>
-				)}
 				<div className="profile">
 					<div
 						className={concatClassname(
