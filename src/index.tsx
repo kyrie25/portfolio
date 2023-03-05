@@ -5,7 +5,8 @@ import {
 	Outlet,
 	Route,
 	RouterProvider,
-	Routes
+	Routes,
+	Navigate
 } from "react-router-dom";
 
 // Present in all tabs
@@ -35,6 +36,9 @@ class App extends React.Component<
 	}
 
 	componentDidMount(): void {
+		if (Tabs[this.state.activeTab] === undefined)
+			this.setState({ activeTab: Object.keys(Tabs)[0] });
+
 		for (const value of Object.keys(Tabs)) {
 			const img = new Image();
 			img.src = `/assets/bg/${value}_bg.jpg`;
@@ -42,7 +46,7 @@ class App extends React.Component<
 	}
 
 	componentDidUpdate(): void {
-		document.title = Tabs[this.state.activeTab].title ?? "Kyrie's site";
+		document.title = Tabs[this.state.activeTab]?.title ?? "Kyrie's site";
 	}
 
 	cacheValue(key: string, value: unknown) {
@@ -52,6 +56,9 @@ class App extends React.Component<
 	}
 
 	render() {
+		if (Tabs[this.state.activeTab] === undefined)
+			return <Navigate to="/" replace />;
+
 		return (
 			<>
 				<Titlebar
