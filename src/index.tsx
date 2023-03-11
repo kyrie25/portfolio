@@ -8,6 +8,7 @@ import {
 	Routes,
 	Navigate
 } from "react-router-dom";
+import { Tooltip } from "react-tooltip";
 
 // Present in all tabs
 import Titlebar from "./components/Titlebar";
@@ -17,6 +18,7 @@ import Dock from "./components/Dock";
 import { Tabs } from "./Tabs";
 
 import "./index.scss";
+import "react-tooltip/dist/react-tooltip.css";
 
 class App extends React.Component<
 	Record<string, unknown>,
@@ -61,6 +63,12 @@ class App extends React.Component<
 
 		return (
 			<>
+				<Tooltip
+					id="lanyard"
+					style={{
+						zIndex: 9999999
+					}}
+				/>
 				<Titlebar
 					onTabSelect={this.handleTabSelect.bind(this)}
 					activeTab={this.state.activeTab}

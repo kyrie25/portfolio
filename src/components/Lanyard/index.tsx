@@ -179,6 +179,8 @@ const Lanyard = React.memo(
 											)}
 											className="activity-image-large"
 											alt="activity"
+											data-tooltip-id="lanyard"
+											data-tooltip-content={activity.assets.large_text}
 										/>
 									) : isSpotify && data.spotify?.album_art_url ? (
 										<img
@@ -201,6 +203,8 @@ const Lanyard = React.memo(
 											)}
 											className="activity-image-small"
 											alt="activity"
+											data-tooltip-id="lanyard"
+											data-tooltip-content={activity.assets.small_text}
 										/>
 									)}
 								</div>

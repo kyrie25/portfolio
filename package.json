@@ -16,6 +16,7 @@
 		"react-clock": "^4.0.0",
 		"react-dom": "^18.2.0",
 		"react-router-dom": "^6.6.2",
+		"react-tooltip": "^5.10.0",
 		"sass": "^1.57.1",
 		"typescript": "^4.9.4",
 		"use-lanyard": "^1.4.2"
