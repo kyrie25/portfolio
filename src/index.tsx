@@ -64,7 +64,7 @@ class App extends React.Component<
 		return (
 			<>
 				<Tooltip
-					id="lanyard"
+					id="tooltip"
 					style={{
 						zIndex: 9999999
 					}}

@@ -36,6 +36,8 @@ const About = React.memo(
 									id={value.name}
 									target="_blank"
 									rel="noopener noreferrer"
+									data-tooltip-id="tooltip"
+									data-tooltip-content={value.name}
 								>
 									<img title={value.name} src={value.image}></img>
 								</a>
@@ -52,6 +54,8 @@ const About = React.memo(
 									id={value.name}
 									target="_blank"
 									rel="noopener noreferrer"
+									data-tooltip-id="tooltip"
+									data-tooltip-content={value.name}
 								>
 									<img
 										title={value.name}

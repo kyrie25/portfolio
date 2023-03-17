@@ -134,6 +134,8 @@ const Lanyard = React.memo(
 										key={flag}
 										src={`/assets/badges/${flag}.png`}
 										alt={flag}
+										data-tooltip-id="tooltip"
+										data-tooltip-content={flag.replaceAll("_", " ")}
 									/>
 								))}
 							</div>
@@ -143,6 +145,8 @@ const Lanyard = React.memo(
 								<img
 									src={`${DISCORD_CDN}/emojis/${userStatus.emoji.id}.${statusExtension}`}
 									alt="status"
+									data-tooltip-id="tooltip"
+									data-tooltip-content={`:${userStatus.emoji.name}:`}
 								/>
 							)}
 							{!userStatus?.emoji?.id && userStatus?.emoji?.name}
@@ -179,7 +183,7 @@ const Lanyard = React.memo(
 											)}
 											className="activity-image-large"
 											alt="activity"
-											data-tooltip-id="lanyard"
+											data-tooltip-id="tooltip"
 											data-tooltip-content={activity.assets.large_text}
 										/>
 									) : isSpotify && data.spotify?.album_art_url ? (
@@ -187,6 +191,8 @@ const Lanyard = React.memo(
 											src={data.spotify.album_art_url}
 											className="activity-image-large"
 											alt="activity"
+											data-tooltip-id="tooltip"
+											data-tooltip-content={data.spotify.album}
 										/>
 									) : (
 										<img
@@ -203,7 +209,7 @@ const Lanyard = React.memo(
 											)}
 											className="activity-image-small"
 											alt="activity"
-											data-tooltip-id="lanyard"
+											data-tooltip-id="tooltip"
 											data-tooltip-content={activity.assets.small_text}
 										/>
 									)}
