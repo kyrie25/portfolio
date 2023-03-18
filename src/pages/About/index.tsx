@@ -22,10 +22,9 @@ const About = React.memo(
 						>
 							kyrie25
 						</a>
-						, a student studying somewhere in 🇻🇳. Writes stuff in my free time,
-						mostly in TypeScript, can vary depending on what my project
-						requires. Navigate the tabs to see what I am up to.
+						, a student studying somewhere in 🇻🇳.
 					</p>
+					<p>Not much around here, feel free to explore!</p>
 					<p>My tech stack:</p>
 					<div className="icons__wrapper">
 						{manifest.languages.map((value, index) => {

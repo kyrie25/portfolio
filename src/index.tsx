@@ -15,7 +15,7 @@ import Titlebar from "./components/Titlebar";
 import Dock from "./components/Dock";
 
 // Tabs
-import { Tabs } from "./Tabs";
+import { Links, Tabs } from "./Tabs";
 
 import "./index.scss";
 import "react-tooltip/dist/react-tooltip.css";

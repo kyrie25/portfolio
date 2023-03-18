@@ -73,14 +73,6 @@
 			cursor: pointer;
 			text-decoration: none;
 
-			&.code-btn {
-				background-color: #000;
-			}
-
-			&.support-btn {
-				background-color: #0070ba;
-			}
-
 			img {
 				flex: 0 0 11px;
 				width: 11px;
@@ -95,8 +87,11 @@
 			}
 		}
 
-		@media screen and (max-width: 400px) {
-			& {
+		@media screen and (max-width: 600px) {
+			img {
+				margin-left: 6px;
+			}
+			span {
 				display: none;
 			}
 		}
