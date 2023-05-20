@@ -12,6 +12,14 @@ import { Activity, useLanyard } from "use-lanyard";
 
 import "./Lanyard.scss";
 
+// Override Party interface
+declare module "use-lanyard" {
+	interface Party {
+		id: `${bigint}`;
+		size: [number, number];
+	}
+}
+
 const Lanyard = React.memo(
 	(props: {
 		cache: Record<string, any>;
@@ -97,6 +105,16 @@ const Lanyard = React.memo(
 			};
 		}
 
+		const state =
+			activity?.party?.size[0] && activity?.state
+				? `${activity.state} (${activity.party.size[0]} of ${activity.party.size[1]})`
+				: activity?.state;
+
+		const status =
+			data.discord_status === "dnd"
+				? "Do Not Disturb"
+				: data.discord_status[0].toUpperCase() + data.discord_status.slice(1);
+
 		return (
 			<div
 				className={concatClassname("lanyard", "has-banner", !!bannerID)}
@@ -113,6 +131,18 @@ const Lanyard = React.memo(
 						)}
 					>
 						<img src={avatar} alt="avatar" />
+						<svg xmlns="http://www.w3.org/2000/svg">
+							<rect
+								x="4"
+								y="54"
+								width="16"
+								height="16"
+								rx="4"
+								ry="4"
+								data-tooltip-id="tooltip"
+								data-tooltip-content={status}
+							/>
+						</svg>
 					</div>
 					<div className="profile-info">
 						<div
@@ -224,13 +254,11 @@ const Lanyard = React.memo(
 									<p className="activity-info-text-name">{activity?.name}</p>
 									{activity?.details && (
 										<p className="activity-info-text-details">
-											{activity?.details}
+											{activity.details}
 										</p>
 									)}
 									{activity?.state && (
-										<p className="activity-info-text-state">
-											{activity?.state}
-										</p>
+										<p className="activity-info-text-state">{state}</p>
 									)}
 									{hasTimestamp && (
 										<p className="activity-info-text-timestamp">

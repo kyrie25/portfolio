@@ -1,4 +1,5 @@
 .lanyard {
+	--border-color: #222;
 	width: 400px;
 	height: 200px;
 	inset: 0;
@@ -63,31 +64,39 @@
 			width: 80px;
 
 			img {
-				border: solid 3px;
-				border-radius: 50%;
+				border-radius: 10px;
 				width: 50px;
 				height: 50px;
 				position: relative;
 				top: 50%;
 				left: 50%;
 				transform: translate(-50%, -50%);
-				border-color: #747f8d;
+				border: solid 0.5px var(--border-color);
 			}
 
-			&.online > img {
-				border-color: #43b581;
+			svg {
+				z-index: 1;
+
+				rect {
+					stroke-width: 1px;
+					stroke: var(--border-color);
+				}
 			}
 
-			&.idle > img {
-				border-color: #faa61a;
+			&.online rect {
+				fill: #43b581;
 			}
 
-			&.dnd > img {
-				border-color: #f04747;
+			&.idle rect {
+				fill: #faa61a;
 			}
 
-			&.offline > img {
-				border-color: #747f8d;
+			&.dnd rect {
+				fill: #f04747;
+			}
+
+			&.offline rect {
+				fill: #747f8d;
 			}
 		}
 
@@ -279,7 +288,7 @@
 				.activity-image-large {
 					width: 80px;
 					height: 80px;
-					border: solid 0.5px #222;
+					border: solid 0.5px var(--border-color);
 					border-radius: 10px;
 				}
 
