@@ -21,9 +21,9 @@
 			"image": "https://go.dev/blog/go-brand/Go-Logo/SVG/Go-Logo_Blue.svg"
 		},
 		{
-			"name": "Sass",
-			"url": "https://sass-lang.com/",
-			"image": "https://i.imgur.com/LPgNCIg.png"
+			"name": "Tailwind CSS",
+			"url": "https://tailwindcss.com/",
+			"image": "https://avatars.githubusercontent.com/u/67109815?s=200&v=4"
 		},
 		{
 			"name": "Node.js",
@@ -31,14 +31,14 @@
 			"image": "https://raw.githubusercontent.com/kyrie25/Github-Profile-Readme-Logos/master/frameworks/nodejs.svg"
 		},
 		{
+			"name": "Next.js",
+			"url": "https://nextjs.org/",
+			"image": "https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_light_background.png"
+		},
+		{
 			"name": "Vite",
 			"url": "https://vitejs.dev/",
 			"image": "https://avatars.githubusercontent.com/u/65625612?s=200&v=4"
-		},
-		{
-			"name": "Heroku",
-			"url": "https://www.heroku.com/",
-			"image": "https://raw.githubusercontent.com/kyrie25/Github-Profile-Readme-Logos/master/cloud/heroku.svg"
 		},
 		{
 			"name": "Vercel",
