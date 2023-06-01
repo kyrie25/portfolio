@@ -18,4 +18,6 @@ Below are the list of components/modules that needs further attention if you dec
 
 ## Archive
 
-For the original page I've built previously using vanilla Typescript & HTML refer to the [`legacy`](https://github.com/kyrie25/portfolio/tree/legacy) branch of this repository.
+For the original page I've built previously using vanilla Typescript & HTML refer to the [legacy subdomain](https://legacy.kyrie25.me), or the [`legacy`](https://github.com/kyrie25/portfolio/tree/legacy) branch of this repository.
+
+The information on the legacy page is outdated and most likely no longer relevant.
