@@ -1,4 +1,4 @@
-# [rrat](https://kyrie25.me)
+# [rrat](https://legacy.kyrie25.me)
 
 Pretty fun project tbh, my small experiment to make functional code **Note**: Technically can use APNG as background, but I don't want to bombard loading time with a 20mb (or more) file
 
