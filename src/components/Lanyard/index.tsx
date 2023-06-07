@@ -99,7 +99,7 @@ const Lanyard = React.memo(
 		}
 
 		const state =
-			activity?.party?.size[0] && activity?.state
+			activity?.party?.size?.[0] && activity?.state
 				? `${activity.state} (${activity.party.size[0]} of ${activity.party.size[1]})`
 				: activity?.state;
 
