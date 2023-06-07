@@ -12,14 +12,6 @@ import { Activity, useLanyard } from "use-lanyard";
 
 import "./Lanyard.scss";
 
-// Override Party interface
-declare module "use-lanyard" {
-	interface Party {
-		id: `${bigint}`;
-		size: [number, number];
-	}
-}
-
 const Lanyard = React.memo(
 	(props: {
 		cache: Record<string, any>;
@@ -78,6 +70,7 @@ const Lanyard = React.memo(
 		const idleMessage = "I'm not currently doing anything!";
 		const avatar = `${DISCORD_CDN}/avatars/${data.discord_user.id}/${data.discord_user.avatar}.${avatarExtension}?size=4096`;
 		const banner = `${DISCORD_CDN}/banners/${data.discord_user.id}/${bannerID}.${bannerExtension}?size=4096`;
+		const decoration = `${DISCORD_CDN}/avatar-decoration-presets/${data.discord_user.avatar_decoration}.png`;
 
 		let userStatus: Activity | null = null;
 		if (data.activities[0] && data.activities[0].type === 4)
@@ -130,7 +123,14 @@ const Lanyard = React.memo(
 							true
 						)}
 					>
-						<img src={avatar} alt="avatar" />
+						{data.discord_user.avatar_decoration && (
+							<img
+								src={decoration}
+								alt="decoration"
+								className="profile-avatar-decoration"
+							/>
+						)}
+						<img src={avatar} alt="avatar" className="profile-avatar-image" />
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="80">
 							<rect
 								x="4"
@@ -154,9 +154,11 @@ const Lanyard = React.memo(
 						>
 							<h1>
 								<span className="tag">{data.discord_user.username}</span>
-								<span className="discriminator">
-									#{data.discord_user.discriminator}
-								</span>
+								{data.discord_user.discriminator !== "0" && (
+									<span className="discriminator">
+										#{data.discord_user.discriminator}
+									</span>
+								)}
 							</h1>
 							<div className="profile-info-name-badges">
 								{flags.map(flag => (
