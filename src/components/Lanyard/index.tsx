@@ -47,10 +47,8 @@ const Lanyard = React.memo(
 					.catch(err => console.error(err));
 			}
 
-			const counter = setInterval(() => {
-				revalidate();
-				return () => clearInterval(counter);
-			}, 1000);
+			const counter = setInterval(revalidate, 1000);
+			return () => clearInterval(counter);
 		}, []);
 
 		if (!data) {
@@ -77,7 +75,12 @@ const Lanyard = React.memo(
 			userStatus = data.activities[0];
 
 		const flags: string[] = getFlags(data.discord_user.public_flags);
-		if (avatarExtension === "gif" || userStatus?.emoji?.id || bannerID)
+		if (
+			avatarExtension === "gif" ||
+			userStatus?.emoji?.id ||
+			bannerID ||
+			data.discord_user.avatar_decoration
+		)
 			flags.push("Nitro");
 
 		const isSpotify = data.listening_to_spotify === true && !activity;
