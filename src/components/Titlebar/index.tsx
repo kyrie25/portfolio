@@ -27,7 +27,7 @@ const Titlebar = React.memo(
 		return (
 			<header className="titlebar">
 				<div className="spaces">
-					{Object.entries(Tabs).map((tab, index) => (
+					{Object.entries(Tabs).map(tab => (
 						<Link
 							to={tab[1].path}
 							className="space"
@@ -37,7 +37,6 @@ const Titlebar = React.memo(
 								changeTab(e.currentTarget.id);
 							}}
 						>
-							{/* index + 1 */}
 							{typeof tab[1].icon !== "string" ? (
 								<svg height="24" viewBox="0 0 24 24" width="24">
 									{tab[1].icon}

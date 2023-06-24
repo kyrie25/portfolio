@@ -40,11 +40,6 @@ class App extends React.Component<
 	componentDidMount(): void {
 		if (Tabs[this.state.activeTab] === undefined)
 			this.setState({ activeTab: Object.keys(Tabs)[0] });
-
-		for (const value of Object.keys(Tabs)) {
-			const img = new Image();
-			img.src = `/assets/bg/${value}_bg.jpg`;
-		}
 	}
 
 	componentDidUpdate(): void {
@@ -73,12 +68,7 @@ class App extends React.Component<
 					onTabSelect={this.handleTabSelect.bind(this)}
 					activeTab={this.state.activeTab}
 				/>
-				<div
-					className="background"
-					style={{
-						backgroundImage: `url(/assets/bg/${this.state.activeTab}_bg.jpg)`
-					}}
-				/>
+				<div className="background" />
 				<div className="container">
 					<Routes>
 						{Object.entries(Tabs).map(([key, value]) => {
