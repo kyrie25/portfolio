@@ -21,8 +21,8 @@ dependencies:
     specifier: ^6.13.0
     version: 6.13.0(react-dom@18.2.0)(react@18.2.0)
   react-tooltip:
-    specifier: ^5.14.0
-    version: 5.14.0(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^5.16.1
+    version: 5.16.1(react-dom@18.2.0)(react@18.2.0)
   sass:
     specifier: ^1.63.5
     version: 1.63.5
@@ -805,13 +805,8 @@ packages:
     resolution: {integrity: sha512-Hwx9EUgdwf2GLarOjQp5ZH8ZmblzcbTBC2wtQWNKARBSxM9ezRIAUpeDTgoQRAFB0+8CNWXVA9+MaSOzOF3nPg==}
     dev: false
 
-  /@types/node@18.16.18:
-    resolution: {integrity: sha512-/aNaQZD0+iSBAGnvvN2Cx92HqE5sZCPZtx2TsK+4nvV23fFe09jVDvpArXr2j9DnYlzuU9WuoykDDc6wqvpNcw==}
-    dev: false
-
   /@types/node@20.3.1:
     resolution: {integrity: sha512-EhcH/wvidPy1WeML3TtYFGR83UzjxeWRen9V402T8aUGYsCHOmfoisV3ZSg03gAFIbLq8TnWOJ0f4cALtnSEUg==}
-    dev: true
 
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -1911,7 +1906,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 18.16.18
+      '@types/node': 20.3.1
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: false
@@ -2315,8 +2310,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /react-tooltip@5.14.0(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-fvHgZKSdDC/Zv7G7IL6kPJi99Fqty6zkQsYQZGSkhMmmDQhVnsBLAmY8s14Nh8bshgPmR5EvbjUDZg0yMsp1hg==}
+  /react-tooltip@5.16.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-z3IKJppX4llW8wQLQB3o5qUutVul79HVXI+Ncjf/5FMHbniCYPnxS1oCLpOhOEG9lV2QZRrQe9+l/pLEPOrrXA==}
     peerDependencies:
       react: '>=16.14.0'
       react-dom: '>=16.14.0'
