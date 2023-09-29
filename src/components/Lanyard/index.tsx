@@ -128,7 +128,7 @@ const Lanyard = React.memo(
 							true
 						)}
 					>
-						{data.discord_user.avatar_decoration && (
+						{(data.discord_user as any).avatar_decoration_data && (
 							<img
 								src={decoration}
 								alt="decoration"
