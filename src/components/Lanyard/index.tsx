@@ -69,7 +69,7 @@ const Lanyard = React.memo(
 		const avatar = `${DISCORD_CDN}/avatars/${data.discord_user.id}/${data.discord_user.avatar}.${avatarExtension}?size=4096`;
 		const banner = `${DISCORD_CDN}/banners/${data.discord_user.id}/${bannerID}.${bannerExtension}?size=4096`;
 		// Waiting for update
-		const decoration = `${DISCORD_CDN}/avatar-decoration-presets/${(data.discord_user as any).avatar_decoration_data?.assets}.png`;
+		const decoration = `${DISCORD_CDN}/avatar-decoration-presets/${(data.discord_user as any).avatar_decoration_data?.asset}.png`;
 
 		let userStatus: Activity | null = null;
 		if (data.activities[0] && data.activities[0].type === 4)
