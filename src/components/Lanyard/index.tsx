@@ -68,7 +68,8 @@ const Lanyard = React.memo(
 		const idleMessage = "I'm not currently doing anything!";
 		const avatar = `${DISCORD_CDN}/avatars/${data.discord_user.id}/${data.discord_user.avatar}.${avatarExtension}?size=4096`;
 		const banner = `${DISCORD_CDN}/banners/${data.discord_user.id}/${bannerID}.${bannerExtension}?size=4096`;
-		const decoration = `${DISCORD_CDN}/avatar-decoration-presets/${data.discord_user.avatar_decoration}.png`;
+		// Waiting for update
+		const decoration = `${DISCORD_CDN}/avatar-decoration-presets/${(data.discord_user as any).avatar_decoration_data?.assets}.png`;
 
 		let userStatus: Activity | null = null;
 		if (data.activities[0] && data.activities[0].type === 4)
@@ -79,7 +80,8 @@ const Lanyard = React.memo(
 			avatarExtension === "gif" ||
 			userStatus?.emoji?.id ||
 			bannerID ||
-			data.discord_user.avatar_decoration
+			// Waiting for update
+			(data.discord_user as any).avatar_decoration_data
 		)
 			flags.push("Nitro");
 
