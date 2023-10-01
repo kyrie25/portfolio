@@ -4,7 +4,6 @@
 	height: 200px;
 	inset: 0;
 	position: relative;
-	overflow: hidden;
 	background-color: #101320;
 	color: #fff;
 	font-family:
@@ -70,6 +69,18 @@
 			height: 80px;
 			width: 80px;
 
+			&.focus {
+				.profile-avatar-image {
+					position: fixed;
+					transform: translate(-50%, -50%) scale(5) translateY(-20px);
+					cursor: zoom-out;
+				}
+
+				svg {
+					margin-left: 52px;
+				}
+			}
+
 			&-image {
 				border-radius: 10px;
 				width: 50px;
@@ -79,6 +90,8 @@
 				left: 50%;
 				transform: translate(-50%, -50%);
 				border: solid 0.5px var(--border-color);
+				transition: transform 0.25s ease-in-out;
+				cursor: zoom-in;
 			}
 
 			&-decoration {
@@ -88,6 +101,7 @@
 				top: 10px;
 				left: 10px;
 				z-index: 1;
+				pointer-events: none;
 			}
 
 			svg {

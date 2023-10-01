@@ -31,6 +31,7 @@ const Lanyard = React.memo(
 		);
 		const [, forceUpdate] = useState({});
 		const [accentColor, setAccentColor] = useState("white");
+		const [focus, setFocus] = useState(false);
 
 		const data = useLanyardWS(import.meta.env.VITE_DISCORD_ID);
 		const activities = data?.activities.filter(activity => activity.type === 0);
@@ -140,10 +141,11 @@ const Lanyard = React.memo(
 				<div className="profile">
 					<div
 						className={concatClassname(
-							"profile-avatar",
-							data.discord_status,
-							true
+							`profile-avatar ${data.discord_status}`,
+							"focus",
+							focus
 						)}
+						onClick={() => setFocus(!focus)}
 					>
 						{(data.discord_user as any).avatar_decoration_data && (
 							<img
