@@ -58,9 +58,6 @@ const Lanyard = React.memo(
 		useEffect(() => {
 			// Update timer every second
 			const timer = setInterval(() => {
-				if (activity?.timestamps?.end) {
-					activity.timestamps.end = Date.now();
-				}
 				forceUpdate({});
 			}, 1000);
 			return () => clearInterval(timer);
