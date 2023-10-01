@@ -53,6 +53,12 @@ div.about__container {
 		color: #6fa8e7;
 		text-shadow: 0 0 5px;
 		text-decoration: inherit;
+
+		&:hover {
+			color: #6fa8e7;
+			text-shadow: 0 0 5px;
+			text-decoration: underline;
+		}
 	}
 }
 

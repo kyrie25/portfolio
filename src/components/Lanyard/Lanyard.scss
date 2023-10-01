@@ -7,8 +7,15 @@
 	overflow: hidden;
 	background-color: #101320;
 	color: #fff;
-	font-family: "Century Gothic", -apple-system, BlinkMacSystemFont, "Segoe UI",
-		Roboto, Helvetica, Arial, sans-serif;
+	font-family:
+		"Century Gothic",
+		-apple-system,
+		BlinkMacSystemFont,
+		"Segoe UI",
+		Roboto,
+		Helvetica,
+		Arial,
+		sans-serif;
 	font-size: 16px;
 	display: flex;
 	flex-direction: column;
@@ -125,10 +132,6 @@
 					flex-direction: row;
 					top: 35%;
 					height: 25px;
-
-					.profile-info-name-badges {
-						margin-top: 5px;
-					}
 				}
 
 				h1 {
@@ -137,18 +140,6 @@
 					white-space: nowrap;
 
 					.tag {
-						background-image: linear-gradient(
-							60deg,
-							#ccf9ff,
-							#7ce8ff,
-							#55d0ff,
-							#00acdf,
-							#0080bf,
-							#00acdf,
-							#55d0ff,
-							#7ce8ff,
-							#ccf9ff
-						);
 						background-size: 300%;
 						-webkit-background-clip: text;
 						-webkit-text-fill-color: transparent;
@@ -161,7 +152,6 @@
 				}
 
 				.profile-info-name-badges {
-					margin-top: 5px;
 					img {
 						height: 20px;
 						position: relative;
@@ -188,6 +178,7 @@
 					top: 10px;
 					transform: translate(0%, -50%);
 					margin: 0 2px 0 0;
+					padding-right: 0.25em;
 				}
 			}
 		}

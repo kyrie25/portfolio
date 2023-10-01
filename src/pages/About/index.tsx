@@ -22,10 +22,19 @@ const About = React.memo(
 						>
 							kyrie25
 						</a>
-						, a student studying somewhere in 🇻🇳.
+						.
 					</p>
-					<p>Not much around here, feel free to explore!</p>
-					<p>My tech stack:</p>
+					<p>
+						K23 fit
+						<a href="https://hcmus.edu.vn/">@hcmus</a>. Fresher fullstack
+						developer{" "}
+						<a href="https://www.designveloper.com/">@Designveloper</a>.
+					</p>
+					<p>
+						Stuff on this website will most likely be outdated by the time
+						you're reading this, but feel free to look around.
+					</p>
+					<p>My tech stack (and many more, I'm too lazy to update):</p>
 					<div className="icons__wrapper">
 						{manifest.languages.map((value, index) => {
 							return (

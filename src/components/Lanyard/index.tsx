@@ -8,7 +8,8 @@ import {
 } from "@/utils/utils";
 import React from "react";
 import { useEffect, useState } from "react";
-import { Activity, useLanyard } from "use-lanyard";
+import { Activity, useLanyardWS } from "use-lanyard";
+import chroma from "chroma-js";
 
 import "./Lanyard.scss";
 
@@ -28,28 +29,42 @@ const Lanyard = React.memo(
 		const [bannerID, setBannerID] = useState<string | string>(
 			props.cache.banner
 		);
-		const { data, revalidate } = useLanyard(import.meta.env.VITE_DISCORD_ID);
+		const [, forceUpdate] = useState({});
+		const [accentColor, setAccentColor] = useState("white");
+
+		const data = useLanyardWS(import.meta.env.VITE_DISCORD_ID);
 		const activities = data?.activities.filter(activity => activity.type === 0);
 		let activity = Array.isArray(activities) ? activities[0] : activities;
 		const hasTimestamp =
 			!!activity?.timestamps?.start || !!activity?.timestamps?.end;
 
 		useEffect(() => {
-			if (!bannerID && !props.cache.hidden) {
-				fetch(`${PERSONAL_API}/discord/${import.meta.env.VITE_DISCORD_ID}`)
-					.then(async res => {
-						const json = await res.json();
-						if (json.banner) {
-							setBannerID(json.banner);
-							props.setCache("banner", json.banner);
-						}
-					})
-					.catch(err => console.error(err));
-			}
+			if (bannerID) return;
 
-			const counter = setInterval(revalidate, 1000);
-			return () => clearInterval(counter);
+			fetch(`${PERSONAL_API}/discord/${import.meta.env.VITE_DISCORD_ID}`)
+				.then(async res => {
+					const json = await res.json();
+					if (json.banner) {
+						setBannerID(json.banner);
+						props.setCache("banner", json.banner);
+
+						setAccentColor(chroma(json.accent_color).hex());
+						props.setCache("accent", accentColor);
+					}
+				})
+				.catch(err => console.error(err));
 		}, []);
+
+		useEffect(() => {
+			// Update timer every second
+			const timer = setInterval(() => {
+				if (activity?.timestamps?.end) {
+					activity.timestamps.end = Date.now();
+				}
+				forceUpdate({});
+			}, 1000);
+			return () => clearInterval(timer);
+		});
 
 		if (!data) {
 			return (
@@ -69,7 +84,9 @@ const Lanyard = React.memo(
 		const avatar = `${DISCORD_CDN}/avatars/${data.discord_user.id}/${data.discord_user.avatar}.${avatarExtension}?size=4096`;
 		const banner = `${DISCORD_CDN}/banners/${data.discord_user.id}/${bannerID}.${bannerExtension}?size=4096`;
 		// Waiting for update
-		const decoration = `${DISCORD_CDN}/avatar-decoration-presets/${(data.discord_user as any).avatar_decoration_data?.asset}.png`;
+		const decoration = `${DISCORD_CDN}/avatar-decoration-presets/${(
+			data.discord_user as any
+		).avatar_decoration_data?.asset}.png`;
 
 		let userStatus: Activity | null = null;
 		if (data.activities[0] && data.activities[0].type === 4)
@@ -158,12 +175,18 @@ const Lanyard = React.memo(
 							)}
 						>
 							<h1>
-								<span className="tag">{data.discord_user.username}</span>
-								{data.discord_user.discriminator !== "0" && (
-									<span className="discriminator">
-										#{data.discord_user.discriminator}
-									</span>
-								)}
+								<span
+									className="tag"
+									style={{
+										backgroundImage: `linear-gradient(60deg, ${chroma
+											.scale([accentColor, "2A4858"])
+											.mode("lch")
+											.colors(6)
+											.join(",")})`
+									}}
+								>
+									{data.discord_user.username}
+								</span>
 							</h1>
 							<div className="profile-info-name-badges">
 								{flags.map(flag => (

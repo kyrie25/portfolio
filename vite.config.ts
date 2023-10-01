@@ -5,14 +5,5 @@ import svgrPlugin from "vite-plugin-svgr";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	server: {
-		host: "localhost.kyrie25.me",
-		port: 80,
-		open: true,
-		https: {
-			key: "./ssl/private.key.pem",
-			cert: "./ssl/domain.cert.pem"
-		}
-	},
 	plugins: [react(), viteTsconfigPaths(), svgrPlugin()]
 });

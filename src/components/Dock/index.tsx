@@ -2,7 +2,7 @@ import { SyntheticEvent, useEffect } from "react";
 import "./Dock.scss";
 
 import nowPlaying from "assets/now_playing.gif";
-import { useLanyard } from "use-lanyard";
+import { useLanyardWS } from "use-lanyard";
 import { SPOTIFY_WEB_URL } from "@/utils/constants";
 
 const Dock = () => {
@@ -13,14 +13,7 @@ const Dock = () => {
 			</div>
 		);
 	}
-	const { data, revalidate } = useLanyard(import.meta.env.VITE_DISCORD_ID);
-
-	useEffect(() => {
-		const refresh = setInterval(() => {
-			revalidate();
-			return () => clearInterval(refresh);
-		}, 5000);
-	}, []);
+	const data = useLanyardWS(import.meta.env.VITE_DISCORD_ID);
 
 	if (!data?.spotify) {
 		return (
