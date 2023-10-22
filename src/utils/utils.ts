@@ -90,8 +90,11 @@ export const getBlendedFilter = (
 	return result.filter;
 };
 
-export const processDiscordImage = (imageHash: string, appID?: `${bigint}`) => {
-	return imageHash.startsWith("mp:external/")
+export const processDiscordImage = (
+	imageHash: string | undefined,
+	appID?: `${bigint}`
+) => {
+	return imageHash?.startsWith("mp:external/")
 		? `https://media.discordapp.net/external/${imageHash.replace(
 				"mp:external/",
 				""

@@ -35,6 +35,7 @@ const Lanyard = React.memo(
 
 		const data = useLanyardWS(import.meta.env.VITE_DISCORD_ID);
 		const activities = data?.activities.filter(activity => activity.type === 0);
+		const listeningTo = data?.activities?.find(activity => activity.type === 2);
 		let activity = Array.isArray(activities) ? activities[0] : activities;
 		const hasTimestamp =
 			!!activity?.timestamps?.start || !!activity?.timestamps?.end;
@@ -100,22 +101,30 @@ const Lanyard = React.memo(
 		)
 			flags.push("Nitro");
 
-		const isSpotify = data.listening_to_spotify === true && !activity;
+		const isSpotify =
+			(data.listening_to_spotify === true || !!listeningTo) && !activity;
 		const hasStatus =
 			!!userStatus?.state ||
 			!!userStatus?.emoji?.name ||
 			!!userStatus?.emoji?.id;
 		const displayActivity = activity || isSpotify;
 
-		if (!activity && isSpotify && data.spotify) {
-			activity = {
-				name: "Listening to Spotify",
-				details: data.spotify.song,
-				state: data.spotify.artist,
-				type: 2,
-				id: data.spotify.track_id?.toString() || "",
-				created_at: Date.now()
-			};
+		if (!activity && isSpotify) {
+			if (data.spotify) {
+				activity = {
+					name: "Listening to Spotify",
+					details: data.spotify.song,
+					state: data.spotify.artist,
+					type: 2,
+					id: data.spotify.track_id?.toString() || "",
+					created_at: Date.now()
+				};
+			} else if (listeningTo) {
+				activity = {
+					...listeningTo,
+					name: `Listening to ${listeningTo.name}`
+				};
+			}
 		}
 
 		const state =
@@ -245,13 +254,21 @@ const Lanyard = React.memo(
 											data-tooltip-id="tooltip"
 											data-tooltip-content={activity.assets.large_text}
 										/>
-									) : isSpotify && data.spotify?.album_art_url ? (
+									) : isSpotify ? (
 										<img
-											src={data.spotify.album_art_url}
+											src={
+												data.spotify?.album_art_url ||
+												processDiscordImage(
+													listeningTo?.assets?.large_image,
+													listeningTo?.application_id
+												)
+											}
 											className="activity-image-large"
 											alt="activity"
 											data-tooltip-id="tooltip"
-											data-tooltip-content={data.spotify.album}
+											data-tooltip-content={
+												data.spotify?.album || listeningTo?.name
+											}
 										/>
 									) : (
 										<img
