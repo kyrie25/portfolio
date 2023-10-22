@@ -4,6 +4,7 @@ import "./Dock.scss";
 import nowPlaying from "assets/now_playing.gif";
 import { useLanyardWS } from "use-lanyard";
 import { SPOTIFY_WEB_URL } from "@/utils/constants";
+import { processDiscordImage } from "@/utils/utils";
 
 const Dock = () => {
 	if (!import.meta.env.VITE_DISCORD_ID) {
@@ -15,7 +16,10 @@ const Dock = () => {
 	}
 	const data = useLanyardWS(import.meta.env.VITE_DISCORD_ID);
 
-	if (!data?.spotify) {
+	if (
+		!data?.spotify &&
+		!data?.activities.find(activity => activity.type === 2)
+	) {
 		return (
 			<div className="dock">
 				<p>Not listening to anything</p>
@@ -46,20 +50,35 @@ const Dock = () => {
 		image.currentTarget.style.setProperty("--x", `${desiredX}px`);
 	};
 
-	const { spotify } = data;
+	const { spotify, activities } = data;
+	const listeningTo = activities.find(activity => activity.type === 2);
 
 	return (
 		<footer className="dock">
 			<img
-				alt={spotify.album}
-				src={spotify.album_art_url || nowPlaying}
+				alt={spotify?.album || listeningTo?.name}
+				src={
+					spotify?.album_art_url ||
+					processDiscordImage(
+						listeningTo?.assets?.large_image,
+						listeningTo?.id
+					) ||
+					nowPlaying
+				}
 				onLoad={getImageLocation}
 			/>
 			<p>
-				Listening to:&nbsp;
-				<a href={`${SPOTIFY_WEB_URL}/track/${spotify.track_id}`}>
-					<span>{spotify.song}</span> by <span>{spotify.artist}</span>
-				</a>
+				<>Listening to:&nbsp;</>
+				{spotify ? (
+					<a href={`${SPOTIFY_WEB_URL}/track/${spotify?.track_id}`}>
+						<span>{spotify?.song}</span> by <span>{spotify?.artist}</span>
+					</a>
+				) : (
+					<>
+						<span>{listeningTo?.name}</span> by{" "}
+						<span>{listeningTo?.details}</span>
+					</>
+				)}
 			</p>
 		</footer>
 	);
