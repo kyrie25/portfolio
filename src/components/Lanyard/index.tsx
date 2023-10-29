@@ -141,7 +141,7 @@ const Lanyard = React.memo(
 			<div
 				className={concatClassname("lanyard", "has-banner", !!bannerID)}
 				style={{
-					backgroundImage: `url(${banner})`
+					backgroundImage: bannerID ? `url(${banner})` : "none"
 				}}
 			>
 				<div className="profile">
