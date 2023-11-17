@@ -66,6 +66,7 @@ const Dock = () => {
 					nowPlaying
 				}
 				onLoad={getImageLocation}
+				onError={e => e.currentTarget.setAttribute("src", nowPlaying)}
 			/>
 			<p>
 				<>Listening to:&nbsp;</>
@@ -75,8 +76,8 @@ const Dock = () => {
 					</a>
 				) : (
 					<>
-						<span>{listeningTo?.name}</span> by{" "}
-						<span>{listeningTo?.details}</span>
+						<span>{listeningTo?.details}</span> by{" "}
+						<span>{listeningTo?.name}</span>
 					</>
 				)}
 			</p>

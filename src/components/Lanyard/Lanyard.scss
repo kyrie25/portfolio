@@ -74,6 +74,7 @@
 					position: fixed;
 					transform: translate(-50%, -50%) scale(5) translateY(-20px);
 					cursor: zoom-out;
+					z-index: 9999;
 				}
 
 				svg {
@@ -265,6 +266,7 @@
 		width: 400px;
 		// background-color: inherit;
 		border-radius: 0 0 20px 20px;
+		z-index: 0;
 
 		.activity-info {
 			display: flex;
