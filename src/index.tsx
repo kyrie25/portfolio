@@ -1,110 +1,95 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import {
-	createBrowserRouter,
-	Outlet,
-	Route,
-	RouterProvider,
-	Routes,
-	Navigate
-} from "react-router-dom";
-import { Tooltip } from "react-tooltip";
-
-// Present in all tabs
-import Titlebar from "./components/Titlebar";
-import Dock from "./components/Dock";
-
-// Tabs
-import { Links, Tabs } from "./Tabs";
-
+import React, { useEffect } from "react";
+import { createRoot } from "react-dom/client";
 import "./index.scss";
-import "react-tooltip/dist/react-tooltip.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faGithub,
+  faDiscord,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
-class App extends React.Component<
-	Record<string, unknown>,
-	{ activeTab: string; componentState: Record<string, unknown> }
-> {
-	constructor(props) {
-		super(props);
-		Object.assign(this, props);
-		this.state = {
-			activeTab: location.pathname.slice(1) || Object.keys(Tabs)[0],
-			componentState: {}
-		};
-	}
+const DISCORD_ID = import.meta.env.VITE_DISCORD_ID;
 
-	handleTabSelect(tab: string) {
-		this.setState({ activeTab: tab });
-	}
+const App: React.FC = () => {
+  const [data, setData] = React.useState<Record<string, any>>({});
 
-	componentDidMount(): void {
-		if (Tabs[this.state.activeTab] === undefined)
-			this.setState({ activeTab: Object.keys(Tabs)[0] });
-	}
+  useEffect(() => {
+    fetch(`https://api.kyrie25.me/discord/${DISCORD_ID}`)
+      .then((response) => response.json())
+      .then((json) => setData(json));
+  }, []);
 
-	componentDidUpdate(): void {
-		document.title = Tabs[this.state.activeTab]?.title ?? "Kyrie's site";
-	}
+  const avatar = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.webp?size=256`;
+  const banner = `url(https://cdn.discordapp.com/banners/${data.id}/${data.banner}.webp?size=4096)`;
 
-	cacheValue(key: string, value: unknown) {
-		this.setState({
-			componentState: { ...this.state.componentState, [key]: value }
-		});
-	}
+  return (
+    <main>
+      <section>
+        <header>
+          {data.banner && (
+            <div className="blur" style={{ backgroundImage: banner }}></div>
+          )}
+          <div className="avatar">
+            {data.avatar && <img src={avatar} alt="Kyrie25" />}
+            <h1>Kyrie</h1>
+          </div>
+        </header>
 
-	render() {
-		if (Tabs[this.state.activeTab] === undefined)
-			return <Navigate to="/" replace />;
+        <article>
+          <h3>
+            Junior full-stack developer, CS undergraduate at{" "}
+            <a
+              href="https://fit.hcmus.edu.vn/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              fit@hcmus
+            </a>
+          </h3>
+        </article>
 
-		return (
-			<>
-				<Tooltip
-					id="tooltip"
-					style={{
-						zIndex: 9999999
-					}}
-				/>
-				<Titlebar
-					onTabSelect={this.handleTabSelect.bind(this)}
-					activeTab={this.state.activeTab}
-				/>
-				<div className="background" />
-				<div className="container">
-					<Routes>
-						{Object.entries(Tabs).map(([key, value]) => {
-							return (
-								<Route
-									key={key}
-									path={value.path}
-									element={
-										<value.component
-											cache={this.state.componentState}
-											callback={this.cacheValue.bind(this)}
-										/>
-									}
-								/>
-							);
-						})}
-					</Routes>
-					<Outlet />
-				</div>
-				<Dock />
-			</>
-		);
-	}
-}
+        <article>
+          <p>Absolute Granblue nerd</p>
+          <p>My 3rd website so far i just want a clean site</p>
+        </article>
 
-export default App;
+        <article>
+          <h3>Contact me via:</h3>
+          <div className="icons">
+            <a href="mailto:contact@kyrie25.me">
+              <FontAwesomeIcon icon={faEnvelope} size="1x" />
+            </a>
+            <a
+              href={`https://discord.com/users/${data.id}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FontAwesomeIcon icon={faDiscord} size="1x" />
+            </a>
+            <a
+              href="https://twitter.com/_kyrie_25"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FontAwesomeIcon icon={faTwitter} size="1x" />
+            </a>
+            <a
+              href="https://github.com/kyrie25"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FontAwesomeIcon icon={faGithub} size="1x" />
+            </a>
+          </div>
+        </article>
 
-const router = createBrowserRouter([
-	{
-		path: "/*",
-		element: <App />
-	}
-]);
+        <footer>
+          <p>(images are from my discord profile)</p>
+        </footer>
+      </section>
+    </main>
+  );
+};
 
-ReactDOM.createRoot(document.querySelector("#root") as HTMLElement).render(
-	<React.StrictMode>
-		<RouterProvider router={router} />
-	</React.StrictMode>
-);
+createRoot(document.getElementById("root")!).render(<App />);

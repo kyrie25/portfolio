@@ -1,62 +1,50 @@
 {
-	"name": "portfolio",
-	"version": "2.9.0",
-	"author": {
-		"name": "Kyrie"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/kyrie25/portfolio.git"
-	},
-	"homepage": "https://kyrie25.me",
-	"private": true,
-	"dependencies": {
-		"chroma-js": "^2.4.2",
-		"dotenv-webpack": "^8.0.1",
-		"react": "^18.2.0",
-		"react-clock": "^4.5.0",
-		"react-dom": "^18.2.0",
-		"react-router-dom": "^6.16.0",
-		"react-tooltip": "^5.21.5",
-		"sass": "^1.68.0",
-		"typescript": "^4.9.5",
-		"use-lanyard": "^1.4.4"
-	},
-	"scripts": {
-		"preinstall": "npx only-allow pnpm",
-		"lint:ci": "prettier --check . && eslint .",
-		"lint": "prettier --write . && eslint --fix .",
-		"start": "vite",
-		"build": "tsc && vite build",
-		"serve": "npm run build && vite preview"
-	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
-	},
-	"devDependencies": {
-		"@types/node": "^20.8.0",
-		"@types/react": "^18.2.24",
-		"@types/react-clock": "^3.0.1",
-		"@types/react-dom": "^18.2.8",
-		"@typescript-eslint/eslint-plugin": "^5.62.0",
-		"@vitejs/plugin-react": "^4.1.0",
-		"eslint": "^8.50.0",
-		"eslint-config-prettier": "^8.10.0",
-		"eslint-plugin-eqeqeq-fix": "^1.0.3",
-		"eslint-plugin-prettier": "^4.2.1",
-		"eslint-plugin-unicorn": "^45.0.2",
-		"prettier": "^3.0.3",
-		"vite": "^4.4.9",
-		"vite-plugin-svgr": "^3.3.0",
-		"vite-tsconfig-paths": "^4.2.1"
-	}
+  "name": "portfolio",
+  "version": "3.0.0",
+  "author": {
+    "name": "Kyrie"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kyrie25/portfolio.git"
+  },
+  "homepage": "https://kyrie25.me",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-brands-svg-icons": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.68.0",
+    "typescript": "^4.9.5"
+  },
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "lint:ci": "prettier --check . && eslint .",
+    "lint": "prettier --write . && eslint --fix .",
+    "start": "vite",
+    "build": "tsc && vite build",
+    "serve": "npm run build && vite preview"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "@types/react": "^18.2.24",
+    "@types/react-dom": "^18.2.8",
+    "@vitejs/plugin-react": "^4.1.0",
+    "vite": "^4.4.9"
+  }
 }

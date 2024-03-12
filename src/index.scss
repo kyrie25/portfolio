@@ -1,83 +1,121 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap");
-@keyframes fadein {
-	0% {
-		opacity: 0.5;
-	}
-	to {
-		opacity: 1;
-	}
+body {
+  font-family: monospace;
+  // Dark purple
+  background-color: #1d2a38;
+  color: white;
 }
 
-body,
-html {
-	color: #fff;
-	font-family:
-		"Montserrat",
-		-apple-system,
-		BlinkMacSystemFont,
-		"Segoe UI",
-		"Roboto",
-		"Oxygen",
-		"Ubuntu",
-		"Cantarell",
-		"Fira Sans",
-		"Droid Sans",
-		"Helvetica Neue",
-		sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
 
-	::-webkit-scrollbar {
-		display: none;
-	}
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    margin: 1rem;
+    margin-top: 2rem;
+    width: 45%;
 
-	#root {
-		clear: both;
-		width: 100%;
+    @media screen and (max-width: 1280px) {
+      width: 80%;
+    }
 
-		div.background {
-			animation: fadein 0.5s ease-in;
-			z-index: -1;
-			position: fixed;
-			top: 0%;
-			left: 0%;
-			width: 100%;
-			height: 100%;
-			-webkit-filter: brightness(0.5) blur(2.5px);
-			filter: brightness(0.5) blur(2.5px);
-			background: rgba(0, 0, 0, 0.4);
-			background-image: url("/assets/bg/socials_bg.jpg");
-			background-blend-mode: hard-light;
-			background-position: center top;
-			background-repeat: no-repeat;
-			background-size: 100vw;
-			margin: 0;
+    @media screen and (max-width: 768px) {
+      width: 90%;
+    }
 
-			@media screen and (max-width: 640px) {
-				& {
-					background-size: auto 100vh;
-				}
-			}
-		}
+    header {
+      width: 100%;
+      padding: 1rem;
+      position: relative;
+      display: flex;
+      justify-content: center;
 
-		div.container {
-			clear: both;
-			position: relative;
-			z-index: 2;
-			top: 28px;
+      div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: fit-content;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        height: 150px;
+        gap: 2rem;
 
-			@media screen and (max-width: 640px) {
-				& {
-					flex-direction: row;
-				}
-				[class$="__container"] {
-					width: 100%;
-					margin: 2vh 0 4vh 0;
-				}
-				> div:last-child [class$="__container"] {
-					margin-bottom: 10vh;
-				}
-			}
-		}
-	}
+        &.blur {
+          position: absolute;
+          width: 90%;
+
+          border-radius: 1em;
+
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          filter: blur(3px) brightness(0.75);
+
+          z-index: -1;
+        }
+
+        &.avatar {
+          h1 {
+            // Vertical center
+            line-height: 60px;
+            font-size: 2rem;
+          }
+
+          img {
+            // Round
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+          }
+        }
+      }
+    }
+
+    article {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+
+      width: 100%;
+
+      a {
+        color: white;
+      }
+
+      .icons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        width: 100%;
+
+        a {
+          color: white;
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    a {
+      color: white;
+    }
+  }
+  footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    font-size: 1rem;
+    width: 100%;
+  }
 }
