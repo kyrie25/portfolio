@@ -1,124 +1,138 @@
 body {
-  font-family: monospace;
-  // Dark purple
-  background-color: #1d2a38;
-  color: white;
+	font-family: monospace;
+	// Dark purple
+	background-color: #1d2a38;
+	color: white;
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
 
-  * {
-    text-align: center;
-  }
+	* {
+		text-align: center;
+	}
 
-  section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    margin: 1rem;
-    margin-top: 2rem;
-    width: 45%;
+	section {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		font-size: 1rem;
+		margin: 1rem;
+		margin-top: 1rem;
+		width: 45%;
 
-    @media screen and (max-width: 1280px) {
-      width: 80%;
-    }
+		// XL screen
+		// @media screen and (min-width: 1920px) {
+		// 	position: absolute;
+		// 	left: 50%;
+		// 	top: 50%;
+		// 	transform: translate(-50%, -50%);
+		// }
 
-    @media screen and (max-width: 768px) {
-      width: 90%;
-    }
+		header {
+			width: 100%;
+			padding: 1rem;
+			position: relative;
+			display: flex;
+			justify-content: center;
 
-    header {
-      width: 100%;
-      padding: 1rem;
-      position: relative;
-      display: flex;
-      justify-content: center;
+			div {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				width: fit-content;
+				padding: 1rem;
+				margin-bottom: 1rem;
+				height: 150px;
+				gap: 2rem;
 
-      div {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: fit-content;
-        padding: 1rem;
-        margin-bottom: 1rem;
-        height: 150px;
-        gap: 2rem;
+				&.blur {
+					position: absolute;
+					width: 90%;
+					// Keep in a 5:2 ratio
+					// padding-top: 45%;
 
-        &.blur {
-          position: absolute;
-          width: 90%;
+					border-radius: 1em;
 
-          border-radius: 1em;
+					background-position: center;
+					background-repeat: no-repeat;
+					background-size: cover;
+					filter: brightness(0.75);
 
-          background-position: center;
-          background-repeat: no-repeat;
-          background-size: cover;
-          filter: blur(3px) brightness(0.75);
+					z-index: -1;
+				}
 
-          z-index: -1;
-        }
+				&.avatar {
+					.name {
+						flex-direction: column;
+						justify-content: center;
+						gap: 0;
 
-        &.avatar {
-          h1 {
-            // Vertical center
-            line-height: 60px;
-            font-size: 2rem;
-          }
+						h1 {
+							// Vertical center
+							font-size: 2rem;
+							// text-shadow: 0 0 5px white;
+							line-height: 1rem;
+						}
+					}
 
-          img {
-            // Round
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-          }
-        }
-      }
-    }
+					img {
+						// Round
+						border-radius: 50%;
+						width: 100px;
+						height: 100px;
+					}
+				}
+			}
+		}
 
-    article {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem;
+		article {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			margin-bottom: 1rem;
 
-      width: 100%;
+			width: 100%;
 
-      a {
-        color: white;
-      }
+			a {
+				color: white;
+			}
 
-      .icons {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-        width: 100%;
+			.icons {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 1rem;
+				width: 100%;
 
-        a {
-          color: white;
-          font-size: 1.5rem;
-        }
-      }
-    }
+				a {
+					color: white;
+					font-size: 1.5rem;
+				}
+			}
+		}
 
-    a {
-      color: white;
-    }
-  }
-  footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2rem;
-    font-size: 1rem;
-    width: 100%;
-  }
+		footer {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-top: 2rem;
+			font-size: 1rem;
+			width: 100%;
+		}
+
+		@media screen and (max-width: 1280px) {
+			width: 80%;
+		}
+
+		@media screen and (max-width: 768px) {
+			width: 90%;
+		}
+	}
 }

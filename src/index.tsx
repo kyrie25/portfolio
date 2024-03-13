@@ -7,6 +7,12 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 const DISCORD_ID = import.meta.env.VITE_DISCORD_ID;
 
+const Anchor = ({ href, children, ...props }: { href: string; children: React.ReactNode }) => (
+	<a href={href} target="_blank" rel="noreferrer" {...props}>
+		{children}
+	</a>
+);
+
 const App: React.FC = () => {
 	const [data, setData] = React.useState<Record<string, any>>({});
 
@@ -16,7 +22,7 @@ const App: React.FC = () => {
 			.then((json) => setData(json));
 	}, []);
 
-	const ext = (hash: string) => (hash.startsWith("a_") ? "gif" : "webp");
+	const ext = (hash: string | null) => (hash?.startsWith("a_") ? "gif" : "webp");
 
 	const avatar = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.${ext(data.avatar)}?size=256`;
 	const banner = `url(https://cdn.discordapp.com/banners/${data.id}/${data.banner}.${ext(data.banner)}?size=2048)`;
@@ -28,45 +34,43 @@ const App: React.FC = () => {
 					{data.banner && <div className="blur" style={{ backgroundImage: banner }}></div>}
 					<div className="avatar">
 						{data.avatar && <img src={avatar} alt="Kyrie25" />}
-						<h1>Kyrie</h1>
+						<div className="name">
+							<h1>Kyrie</h1>
+							<span>@kyrie25</span>
+						</div>
 					</div>
 				</header>
 
 				<article>
 					<h3>
-						Junior full-stack developer, CS undergraduate at{" "}
-						<a href="https://fit.hcmus.edu.vn/" target="_blank" rel="noreferrer">
-							fit@hcmus
-						</a>
+						Junior full-stack developer, CS undergraduate at <Anchor href="https://fit.hcmus.edu.vn/">fit@hcmus</Anchor>
 					</h3>
 				</article>
 
 				<article>
 					<p>Absolute Granblue nerd</p>
-					<p>My 3rd website so far i just want a clean site</p>
+					<p>My 3rd website so far i just want a clean site atp</p>
 				</article>
 
 				<article>
 					<h3>Contact me via:</h3>
 					<div className="icons">
-						<a href="mailto:contact@kyrie25.me">
+						<Anchor href="mailto:contact@kyrie25.me">
 							<FontAwesomeIcon icon={faEnvelope} size="1x" />
-						</a>
-						<a href={`https://discord.com/users/${data.id}`} target="_blank" rel="noreferrer">
+						</Anchor>
+						<Anchor href={`https://discord.com/users/${data.id}`}>
 							<FontAwesomeIcon icon={faDiscord} size="1x" />
-						</a>
-						<a href="https://twitter.com/_kyrie_25" target="_blank" rel="noreferrer">
+						</Anchor>
+						<Anchor href="https://twitter.com/_kyrie_25">
 							<FontAwesomeIcon icon={faTwitter} size="1x" />
-						</a>
-						<a href="https://github.com/kyrie25" target="_blank" rel="noreferrer">
+						</Anchor>
+						<Anchor href="https://github.com/kyrie25">
 							<FontAwesomeIcon icon={faGithub} size="1x" />
-						</a>
+						</Anchor>
 					</div>
 				</article>
 
-				<footer>
-					<p>(images are from my discord profile)</p>
-				</footer>
+				<footer>{data.id && <p>(images are taken from my discord profile)</p>}</footer>
 			</section>
 		</main>
 	);
