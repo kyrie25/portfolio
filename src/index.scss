@@ -24,15 +24,8 @@ main {
 		font-size: 1rem;
 		margin: 1rem;
 		margin-top: 1rem;
-		width: 45%;
-
-		// XL screen
-		// @media screen and (min-width: 1920px) {
-		// 	position: absolute;
-		// 	left: 50%;
-		// 	top: 50%;
-		// 	transform: translate(-50%, -50%);
-		// }
+		width: -moz-fit-content;
+		width: fit-content;
 
 		header {
 			width: 100%;
@@ -45,6 +38,7 @@ main {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
+				width: -moz-fit-content;
 				width: fit-content;
 				padding: 1rem;
 				margin-bottom: 1rem;
@@ -127,12 +121,20 @@ main {
 			width: 100%;
 		}
 
-		@media screen and (max-width: 1280px) {
-			width: 80%;
-		}
+		// @media screen and (max-width: 1280px) {
+		// 	width: 80%;
+		// }
 
-		@media screen and (max-width: 768px) {
-			width: 90%;
-		}
+		// @media screen and (max-width: 768px) {
+		// 	width: 90%;
+		// }
+
+		// XL screen
+		// @media screen and (min-width: 1920px) {
+		// 	position: absolute;
+		// 	left: 50%;
+		// 	top: 50%;
+		// 	transform: translate(-50%, -50%);
+		// }
 	}
 }

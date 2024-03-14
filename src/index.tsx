@@ -7,7 +7,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 const DISCORD_ID = import.meta.env.VITE_DISCORD_ID;
 
-const Anchor = ({ href, children, ...props }: { href: string; children: React.ReactNode }) => (
+const Anchor = ({ href, children, ...props }) => (
 	<a href={href} target="_blank" rel="noreferrer" {...props}>
 		{children}
 	</a>
@@ -55,16 +55,16 @@ const App: React.FC = () => {
 				<article>
 					<h3>Contact me via:</h3>
 					<div className="icons">
-						<Anchor href="mailto:contact@kyrie25.me">
+						<Anchor href="mailto:contact@kyrie25.me" title="Mail">
 							<FontAwesomeIcon icon={faEnvelope} size="1x" />
 						</Anchor>
-						<Anchor href={`https://discord.com/users/${data.id}`}>
+						<Anchor href={`https://discord.com/users/${data.id}`} title="Discord">
 							<FontAwesomeIcon icon={faDiscord} size="1x" />
 						</Anchor>
-						<Anchor href="https://twitter.com/_kyrie_25">
+						<Anchor href="https://twitter.com/_kyrie_25" title="Twitter">
 							<FontAwesomeIcon icon={faTwitter} size="1x" />
 						</Anchor>
-						<Anchor href="https://github.com/kyrie25">
+						<Anchor href="https://github.com/kyrie25" title="GitHub">
 							<FontAwesomeIcon icon={faGithub} size="1x" />
 						</Anchor>
 					</div>
