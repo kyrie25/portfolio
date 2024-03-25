@@ -24,8 +24,8 @@ main {
 		font-size: 1rem;
 		margin: 1rem;
 		margin-top: 1rem;
-		width: -moz-fit-content;
 		width: fit-content;
+		max-width: 1000px;
 
 		header {
 			width: 100%;
