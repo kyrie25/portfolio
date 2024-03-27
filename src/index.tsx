@@ -31,7 +31,12 @@ const Cat = () => {
 	const [cat, setCat] = React.useState<number>(Math.floor(Math.random() * cats.length));
 
 	return (
-		<span className="cat" onMouseEnter={() => setCat(Math.floor(Math.random() * cats.length))}>
+		<span
+			className="cat"
+			onMouseEnter={() => setCat(Math.floor(Math.random() * cats.length))}
+			// Compatibility with mobile devices
+			onClick={() => setCat(Math.floor(Math.random() * cats.length))}
+		>
 			{cats[cat]}
 		</span>
 	);
