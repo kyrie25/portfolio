@@ -7,6 +7,36 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 const DISCORD_ID = import.meta.env.VITE_DISCORD_ID;
 
+const Cat = () => {
+	const cats = [
+		"=^._.^=",
+		"(=｀ェ´=)",
+		"(=^ ◡ ^=)",
+		"/ᐠ｡ꞈ｡ᐟ\\",
+		"/ᐠ.ꞈ.ᐟ\\",
+		"✧/ᐠ-ꞈ-ᐟ\\",
+		"(ﾐචᆽචﾐ)",
+		"(=චᆽච=)",
+		"(=ㅇᆽㅇ=)",
+		"(=ㅇ༝ㅇ=)",
+		"₍⸍⸌̣ʷ̣̫⸍̣⸌₎",
+		"=＾ᵒ⋏ᵒ＾=",
+		"( ⓛ ﻌ ⓛ *)",
+		"(=ↀωↀ=)",
+		"(=^･ω･^=)",
+		"(=^･ｪ･^=)",
+		"ㅇㅅㅇ",
+	];
+
+	const [cat, setCat] = React.useState<number>(Math.floor(Math.random() * cats.length));
+
+	return (
+		<span className="cat" onMouseEnter={() => setCat(Math.floor(Math.random() * cats.length))}>
+			{cats[cat]}
+		</span>
+	);
+};
+
 const Anchor = ({ href, children, ...props }) => (
 	<a href={href} target="_blank" rel="noreferrer" {...props}>
 		{children}
@@ -41,6 +71,11 @@ const App: React.FC = () => {
 					</div>
 				</header>
 
+				<article>
+					<h3>
+						<Cat />
+					</h3>
+				</article>
 				<article>
 					<h3>
 						Junior full-stack developer, CS undergraduate at <Anchor href="https://fit.hcmus.edu.vn/">fit@hcmus</Anchor>
