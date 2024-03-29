@@ -35,7 +35,7 @@ const Cat = () => {
 			className="cat"
 			onMouseEnter={() => setCat(Math.floor(Math.random() * cats.length))}
 			// Compatibility with mobile devices
-			onClick={() => setCat(Math.floor(Math.random() * cats.length))}
+			// onClick={() => setCat(Math.floor(Math.random() * cats.length))}
 		>
 			{cats[cat]}
 		</span>
