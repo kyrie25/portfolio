@@ -1,4 +1,5 @@
 import { useLanyardWS } from "use-lanyard";
+import classNames from "classnames";
 import "./Lanyard.scss";
 import { Cat } from "./Cat";
 
@@ -47,7 +48,7 @@ export const Lanyard = ({ id }) => {
 										{activity?.assets?.small_image && (
 											<img
 												src={processDiscordImage(activity.assets.small_image, activity.application_id)}
-												className="activity-image-small"
+												className={classNames("activity-image-small", { "no-large": !activity.assets.large_image })}
 												alt="activity"
 												data-tooltip-id="tooltip"
 												data-tooltip-content={activity.assets.small_text}
