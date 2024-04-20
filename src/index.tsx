@@ -1,46 +1,16 @@
 import React, { useEffect } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faDiscord, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { Tooltip } from "react-tooltip";
+
+import "./index.scss";
+import "react-tooltip/dist/react-tooltip.css";
+
+import { Lanyard } from "./Lanyard";
 
 const DISCORD_ID = import.meta.env.VITE_DISCORD_ID;
-
-const Cat = () => {
-	const cats = [
-		"=^._.^=",
-		"(=｀ェ´=)",
-		"(=^ ◡ ^=)",
-		"/ᐠ｡ꞈ｡ᐟ\\",
-		"/ᐠ.ꞈ.ᐟ\\",
-		"✧/ᐠ-ꞈ-ᐟ\\",
-		"(ﾐචᆽචﾐ)",
-		"(=චᆽච=)",
-		"(=ㅇᆽㅇ=)",
-		"(=ㅇ༝ㅇ=)",
-		"₍⸍⸌̣ʷ̣̫⸍̣⸌₎",
-		"=＾ᵒ⋏ᵒ＾=",
-		"( ⓛ ﻌ ⓛ *)",
-		"(=ↀωↀ=)",
-		"(=^･ω･^=)",
-		"(=^･ｪ･^=)",
-		"ㅇㅅㅇ",
-	];
-
-	const [cat, setCat] = React.useState<number>(Math.floor(Math.random() * cats.length));
-
-	return (
-		<span
-			className="cat"
-			onMouseEnter={() => setCat(Math.floor(Math.random() * cats.length))}
-			// Compatibility with mobile devices
-			// onClick={() => setCat(Math.floor(Math.random() * cats.length))}
-		>
-			{cats[cat]}
-		</span>
-	);
-};
 
 const Anchor = ({ href, children, ...props }) => (
 	<a href={href} target="_blank" rel="noreferrer" {...props}>
@@ -64,6 +34,12 @@ const App: React.FC = () => {
 
 	return (
 		<main>
+			<Tooltip
+				id="tooltip"
+				style={{
+					zIndex: 9999999,
+				}}
+			/>
 			<section>
 				<header>
 					{data.banner && <div className="blur" style={{ backgroundImage: banner }}></div>}
@@ -76,11 +52,8 @@ const App: React.FC = () => {
 					</div>
 				</header>
 
-				<article>
-					<h3>
-						<Cat />
-					</h3>
-				</article>
+				<Lanyard id={DISCORD_ID} />
+
 				<article>
 					<h3>
 						Junior full-stack developer, CS undergraduate at <Anchor href="https://fit.hcmus.edu.vn/">fit@hcmus</Anchor>

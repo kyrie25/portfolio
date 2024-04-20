@@ -1,0 +1,144 @@
+.lanyard {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	border-radius: 20px;
+	justify-content: center;
+
+	.activity {
+		height: 120px;
+		width: 400px;
+		// background-color: inherit;
+		z-index: 0;
+
+		.activity-info {
+			display: flex;
+			flex-direction: row;
+			border-radius: 0 0 20px 20px;
+			height: 100px;
+			font-size: 0.75rem;
+			padding-left: 15px;
+			z-index: 2;
+			position: relative;
+
+			* {
+				text-align: left;
+			}
+
+			&.spotify {
+				background-color: #1db954;
+
+				.activity-info-text {
+					margin-top: -3px;
+
+					&-name {
+						color: #ddd8d8;
+						margin-bottom: 15px;
+					}
+
+					&-details {
+						color: #fff;
+						font-weight: bold;
+					}
+				}
+			}
+
+			.activity-image {
+				margin-right: 15px;
+				margin-top: 5px;
+				width: auto;
+				height: auto;
+
+				.activity-image-large {
+					width: 80px;
+					height: 80px;
+					border: solid 0.5px var(--border-color);
+					border-radius: 10px;
+				}
+
+				.activity-image-small {
+					width: 30px;
+					height: 30px;
+					border-radius: 50%;
+					margin-left: -26px;
+					margin-bottom: -8px;
+				}
+
+				.activity-image-unknown {
+					width: 70px;
+					height: 70px;
+					margin-top: 4px;
+					filter: invert(100);
+				}
+			}
+
+			.activity-info-text {
+				// color: #999;
+				line-height: 1;
+				width: 279px;
+				font-size: 0.85rem;
+
+				&.has-timestamp {
+					margin-top: -6px;
+				}
+
+				&-name {
+					span {
+						color: #fff;
+						font-weight: bold;
+						overflow: hidden;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+						height: 15px;
+						margin: 7px 0;
+					}
+				}
+
+				&-details,
+				&-state,
+				&-timestamp {
+					color: #ccc;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					height: 15px;
+					margin: 7px 0;
+				}
+			}
+		}
+	}
+}
+
+@-webkit-keyframes wave {
+	0% {
+		background-position-x: 360px;
+	}
+	100% {
+		background-position-x: 0;
+	}
+}
+@keyframes wave {
+	0% {
+		background-position-x: 360px;
+	}
+	100% {
+		background-position-x: 0;
+	}
+}
+@-webkit-keyframes wave-reverse {
+	0% {
+		background-position-x: -360px;
+	}
+	100% {
+		background-position-x: 0;
+	}
+}
+@keyframes wave-reverse {
+	0% {
+		background-position-x: -360px;
+	}
+	100% {
+		background-position-x: 0;
+	}
+}

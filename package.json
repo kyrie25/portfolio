@@ -11,15 +11,17 @@
 	"homepage": "https://kyrie25.me",
 	"private": true,
 	"dependencies": {
-		"@fortawesome/fontawesome-svg-core": "^6.5.1",
-		"@fortawesome/free-brands-svg-icons": "^6.5.1",
-		"@fortawesome/free-solid-svg-icons": "^6.5.1",
+		"@fortawesome/fontawesome-svg-core": "^6.5.2",
+		"@fortawesome/free-brands-svg-icons": "^6.5.2",
+		"@fortawesome/free-solid-svg-icons": "^6.5.2",
 		"@fortawesome/react-fontawesome": "^0.2.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
-		"sass": "^1.72.0",
-		"typescript": "^5.4.3",
-		"vite": "^5.2.7"
+		"react-tooltip": "^5.26.3",
+		"sass": "^1.75.0",
+		"typescript": "^5.4.5",
+		"use-lanyard": "^1.5.2",
+		"vite": "^5.2.10"
 	},
 	"scripts": {
 		"preinstall": "npx only-allow pnpm",
@@ -42,9 +44,9 @@
 		]
 	},
 	"devDependencies": {
-		"@types/node": "^20.11.30",
-		"@types/react": "^18.2.73",
-		"@types/react-dom": "^18.2.23",
+		"@types/node": "^20.12.7",
+		"@types/react": "^18.2.79",
+		"@types/react-dom": "^18.2.25",
 		"@vitejs/plugin-react": "^4.2.1"
 	}
 }
