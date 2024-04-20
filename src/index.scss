@@ -85,6 +85,12 @@ main {
 			}
 		}
 
+		.cat {
+			line-height: 1.5rem;
+			cursor: pointer;
+			user-select: none;
+		}
+
 		article {
 			display: flex;
 			flex-direction: column;
@@ -93,12 +99,6 @@ main {
 			margin-bottom: 1rem;
 
 			width: 100%;
-
-			.cat {
-				line-height: 1.5rem;
-				cursor: pointer;
-				user-select: none;
-			}
 
 			a {
 				color: white;
