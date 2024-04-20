@@ -25,7 +25,7 @@ main {
 		margin: 1rem;
 		margin-top: 1rem;
 		width: fit-content;
-		max-width: 1000px;
+		max-width: min(calc(100% - 2rem), 1000px);
 
 		header {
 			width: 100%;
