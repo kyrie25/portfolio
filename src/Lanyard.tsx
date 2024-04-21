@@ -28,7 +28,7 @@ export const Lanyard = ({ id }) => {
 
 	return (
 		<>
-			{data?.activities.length ? (
+			{data?.activities.filter((activity) => activity.type !== 4).length ? (
 				<div className="lanyard">
 					{data?.activities
 						.filter((activity) => activity.type !== 4)
