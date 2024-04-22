@@ -118,9 +118,10 @@
 			}
 
 			.activity-info-text {
-				// color: #999;
+				color: #999;
 				line-height: 1;
 				font-size: 0.85rem;
+				max-width: calc(400px - 80px - 15px);
 
 				&.has-timestamp {
 					margin-top: -6px;
