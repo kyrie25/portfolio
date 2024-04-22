@@ -6,6 +6,8 @@
 
 .status {
 	font-style: italic;
+	margin: 0;
+	margin-bottom: 1rem;
 
 	&::before {
 		content: "“";
@@ -40,18 +42,31 @@
 		display: flex;
 		justify-content: center;
 
-		&:last-child {
-			margin-right: auto;
-		}
-
 		&:nth-child(odd):not(:only-child) {
 			justify-content: left;
 			margin-right: auto;
 		}
 
-		&:nth-child(even):not(:only-child) {
+		&:nth-child(even) {
 			justify-content: right;
 			margin-left: auto;
+
+			.activity-info {
+				flex-direction: row-reverse;
+
+				.activity-image {
+					margin-right: 0;
+					margin-left: 15px;
+
+					// .activity-image-small {
+					// 	transform: translateX(-55px);
+					// }
+				}
+
+				* {
+					text-align: right;
+				}
+			}
 		}
 
 		.activity-info {
@@ -72,6 +87,7 @@
 				margin-top: 5px;
 				width: auto;
 				height: auto;
+				position: relative;
 
 				.activity-image-large {
 					width: 80px;
