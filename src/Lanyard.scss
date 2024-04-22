@@ -5,7 +5,8 @@
 	flex-wrap: wrap;
 	justify-content: space-around;
 	column-gap: 2.5rem;
-	margin: 1rem;
+	margin-left: 1rem;
+	margin-right: 1rem;
 
 	.activity {
 		height: 120px;
@@ -14,6 +15,20 @@
 		z-index: 0;
 		display: flex;
 		justify-content: center;
+
+		&:last-child {
+			margin-right: auto;
+		}
+
+		&:nth-child(odd):not(:only-child) {
+			justify-content: left;
+			margin-right: auto;
+		}
+
+		&:nth-child(even):not(:only-child) {
+			justify-content: right;
+			margin-left: auto;
+		}
 
 		.activity-info {
 			display: flex;
