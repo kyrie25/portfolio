@@ -50,7 +50,7 @@ export const Lanyard = ({ id }) => {
 					{status?.state}
 				</p>
 			)}
-			{data?.activities.filter((activity) => activity.type !== 4).length && (
+			{!!data?.activities.filter((activity) => activity.type !== 4).length && (
 				<div className="lanyard">
 					{data?.activities
 						.filter((activity) => activity.type !== 4)
