@@ -1,3 +1,27 @@
+.cat {
+	line-height: 1.5rem;
+	cursor: pointer;
+	user-select: none;
+}
+
+.status {
+	font-style: italic;
+
+	&::before {
+		content: "“";
+	}
+
+	&::after {
+		content: "”";
+	}
+
+	.emoji {
+		// Big
+		width: 1rem;
+		height: 1rem;
+		padding-right: 0.5rem;
+	}
+}
 .lanyard {
 	position: relative;
 	display: flex;

@@ -3,11 +3,15 @@ import classNames from "classnames";
 import "./Lanyard.scss";
 import { Cat } from "./Cat";
 
-export const processDiscordImage = (imageHash: string | undefined, appID?: string) => {
+const DISCORD_CDN = "https://cdn.discordapp.com";
+
+const processDiscordImage = (imageHash: string | undefined, appID?: string) => {
 	return imageHash?.startsWith("mp:external/")
 		? `https://media.discordapp.net/external/${imageHash.replace("mp:external/", "")}`
-		: `https://cdn.discordapp.com/app-assets/${appID}/${imageHash}.png`;
+		: `${DISCORD_CDN}/app-assets/${appID}/${imageHash}.png`;
 };
+
+export const ext = (hash: string | null) => (hash?.startsWith("a_") ? "gif" : "webp");
 
 export const Lanyard = ({ id }) => {
 	const data = useLanyardWS(id);
@@ -26,9 +30,27 @@ export const Lanyard = ({ id }) => {
 		}
 	};
 
+	const status = data?.activities.find((activity) => activity.type === 4);
+
 	return (
 		<>
-			{data?.activities.filter((activity) => activity.type !== 4).length ? (
+			{data?.activities.length === 0 && <Cat />}
+			{status && (
+				<p className="status">
+					{status?.emoji?.id && (
+						<img
+							src={`${DISCORD_CDN}/emojis/${status.emoji.id}.${ext(status.emoji.id)}`}
+							alt="status"
+							data-tooltip-id="tooltip"
+							data-tooltip-content={`:${status.emoji.name}:`}
+							className="emoji"
+						/>
+					)}
+					{!status?.emoji?.id && status?.emoji?.name}
+					{status?.state}
+				</p>
+			)}
+			{data?.activities.filter((activity) => activity.type !== 4).length && (
 				<div className="lanyard">
 					{data?.activities
 						.filter((activity) => activity.type !== 4)
@@ -66,8 +88,6 @@ export const Lanyard = ({ id }) => {
 							</div>
 						))}
 				</div>
-			) : (
-				<Cat />
 			)}
 		</>
 	);
