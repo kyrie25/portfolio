@@ -72,11 +72,8 @@
 		.activity-info {
 			display: flex;
 			flex-direction: row;
-			border-radius: 0 0 20px 20px;
 			height: 100px;
 			font-size: 0.75rem;
-			z-index: 2;
-			position: relative;
 
 			* {
 				text-align: left;
@@ -121,7 +118,7 @@
 				color: #999;
 				line-height: 1;
 				font-size: 0.85rem;
-				max-width: calc(400px - 80px - 15px);
+				max-width: 300px;
 
 				&.has-timestamp {
 					margin-top: -6px;
