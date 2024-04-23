@@ -2,12 +2,15 @@ import { useLanyardWS } from "use-lanyard";
 import classNames from "classnames";
 import "./Lanyard.scss";
 import { Cat } from "./Cat";
+import { Anchor } from "./index";
 
 const DISCORD_CDN = "https://cdn.discordapp.com";
 
 const processDiscordImage = (imageHash: string | undefined, appID?: string) => {
 	return imageHash?.startsWith("mp:external/")
 		? `https://media.discordapp.net/external/${imageHash.replace("mp:external/", "")}`
+		: imageHash?.startsWith("spotify:")
+		? imageHash.replace("spotify:", "https://i.scdn.co/image/")
 		: `${DISCORD_CDN}/app-assets/${appID}/${imageHash}.png`;
 };
 
@@ -30,12 +33,10 @@ export const Lanyard = ({ id }) => {
 		}
 	};
 
-	const status = data?.activities.find((activity) => activity.type === 4);
-
 	return (
 		<>
-			{data?.activities.length === 0 && <Cat />}
-			{status && (
+			{data?.activities.filter((activity) => activity.type !== 4).length === 0 && <Cat />}
+			{/* {status && (
 				<p className="status">
 					{status?.emoji?.id && (
 						<img
@@ -49,7 +50,7 @@ export const Lanyard = ({ id }) => {
 					{!status?.emoji?.id && status?.emoji?.name}
 					{status?.state}
 				</p>
-			)}
+			)} */}
 			{!!data?.activities.filter((activity) => activity.type !== 4).length && (
 				<div className="lanyard">
 					{data?.activities
@@ -81,7 +82,21 @@ export const Lanyard = ({ id }) => {
 										<p className="activity-info-text-name">
 											{activitiesTypes(activity.type)} <span>{activity?.name}</span>
 										</p>
-										{activity?.details && <p className="activity-info-text-details">{activity.details}</p>}
+										{activity?.details &&
+											(activity.sync_id ? (
+												<Anchor className="activity-info-text-details" href={`https://open.spotify.com/track/${activity.sync_id}`}>
+													{activity.details}
+												</Anchor>
+											) : activity.type === 2 ? (
+												<Anchor
+													className="activity-info-text-details"
+													href={`https://www.youtube.com/results?search_query=${encodeURIComponent(activity.details + " " + activity.state)}`.trim()}
+												>
+													{activity.details}
+												</Anchor>
+											) : (
+												<p className="activity-info-text-details">{activity.details}</p>
+											))}
 										{activity?.state && <p className="activity-info-text-state">{activity.state}</p>}
 									</div>
 								</div>

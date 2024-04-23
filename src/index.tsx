@@ -14,7 +14,7 @@ import { Lanyard } from "./Lanyard";
 
 const DISCORD_ID = import.meta.env.VITE_DISCORD_ID;
 
-const Anchor = ({ href, children, ...props }) => (
+export const Anchor = ({ href, children, ...props }) => (
 	<a href={href} target="_blank" rel="noreferrer" {...props}>
 		{children}
 	</a>
@@ -59,13 +59,19 @@ const App: React.FC = () => {
 
 					<article>
 						<h3>
-							Junior full-stack developer, CS undergraduate at <Anchor href="https://fit.hcmus.edu.vn/">fit@hcmus</Anchor>
+							Junior full-stack developer, CS undergraduate at fit@<Anchor href="https://en.hcmus.edu.vn/">hcmus</Anchor>
 						</h3>
 					</article>
 
 					<article>
 						<p>Absolute Granblue nerd</p>
-						<p>My 3rd website so far i just want a clean site atp</p>
+					</article>
+
+					<article>
+						<object
+							data="https://github-readme-stats.vercel.app/api?username=kyrie25&include_all_commits=true&show_icons=true&count_private=true&custom_title=Kyrie%27s+GitHub+Stats&theme=react&border_color=1d2a38&bg_color=1d2a38"
+							type="image/svg+xml"
+						/>
 					</article>
 
 					<article>
@@ -85,8 +91,6 @@ const App: React.FC = () => {
 							</Anchor>
 						</div>
 					</article>
-
-					<footer>{data.id && <p>(images are taken from my discord profile)</p>}</footer>
 				</section>
 			</main>
 			<Analytics />
