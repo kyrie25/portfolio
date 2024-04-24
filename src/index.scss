@@ -58,6 +58,29 @@ main {
 			display: flex;
 			justify-content: center;
 
+			&:has(.banner)::before {
+				content: "";
+				width: 32px;
+				height: 32px;
+				top: -12px;
+				right: 40px;
+				position: absolute;
+				image-rendering: pixelated;
+				background-image: url("https://raw.githubusercontent.com/kyrie25/spicetify-oneko/main/assets/oneko/oneko-classic.gif");
+				animation: oneko 1s infinite;
+			}
+
+			@keyframes oneko {
+				0%,
+				50% {
+					background-position: -64px 0;
+				}
+				50.0001%,
+				100% {
+					background-position: -64px -32px;
+				}
+			}
+
 			div {
 				display: flex;
 				justify-content: space-between;
