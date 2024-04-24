@@ -64,7 +64,7 @@ main {
 				height: 150px;
 				gap: 2rem;
 
-				&.blur {
+				&.banner {
 					position: absolute;
 					width: 90%;
 					// Keep in a 5:2 ratio
@@ -78,6 +78,10 @@ main {
 					filter: brightness(0.75) blur(1px);
 
 					z-index: -1;
+
+					img {
+						display: none;
+					}
 				}
 
 				&.avatar {

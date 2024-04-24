@@ -93,10 +93,6 @@ const App: React.FC = () => {
 		setBannerLoaded(!data.banner);
 	}, [data]);
 
-	useEffect(() => {
-		console.log(fetching, !avatarLoaded, !bannerLoaded, !lanyardLoaded);
-	}, [fetching, avatarLoaded, bannerLoaded, lanyardLoaded]);
-
 	const ext = (hash: string | null) => (hash?.startsWith("a_") ? "gif" : "webp");
 
 	const avatar = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.${ext(data.avatar)}?size=256`;
@@ -119,7 +115,9 @@ const App: React.FC = () => {
 				<section>
 					<header>
 						{data.banner && (
-							<div className="blur" style={{ backgroundImage: banner }} onLoad={() => waitTwoFrames(() => setBannerLoaded(true))}></div>
+							<div className="banner" style={{ backgroundImage: banner }}>
+								<img src={banner} alt="Kyrie25" onLoad={() => waitTwoFrames(() => setBannerLoaded(true))} />
+							</div>
 						)}
 						<div className="avatar">
 							{data.avatar && <img src={avatar} alt="Kyrie25" onLoad={() => waitTwoFrames(() => setAvatarLoaded(true))} />}
