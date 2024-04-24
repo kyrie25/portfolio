@@ -32,10 +32,11 @@ main {
 		z-index: 1000;
 
 		// Fade out transition
-		transition: opacity 0.5s;
+		transition: visibility 0.5s, opacity 0.5s linear;
 
 		&.fade-out {
 			opacity: 0;
+			visibility: hidden;
 		}
 	}
 
