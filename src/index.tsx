@@ -23,6 +23,8 @@ export const Anchor = ({ href, children, ...props }) => (
 	</a>
 );
 
+export const Image = ({ src, alt, onLoad }) => <img src={src} alt={alt} onLoad={() => waitTwoFrames(onLoad)} />;
+
 const LoadingIcon = () => {
 	return (
 		<svg width="100px" height="100px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
@@ -76,9 +78,13 @@ const LoadingIcon = () => {
 
 const App: React.FC = () => {
 	const [data, setData] = React.useState<Record<string, any>>({});
+
+	// Loading states
+	// I dont wanna refactor this
 	const [fetching, setFetching] = React.useState(true);
 	const [avatarLoaded, setAvatarLoaded] = React.useState(false);
 	const [bannerLoaded, setBannerLoaded] = React.useState(false);
+	const [onekoLoaded, setOnekoLoaded] = React.useState(false);
 	const [lanyardLoaded, setLanyardLoaded] = React.useState(false);
 
 	useEffect(() => {
@@ -92,13 +98,16 @@ const App: React.FC = () => {
 		setFetching(false);
 		setAvatarLoaded(!data.avatar);
 		setBannerLoaded(!data.banner);
+		setOnekoLoaded(!data.banner);
 	}, [data]);
 
 	const ext = (hash: string | null) => (hash?.startsWith("a_") ? "gif" : "webp");
 
 	const avatar = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.${ext(data.avatar)}?size=256`;
 	const banner = `https://cdn.discordapp.com/banners/${data.id}/${data.banner}.${ext(data.banner)}?size=2048`;
-	const loading = fetching || !avatarLoaded || !bannerLoaded || !lanyardLoaded;
+	const oneko = "https://raw.githubusercontent.com/kyrie25/spicetify-oneko/main/assets/oneko/oneko-classic.gif";
+
+	const loading = fetching || !avatarLoaded || !bannerLoaded || !lanyardLoaded || !onekoLoaded;
 
 	return (
 		<>
@@ -116,11 +125,12 @@ const App: React.FC = () => {
 					<header>
 						{data.banner && (
 							<div className="banner" style={{ backgroundImage: `url(${banner})` }}>
-								<img src={banner} alt="Kyrie25" onLoad={() => waitTwoFrames(() => setBannerLoaded(true))} />
+								<Image src={banner} alt="banner" onLoad={() => setBannerLoaded(true)} />
+								<Image src={oneko} alt="oneko" onLoad={() => setOnekoLoaded(true)} />
 							</div>
 						)}
 						<div className="avatar">
-							{data.avatar && <img src={avatar} alt="Kyrie25" onLoad={() => waitTwoFrames(() => setAvatarLoaded(true))} />}
+							{data.avatar && <Image src={avatar} alt="avatar" onLoad={() => setAvatarLoaded(true)} />}
 							<div className="name">
 								<h1>Kyrie</h1>
 								<span>@kyrie25</span>
