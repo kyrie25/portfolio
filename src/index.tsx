@@ -93,6 +93,10 @@ const App: React.FC = () => {
 		setBannerLoaded(!data.banner);
 	}, [data]);
 
+	useEffect(() => {
+		console.log(fetching, !avatarLoaded, !bannerLoaded, !lanyardLoaded);
+	}, [fetching, avatarLoaded, bannerLoaded, lanyardLoaded]);
+
 	const ext = (hash: string | null) => (hash?.startsWith("a_") ? "gif" : "webp");
 
 	const avatar = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.${ext(data.avatar)}?size=256`;
