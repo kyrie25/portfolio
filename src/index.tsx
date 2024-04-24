@@ -107,7 +107,7 @@ const App: React.FC = () => {
 						zIndex: 9999999,
 					}}
 				/>
-				{fetching && !avatarLoaded && !bannerLoaded && !lanyardLoaded && (
+				{(fetching || !avatarLoaded || !bannerLoaded || !lanyardLoaded) && (
 					<div className="loading">
 						<LoadingIcon />
 					</div>
