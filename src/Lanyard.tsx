@@ -2,7 +2,7 @@ import { useLanyardWS } from "use-lanyard";
 import classNames from "classnames";
 import "./Lanyard.scss";
 import { Cat } from "./Cat";
-import { Anchor } from "./index";
+import { Anchor, waitTwoFrames } from "./index";
 import { useEffect } from "react";
 
 const DISCORD_CDN = "https://cdn.discordapp.com";
@@ -36,7 +36,7 @@ export const Lanyard = ({ id, loaded }) => {
 
 	useEffect(() => {
 		if (data) {
-			loaded(true);
+			waitTwoFrames(() => loaded(true));
 		}
 	}, [data]);
 

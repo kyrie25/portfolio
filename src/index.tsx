@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faDiscord, faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { Tooltip } from "react-tooltip";
 
 import "./index.scss";
@@ -14,11 +14,64 @@ import { Lanyard } from "./Lanyard";
 
 const DISCORD_ID = import.meta.env.VITE_DISCORD_ID;
 
+export const waitTwoFrames = (callback) => requestAnimationFrame(() => requestAnimationFrame(callback));
+
 export const Anchor = ({ href, children, ...props }) => (
 	<a href={href} target="_blank" rel="noreferrer" {...props}>
 		{children}
 	</a>
 );
+
+const LoadingIcon = () => {
+	return (
+		<svg width="100px" height="100px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+			<circle cx="50" cy="50" r="0" fill="none" stroke="currentColor" strokeWidth="2">
+				<animate
+					attributeName="r"
+					repeatCount="indefinite"
+					dur="1s"
+					values="0;40"
+					keyTimes="0;1"
+					keySplines="0 0.2 0.8 1"
+					calcMode="spline"
+					begin="0s"
+				/>
+				<animate
+					attributeName="opacity"
+					repeatCount="indefinite"
+					dur="1s"
+					values="1;0"
+					keyTimes="0;1"
+					keySplines="0.2 0 0.8 1"
+					calcMode="spline"
+					begin="0s"
+				/>
+			</circle>
+			<circle cx="50" cy="50" r="0" fill="none" stroke="currentColor" strokeWidth="2">
+				<animate
+					attributeName="r"
+					repeatCount="indefinite"
+					dur="1s"
+					values="0;40"
+					keyTimes="0;1"
+					keySplines="0 0.2 0.8 1"
+					calcMode="spline"
+					begin="-0.5s"
+				/>
+				<animate
+					attributeName="opacity"
+					repeatCount="indefinite"
+					dur="1s"
+					values="1;0"
+					keyTimes="0;1"
+					keySplines="0.2 0 0.8 1"
+					calcMode="spline"
+					begin="-0.5s"
+				/>
+			</circle>
+		</svg>
+	);
+};
 
 const App: React.FC = () => {
 	const [data, setData] = React.useState<Record<string, any>>({});
@@ -56,14 +109,16 @@ const App: React.FC = () => {
 				/>
 				{fetching && !avatarLoaded && !bannerLoaded && !lanyardLoaded && (
 					<div className="loading">
-						<FontAwesomeIcon icon={faSpinner} size="3x" spin />
+						<LoadingIcon />
 					</div>
 				)}
 				<section>
 					<header>
-						{data.banner && <div className="blur" style={{ backgroundImage: banner }} onLoad={() => setBannerLoaded(true)}></div>}
+						{data.banner && (
+							<div className="blur" style={{ backgroundImage: banner }} onLoad={() => waitTwoFrames(() => setBannerLoaded(true))}></div>
+						)}
 						<div className="avatar">
-							{data.avatar && <img src={avatar} alt="Kyrie25" onLoad={() => setAvatarLoaded(true)} />}
+							{data.avatar && <img src={avatar} alt="Kyrie25" onLoad={() => waitTwoFrames(() => setAvatarLoaded(true))} />}
 							<div className="name">
 								<h1>Kyrie</h1>
 								<span>@kyrie25</span>
