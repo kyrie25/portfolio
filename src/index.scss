@@ -33,6 +33,10 @@ main {
 
 		// Fade out transition
 		transition: opacity 0.5s;
+
+		&.fade-out {
+			opacity: 0;
+		}
 	}
 
 	section {

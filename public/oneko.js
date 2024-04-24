@@ -194,7 +194,7 @@
 			}
 
 			// If Full App Display is on, sleep on its progress bar instead
-			const banner = document.querySelector(".blur");
+			const banner = document.querySelector(".banner");
 			mousePosX = banner.getBoundingClientRect().right - 16;
 			mousePosY = banner.getBoundingClientRect().top - 12;
 		});

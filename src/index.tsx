@@ -11,6 +11,7 @@ import "./index.scss";
 import "react-tooltip/dist/react-tooltip.css";
 
 import { Lanyard } from "./Lanyard";
+import classNames from "classnames";
 
 const DISCORD_ID = import.meta.env.VITE_DISCORD_ID;
 
@@ -96,7 +97,8 @@ const App: React.FC = () => {
 	const ext = (hash: string | null) => (hash?.startsWith("a_") ? "gif" : "webp");
 
 	const avatar = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.${ext(data.avatar)}?size=256`;
-	const banner = `url(https://cdn.discordapp.com/banners/${data.id}/${data.banner}.${ext(data.banner)}?size=2048)`;
+	const banner = `https://cdn.discordapp.com/banners/${data.id}/${data.banner}.${ext(data.banner)}?size=2048`;
+	const loading = fetching || !avatarLoaded || !bannerLoaded || !lanyardLoaded;
 
 	return (
 		<>
@@ -107,15 +109,13 @@ const App: React.FC = () => {
 						zIndex: 9999999,
 					}}
 				/>
-				{(fetching || !avatarLoaded || !bannerLoaded || !lanyardLoaded) && (
-					<div className="loading">
-						<LoadingIcon />
-					</div>
-				)}
+				<div className={classNames("loading", { "fade-out": !loading })}>
+					<LoadingIcon />
+				</div>
 				<section>
 					<header>
 						{data.banner && (
-							<div className="banner" style={{ backgroundImage: banner }}>
+							<div className="banner" style={{ backgroundImage: `url(${banner})` }}>
 								<img src={banner} alt="Kyrie25" onLoad={() => waitTwoFrames(() => setBannerLoaded(true))} />
 							</div>
 						)}
