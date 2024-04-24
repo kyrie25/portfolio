@@ -16,6 +16,25 @@ main {
 		text-align: center;
 	}
 
+	// Overlay the page with a loading screen
+	.loading {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #1d2a38;
+		color: white;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		z-index: 1000;
+
+		// Fade out transition
+		transition: opacity 0.5s;
+	}
+
 	section {
 		display: flex;
 		flex-direction: column;

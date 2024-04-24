@@ -3,6 +3,7 @@ import classNames from "classnames";
 import "./Lanyard.scss";
 import { Cat } from "./Cat";
 import { Anchor } from "./index";
+import { useEffect } from "react";
 
 const DISCORD_CDN = "https://cdn.discordapp.com";
 
@@ -16,7 +17,7 @@ const processDiscordImage = (imageHash: string | undefined, appID?: string) => {
 
 export const ext = (hash: string | null) => (hash?.startsWith("a_") ? "gif" : "webp");
 
-export const Lanyard = ({ id }) => {
+export const Lanyard = ({ id, loaded }) => {
 	const data = useLanyardWS(id);
 	const activitiesTypes = (type: number) => {
 		switch (type) {
@@ -32,6 +33,12 @@ export const Lanyard = ({ id }) => {
 				return;
 		}
 	};
+
+	useEffect(() => {
+		if (data) {
+			loaded(true);
+		}
+	}, [data]);
 
 	return (
 		<>

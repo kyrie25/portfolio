@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faDiscord, faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { Tooltip } from "react-tooltip";
 
 import "./index.scss";
@@ -22,12 +22,23 @@ export const Anchor = ({ href, children, ...props }) => (
 
 const App: React.FC = () => {
 	const [data, setData] = React.useState<Record<string, any>>({});
+	const [fetching, setFetching] = React.useState(true);
+	const [avatarLoaded, setAvatarLoaded] = React.useState(false);
+	const [bannerLoaded, setBannerLoaded] = React.useState(false);
+	const [lanyardLoaded, setLanyardLoaded] = React.useState(false);
 
 	useEffect(() => {
 		fetch(`https://api.kyrie25.me/discord/${DISCORD_ID}`)
 			.then((response) => response.json())
-			.then((json) => setData(json));
+			.then((json) => setData(json))
+			.catch(() => setData({}));
 	}, []);
+
+	useEffect(() => {
+		setFetching(false);
+		setAvatarLoaded(!data.avatar);
+		setBannerLoaded(!data.banner);
+	}, [data]);
 
 	const ext = (hash: string | null) => (hash?.startsWith("a_") ? "gif" : "webp");
 
@@ -43,11 +54,16 @@ const App: React.FC = () => {
 						zIndex: 9999999,
 					}}
 				/>
+				{fetching && !avatarLoaded && !bannerLoaded && !lanyardLoaded && (
+					<div className="loading">
+						<FontAwesomeIcon icon={faSpinner} size="3x" spin />
+					</div>
+				)}
 				<section>
 					<header>
-						{data.banner && <div className="blur" style={{ backgroundImage: banner }}></div>}
+						{data.banner && <div className="blur" style={{ backgroundImage: banner }} onLoad={() => setBannerLoaded(true)}></div>}
 						<div className="avatar">
-							{data.avatar && <img src={avatar} alt="Kyrie25" />}
+							{data.avatar && <img src={avatar} alt="Kyrie25" onLoad={() => setAvatarLoaded(true)} />}
 							<div className="name">
 								<h1>Kyrie</h1>
 								<span>@kyrie25</span>
@@ -55,7 +71,7 @@ const App: React.FC = () => {
 						</div>
 					</header>
 
-					<Lanyard id={DISCORD_ID} />
+					<Lanyard id={DISCORD_ID} loaded={setLanyardLoaded} />
 
 					<article>
 						<h3>
