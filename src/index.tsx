@@ -12,69 +12,10 @@ import "react-tooltip/dist/react-tooltip.css";
 
 import { Lanyard } from "./Lanyard";
 import classNames from "classnames";
+import { LoadingIcon, Anchor, Image } from "./Misc";
+import { fetchAPI } from "./utils";
 
 const DISCORD_ID = import.meta.env.VITE_DISCORD_ID;
-
-export const waitTwoFrames = (callback) => requestAnimationFrame(() => requestAnimationFrame(callback));
-
-export const Anchor = ({ href, children, ...props }) => (
-	<a href={href} target="_blank" rel="noreferrer" {...props}>
-		{children}
-	</a>
-);
-
-export const Image = ({ src, alt, onLoad }) => <img src={src} alt={alt} onLoad={() => waitTwoFrames(onLoad)} />;
-
-const LoadingIcon = () => {
-	return (
-		<svg width="100px" height="100px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-			<circle cx="50" cy="50" r="0" fill="none" stroke="currentColor" strokeWidth="2">
-				<animate
-					attributeName="r"
-					repeatCount="indefinite"
-					dur="1s"
-					values="0;40"
-					keyTimes="0;1"
-					keySplines="0 0.2 0.8 1"
-					calcMode="spline"
-					begin="0s"
-				/>
-				<animate
-					attributeName="opacity"
-					repeatCount="indefinite"
-					dur="1s"
-					values="1;0"
-					keyTimes="0;1"
-					keySplines="0.2 0 0.8 1"
-					calcMode="spline"
-					begin="0s"
-				/>
-			</circle>
-			<circle cx="50" cy="50" r="0" fill="none" stroke="currentColor" strokeWidth="2">
-				<animate
-					attributeName="r"
-					repeatCount="indefinite"
-					dur="1s"
-					values="0;40"
-					keyTimes="0;1"
-					keySplines="0 0.2 0.8 1"
-					calcMode="spline"
-					begin="-0.5s"
-				/>
-				<animate
-					attributeName="opacity"
-					repeatCount="indefinite"
-					dur="1s"
-					values="1;0"
-					keyTimes="0;1"
-					keySplines="0.2 0 0.8 1"
-					calcMode="spline"
-					begin="-0.5s"
-				/>
-			</circle>
-		</svg>
-	);
-};
 
 const App: React.FC = () => {
 	const [data, setData] = React.useState<Record<string, any>>({});
@@ -88,10 +29,7 @@ const App: React.FC = () => {
 	const [lanyardLoaded, setLanyardLoaded] = React.useState(false);
 
 	useEffect(() => {
-		fetch(`https://api.kyrie25.me/discord/${DISCORD_ID}`)
-			.then((response) => response.json())
-			.then((json) => setData(json))
-			.catch(() => setData({}));
+		fetchAPI(DISCORD_ID, setData, () => setData({}));
 	}, []);
 
 	useEffect(() => {

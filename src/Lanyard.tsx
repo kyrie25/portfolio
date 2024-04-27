@@ -1,38 +1,98 @@
 import { useLanyardWS } from "use-lanyard";
 import classNames from "classnames";
 import "./Lanyard.scss";
-import { Cat } from "./Cat";
-import { Anchor, waitTwoFrames } from "./index";
+import { Anchor, Cat } from "./Misc";
 import { useEffect } from "react";
+import React from "react";
+import { fetchAPI, ext, waitTwoFrames, processDiscordImage, formatTime, activitiesTypes } from "./utils";
 
-const DISCORD_CDN = "https://cdn.discordapp.com";
+const ActivityImages = ({ activity }) => {
+	const [appIcon, setAppIcon] = React.useState<string | null>(null);
 
-const processDiscordImage = (imageHash: string | undefined, appID?: string) => {
-	return imageHash?.startsWith("mp:external/")
-		? `https://media.discordapp.net/external/${imageHash.replace("mp:external/", "")}`
-		: imageHash?.startsWith("spotify:")
-		? imageHash.replace("spotify:", "https://i.scdn.co/image/")
-		: `${DISCORD_CDN}/app-assets/${appID}/${imageHash}.png`;
+	useEffect(() => {
+		const { assets, application_id } = activity;
+		if (!assets?.large_image && !assets?.small_image) {
+			fetchAPI(
+				application_id,
+				(data) => {
+					setAppIcon(`https://cdn.discordapp.com/app-icons/${application_id}/${data.avatar}.${ext(data.avatar)}?size=256`);
+				},
+				() => setAppIcon(null)
+			);
+		}
+	}, []);
+
+	return (
+		<>
+			{(activity.assets?.large_image || appIcon) && (
+				<img
+					src={appIcon || processDiscordImage(activity.assets?.large_image, activity.application_id)}
+					className="activity-image-large"
+					alt="activity"
+					data-tooltip-id="tooltip"
+					data-tooltip-content={activity.assets?.large_text}
+				/>
+			)}
+			{activity?.assets?.small_image && (
+				<img
+					src={processDiscordImage(activity.assets.small_image, activity.application_id)}
+					className={classNames("activity-image-small", { "no-large": !activity.assets.large_image })}
+					alt="activity"
+					data-tooltip-id="tooltip"
+					data-tooltip-content={activity.assets.small_text}
+				/>
+			)}
+		</>
+	);
 };
 
-export const ext = (hash: string | null) => (hash?.startsWith("a_") ? "gif" : "webp");
+const Activity = ({ activity }) => {
+	const [, forceRender] = React.useReducer((s) => s + 1, 0);
+
+	useEffect(() => {
+		if (activity.timestamps) {
+			const interval = setInterval(() => forceRender(), 1000);
+			return () => clearInterval(interval);
+		}
+	}, [activity.timestamps]);
+
+	return (
+		<div key={activity.name} className="activity">
+			<div className="activity-info">
+				<div className="activity-image">
+					<ActivityImages activity={activity} />
+				</div>
+				<div className="activity-info-text">
+					<p className="activity-info-text-name">
+						{activitiesTypes(activity.type)} <span>{activity?.name}</span>
+					</p>
+					{activity?.details &&
+						(activity.sync_id ? (
+							<Anchor className="activity-info-text-details" href={`https://open.spotify.com/track/${activity.sync_id}`}>
+								{activity.details}
+							</Anchor>
+						) : activity.type === 2 ? (
+							<Anchor
+								className="activity-info-text-details"
+								href={`https://www.youtube.com/results?search_query=${encodeURIComponent(activity.details + " " + activity.state)}`.trim()}
+							>
+								{activity.details}
+							</Anchor>
+						) : (
+							<p className="activity-info-text-details">{activity.details}</p>
+						))}
+					{activity?.state && <p className="activity-info-text-state">{activity.state}</p>}
+					{(activity?.timestamps?.end || activity?.timestamps?.start) && (
+						<p className="activity-info-text-timestamp">{formatTime(activity.timestamps)}</p>
+					)}
+				</div>
+			</div>
+		</div>
+	);
+};
 
 export const Lanyard = ({ id, loaded }) => {
 	const data = useLanyardWS(id);
-	const activitiesTypes = (type: number) => {
-		switch (type) {
-			case 0:
-				return "Playing";
-			case 1:
-				return "Streaming";
-			case 2:
-				return "Listening to";
-			case 3:
-				return "Watching";
-			default:
-				return;
-		}
-	};
 
 	useEffect(() => {
 		if (data) {
@@ -43,71 +103,12 @@ export const Lanyard = ({ id, loaded }) => {
 	return (
 		<>
 			{data?.activities.filter((activity) => activity.type !== 4).length === 0 && <Cat />}
-			{/* {status && (
-				<p className="status">
-					{status?.emoji?.id && (
-						<img
-							src={`${DISCORD_CDN}/emojis/${status.emoji.id}.${ext(status.emoji.id)}`}
-							alt="status"
-							data-tooltip-id="tooltip"
-							data-tooltip-content={`:${status.emoji.name}:`}
-							className="emoji"
-						/>
-					)}
-					{!status?.emoji?.id && status?.emoji?.name}
-					{status?.state}
-				</p>
-			)} */}
 			{!!data?.activities.filter((activity) => activity.type !== 4).length && (
 				<div className="lanyard">
 					{data?.activities
 						.filter((activity) => activity.type !== 4)
 						.map((activity) => (
-							<div key={activity.name} className="activity">
-								<div className="activity-info">
-									<div className="activity-image">
-										{activity?.assets?.large_image && (
-											<img
-												src={processDiscordImage(activity.assets.large_image, activity.application_id)}
-												className="activity-image-large"
-												alt="activity"
-												data-tooltip-id="tooltip"
-												data-tooltip-content={activity.assets.large_text}
-											/>
-										)}
-										{activity?.assets?.small_image && (
-											<img
-												src={processDiscordImage(activity.assets.small_image, activity.application_id)}
-												className={classNames("activity-image-small", { "no-large": !activity.assets.large_image })}
-												alt="activity"
-												data-tooltip-id="tooltip"
-												data-tooltip-content={activity.assets.small_text}
-											/>
-										)}
-									</div>
-									<div className="activity-info-text">
-										<p className="activity-info-text-name">
-											{activitiesTypes(activity.type)} <span>{activity?.name}</span>
-										</p>
-										{activity?.details &&
-											(activity.sync_id ? (
-												<Anchor className="activity-info-text-details" href={`https://open.spotify.com/track/${activity.sync_id}`}>
-													{activity.details}
-												</Anchor>
-											) : activity.type === 2 ? (
-												<Anchor
-													className="activity-info-text-details"
-													href={`https://www.youtube.com/results?search_query=${encodeURIComponent(activity.details + " " + activity.state)}`.trim()}
-												>
-													{activity.details}
-												</Anchor>
-											) : (
-												<p className="activity-info-text-details">{activity.details}</p>
-											))}
-										{activity?.state && <p className="activity-info-text-state">{activity.state}</p>}
-									</div>
-								</div>
-							</div>
+							<Activity activity={activity} />
 						))}
 				</div>
 			)}
