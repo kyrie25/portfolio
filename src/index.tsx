@@ -90,6 +90,7 @@ const App: React.FC = () => {
 
 					<article>
 						<img
+							id="stats"
 							src="https://github-readme-stats.vercel.app/api?username=kyrie25&include_all_commits=true&show_icons=true&count_private=true&custom_title=Kyrie%27s+GitHub+Stats&theme=react&border_color=1d2a38&bg_color=1d2a38"
 						/>
 					</article>
