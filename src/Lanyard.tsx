@@ -100,8 +100,6 @@ export const Lanyard = ({ id, loaded }) => {
 		}
 	}, [data]);
 
-	console.log(data);
-
 	return (
 		<>
 			{data?.activities.filter((activity) => activity.type !== 4).length === 0 && <Cat />}
