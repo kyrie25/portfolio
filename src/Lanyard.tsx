@@ -42,6 +42,26 @@ const ActivityImages = ({ activity }) => {
 					data-tooltip-content={activity.assets.small_text}
 				/>
 			)}
+			{activity?.emoji &&
+				(activity.emoji.id ? (
+					<img
+						src={`https://cdn.discordapp.com/emojis/${activity.emoji.id}.${ext(activity.emoji.animated ? "gif" : "png")}`}
+						className="activity-image-large"
+						alt="emoji"
+						data-tooltip-id="tooltip"
+						data-tooltip-content={activity.emoji.name}
+					/>
+				) : (
+					<span
+						className="activity-image-emoji"
+						role="img"
+						aria-label={activity.emoji.name}
+						data-tooltip-id="tooltip"
+						data-tooltip-content={activity.emoji.name}
+					>
+						{activity.emoji.name}
+					</span>
+				))}
 		</>
 	);
 };
