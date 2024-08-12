@@ -1,7 +1,7 @@
 import { useLanyardWS } from "use-lanyard";
 import classNames from "classnames";
 import "../styles/Lanyard.scss";
-import { Anchor, Cat } from "./Misc";
+import { Anchor, Cat, Image } from "./Misc";
 import { useEffect } from "react";
 import React from "react";
 import { fetchAPI, ext, waitTwoFrames, processDiscordImage, formatTime, activitiesTypes } from "../utils";
@@ -25,16 +25,20 @@ const ActivityImages = ({ activity }) => {
 	return (
 		<>
 			{(activity.assets?.large_image || appIcon) && (
-				<img
+				<Image
 					src={appIcon || processDiscordImage(activity.assets?.large_image, activity.application_id)}
 					className="activity-image-large"
 					alt="activity"
 					data-tooltip-id="tooltip"
 					data-tooltip-content={activity.assets?.large_text}
+					onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+						e.currentTarget.setAttribute("src", "https://lanyard.kyrie25.me/assets/unknown.png");
+						e.currentTarget.classList.add("unknown");
+					}}
 				/>
 			)}
 			{activity?.assets?.small_image && (
-				<img
+				<Image
 					src={processDiscordImage(activity.assets.small_image, activity.application_id)}
 					className={classNames("activity-image-small", { "no-large": !activity.assets.large_image })}
 					alt="activity"
@@ -44,7 +48,7 @@ const ActivityImages = ({ activity }) => {
 			)}
 			{activity?.emoji &&
 				(activity.emoji.id ? (
-					<img
+					<Image
 						src={`https://cdn.discordapp.com/emojis/${activity.emoji.id}.${ext(activity.emoji.animated ? "gif" : "png")}`}
 						className="activity-image-large"
 						alt="emoji"

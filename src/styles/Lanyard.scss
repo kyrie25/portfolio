@@ -71,6 +71,10 @@
 					height: 80px;
 					border: solid 0.5px var(--border-color);
 					border-radius: 10px;
+
+					&.unknown {
+						filter: invert(1);
+					}
 				}
 
 				.activity-image-small {

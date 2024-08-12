@@ -7,8 +7,8 @@ export const Anchor = ({ href, children, ...props }) => (
 	</a>
 );
 
-export const Image = ({ src, alt, className, onLoad = () => {} }: { src: string; alt: string; className?: string; onLoad?: () => void }) => (
-	<img src={src} alt={alt} onLoad={() => waitTwoFrames(onLoad)} className={className} />
+export const Image = ({ onLoad = () => {}, ...props }) => (
+	<img onLoad={() => waitTwoFrames(onLoad)} onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.remove()} {...props} />
 );
 
 export const LoadingIcon = () => {
