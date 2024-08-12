@@ -1,5 +1,5 @@
 import * as React from "react";
-import { waitTwoFrames } from "./utils";
+import { waitTwoFrames } from "../utils";
 
 export const Anchor = ({ href, children, ...props }) => (
 	<a href={href} target="_blank" rel="noreferrer" {...props}>
@@ -7,7 +7,9 @@ export const Anchor = ({ href, children, ...props }) => (
 	</a>
 );
 
-export const Image = ({ src, alt, onLoad }) => <img src={src} alt={alt} onLoad={() => waitTwoFrames(onLoad)} />;
+export const Image = ({ src, alt, className, onLoad = () => {} }: { src: string; alt: string; className?: string; onLoad?: () => void }) => (
+	<img src={src} alt={alt} onLoad={() => waitTwoFrames(onLoad)} className={className} />
+);
 
 export const LoadingIcon = () => {
 	return (

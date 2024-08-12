@@ -7,12 +7,12 @@ import { faGithub, faDiscord, faTwitter } from "@fortawesome/free-brands-svg-ico
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { Tooltip } from "react-tooltip";
 
-import "./index.scss";
+import "./styles/index.scss";
 import "react-tooltip/dist/react-tooltip.css";
 
-import { Lanyard } from "./Lanyard";
+import { Lanyard } from "./components/Lanyard";
 import classNames from "classnames";
-import { LoadingIcon, Anchor, Image } from "./Misc";
+import { LoadingIcon, Anchor, Image } from "./components/Misc";
 import { fetchAPI } from "./utils";
 
 const DISCORD_ID = import.meta.env.VITE_DISCORD_ID;
@@ -45,6 +45,7 @@ const App: React.FC = () => {
 
 	const avatar = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.${ext(data.avatar)}?size=256`;
 	const banner = `https://cdn.discordapp.com/banners/${data.id}/${data.banner}.${ext(data.banner)}?size=2048`;
+	const decoration = `https://cdn.discordapp.com/avatar-decoration-presets/${data.avatar_decoration_data?.asset}.webp`;
 	const oneko = "https://raw.githubusercontent.com/kyrie25/spicetify-oneko/main/assets/oneko/oneko-classic.gif";
 
 	const loading = fetching || !avatarLoaded || !bannerLoaded || !lanyardLoaded || !onekoLoaded;
@@ -70,6 +71,7 @@ const App: React.FC = () => {
 					)}
 					<div className="avatar">
 						{data.avatar && <Image src={avatar} alt="avatar" onLoad={() => setAvatarLoaded(true)} />}
+						{data.avatar_decoration_data && <Image src={decoration} alt="decoration" className="decoration" />}
 						<div className="name">
 							<h1>Kyrie</h1>
 							<span>@kyrie25</span>

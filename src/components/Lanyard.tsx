@@ -1,10 +1,10 @@
 import { useLanyardWS } from "use-lanyard";
 import classNames from "classnames";
-import "./Lanyard.scss";
+import "../styles/Lanyard.scss";
 import { Anchor, Cat } from "./Misc";
 import { useEffect } from "react";
 import React from "react";
-import { fetchAPI, ext, waitTwoFrames, processDiscordImage, formatTime, activitiesTypes } from "./utils";
+import { fetchAPI, ext, waitTwoFrames, processDiscordImage, formatTime, activitiesTypes } from "../utils";
 
 const ActivityImages = ({ activity }) => {
 	const [appIcon, setAppIcon] = React.useState<string | null>(null);

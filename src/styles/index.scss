@@ -132,6 +132,12 @@ main {
 						width: 100px;
 						height: 100px;
 					}
+
+					.decoration {
+						position: absolute;
+						border-radius: 50%;
+						transform: scale(1.2);
+					}
 				}
 			}
 		}
