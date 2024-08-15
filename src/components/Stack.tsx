@@ -51,7 +51,6 @@ export const Stack = () => {
 				<IconWithTooltip icon={SiPhp} tooltip="PHP" href="https://www.php.net/" />
 				<IconWithTooltip icon={SiCplusplus} tooltip="C++" href="https://www.cplusplus.com/" />
 				<IconWithTooltip icon={SiGo} tooltip="Go" href="https://golang.org/" />
-				<IconWithTooltip icon={SiGraphql} tooltip="GraphQL" href="https://graphql.org/" />
 			</div>
 
 			<h3>Front-end stack</h3>
@@ -76,6 +75,7 @@ export const Stack = () => {
 				<IconWithTooltip icon={SiMysql} tooltip="MySQL" href="https://www.mysql.com/" />
 				<IconWithTooltip icon={SiPostgresql} tooltip="PostgreSQL" href="https://www.postgresql.org/" />
 				<IconWithTooltip icon={SiSqlite} tooltip="SQLite" href="https://www.sqlite.org/" />
+				<IconWithTooltip icon={SiGraphql} tooltip="GraphQL" href="https://graphql.org/" />
 			</div>
 		</article>
 	);
