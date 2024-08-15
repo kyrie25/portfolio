@@ -1,0 +1,28 @@
+.stack {
+	display: flex;
+	flex-direction: column;
+
+	> * {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 1rem;
+
+		&.list {
+			border: 1px solid white;
+			padding: 1rem;
+			border-radius: 1rem;
+			margin-bottom: 1rem;
+		}
+
+		.icon {
+			width: 1.5rem;
+			height: 1.5rem;
+
+			&:hover {
+				transform: scale(1.1);
+				transition: transform 0.5s;
+			}
+		}
+	}
+}

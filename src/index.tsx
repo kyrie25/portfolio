@@ -1,11 +1,8 @@
 import React, { useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { inject } from "@vercel/analytics";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faDiscord, faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { Tooltip } from "react-tooltip";
+import { SiDiscord, SiX, SiMinutemailer, SiGithub } from "react-icons/si";
 
 import "./styles/index.scss";
 import "react-tooltip/dist/react-tooltip.css";
@@ -14,6 +11,7 @@ import { Lanyard } from "./components/Lanyard";
 import classNames from "classnames";
 import { LoadingIcon, Anchor, Image } from "./components/Misc";
 import { fetchAPI } from "./utils";
+import { Stack } from "./components/Stack";
 
 const DISCORD_ID = import.meta.env.VITE_DISCORD_ID;
 
@@ -87,9 +85,7 @@ const App: React.FC = () => {
 					</h3>
 				</article>
 
-				<article>
-					<p>Absolute Granblue nerd</p>
-				</article>
+				<Stack />
 
 				<article>
 					<Image
@@ -101,17 +97,17 @@ const App: React.FC = () => {
 				<article>
 					<h3>Contact me via:</h3>
 					<div className="icons">
-						<Anchor href="mailto:contact@kyrie25.me" title="Mail">
-							<FontAwesomeIcon icon={faEnvelope} size="1x" />
+						<Anchor href="mailto:contact@kyrie25.me" title="Mail" data-tooltip-id="tooltip" data-tooltip-content="Email">
+							<SiMinutemailer />
 						</Anchor>
-						<Anchor href={`https://discord.com/users/${data.id}`} title="Discord">
-							<FontAwesomeIcon icon={faDiscord} size="1x" />
+						<Anchor href={`https://discord.com/users/${data.id}`} title="Discord" data-tooltip-id="tooltip" data-tooltip-content="Discord">
+							<SiDiscord />
 						</Anchor>
-						<Anchor href="https://twitter.com/_kyrie_25" title="Twitter">
-							<FontAwesomeIcon icon={faTwitter} size="1x" />
+						<Anchor href="https://twitter.com/_kyrie_25" title="Twitter" data-tooltip-id="tooltip" data-tooltip-content="Twitter">
+							<SiX />
 						</Anchor>
-						<Anchor href="https://github.com/kyrie25" title="GitHub">
-							<FontAwesomeIcon icon={faGithub} size="1x" />
+						<Anchor href="https://github.com/kyrie25" title="GitHub" data-tooltip-id="tooltip" data-tooltip-content="GitHub">
+							<SiGithub />
 						</Anchor>
 					</div>
 				</article>
