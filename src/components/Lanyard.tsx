@@ -126,8 +126,11 @@ export const Lanyard = ({ id, loaded }) => {
 
 	return (
 		<>
-			{data?.activities.filter((activity) => ![4, 6].includes(activity.type)).length === 0 ? (
-				<Cat />
+			{data?.activities.filter((activity) => ![4, 6].includes(activity.type)).length !== 0 ? (
+				<>
+					<Cat />
+					{"I'm not doing anything right now"}
+				</>
 			) : (
 				<div className="lanyard">
 					{data?.activities

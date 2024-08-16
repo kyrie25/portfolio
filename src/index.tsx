@@ -79,10 +79,21 @@ const App: React.FC = () => {
 
 				<Lanyard id={DISCORD_ID} loaded={setLanyardLoaded} />
 
-				<article>
-					<h3>
-						Junior full-stack developer, CS undergraduate at fit@<Anchor href="https://en.hcmus.edu.vn/">hcmus</Anchor>
-					</h3>
+				<article className="intro">
+					<h3>Hi, I'm Kyrie!👋</h3>
+				</article>
+
+				<article className="bio">
+					<p>
+						I'm a junior full-stack developer at <Anchor href="https://designveloper.com/">Designveloper</Anchor> and a CS undergraduate at fit@
+						<Anchor href="https://en.hcmus.edu.vn/">hcmus</Anchor>. Starting as a self-taught developer and have been coding since 2021, my expertise
+						focuses mainly on web & app development.
+						<br />
+						<br />
+						Outside of work, I enjoy playing rougelite and hack-n-slash games (as seen from my{" "}
+						<Anchor href="https://steamcommunity.com/id/kyrie25">Steam</Anchor> profile), and listening to indie music. You can see the songs I'm
+						listening to or the games I'm playing <a href="#">on the top of the page</a>.
+					</p>
 				</article>
 
 				<Stack />
