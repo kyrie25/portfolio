@@ -7,7 +7,7 @@ export const Anchor = ({ href, children, ...props }) => (
 	</a>
 );
 
-export const Image = ({ onLoad = () => {}, ...props }) => (
+export const Image = ({ onLoad = () => {}, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => (
 	<img onLoad={() => waitTwoFrames(onLoad)} onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.remove()} {...props} />
 );
 
@@ -93,6 +93,34 @@ export const Cat = () => {
 			// onClick={() => setCat(Math.floor(Math.random() * cats.length))}
 		>
 			{cats[cat]}
+		</span>
+	);
+};
+
+export const Clock = () => {
+	const [time, setTime] = React.useState("");
+
+	React.useEffect(() => {
+		const interval = setInterval(
+			() =>
+				setTime(
+					new Intl.DateTimeFormat([], {
+						timeZone: "Asia/Ho_Chi_Minh",
+						hour: "numeric",
+						minute: "numeric",
+						second: "numeric",
+						month: "long",
+						day: "numeric",
+					}).format(new Date())
+				),
+			1000
+		);
+		return () => clearInterval(interval);
+	}, []);
+
+	return (
+		<span>
+			{"It is currently "} <code>{time}</code> {" for me."}
 		</span>
 	);
 };

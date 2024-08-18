@@ -44,9 +44,8 @@ const App: React.FC = () => {
 	const avatar = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.${ext(data.avatar)}?size=256`;
 	const banner = `https://cdn.discordapp.com/banners/${data.id}/${data.banner}.${ext(data.banner)}?size=2048`;
 	const decoration = `https://cdn.discordapp.com/avatar-decoration-presets/${data.avatar_decoration_data?.asset}.webp`;
-	const oneko = "https://raw.githubusercontent.com/kyrie25/spicetify-oneko/main/assets/oneko/oneko-classic.gif";
 
-	const loading = fetching || !avatarLoaded || !bannerLoaded || !lanyardLoaded || !onekoLoaded;
+	const loading = fetching || !avatarLoaded || !bannerLoaded || !lanyardLoaded;
 
 	return (
 		<main>
@@ -60,26 +59,21 @@ const App: React.FC = () => {
 				<LoadingIcon />
 			</div>
 			<section>
-				<header>
-					{data.banner && (
-						<div className="banner" style={{ backgroundImage: `url(${banner})` }}>
+				{data.banner && (
+					<header>
+						<div className="banner">
 							<Image src={banner} alt="banner" onLoad={() => setBannerLoaded(true)} />
-							<Image src={oneko} alt="oneko" onLoad={() => setOnekoLoaded(true)} />
 						</div>
-					)}
-					<div className="avatar">
-						{data.avatar && <Image src={avatar} alt="avatar" onLoad={() => setAvatarLoaded(true)} />}
-						{data.avatar_decoration_data && <Image src={decoration} alt="decoration" className="decoration" />}
-						<div className="name">
-							<h1>Kyrie</h1>
-							<span>@kyrie25</span>
-						</div>
-					</div>
-				</header>
+					</header>
+				)}
 
 				<Lanyard id={DISCORD_ID} loaded={setLanyardLoaded} />
 
 				<article className="intro">
+					<div className="avatar">
+						{data.avatar && <Image src={avatar} alt="avatar" onLoad={() => setAvatarLoaded(true)} />}
+						{data.avatar_decoration_data && <Image src={decoration} alt="decoration" className="decoration" />}
+					</div>
 					<h3>Hi, I'm Kyrie!👋</h3>
 				</article>
 

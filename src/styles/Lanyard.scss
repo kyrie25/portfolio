@@ -4,6 +4,13 @@
 	user-select: none;
 }
 
+code {
+	background-color: #333;
+	color: #fff;
+	padding: 0.25rem;
+	border-radius: 0.25rem;
+}
+
 .lanyard {
 	position: relative;
 	display: flex;
@@ -15,7 +22,7 @@
 	margin-right: 1rem;
 
 	.activity {
-		height: 120px;
+		height: 100px;
 		width: 400px;
 		// background-color: inherit;
 		z-index: 0;

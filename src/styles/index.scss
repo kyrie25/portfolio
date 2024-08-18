@@ -53,21 +53,28 @@ main {
 
 		header {
 			width: 100%;
+			max-width: 700px;
 			padding: 1rem;
 			position: relative;
 			display: flex;
 			justify-content: center;
+			align-items: center;
 
-			&:has(.banner)::before {
-				content: "";
-				width: 32px;
-				height: 32px;
-				top: -12px;
-				right: 40px;
-				position: absolute;
-				image-rendering: pixelated;
-				background-image: url("https://raw.githubusercontent.com/kyrie25/spicetify-oneko/main/assets/oneko/oneko-classic.gif");
-				animation: oneko 1s infinite;
+			&:has(.banner) {
+				// Keep the Discord banenr aspect ratio
+				aspect-ratio: 600 / 210;
+
+				.banner::before {
+					content: "";
+					width: 32px;
+					height: 32px;
+					top: -12px;
+					right: 40px;
+					position: absolute;
+					image-rendering: pixelated;
+					background-image: url("https://raw.githubusercontent.com/kyrie25/spicetify-oneko/main/assets/oneko/oneko-classic.gif");
+					animation: oneko 1s infinite;
+				}
 			}
 
 			@keyframes oneko {
@@ -93,26 +100,46 @@ main {
 				gap: 2rem;
 
 				&.banner {
+					justify-content: center;
 					position: absolute;
 					width: 90%;
-					// Keep in a 5:2 ratio
-					// padding-top: 45%;
+					// Keep the Discord banenr aspect ratio
+					aspect-ratio: 600 / 210;
+					height: auto;
 
 					border-radius: 1em;
-
-					background-position: center;
-					background-repeat: no-repeat;
-					background-size: cover;
-					filter: brightness(0.75) blur(1px);
-
 					z-index: -1;
 
 					img {
-						display: none;
+						border-radius: 1em;
+						width: 100%;
+						height: 100%;
 					}
 				}
+			}
+		}
 
-				&.avatar {
+		article {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			margin-bottom: 1rem;
+			width: 100%;
+
+			a {
+				color: white;
+			}
+
+			&.intro {
+				margin-top: 1rem;
+
+				.avatar {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					gap: 1rem;
+					padding: 1rem;
 					.name {
 						flex-direction: column;
 						justify-content: center;
@@ -139,23 +166,6 @@ main {
 						transform: scale(1.2);
 					}
 				}
-			}
-		}
-
-		article {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			margin-bottom: 1rem;
-			width: 100%;
-
-			a {
-				color: white;
-			}
-
-			&.intro {
-				margin-top: 1rem;
 			}
 
 			.icons {

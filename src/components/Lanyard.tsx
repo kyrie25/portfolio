@@ -1,7 +1,7 @@
 import { useLanyardWS } from "use-lanyard";
 import classNames from "classnames";
 import "../styles/Lanyard.scss";
-import { Anchor, Cat, Image } from "./Misc";
+import { Anchor, Cat, Clock, Image } from "./Misc";
 import { useEffect } from "react";
 import React from "react";
 import { fetchAPI, ext, waitTwoFrames, processDiscordImage, formatTime, activitiesTypes } from "../utils";
@@ -129,7 +129,7 @@ export const Lanyard = ({ id, loaded }) => {
 			{data?.activities.filter((activity) => ![4, 6].includes(activity.type)).length === 0 ? (
 				<>
 					<Cat />
-					{"I'm not doing anything right now"}
+					<Clock />
 				</>
 			) : (
 				<div className="lanyard">
