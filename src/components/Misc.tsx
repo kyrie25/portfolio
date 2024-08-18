@@ -98,23 +98,19 @@ export const Cat = () => {
 };
 
 export const Clock = () => {
-	const [time, setTime] = React.useState("");
+	const formatter = new Intl.DateTimeFormat([], {
+		timeZone: "Asia/Ho_Chi_Minh",
+		hour: "numeric",
+		minute: "numeric",
+		second: "numeric",
+		month: "long",
+		day: "numeric",
+	});
+
+	const [time, setTime] = React.useState(formatter.format(new Date()));
 
 	React.useEffect(() => {
-		const interval = setInterval(
-			() =>
-				setTime(
-					new Intl.DateTimeFormat([], {
-						timeZone: "Asia/Ho_Chi_Minh",
-						hour: "numeric",
-						minute: "numeric",
-						second: "numeric",
-						month: "long",
-						day: "numeric",
-					}).format(new Date())
-				),
-			1000
-		);
+		const interval = setInterval(() => setTime(formatter.format(new Date())), 1000);
 		return () => clearInterval(interval);
 	}, []);
 
