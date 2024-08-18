@@ -22,21 +22,22 @@ const App: React.FC = () => {
 
 	// Loading states
 	// I dont wanna refactor this
-	const [fetching, setFetching] = React.useState(true);
-	const [avatarLoaded, setAvatarLoaded] = React.useState(false);
-	const [bannerLoaded, setBannerLoaded] = React.useState(false);
-	const [onekoLoaded, setOnekoLoaded] = React.useState(false);
-	const [lanyardLoaded, setLanyardLoaded] = React.useState(false);
+	const [loadingState, setLoadingState] = React.useState({
+		avatar: false,
+		banner: false,
+		lanyard: false,
+	});
 
 	useEffect(() => {
 		fetchAPI(DISCORD_ID, setData, () => setData({}));
 	}, []);
 
 	useEffect(() => {
-		setFetching(false);
-		setAvatarLoaded(!data.avatar);
-		setBannerLoaded(!data.banner);
-		setOnekoLoaded(!data.banner);
+		setLoadingState((prevState) => ({
+			...prevState,
+			avatar: !data.avatar,
+			banner: !data.banner,
+		}));
 	}, [data]);
 
 	const ext = (hash: string | null) => (hash?.startsWith("a_") ? "gif" : "webp");
@@ -45,7 +46,7 @@ const App: React.FC = () => {
 	const banner = `https://cdn.discordapp.com/banners/${data.id}/${data.banner}.${ext(data.banner)}?size=2048`;
 	const decoration = `https://cdn.discordapp.com/avatar-decoration-presets/${data.avatar_decoration_data?.asset}.webp`;
 
-	const loading = fetching || !avatarLoaded || !bannerLoaded || !lanyardLoaded;
+	const loading = !Object.values(loadingState).every((state) => state);
 
 	return (
 		<main>
@@ -62,16 +63,16 @@ const App: React.FC = () => {
 				{data.banner && (
 					<header>
 						<div className="banner">
-							<Image src={banner} alt="banner" onLoad={() => setBannerLoaded(true)} />
+							<Image src={banner} alt="banner" onLoad={() => setLoadingState((prevState) => ({ ...prevState, banner: true }))} />
 						</div>
 					</header>
 				)}
 
-				<Lanyard id={DISCORD_ID} loaded={setLanyardLoaded} />
+				<Lanyard id={DISCORD_ID} loaded={(state) => setLoadingState((prevState) => ({ ...prevState, lanyard: state }))} />
 
 				<article className="intro">
 					<div className="avatar">
-						{data.avatar && <Image src={avatar} alt="avatar" onLoad={() => setAvatarLoaded(true)} />}
+						{data.avatar && <Image src={avatar} alt="avatar" onLoad={() => setLoadingState((prevState) => ({ ...prevState, avatar: true }))} />}
 						{data.avatar_decoration_data && <Image src={decoration} alt="decoration" className="decoration" />}
 					</div>
 					<h3>Hi, I'm Kyrie!👋</h3>

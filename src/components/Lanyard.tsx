@@ -115,7 +115,7 @@ const Activity = ({ activity }) => {
 	);
 };
 
-export const Lanyard = ({ id, loaded }) => {
+export const Lanyard = ({ id, loaded }: { id: `${bigint}`; loaded: (loaded: boolean) => void }) => {
 	const data = useLanyardWS(id);
 
 	useEffect(() => {
