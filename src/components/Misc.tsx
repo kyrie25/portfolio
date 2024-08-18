@@ -1,5 +1,6 @@
 import * as React from "react";
 import { waitTwoFrames } from "../utils";
+import { FaClock, FaCalendarAlt } from "react-icons/fa";
 
 export const Anchor = ({ href, children, ...props }) => (
 	<a href={href} target="_blank" rel="noreferrer" {...props}>
@@ -98,25 +99,55 @@ export const Cat = () => {
 };
 
 export const Clock = () => {
-	const formatter = new Intl.DateTimeFormat([], {
+	const dateFormatter = new Intl.DateTimeFormat([], {
+		timeZone: "Asia/Ho_Chi_Minh",
+		weekday: "short",
+		month: "short",
+		day: "numeric",
+	});
+
+	const timeFormatter = new Intl.DateTimeFormat([], {
 		timeZone: "Asia/Ho_Chi_Minh",
 		hour: "numeric",
 		minute: "numeric",
 		second: "numeric",
-		month: "long",
-		day: "numeric",
+		hour12: true,
 	});
 
-	const [time, setTime] = React.useState(formatter.format(new Date()));
+	const [date, setDate] = React.useState(dateFormatter.format(new Date()));
+	const [time, setTime] = React.useState(timeFormatter.format(new Date()));
+	const [percentOfDay, setPercentOfDay] = React.useState<number>(0);
 
 	React.useEffect(() => {
-		const interval = setInterval(() => setTime(formatter.format(new Date())), 1000);
+		const interval = setInterval(() => {
+			setDate(dateFormatter.format(new Date()));
+			setTime(timeFormatter.format(new Date()));
+
+			const now = new Date();
+			const start = new Date(now);
+			start.setHours(0, 0, 0, 0);
+			const end = new Date(now);
+			end.setHours(23, 59, 59, 999);
+			const percent = (now.getTime() - start.getTime()) / (end.getTime() - start.getTime());
+			setPercentOfDay(percent);
+		}, 1000);
 		return () => clearInterval(interval);
 	}, []);
 
 	return (
-		<span>
-			{"It is currently "} <code>{time}</code> {" for me."}
-		</span>
+		<>
+			<span className="clock-header">Local Time:</span>
+			<div className="clock">
+				<div className="date-widget">
+					<FaCalendarAlt style={{ paddingRight: "0.5rem" }} />
+					{date}
+				</div>
+				<div className="time-widget">
+					<FaClock style={{ paddingRight: "0.5rem" }} />
+					{time}
+					<div className="time-widget-filler" style={{ transform: `scaleX(${percentOfDay})` }} />
+				</div>
+			</div>
+		</>
 	);
 };
