@@ -130,9 +130,9 @@ export const Lanyard = ({ id, loaded }) => {
 				<Cat />
 				<Clock />
 			</div>
-			{data?.activities.filter((activity) => ![4, 6].includes(activity.type)).length !== 0 && (
+			{data?.activities?.filter((activity) => ![4, 6].includes(activity.type)).length && (
 				<div className="lanyard">
-					{data?.activities
+					{data.activities
 						.filter((activity) => ![4, 6].includes(activity.type))
 						.map((activity) => (
 							<Activity activity={activity} key={activity.id} />
