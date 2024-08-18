@@ -130,7 +130,7 @@ export const Lanyard = ({ id, loaded }: { id: `${bigint}`; loaded: (loaded: bool
 				<Cat />
 				<Clock />
 			</div>
-			{data?.activities?.filter((activity) => ![4, 6].includes(activity.type)).length && (
+			{!!data?.activities?.filter((activity) => ![4, 6].includes(activity.type)).length && (
 				<div className="lanyard">
 					{data.activities
 						.filter((activity) => ![4, 6].includes(activity.type))
