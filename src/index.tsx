@@ -18,7 +18,7 @@ const DISCORD_ID = import.meta.env.VITE_DISCORD_ID;
 inject();
 
 const App: React.FC = () => {
-	const [data, setData] = React.useState<Record<string, any>>({});
+	const [data, setData] = React.useState<Record<any, any> | null>(null);
 
 	// Loading states
 	// I dont wanna refactor this
@@ -35,18 +35,18 @@ const App: React.FC = () => {
 	useEffect(() => {
 		setLoadingState((prevState) => ({
 			...prevState,
-			avatar: !data.avatar,
-			banner: !data.banner,
+			avatar: !data?.avatar,
+			banner: !data?.banner,
 		}));
 	}, [data]);
 
 	const ext = (hash: string | null) => (hash?.startsWith("a_") ? "gif" : "webp");
 
-	const avatar = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.${ext(data.avatar)}?size=256`;
-	const banner = `https://cdn.discordapp.com/banners/${data.id}/${data.banner}.${ext(data.banner)}?size=2048`;
-	const decoration = `https://cdn.discordapp.com/avatar-decoration-presets/${data.avatar_decoration_data?.asset}.webp`;
+	const avatar = `https://cdn.discordapp.com/avatars/${data?.id}/${data?.avatar}.${ext(data?.avatar)}?size=256`;
+	const banner = `https://cdn.discordapp.com/banners/${data?.id}/${data?.banner}.${ext(data?.banner)}?size=2048`;
+	const decoration = `https://cdn.discordapp.com/avatar-decoration-presets/${data?.avatar_decoration_data?.asset}.webp`;
 
-	const loading = !Object.values(loadingState).every((state) => state);
+	const loading = !data && !Object.values(loadingState).every((state) => state);
 
 	return (
 		<main>
@@ -60,7 +60,7 @@ const App: React.FC = () => {
 				<LoadingIcon />
 			</div>
 			<section>
-				{data.banner && (
+				{data?.banner && (
 					<header>
 						<div className="banner">
 							<Image src={banner} alt="banner" onLoad={() => setLoadingState((prevState) => ({ ...prevState, banner: true }))} />
@@ -72,8 +72,8 @@ const App: React.FC = () => {
 
 				<article className="intro">
 					<div className="avatar">
-						{data.avatar && <Image src={avatar} alt="avatar" onLoad={() => setLoadingState((prevState) => ({ ...prevState, avatar: true }))} />}
-						{data.avatar_decoration_data && <Image src={decoration} alt="decoration" className="decoration" />}
+						{data?.avatar && <Image src={avatar} alt="avatar" onLoad={() => setLoadingState((prevState) => ({ ...prevState, avatar: true }))} />}
+						{data?.avatar_decoration_data && <Image src={decoration} alt="decoration" className="decoration" />}
 					</div>
 					<h3>Hi, I'm Kyrie!👋</h3>
 				</article>
@@ -106,7 +106,7 @@ const App: React.FC = () => {
 						<Anchor href="mailto:contact@kyrie25.me" title="Mail" data-tooltip-id="tooltip" data-tooltip-content="Email">
 							<SiMinutemailer />
 						</Anchor>
-						<Anchor href={`https://discord.com/users/${data.id}`} title="Discord" data-tooltip-id="tooltip" data-tooltip-content="Discord">
+						<Anchor href={`https://discord.com/users/${data?.id}`} title="Discord" data-tooltip-id="tooltip" data-tooltip-content="Discord">
 							<SiDiscord />
 						</Anchor>
 						<Anchor href="https://twitter.com/_kyrie_25" title="Twitter" data-tooltip-id="tooltip" data-tooltip-content="Twitter">
