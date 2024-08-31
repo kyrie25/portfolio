@@ -105,7 +105,12 @@ const Activity = ({ activity }) => {
 						) : (
 							<p className="activity-info-text-details">{activity.details}</p>
 						))}
-					{activity?.state && <p className="activity-info-text-state">{activity.state}</p>}
+					{activity?.state && (
+						<p className="activity-info-text-state">
+							{activity.state}
+							{activity.party?.size && ` (${activity.party.size[0]} of ${activity.party.size[1]})`}
+						</p>
+					)}
 					{(activity?.timestamps?.end || activity?.timestamps?.start) && (
 						<p className="activity-info-text-timestamp">{formatTime(activity.timestamps)}</p>
 					)}
