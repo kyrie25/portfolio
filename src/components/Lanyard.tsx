@@ -1,10 +1,12 @@
+import React, { useEffect } from "react";
 import { useLanyardWS } from "use-lanyard";
 import classNames from "classnames";
-import "../styles/Lanyard.scss";
-import { Anchor, Cat, Clock, Image } from "./Misc";
-import { useEffect } from "react";
-import React from "react";
+import * as Icons from "react-icons/si";
+
 import { fetchAPI, ext, waitTwoFrames, processDiscordImage, formatTime, activitiesTypes } from "../utils";
+import { Anchor, Cat, Clock, Image } from "./Misc";
+
+import "../styles/Lanyard.scss";
 
 const ActivityImages = ({ activity }) => {
 	const [appIcon, setAppIcon] = React.useState<string | null>(null);
@@ -72,6 +74,7 @@ const ActivityImages = ({ activity }) => {
 
 const Activity = ({ activity }) => {
 	const [, forceRender] = React.useReducer((s) => s + 1, 0);
+	const [icon, setIcon] = React.useState<string | null>(null);
 
 	useEffect(() => {
 		if (activity.timestamps) {
@@ -79,6 +82,12 @@ const Activity = ({ activity }) => {
 			return () => clearInterval(interval);
 		}
 	}, [activity.timestamps]);
+
+	useEffect(() => {
+		const iconList = Object.keys(Icons);
+		const icon = iconList.find((icon) => icon.replace("Si", "").toLowerCase() === activity.name.replaceAll(" ", "").toLowerCase());
+		setIcon(icon ?? null);
+	}, [activity.name]);
 
 	return (
 		<div key={activity.name} className="activity">
@@ -88,7 +97,7 @@ const Activity = ({ activity }) => {
 				</div>
 				<div className="activity-info-text">
 					<p className="activity-info-text-name">
-						{activitiesTypes(activity.type)} <span>{activity?.name}</span>
+						{activitiesTypes(activity.type)} {icon && Icons[icon as keyof typeof Icons]({ color: "#fff" })} <span>{activity?.name}</span>
 					</p>
 					{activity?.details &&
 						(activity.sync_id ? (
