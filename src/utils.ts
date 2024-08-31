@@ -1,11 +1,14 @@
 const DISCORD_CDN = "https://cdn.discordapp.com";
 
-export const formatTime = (timestamps?: { start: number; end?: number }) => {
+export const formatTime = (
+	timestamps?: { start?: number; end?: number },
+	noText = false
+) => {
 	if (!timestamps) return;
 	const { start, end } = timestamps;
 	if (!start && !end) return;
 	// End timestamps is prioritized over start timestamps and displayed accordingly.
-	const startTime = new Date(end || start).getTime();
+	const startTime = new Date((end || start)!).getTime();
 	const endTime = Date.now();
 	let difference = end
 		? (startTime - endTime) / 1000
@@ -25,11 +28,13 @@ export const formatTime = (timestamps?: { start: number; end?: number }) => {
 
 	const secondsDifference = Math.floor(difference);
 
-	return `${
+	let str = `${
 		hoursDifference >= 1 ? `${`0${hoursDifference}`.slice(-2)}:` : ""
-	}${`0${minutesDifference}`.slice(-2)}:${`0${secondsDifference}`.slice(-2)} ${
-		end ? "left" : "elapsed"
-	}`;
+	}${`0${minutesDifference}`.slice(-2)}:${`0${secondsDifference}`.slice(-2)}`;
+
+	if (!noText) str += end ? " left" : " elapsed";
+
+	return str;
 };
 
 export const fetchAPI = (id, callback, onError) =>

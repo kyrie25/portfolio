@@ -111,8 +111,31 @@ const Activity = ({ activity }) => {
 							{activity.party?.size && ` (${activity.party.size[0]} of ${activity.party.size[1]})`}
 						</p>
 					)}
-					{(activity?.timestamps?.end || activity?.timestamps?.start) && (
-						<p className="activity-info-text-timestamp">{formatTime(activity.timestamps)}</p>
+					{activity?.timestamps?.end && activity?.timestamps?.start ? (
+						<div className="activity-info-progress">
+							<span className="activity-info-text-timestamp">{formatTime({ start: activity.timestamps.start }, true)}</span>
+							<div className="activity-info-progress-bar">
+								<div className="activity-info-progress-bar-container">
+									<div
+										className="activity-info-progress-bar-fill"
+										style={{
+											width: `${
+												((Date.now() - new Date(activity.timestamps.start).getTime()) /
+													(new Date(activity.timestamps.end).getTime() - new Date(activity.timestamps.start).getTime())) *
+												100
+											}%`,
+										}}
+									/>
+								</div>
+							</div>
+							<span className="activity-info-text-timestamp">
+								{formatTime({ end: Date.now() + (activity.timestamps.end - activity.timestamps.start) }, true)}
+							</span>
+						</div>
+					) : (
+						(activity?.timestamps?.end || activity?.timestamps?.start) && (
+							<p className="activity-info-text-timestamp">{formatTime(activity.timestamps)}</p>
+						)
 					)}
 				</div>
 			</div>
