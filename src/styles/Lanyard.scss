@@ -72,6 +72,10 @@
 		display: flex;
 		justify-content: center;
 
+		&:has(.activity-info-progress) {
+			min-height: 118px;
+		}
+
 		&:nth-child(odd):not(:only-child) {
 			justify-content: left;
 			margin-right: auto;
