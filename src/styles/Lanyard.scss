@@ -82,6 +82,11 @@
 			margin-right: auto;
 		}
 
+		&.centered {
+			justify-content: center !important;
+			margin: 0;
+		}
+
 		&:nth-child(even) {
 			justify-content: right;
 			margin-left: auto;
@@ -133,6 +138,9 @@
 				}
 
 				.activity-image-small {
+					position: absolute;
+					top: 60px;
+					right: -5px;
 					width: 30px;
 					height: 30px;
 					border-radius: 50%;
