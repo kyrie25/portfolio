@@ -3,7 +3,7 @@ import { useLanyardWS } from "use-lanyard";
 import classNames from "classnames";
 import * as Icons from "react-icons/si";
 
-import { fetchAPI, ext, waitTwoFrames, processDiscordImage, formatTime, activitiesTypes } from "../utils";
+import { fetchAPI, ext, waitTwoFrames, processDiscordImage, formatTime, activitiesTypes, getTimeFormatString } from "../utils";
 import { Anchor, Cat, Clock, Image } from "./Misc";
 
 import "../styles/Lanyard.scss";
@@ -138,7 +138,7 @@ const Activity = ({ activity }) => {
 								</div>
 							</div>
 							<span className="activity-info-text-timestamp">
-								{formatTime({ end: Date.now() + (activity.timestamps.end - activity.timestamps.start) }, true)}
+								{getTimeFormatString((activity.timestamps.end - activity.timestamps.start) / 1000)}
 							</span>
 						</div>
 					) : (
