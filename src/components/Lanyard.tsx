@@ -72,7 +72,6 @@ const ActivityImages = ({ activity }) => {
 
 const Activity = ({ activity }) => {
 	const [, forceRender] = React.useReducer((s) => s + 1, 0);
-	const [centered, setCentered] = React.useState(false);
 
 	useEffect(() => {
 		if (activity.timestamps) {
@@ -81,17 +80,8 @@ const Activity = ({ activity }) => {
 		}
 	}, [activity.timestamps]);
 
-	useEffect(() => {
-		const resizeObserver = new ResizeObserver((entries) => {
-			const { width } = entries[0].contentRect;
-			setCentered(Math.floor(width / 400) === 1);
-		});
-		resizeObserver.observe(document.querySelector(".lanyard"));
-		return () => resizeObserver.disconnect();
-	}, []);
-
 	return (
-		<div key={activity.name} className={classNames("activity", { centered })}>
+		<div key={activity.name} className="activity">
 			<div className="activity-info">
 				<div className="activity-image">
 					<ActivityImages activity={activity} />
@@ -155,11 +145,23 @@ const Activity = ({ activity }) => {
 
 export const Lanyard = ({ id, loaded }: { id: `${bigint}`; loaded: (loaded: boolean) => void }) => {
 	const data = useLanyardWS(id);
+	const [centered, setCentered] = React.useState(false);
+	const lanyard = React.useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		if (data) {
 			waitTwoFrames(() => loaded(true));
 		}
+	}, [data]);
+
+	useEffect(() => {
+		const resizeObserver = new ResizeObserver((entries) => {
+			const { width } = entries[0].contentRect;
+			setCentered(Math.floor(width / 300) === 1);
+		});
+
+		if (lanyard.current) resizeObserver.observe(lanyard.current);
+		return () => resizeObserver.disconnect();
 	}, [data]);
 
 	return (
@@ -169,7 +171,7 @@ export const Lanyard = ({ id, loaded }: { id: `${bigint}`; loaded: (loaded: bool
 				<Clock />
 			</div>
 			{!!data?.activities?.filter((activity) => ![4, 6].includes(activity.type)).length && (
-				<div className="lanyard">
+				<div className={classNames("lanyard", { centered })} ref={lanyard}>
 					{data.activities
 						.filter((activity) => ![4, 6].includes(activity.type))
 						.map((activity) => (

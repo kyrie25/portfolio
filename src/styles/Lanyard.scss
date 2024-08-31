@@ -66,6 +66,11 @@
 	margin-right: 1rem;
 	padding: 1rem;
 
+	&.centered .activity {
+		justify-content: center !important;
+		margin: 0;
+	}
+
 	.activity {
 		width: 400px;
 		// background-color: inherit;
@@ -80,11 +85,6 @@
 		&:nth-child(odd):not(:only-child) {
 			justify-content: left;
 			margin-right: auto;
-		}
-
-		&.centered {
-			justify-content: center !important;
-			margin: 0;
 		}
 
 		&:nth-child(even) {
