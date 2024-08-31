@@ -122,7 +122,10 @@ const Activity = ({ activity }) => {
 					)}
 					{activity?.timestamps?.end && activity?.timestamps?.start ? (
 						<div className="activity-info-progress">
-							<span className="activity-info-text-timestamp">{formatTime({ start: activity.timestamps.start }, true)}</span>
+							<span className="activity-info-text-timestamp">
+								{/* Elapsed time should not exceed the total time */}
+								{formatTime({ start: activity.timestamps.start }, true)}
+							</span>
 							<div className="activity-info-progress-bar">
 								<div className="activity-info-progress-bar-container">
 									<div
@@ -138,7 +141,8 @@ const Activity = ({ activity }) => {
 								</div>
 							</div>
 							<span className="activity-info-text-timestamp">
-								{getTimeFormatString((activity.timestamps.end - activity.timestamps.start) / 1000)}
+								{/* Total time */}
+								{formatTime({ end: Date.now() + (activity.timestamps.end - activity.timestamps.start) }, true)}
 							</span>
 						</div>
 					) : (

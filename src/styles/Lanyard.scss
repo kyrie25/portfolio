@@ -66,9 +66,29 @@
 	margin-right: 1rem;
 	padding: 1rem;
 
-	&.centered .activity {
-		justify-content: center !important;
-		margin: 0;
+	&.centered {
+		width: fit-content;
+
+		.activity {
+			justify-content: left !important;
+			margin: 0 !important;
+			width: 100%;
+			display: block;
+
+			.activity-info {
+				flex-direction: row !important;
+				height: 100%;
+
+				.activity-image {
+					margin-right: 15px !important;
+					margin-left: 0 !important;
+				}
+
+				* {
+					text-align: left !important;
+				}
+			}
+		}
 	}
 
 	.activity {
@@ -149,6 +169,8 @@
 
 					// If no large image, remove the margin
 					&.no-large {
+						top: 0;
+						right: 0;
 						width: 80px;
 						height: 80px;
 						border: solid 0.5px var(--border-color);
