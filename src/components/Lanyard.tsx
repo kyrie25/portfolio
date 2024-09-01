@@ -173,7 +173,7 @@ export const Lanyard = ({ id, loaded }: { id: `${bigint}`; loaded: (loaded: bool
 			setCentered(Math.floor(width / 300) <= 1);
 		});
 
-		if (lanyard.current) resizeObserver.observe(lanyard.current);
+		if (lanyard.current?.parentElement) resizeObserver.observe(lanyard.current.parentElement);
 		return () => resizeObserver.disconnect();
 	}, [data]);
 
