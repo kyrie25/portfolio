@@ -13,10 +13,12 @@ const ActivityImages = ({ activity }) => {
 
 	useEffect(() => {
 		const { assets, application_id } = activity;
-		if (!assets?.large_image && !assets?.small_image) {
+		if (!assets?.large_image && !assets?.small_image && application_id) {
 			fetchAPI(
 				application_id,
 				async (data) => {
+					if (!data.avatar) return;
+
 					(await check404(`https://cdn.discordapp.com/app-icons/${application_id}/${data.avatar}.${ext(data.avatar)}?size=256`))
 						? setAppIcon(`https://cdn.discordapp.com/app-icons/${application_id}/${data.avatar}.${ext(data.avatar)}?size=256`)
 						: setAppIcon(`https://cdn.discordapp.com/avatars/${application_id}/${data.avatar}.${ext(data.avatar)}?size=256`);
