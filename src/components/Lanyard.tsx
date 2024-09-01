@@ -3,7 +3,7 @@ import { useLanyardWS } from "use-lanyard";
 import classNames from "classnames";
 import * as Icons from "react-icons/si";
 
-import { fetchAPI, ext, waitTwoFrames, processDiscordImage, formatTime, activitiesTypes, getTimeFormatString } from "../utils";
+import { fetchAPI, ext, waitTwoFrames, processDiscordImage, formatTime, activitiesTypes } from "../utils";
 import { Anchor, Cat, Clock, Image } from "./Misc";
 
 import "../styles/Lanyard.scss";
@@ -85,7 +85,14 @@ const Activity = ({ activity }) => {
 
 	useEffect(() => {
 		const iconList = Object.keys(Icons);
-		const icon = iconList.find((icon) => icon.replace("Si", "").toLowerCase() === activity.name.replaceAll(" ", "").toLowerCase());
+		const icon = iconList.find(
+			(icon) =>
+				icon.replace("Si", "").toLowerCase() ===
+				activity.name
+					.replaceAll(" ", "")
+					.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
+					.toLowerCase()
+		);
 		setIcon(icon ?? null);
 	}, [activity.name]);
 
