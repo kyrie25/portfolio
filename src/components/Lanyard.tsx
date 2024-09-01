@@ -3,7 +3,7 @@ import { useLanyardWS } from "use-lanyard";
 import classNames from "classnames";
 import * as Icons from "react-icons/si";
 
-import { fetchAPI, ext, waitTwoFrames, processDiscordImage, formatTime, activitiesTypes } from "../utils";
+import { fetchAPI, ext, waitTwoFrames, processDiscordImage, formatTime, activitiesTypes, check404 } from "../utils";
 import { Anchor, Cat, Clock, Image } from "./Misc";
 
 import "../styles/Lanyard.scss";
@@ -16,8 +16,10 @@ const ActivityImages = ({ activity }) => {
 		if (!assets?.large_image && !assets?.small_image) {
 			fetchAPI(
 				application_id,
-				(data) => {
-					setAppIcon(`https://cdn.discordapp.com/app-icons/${application_id}/${data.avatar}.${ext(data.avatar)}?size=256`);
+				async (data) => {
+					(await check404(`https://cdn.discordapp.com/app-icons/${application_id}/${data.avatar}.${ext(data.avatar)}?size=256`))
+						? setAppIcon(`https://cdn.discordapp.com/app-icons/${application_id}/${data.avatar}.${ext(data.avatar)}?size=256`)
+						: setAppIcon(`https://cdn.discordapp.com/avatars/${application_id}/${data.avatar}.${ext(data.avatar)}?size=256`);
 				},
 				() => setAppIcon(null)
 			);

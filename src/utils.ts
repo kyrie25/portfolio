@@ -49,6 +49,14 @@ export const fetchAPI = (id, callback, onError) =>
 		.then(callback)
 		.catch(onError);
 
+export const check404 = (url) =>
+	fetch(url, { method: "HEAD" })
+		.then((response) => {
+			if (response.status === 404) return false;
+			return true;
+		})
+		.catch(() => false);
+
 export const waitTwoFrames = (callback) =>
 	requestAnimationFrame(() => requestAnimationFrame(callback));
 
