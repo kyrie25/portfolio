@@ -272,3 +272,34 @@
 		}
 	}
 }
+
+body.light {
+	.lanyard {
+		.activity-info-text {
+			color: #333 !important;
+
+			&-name {
+				span {
+					color: #000 !important;
+				}
+			}
+
+			&-details,
+			&-state {
+				color: #666 !important;
+			}
+
+			svg {
+				fill: #000 !important;
+			}
+		}
+
+		.activity-info-progress-bar {
+			background-color: #f3f3f3 !important;
+
+			&-fill {
+				background-color: #000 !important;
+			}
+		}
+	}
+}

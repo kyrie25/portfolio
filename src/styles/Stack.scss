@@ -27,3 +27,13 @@
 		}
 	}
 }
+
+body.light {
+	.stack {
+		> * {
+			&.list {
+				border: 1px solid black;
+			}
+		}
+	}
+}

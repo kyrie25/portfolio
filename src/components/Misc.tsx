@@ -8,8 +8,12 @@ export const Anchor = ({ href, children, ...props }) => (
 	</a>
 );
 
-export const Image = ({ onLoad = () => {}, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-	<img onLoad={() => waitTwoFrames(onLoad)} onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.remove()} {...props} />
+export const Image = ({ onLoad = (e) => {}, ...props }) => (
+	<img
+		onLoad={(e) => waitTwoFrames(() => onLoad(e))}
+		onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.remove()}
+		{...props}
+	/>
 );
 
 export const LoadingIcon = () => {
@@ -84,14 +88,15 @@ export const Cat = () => {
 		"ㅇㅅㅇ",
 	];
 
+	const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 	const [cat, setCat] = React.useState<number>(Math.floor(Math.random() * cats.length));
 
 	return (
 		<span
 			className="cat"
-			onMouseEnter={() => setCat(Math.floor(Math.random() * cats.length))}
+			onMouseEnter={() => !isTouchDevice && setCat(Math.floor(Math.random() * cats.length))}
 			// Compatibility with mobile devices
-			// onClick={() => setCat(Math.floor(Math.random() * cats.length))}
+			onClick={() => isTouchDevice && setCat(Math.floor(Math.random() * cats.length))}
 		>
 			{cats[cat]}
 		</span>

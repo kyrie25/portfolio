@@ -91,3 +91,26 @@ export const activitiesTypes = (type: number) => {
 			return;
 	}
 };
+
+export function getDominantColor(imageObject: HTMLImageElement) {
+	imageObject.crossOrigin = "Anonymous";
+
+	const ctx = document.createElement("canvas").getContext("2d");
+	if (!ctx) return null;
+	//draw the image to one pixel and let the browser find the dominant color
+	ctx.drawImage(imageObject, 0, 0, 1, 1);
+
+	//get pixel color
+	const i = ctx.getImageData(0, 0, 1, 1).data;
+
+	return ((1 << 24) + (i[0] << 16) + (i[1] << 8) + i[2]).toString(16).slice(1);
+}
+
+// Check against white text
+export function WCGACheckColor(color: string) {
+	const r = parseInt(color.substr(0, 2), 16);
+	const g = parseInt(color.substr(2, 2), 16);
+	const b = parseInt(color.substr(4, 2), 16);
+	const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+	return brightness > 125;
+}

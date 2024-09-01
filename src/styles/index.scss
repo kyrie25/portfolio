@@ -1,8 +1,17 @@
 body {
 	font-family: "JetBrains Mono", monospace;
 	// Dark purple
-	background-color: #1d2a38;
+	background-color: var(--accent, #1d2a38);
 	color: white;
+	transition: background-color 0.5s linear, color 0.5s linear;
+
+	&.light {
+		color: black;
+
+		a {
+			color: black !important;
+		}
+	}
 }
 
 main {
@@ -59,6 +68,7 @@ main {
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			cursor: pointer;
 
 			&:has(.banner) {
 				// Keep the Discord banenr aspect ratio
@@ -74,6 +84,10 @@ main {
 					image-rendering: pixelated;
 					background-image: url("https://raw.githubusercontent.com/kyrie25/spicetify-oneko/main/assets/oneko/oneko-classic.gif");
 					animation: oneko 1s infinite;
+
+					img {
+						cursor: pointer;
+					}
 				}
 			}
 
@@ -162,6 +176,7 @@ main {
 						position: absolute;
 						border-radius: 50%;
 						transform: scale(1.2);
+						pointer-events: none;
 					}
 				}
 			}

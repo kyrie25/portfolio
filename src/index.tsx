@@ -10,7 +10,7 @@ import "react-tooltip/dist/react-tooltip.css";
 import { Lanyard } from "./components/Lanyard";
 import classNames from "classnames";
 import { LoadingIcon, Anchor, Image } from "./components/Misc";
-import { fetchAPI } from "./utils";
+import { fetchAPI, getDominantColor, WCGACheckColor } from "./utils";
 import { Stack } from "./components/Stack";
 
 const DISCORD_ID = import.meta.env.VITE_DISCORD_ID;
@@ -19,6 +19,8 @@ inject();
 
 const App: React.FC = () => {
 	const [data, setData] = React.useState<Record<any, any> | null>(null);
+	const [color, setColor] = React.useState<string | null>(null);
+	const [useBackgroundColor, setBackgroundColor] = React.useState<boolean>(false);
 
 	// Loading states
 	// I dont wanna refactor this
@@ -39,6 +41,16 @@ const App: React.FC = () => {
 			banner: !data?.banner,
 		}));
 	}, [data]);
+
+	useEffect(() => {
+		if (color && useBackgroundColor) {
+			document.body.style.setProperty("--accent", `#${color}`);
+		} else {
+			document.body.style.removeProperty("--accent");
+		}
+
+		document.body.classList.toggle("light", useBackgroundColor && color ? WCGACheckColor(color) : false);
+	}, [color, useBackgroundColor]);
 
 	const ext = (hash: string | null) => (hash?.startsWith("a_") ? "gif" : "webp");
 
@@ -61,9 +73,16 @@ const App: React.FC = () => {
 			</div>
 			<section>
 				{data?.banner && (
-					<header>
+					<header onClick={() => setBackgroundColor((prevState) => !prevState)}>
 						<div className="banner">
-							<Image src={banner} alt="banner" onLoad={() => setLoadingState((prevState) => ({ ...prevState, banner: true }))} />
+							<Image
+								src={banner}
+								alt="banner"
+								onLoad={(e) => {
+									setColor(getDominantColor(e.target as HTMLImageElement));
+									setLoadingState((prevState) => ({ ...prevState, banner: true }));
+								}}
+							/>
 						</div>
 					</header>
 				)}
@@ -92,13 +111,6 @@ const App: React.FC = () => {
 				</article>
 
 				<Stack />
-
-				<article>
-					<Image
-						id="stats"
-						src="https://readme-stats.kyrie25.me/api?username=kyrie25&include_all_commits=true&show_icons=true&count_private=true&custom_title=Kyrie%27s+GitHub+Stats&theme=react&border_color=1d2a38&bg_color=1d2a38"
-					/>
-				</article>
 
 				<article>
 					<h3>Contact me via:</h3>
