@@ -25,6 +25,8 @@ const ActivityImages = ({ activity }) => {
 				},
 				() => setAppIcon(null)
 			);
+		} else {
+			setAppIcon("appIcon");
 		}
 	}, []);
 
@@ -32,7 +34,7 @@ const ActivityImages = ({ activity }) => {
 		<>
 			{(activity.assets?.large_image || appIcon) && (
 				<Image
-					src={appIcon || processDiscordImage(activity.assets?.large_image, activity.application_id)}
+					src={processDiscordImage(activity.assets?.large_image, activity.application_id) || appIcon}
 					className="activity-image-large"
 					alt="activity"
 					data-tooltip-id="tooltip"

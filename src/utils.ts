@@ -64,6 +64,8 @@ export const processDiscordImage = (
 	imageHash: string | undefined,
 	appID?: string
 ) => {
+	if (!imageHash) return "";
+
 	return imageHash?.startsWith("mp:external/")
 		? `https://media.discordapp.net/external/${imageHash.replace(
 				"mp:external/",
