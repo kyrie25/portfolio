@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { createRoot } from "react-dom/client";
+import classNames from "classnames";
 import { inject } from "@vercel/analytics";
 import { Tooltip } from "react-tooltip";
 import { SiDiscord, SiX, SiMinutemailer, SiGithub } from "react-icons/si";
@@ -8,10 +9,10 @@ import "./styles/index.scss";
 import "react-tooltip/dist/react-tooltip.css";
 
 import { Lanyard } from "./components/Lanyard";
-import classNames from "classnames";
-import { LoadingIcon, Anchor, Image } from "./components/Misc";
-import { fetchAPI, getDominantColor, WCGACheckColor } from "./utils";
 import { Stack } from "./components/Stack";
+import { LoadingIcon, Anchor, Image } from "./components/Misc";
+import { fetchAPI, fetchGitHubStats, getDominantColor, WCGACheckColor } from "./utils";
+import { Stats } from "./components/Stats";
 
 const DISCORD_ID = import.meta.env.VITE_DISCORD_ID;
 
@@ -28,6 +29,7 @@ const App: React.FC = () => {
 		avatar: false,
 		banner: false,
 		lanyard: false,
+		github: false,
 	});
 
 	useEffect(() => {
@@ -111,6 +113,8 @@ const App: React.FC = () => {
 				</article>
 
 				<Stack />
+
+				<Stats loaded={(state) => setLoadingState((prevState) => ({ ...prevState, github: state }))} />
 
 				<article>
 					<h3>Contact me via:</h3>

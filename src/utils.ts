@@ -49,6 +49,14 @@ export const fetchAPI = (id, callback, onError) =>
 		.then(callback)
 		.catch(onError);
 
+export const fetchGitHubStats = (username, callback, onError) =>
+	fetch(
+		`https://readme-stats.kyrie25.me/api/stats?username=${username}&include_all_commits=true&count_private=true`
+	)
+		.then((response) => response.json())
+		.then(callback)
+		.catch(onError);
+
 export const check404 = (url) =>
 	fetch(url, { method: "HEAD" })
 		.then((response) => {
