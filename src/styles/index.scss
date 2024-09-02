@@ -5,12 +5,17 @@ body {
 	color: white;
 	transition: background-color 0.5s linear, color 0.5s linear;
 
+	a,
+	svg,
+	span {
+		transition: color 0.5s linear;
+	}
+
 	&.light {
 		color: black;
 
 		a {
 			color: black !important;
-			transition: color 0.5s linear;
 		}
 	}
 }
