@@ -23,7 +23,7 @@ const ActivityImages = ({ activity }) => {
 						? setAppIcon(`https://cdn.discordapp.com/app-icons/${application_id}/${data.avatar}.${ext(data.avatar)}?size=256`)
 						: setAppIcon(`https://cdn.discordapp.com/avatars/${application_id}/${data.avatar}.${ext(data.avatar)}?size=256`);
 				},
-				() => setAppIcon(null)
+				() => setAppIcon("appIcon")
 			);
 		} else {
 			setAppIcon("appIcon");
