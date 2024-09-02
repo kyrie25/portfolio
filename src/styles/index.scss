@@ -6,8 +6,7 @@ body {
 	transition: background-color 0.5s linear, color 0.5s linear;
 
 	a,
-	svg,
-	span {
+	svg {
 		transition: color 0.5s linear;
 	}
 
@@ -16,6 +15,10 @@ body {
 
 		a {
 			color: black !important;
+		}
+
+		.banner img {
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 		}
 	}
 }
@@ -132,6 +135,8 @@ main {
 						border-radius: 1em;
 						width: 100%;
 						height: auto;
+						box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+						transition: box-shadow 0.5s linear;
 					}
 				}
 			}

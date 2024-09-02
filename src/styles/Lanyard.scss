@@ -29,7 +29,8 @@
 			padding: 3px 7px;
 			color: #000;
 			border-radius: 2px;
-			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+			box-shadow: 0 5px 10px rgba(255, 255, 255, 0.12);
+			transition: box-shadow 0.5s linear;
 		}
 
 		.date-widget {
@@ -65,6 +66,10 @@
 	margin-left: 1rem;
 	margin-right: 1rem;
 	padding: 1rem;
+
+	* {
+		transition: color 0.5s linear;
+	}
 
 	&.centered {
 		width: fit-content;
@@ -249,6 +254,7 @@
 					svg {
 						position: relative;
 						top: 2px;
+						transition: fill 0.5s linear;
 					}
 				}
 
@@ -273,6 +279,11 @@
 }
 
 body.light {
+	.date-widget,
+	.time-widget {
+		box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12) !important;
+	}
+
 	.lanyard {
 		.activity-info-text {
 			color: #333 !important;
