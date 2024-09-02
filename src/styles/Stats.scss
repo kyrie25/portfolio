@@ -5,32 +5,14 @@
 	padding: 0 20px;
 
 	&-wrapper {
-		display: flex;
-		justify-content: space-between;
 		width: 100%;
-		max-width: 700px;
-
-		&-item {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			padding: 10px;
-			border-radius: 5px;
-			flex: 1;
-
-			&-title {
-				font-size: 1.2rem;
-				font-weight: 700;
-				margin-bottom: 10px;
-			}
-		}
+		max-width: 500px;
 	}
 
 	&-body {
 		display: flex;
 		justify-content: space-between;
 		width: 100%;
-		max-width: 700px;
 
 		&-item {
 			display: flex;
@@ -48,8 +30,9 @@
 		}
 	}
 
-	@media screen and (max-width: 768px) {
+	@media screen and (max-width: 600px) {
 		&-wrapper {
+			display: flex;
 			align-items: center;
 			flex-direction: column;
 		}
