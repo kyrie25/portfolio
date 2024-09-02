@@ -60,7 +60,7 @@ const App: React.FC = () => {
 	const banner = `https://cdn.discordapp.com/banners/${data?.id}/${data?.banner}.${ext(data?.banner)}?size=2048`;
 	const decoration = `https://cdn.discordapp.com/avatar-decoration-presets/${data?.avatar_decoration_data?.asset}.webp`;
 
-	const loading = !data && !Object.values(loadingState).every((state) => state);
+	const loading = !data || !Object.values(loadingState).every((state) => state);
 
 	return (
 		<main>
