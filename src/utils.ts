@@ -79,6 +79,11 @@ export const processDiscordImage = (
 				"mp:external/",
 				""
 		  )}`
+		: imageHash?.startsWith("mp:attachments/")
+		? `https://media.discordapp.net/attachments/${imageHash.replace(
+				"mp:attachments/",
+				""
+		  )}`
 		: imageHash?.startsWith("spotify:")
 		? imageHash.replace("spotify:", "https://i.scdn.co/image/")
 		: `${DISCORD_CDN}/app-assets/${appID}/${imageHash}.png`;
