@@ -81,7 +81,9 @@ const App: React.FC = () => {
 								src={banner}
 								alt="banner"
 								onLoad={(e) => {
-									setColor(getDominantColor(e.target as HTMLImageElement));
+									if (!e.target?.src?.includes("a_"))
+									    setColor(getDominantColor(e.target as HTMLImageElement));
+									
 									setLoadingState((prevState) => ({ ...prevState, banner: true }));
 								}}
 							/>
