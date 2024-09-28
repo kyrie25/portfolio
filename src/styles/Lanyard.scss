@@ -5,7 +5,7 @@
 	padding-bottom: 0.5rem;
 }
 
-.placeholder {
+.header {
 	display: flex;
 	padding: 1rem;
 	padding-top: 0;
@@ -66,10 +66,6 @@
 	margin-left: 1rem;
 	margin-right: 1rem;
 	padding: 1rem;
-
-	* {
-		transition: color 0.5s linear;
-	}
 
 	&.centered {
 		width: fit-content;
@@ -271,6 +267,11 @@
 			}
 		}
 	}
+}
+
+.placeholder-text {
+	color: #999;
+	font-style: italic;
 }
 
 body.light {

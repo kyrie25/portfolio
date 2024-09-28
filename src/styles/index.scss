@@ -69,6 +69,11 @@ main {
 		width: fit-content;
 		max-width: min(calc(100% - 2rem), 1000px);
 
+		span:has(~ header) {
+			margin-bottom: 1rem;
+			color: #999;
+		}
+
 		header {
 			width: 100%;
 			max-width: 700px;
@@ -77,7 +82,11 @@ main {
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			cursor: pointer;
+
+			// If banner isn't animated, normal cursor
+			&:has(img[src*="webp"]) {
+				cursor: pointer;
+			}
 
 			&:has(.banner) {
 				// Keep the Discord banenr aspect ratio

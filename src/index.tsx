@@ -29,7 +29,8 @@ const App: React.FC = () => {
 		avatar: false,
 		banner: false,
 		lanyard: false,
-		github: false,
+		// Too slow
+		// github: false,
 	});
 
 	useEffect(() => {
@@ -75,27 +76,36 @@ const App: React.FC = () => {
 			</div>
 			<section>
 				{data?.banner && (
-					<header onClick={() => setBackgroundColor((prevState) => !prevState)}>
-						<div className="banner">
-							<Image
-								src={banner}
-								alt="banner"
-								onLoad={(e) => {
-									if (!e.target?.src?.includes("a_"))
-									    setColor(getDominantColor(e.target as HTMLImageElement));
-									
-									setLoadingState((prevState) => ({ ...prevState, banner: true }));
-								}}
-							/>
-						</div>
-					</header>
+					<>
+						<span>Click the banner to switch colors</span>
+						<header onClick={() => setBackgroundColor((prevState) => !prevState)}>
+							<div className="banner">
+								<Image
+									src={banner}
+									alt="banner"
+									onLoad={(e) => {
+										if (!e.target?.src?.includes("a_")) setColor(getDominantColor(e.target as HTMLImageElement));
+
+										setLoadingState((prevState) => ({ ...prevState, banner: true }));
+									}}
+								/>
+							</div>
+						</header>
+					</>
 				)}
 
 				<Lanyard id={DISCORD_ID} loaded={(state) => setLoadingState((prevState) => ({ ...prevState, lanyard: state }))} />
 
 				<article className="intro">
 					<div className="avatar">
-						{data?.avatar && <Image src={avatar} alt="avatar" onLoad={() => setLoadingState((prevState) => ({ ...prevState, avatar: true }))} />}
+						{
+							<Image
+								src={avatar}
+								alt="avatar"
+								onLoad={() => setLoadingState((prevState) => ({ ...prevState, avatar: true }))}
+								onError={(e) => (e.target.src = "https://avatars.githubusercontent.com/u/77577746?v=4")}
+							/>
+						}
 						{data?.avatar_decoration_data && <Image src={decoration} alt="decoration" className="decoration" />}
 					</div>
 					<h3>Hi, I'm Kyrie!👋</h3>

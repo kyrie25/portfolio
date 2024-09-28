@@ -40,7 +40,9 @@ const ActivityImages = ({ activity }) => {
 					data-tooltip-content={activity.assets?.large_text}
 					onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
 						e.currentTarget.setAttribute("src", "https://lanyard.kyrie25.me/assets/unknown.png");
-						e.currentTarget.classList.add("unknown");
+					}}
+					onLoad={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+						(e.target as HTMLImageElement)?.classList.toggle("unknown", (e.target as HTMLImageElement).src.endsWith("unknown.png"));
 					}}
 				/>
 			)}
@@ -123,7 +125,19 @@ const Activity = ({ activity }) => {
 						<div className="activity-info-progress">
 							<span className="activity-info-text-timestamp">
 								{/* Elapsed time should not exceed the total time */}
-								{formatTime({ start: (Date.now() - activity.timestamps.start) > (Date.now() + (activity.timestamps.end - activity.timestamps.start)) ? Date.now() + (activity.timestamps.end - activity.timestamps.start) : activity.timestamps.start }, true)}
+								{formatTime(
+									{
+										start:
+											Date.now() - activity.timestamps.start < activity.timestamps.end - activity.timestamps.start
+												? activity.timestamps.start
+												: undefined,
+										end:
+											Date.now() - activity.timestamps.start < activity.timestamps.end - activity.timestamps.start
+												? undefined
+												: Date.now() + (activity.timestamps.end - activity.timestamps.start),
+									},
+									true
+								)}
 							</span>
 							<div className="activity-info-progress-bar">
 								<div className="activity-info-progress-bar-container">
@@ -178,11 +192,11 @@ export const Lanyard = ({ id, loaded }: { id: `${bigint}`; loaded: (loaded: bool
 
 	return (
 		<>
-			<div className="placeholder">
+			<div className="header">
 				<Cat />
 				<Clock />
 			</div>
-			{!!data?.activities?.filter((activity) => ![4, 6].includes(activity.type)).length && (
+			{!!data?.activities?.filter((activity) => ![4, 6].includes(activity.type)).length ? (
 				<div className={classNames("lanyard", { centered })} ref={lanyard}>
 					{data.activities
 						.filter((activity) => ![4, 6].includes(activity.type))
@@ -190,6 +204,8 @@ export const Lanyard = ({ id, loaded }: { id: `${bigint}`; loaded: (loaded: bool
 							<Activity activity={activity} key={activity.id} />
 						))}
 				</div>
+			) : (
+				<h3 className="placeholder-text">I'm not doing anything right now...</h3>
 			)}
 		</>
 	);
