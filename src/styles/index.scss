@@ -92,20 +92,20 @@ main {
 				// Keep the Discord banenr aspect ratio
 				aspect-ratio: 600 / 210;
 
-				.banner::before {
-					content: "";
-					width: 32px;
-					height: 32px;
-					top: -12px;
-					right: 40px;
-					position: absolute;
-					image-rendering: pixelated;
-					background-image: url("https://raw.githubusercontent.com/kyrie25/spicetify-oneko/main/assets/oneko/oneko-classic.gif");
-					animation: oneko 1s infinite;
+				// .banner::before {
+				// 	content: "";
+				// 	width: 32px;
+				// 	height: 32px;
+				// 	top: -12px;
+				// 	right: 40px;
+				// 	position: absolute;
+				// 	image-rendering: pixelated;
+				// 	background-image: url("https://raw.githubusercontent.com/kyrie25/spicetify-oneko/main/assets/oneko/oneko-classic.gif");
+				// 	animation: oneko 1s infinite;
+				// }
 
-					img {
-						cursor: pointer;
-					}
+				img {
+					cursor: pointer;
 				}
 			}
 
