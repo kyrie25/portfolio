@@ -25,6 +25,7 @@ import {
 	SiPostgresql,
 	SiSqlite,
 	SiGraphql,
+	SiKotlin,
 } from "react-icons/si";
 
 import "../styles/Stack.scss";
@@ -51,6 +52,7 @@ export const Stack = () => {
 				<IconWithTooltip icon={SiPhp} tooltip="PHP" href="https://www.php.net/" />
 				<IconWithTooltip icon={SiCplusplus} tooltip="C++" href="https://www.cplusplus.com/" />
 				<IconWithTooltip icon={SiGo} tooltip="Go" href="https://golang.org/" />
+				<IconWithTooltip icon={SiKotlin} tooltip="Kotlin" href="https://kotlinlang.org/" />
 			</div>
 
 			<h3>Front-end stack</h3>
