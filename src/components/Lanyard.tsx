@@ -1,11 +1,42 @@
 import React, { useEffect } from "react";
-import { useLanyardWS } from "use-lanyard";
+import { Activity as ActivityType, useLanyardWS } from "use-lanyard";
 import classNames from "classnames";
+import * as Icons from "react-icons/si";
 
 import { fetchAPI, ext, waitTwoFrames, processDiscordImage, formatTime, activitiesTypes, check404 } from "../utils";
 import { Anchor, Cat, Clock, Image } from "./Misc";
 
 import "../styles/Lanyard.scss";
+
+function getActivityIcon(activity: ActivityType, theme: string) {
+	const iconList = Object.keys(Icons);
+	const icon =
+		typeof activity === "string"
+			? activity
+			: iconList.find(
+					(icon) =>
+						icon.replace("Si", "").toLowerCase() ===
+						activity.name
+							.replaceAll(" ", "")
+							.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
+							.toLowerCase()
+			  );
+
+	if (icon) {
+		return Icons[icon]({
+			size: 12,
+			color: theme === "dark" ? "#fff" : "#000",
+			style: {
+				marginRight: -2,
+				paddingLeft: 8,
+				top: 2,
+				position: "relative",
+			},
+		});
+	}
+
+	return "";
+}
 
 const ActivityImages = ({ activity }) => {
 	const [appIcon, setAppIcon] = React.useState<string | null>(null);
@@ -98,6 +129,7 @@ const Activity = ({ activity }) => {
 				<div className="activity-info-text">
 					<p className="activity-info-text-name">
 						{activitiesTypes(activity.type)}
+						{getActivityIcon(activity, "dark")}
 						<span>{activity?.name}</span>
 					</p>
 					{activity?.details &&
