@@ -8,7 +8,7 @@ import { Anchor, Cat, Clock, Image } from "./Misc";
 
 import "../styles/Lanyard.scss";
 
-function getActivityIcon(activity: ActivityType, theme: string) {
+function getActivityIcon(activity: ActivityType) {
 	const iconList = Object.keys(Icons);
 	const icon =
 		typeof activity === "string"
@@ -25,7 +25,6 @@ function getActivityIcon(activity: ActivityType, theme: string) {
 	if (icon) {
 		return Icons[icon]({
 			size: 12,
-			color: theme === "dark" ? "#fff" : "#000",
 			style: {
 				marginRight: -2,
 				paddingLeft: 8,
@@ -129,7 +128,7 @@ const Activity = ({ activity }) => {
 				<div className="activity-info-text">
 					<p className="activity-info-text-name">
 						{activitiesTypes(activity.type)}
-						{getActivityIcon(activity, "dark")}
+						{getActivityIcon(activity)}
 						<span>{activity?.name}</span>
 					</p>
 					{activity?.details &&

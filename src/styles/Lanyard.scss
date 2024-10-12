@@ -238,6 +238,10 @@
 				}
 
 				&-name {
+					svg {
+						color: #fff;
+					}
+
 					span {
 						color: #fff;
 						font-weight: bold;
@@ -286,14 +290,15 @@ body.light {
 			color: #333 !important;
 
 			&-name {
-				span {
+				span,
+				svg {
 					color: #000 !important;
 				}
 			}
 
 			&-details,
 			&-state {
-				color: #666 !important;
+				color: #333 !important;
 			}
 		}
 
