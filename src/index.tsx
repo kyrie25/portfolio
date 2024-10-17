@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import classNames from "classnames";
 import { inject } from "@vercel/analytics";
 import { Tooltip } from "react-tooltip";
-import { SiDiscord, SiX, SiMinutemailer, SiGithub } from "react-icons/si";
+import { SiDiscord, SiX, SiMinutemailer, SiGithub, SiBluesky } from "react-icons/si";
 
 import "./styles/index.scss";
 import "react-tooltip/dist/react-tooltip.css";
@@ -84,8 +84,7 @@ const App: React.FC = () => {
 									src={banner}
 									alt="banner"
 									onLoad={(e) => {
-									  setColor(getDominantColor(e.target as HTMLImageElement));
-
+										setColor(getDominantColor(e.target as HTMLImageElement));
 										setLoadingState((prevState) => ({ ...prevState, banner: true }));
 									}}
 								/>
@@ -139,6 +138,9 @@ const App: React.FC = () => {
 						</Anchor>
 						<Anchor href="https://twitter.com/_kyrie_25" title="Twitter" data-tooltip-id="tooltip" data-tooltip-content="Twitter">
 							<SiX />
+						</Anchor>
+						<Anchor href="https://bsky.app/profile/kyrie25.me" title="Bluesky" data-tooltip-id="tooltip" data-tooltip-content="Bluesky">
+							<SiBluesky />
 						</Anchor>
 						<Anchor href="https://github.com/kyrie25" title="GitHub" data-tooltip-id="tooltip" data-tooltip-content="GitHub">
 							<SiGithub />
