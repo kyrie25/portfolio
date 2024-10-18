@@ -69,7 +69,7 @@ const ActivityImages = ({ activity }) => {
 					data-tooltip-id="tooltip"
 					data-tooltip-content={activity.assets?.large_text}
 					onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-						e.currentTarget.setAttribute("src", "https://lanyard.kyrie25.me/assets/unknown.png");
+						e.currentTarget.setAttribute("src", "https://lanyard.kyrie25.dev/assets/unknown.png");
 					}}
 					onLoad={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
 						(e.target as HTMLImageElement)?.classList.toggle("unknown", (e.target as HTMLImageElement).src.endsWith("unknown.png"));

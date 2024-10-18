@@ -130,7 +130,7 @@ const App: React.FC = () => {
 				<article>
 					<h3>Contact me via:</h3>
 					<div className="icons">
-						<Anchor href="mailto:contact@kyrie25.me" title="Mail" data-tooltip-id="tooltip" data-tooltip-content="Email">
+						<Anchor href="mailto:contact@kyrie25.dev" title="Mail" data-tooltip-id="tooltip" data-tooltip-content="Email">
 							<SiMinutemailer />
 						</Anchor>
 						<Anchor href={`https://discord.com/users/${data?.id}`} title="Discord" data-tooltip-id="tooltip" data-tooltip-content="Discord">
@@ -139,7 +139,7 @@ const App: React.FC = () => {
 						<Anchor href="https://twitter.com/_kyrie_25" title="Twitter" data-tooltip-id="tooltip" data-tooltip-content="Twitter">
 							<SiX />
 						</Anchor>
-						<Anchor href="https://bsky.app/profile/kyrie25.me" title="Bluesky" data-tooltip-id="tooltip" data-tooltip-content="Bluesky">
+						<Anchor href="https://bsky.app/profile/kyrie25.dev" title="Bluesky" data-tooltip-id="tooltip" data-tooltip-content="Bluesky">
 							<SiBluesky />
 						</Anchor>
 						<Anchor href="https://github.com/kyrie25" title="GitHub" data-tooltip-id="tooltip" data-tooltip-content="GitHub">
