@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+
 body {
 	font-family: "JetBrains Mono", monospace;
 	// Dark purple
@@ -5,8 +7,7 @@ body {
 	color: white;
 	transition: background-color 0.5s linear, color 0.5s linear;
 
-	a,
-	svg {
+	a {
 		transition: color 0.5s linear;
 	}
 
