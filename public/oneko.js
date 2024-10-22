@@ -13,7 +13,8 @@
 		forceSleep = false,
 		grabbing = false,
 		grabStop = true,
-		nudge = false;
+		nudge = false,
+		lastTapTimestamp = 0;
 
 	const nekoSpeed = 10,
 		spriteSets = {
@@ -111,12 +112,8 @@
 
 		document.body.appendChild(nekoEl);
 
-		window.addEventListener("mousemove", (e) => {
-			if (forceSleep) return;
-
-			mousePosX = e.clientX;
-			mousePosY = e.clientY;
-		});
+		window.addEventListener("mousemove", handleMove);
+		window.addEventListener("touchmove", handleMove);
 
 		window.addEventListener("resize", () => {
 			if (forceSleep) {
@@ -128,57 +125,20 @@
 		// Handle dragging of the cat
 		nekoEl.addEventListener("mousedown", (e) => {
 			e.preventDefault();
-
 			if (e.button !== 0) return;
-			grabbing = true;
-			let startX = e.clientX;
-			let startY = e.clientY;
-			let startNekoX = nekoPosX;
-			let startNekoY = nekoPosY;
-			let grabInterval;
+			handleOnekoClick(e);
+		});
+		nekoEl.addEventListener("touchstart", (e) => {
+			e.preventDefault();
 
-			const mousemove = (e) => {
-				const deltaX = e.clientX - startX;
-				const deltaY = e.clientY - startY;
-				const absDeltaX = Math.abs(deltaX);
-				const absDeltaY = Math.abs(deltaY);
+			const now = new Date().getTime();
+			const timesince = now - lastTapTimestamp;
+			if (timesince < 600) {
+				sleep();
+			}
+			lastTapTimestamp = new Date().getTime();
 
-				// Scratch in the opposite direction of the drag
-				if (absDeltaX > absDeltaY && absDeltaX > 10) {
-					setSprite(deltaX > 0 ? "scratchWallW" : "scratchWallE", frameCount);
-				} else if (absDeltaY > absDeltaX && absDeltaY > 10) {
-					setSprite(deltaY > 0 ? "scratchWallN" : "scratchWallS", frameCount);
-				}
-
-				if (grabStop || absDeltaX > 10 || absDeltaY > 10 || Math.sqrt(deltaX ** 2 + deltaY ** 2) > 10) {
-					grabStop = false;
-					clearTimeout(grabInterval);
-					grabInterval = setTimeout(() => {
-						grabStop = true;
-						nudge = false;
-						startX = e.clientX;
-						startY = e.clientY;
-						startNekoX = nekoPosX;
-						startNekoY = nekoPosY;
-					}, 150);
-				}
-
-				nekoPosX = startNekoX + e.clientX - startX;
-				nekoPosY = startNekoY + e.clientY - startY;
-				nekoEl.style.left = `${nekoPosX - 16}px`;
-				nekoEl.style.top = `${nekoPosY - 16}px`;
-			};
-
-			const mouseup = () => {
-				grabbing = false;
-				nudge = true;
-				resetIdleAnimation();
-				window.removeEventListener("mousemove", mousemove);
-				window.removeEventListener("mouseup", mouseup);
-			};
-
-			window.addEventListener("mousemove", mousemove);
-			window.addEventListener("mouseup", mouseup);
+			handleOnekoClick(e.touches[0]);
 		});
 
 		nekoEl.addEventListener("dblclick", sleep);
@@ -319,6 +279,73 @@
 
 		nekoEl.style.left = `${nekoPosX - 16}px`;
 		nekoEl.style.top = `${nekoPosY - 16}px`;
+	}
+
+	function handleMove(e) {
+		if (forceSleep) return;
+
+		mousePosX = e.clientX ?? e.touches[0].clientX;
+		mousePosY = e.clientY ?? e.touches[0].clientY;
+	}
+
+	function handleOnekoClick(e) {
+		grabbing = true;
+		let startX = e.clientX ?? e.touches[0].clientX;
+		let startY = e.clientY ?? e.touches[0].clientY;
+		let startNekoX = nekoPosX;
+		let startNekoY = nekoPosY;
+		let grabInterval;
+
+		const mousemove = (e) => {
+			const clientX = e.clientX ?? e.touches[0].clientX;
+			const clientY = e.clientY ?? e.touches[0].clientY;
+			console.log(clientX, clientY);
+
+			const deltaX = clientX - startX;
+			const deltaY = clientY - startY;
+			const absDeltaX = Math.abs(deltaX);
+			const absDeltaY = Math.abs(deltaY);
+
+			// Scratch in the opposite direction of the drag
+			if (absDeltaX > absDeltaY && absDeltaX > 10) {
+				setSprite(deltaX > 0 ? "scratchWallW" : "scratchWallE", frameCount);
+			} else if (absDeltaY > absDeltaX && absDeltaY > 10) {
+				setSprite(deltaY > 0 ? "scratchWallN" : "scratchWallS", frameCount);
+			}
+
+			if (grabStop || absDeltaX > 10 || absDeltaY > 10 || Math.sqrt(deltaX ** 2 + deltaY ** 2) > 10) {
+				grabStop = false;
+				clearTimeout(grabInterval);
+				grabInterval = setTimeout(() => {
+					grabStop = true;
+					nudge = false;
+					startX = clientX;
+					startY = clientY;
+					startNekoX = nekoPosX;
+					startNekoY = nekoPosY;
+				}, 150);
+			}
+
+			nekoPosX = startNekoX + clientX - startX;
+			nekoPosY = startNekoY + clientY - startY;
+			nekoEl.style.left = `${nekoPosX - 16}px`;
+			nekoEl.style.top = `${nekoPosY - 16}px`;
+		};
+
+		const mouseup = () => {
+			grabbing = false;
+			nudge = true;
+			resetIdleAnimation();
+			window.removeEventListener("mousemove", mousemove);
+			window.removeEventListener("mouseup", mouseup);
+			window.removeEventListener("touchmove", mousemove);
+			window.removeEventListener("touchend", mouseup);
+		};
+
+		window.addEventListener("mousemove", mousemove);
+		window.addEventListener("mouseup", mouseup);
+		window.addEventListener("touchmove", mousemove);
+		window.addEventListener("touchend", mouseup);
 	}
 
 	create();
