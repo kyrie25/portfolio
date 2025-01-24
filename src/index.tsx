@@ -24,11 +24,11 @@ const App: React.FC = () => {
 	const [useBackgroundColor, setBackgroundColor] = React.useState<boolean>(false);
 
 	// Loading states
-	// I dont wanna refactor this
 	const [loadingState, setLoadingState] = React.useState({
 		avatar: false,
 		banner: false,
-		lanyard: false,
+		// Not necessary
+		// lanyard: false,
 		// Too slow
 		// github: false,
 	});
