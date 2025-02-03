@@ -10,11 +10,12 @@ import "react-tooltip/dist/react-tooltip.css";
 
 import { Lanyard } from "./components/Lanyard";
 import { Stack } from "./components/Stack";
-import { LoadingIcon, Anchor, Image } from "./components/Misc";
-import { fetchAPI, fetchGitHubStats, getDominantColor, WCGACheckColor } from "./utils";
+import { LoadingIcon, Anchor, Image, Age } from "./components/Misc";
+import { fetchAPI, getDominantColor, WCGACheckColor } from "./utils";
 import { Stats } from "./components/Stats";
 
 const DISCORD_ID = import.meta.env.VITE_DISCORD_ID;
+const BIRTHDAY = import.meta.env.VITE_BIRTHDAY;
 
 inject();
 
@@ -114,7 +115,8 @@ const App: React.FC = () => {
 
 				<article className="bio">
 					<p>
-						I'm a junior full-stack developer at <Anchor href="https://designveloper.com/">Designveloper</Anchor> and a CS undergraduate at fit@
+						I'm a <Age date={BIRTHDAY} /> junior full-stack developer at <Anchor href="https://designveloper.com/">Designveloper</Anchor> and a CS
+						undergraduate at fit@
 						<Anchor href="https://en.hcmus.edu.vn/">hcmus</Anchor>. Starting as a self-taught developer and have been coding since 2021, my expertise
 						focuses mainly on web & app development.
 						<br />

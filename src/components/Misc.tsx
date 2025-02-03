@@ -2,6 +2,33 @@ import * as React from "react";
 import { waitTwoFrames } from "../utils";
 import { FaClock, FaCalendarAlt } from "react-icons/fa";
 
+import "../styles/Misc.scss";
+
+export const Age = ({ date }: { date: string }) => {
+	// Parse from format: MM/DD/YYYY
+	const birthDate = new Date(date);
+	if (isNaN(birthDate.getTime())) {
+		console.error("Invalid date. Please use MM/DD/YYYY.");
+		return null;
+	}
+
+	const ageDiff = Date.now() - birthDate.getTime();
+	const ageDate = new Date(ageDiff);
+	const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+	const formattedDate = new Intl.DateTimeFormat([], {
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	}).format(birthDate);
+
+	return (
+		<span className="age" data-tooltip-id="tooltip" data-tooltip-content={formattedDate}>
+			{age} years old
+		</span>
+	);
+};
+
 export const Anchor = ({ href, children, ...props }) => (
 	<a href={href} target="_blank" rel="noreferrer" {...props}>
 		{children}

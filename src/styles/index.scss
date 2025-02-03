@@ -87,6 +87,7 @@ main {
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			user-select: none;
 
 			// If banner isn't animated, normal cursor
 			&:has(img[src*="webp"]) {
