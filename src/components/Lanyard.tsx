@@ -4,7 +4,7 @@ import classNames from "classnames";
 import * as Icons from "react-icons/si";
 
 import { fetchAPI, ext, waitTwoFrames, processDiscordImage, formatTime, activitiesTypes, check404 } from "../utils";
-import { Anchor, Cat, Clock, Image } from "./Misc";
+import { Anchor, Cat, Clock, Img } from "./Misc";
 
 import "../styles/Lanyard.scss";
 
@@ -62,7 +62,7 @@ const ActivityImages = ({ activity }) => {
 	return (
 		<>
 			{(activity.assets?.large_image || appIcon) && (
-				<Image
+				<Img
 					src={processDiscordImage(activity.assets?.large_image, activity.application_id) || appIcon}
 					className="activity-image-large"
 					alt="activity"
@@ -77,7 +77,7 @@ const ActivityImages = ({ activity }) => {
 				/>
 			)}
 			{activity?.assets?.small_image && (
-				<Image
+				<Img
 					src={processDiscordImage(activity.assets.small_image, activity.application_id)}
 					className={classNames("activity-image-small", { "no-large": !activity.assets.large_image })}
 					alt="activity"
@@ -87,7 +87,7 @@ const ActivityImages = ({ activity }) => {
 			)}
 			{activity?.emoji &&
 				(activity.emoji.id ? (
-					<Image
+					<Img
 						src={`https://cdn.discordapp.com/emojis/${activity.emoji.id}.${ext(activity.emoji.animated ? "gif" : "png")}`}
 						className="activity-image-large"
 						alt="emoji"

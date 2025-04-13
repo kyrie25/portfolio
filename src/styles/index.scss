@@ -1,31 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
 
+html {
+	--background-color: 29, 42, 56;
+	--border-radius: 1em;
+	--box-bg: rgba(var(--background-color), 0.5);
+	--box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
+
+	background-color: var(--background-color);
+	background-image: var(--background-image);
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	margin: 0;
+}
+
 body {
 	font-family: "JetBrains Mono", monospace;
-	// Dark purple
-	background-color: var(--accent, #1d2a38);
-	color: white;
-	transition: background-color 0.5s linear, color 0.5s linear;
-
-	a {
-		transition: color 0.5s linear;
-	}
-
-	&.light {
-		color: black;
-
-		a {
-			color: black !important;
-		}
-
-		.banner img {
-			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-		}
-
-		span:has(~ header) {
-			color: #333;
-		}
-	}
 }
 
 main {
@@ -64,6 +55,12 @@ main {
 	}
 
 	section {
+		background-color: rgba(var(--background-color), 0.6);
+		color: white;
+		backdrop-filter: blur(2px);
+		border-radius: var(--border-radius);
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -73,74 +70,6 @@ main {
 		margin-top: 1rem;
 		width: fit-content;
 		max-width: min(calc(100% - 2rem), 1000px);
-
-		span:has(~ header) {
-			margin-bottom: 1rem;
-			color: #999;
-		}
-
-		header {
-			width: 100%;
-			max-width: 700px;
-			padding: 1rem;
-			position: relative;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			user-select: none;
-
-			// If banner isn't animated, normal cursor
-			&:has(img[src*="webp"]) {
-				cursor: pointer;
-			}
-
-			&:has(.banner) {
-				// Keep the Discord banenr aspect ratio
-				aspect-ratio: 600 / 210;
-				cursor: pointer;
-			}
-
-			@keyframes oneko {
-				0%,
-				50% {
-					background-position: -64px 0;
-				}
-				50.0001%,
-				100% {
-					background-position: -64px -32px;
-				}
-			}
-
-			div {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				width: -moz-fit-content;
-				width: fit-content;
-				padding: 1rem;
-				margin-bottom: 1rem;
-				height: 150px;
-				gap: 2rem;
-
-				&.banner {
-					justify-content: center;
-					position: absolute;
-					width: 90%;
-					height: auto;
-
-					border-radius: 1em;
-					z-index: -1;
-
-					img {
-						border-radius: 1em;
-						width: 100%;
-						height: auto;
-						box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
-						transition: box-shadow 0.5s linear;
-					}
-				}
-			}
-		}
 
 		article {
 			display: flex;

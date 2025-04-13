@@ -10,8 +10,8 @@ import "react-tooltip/dist/react-tooltip.css";
 
 import { Lanyard } from "./components/Lanyard";
 import { Stack } from "./components/Stack";
-import { LoadingIcon, Anchor, Image, Age } from "./components/Misc";
-import { fetchAPI, getDominantColor, WCGACheckColor } from "./utils";
+import { LoadingIcon, Anchor, Img, Age } from "./components/Misc";
+import { fetchAPI, getDominantColor, waitTwoFrames, WCGACheckColor } from "./utils";
 import { Stats } from "./components/Stats";
 
 const DISCORD_ID = import.meta.env.VITE_DISCORD_ID;
@@ -21,8 +21,6 @@ inject();
 
 const App: React.FC = () => {
 	const [data, setData] = React.useState<Record<any, any> | null>(null);
-	const [color, setColor] = React.useState<string | null>(null);
-	const [useBackgroundColor, setBackgroundColor] = React.useState<boolean>(false);
 
 	// Loading states
 	const [loadingState, setLoadingState] = React.useState({
@@ -33,6 +31,14 @@ const App: React.FC = () => {
 		// Too slow
 		// github: false,
 	});
+
+	const ext = (hash: string | null) => (hash?.startsWith("a_") ? "gif" : "webp");
+
+	const avatar = `https://cdn.discordapp.com/avatars/${data?.id}/${data?.avatar}.${ext(data?.avatar)}?size=256`;
+	const banner = `https://cdn.discordapp.com/banners/${data?.id}/${data?.banner}.${ext(data?.banner)}?size=${
+		ext(data?.banner) === "gif" ? 512 : 4096
+	}`;
+	const decoration = `https://cdn.discordapp.com/avatar-decoration-presets/${data?.avatar_decoration_data?.asset}.png`;
 
 	useEffect(() => {
 		fetchAPI(DISCORD_ID, setData, () => setData({}));
@@ -47,22 +53,21 @@ const App: React.FC = () => {
 	}, [data]);
 
 	useEffect(() => {
-		if (color && useBackgroundColor) {
-			document.body.style.setProperty("--accent", `#${color}`);
-		} else {
-			document.body.style.removeProperty("--accent");
-		}
+		if (!data?.banner) return;
 
-		document.body.classList.toggle("light", useBackgroundColor && color ? WCGACheckColor(color) : false);
-	}, [color, useBackgroundColor]);
-
-	const ext = (hash: string | null) => (hash?.startsWith("a_") ? "gif" : "webp");
-
-	const avatar = `https://cdn.discordapp.com/avatars/${data?.id}/${data?.avatar}.${ext(data?.avatar)}?size=256`;
-	const banner = `https://cdn.discordapp.com/banners/${data?.id}/${data?.banner}.${ext(data?.banner)}?size=${
-		ext(data?.banner) === "gif" ? 512 : 2048
-	}`;
-	const decoration = `https://cdn.discordapp.com/avatar-decoration-presets/${data?.avatar_decoration_data?.asset}.png`;
+		const image = new Image();
+		image.src = banner;
+		image.crossOrigin = "Anonymous";
+		image.onload = () => {
+			document.documentElement.style.setProperty("--background-image", `url(${banner})`);
+			waitTwoFrames(() => {
+				setLoadingState((prevState) => ({
+					...prevState,
+					banner: true,
+				}));
+			});
+		};
+	}, [data?.banner]);
 
 	const loading = !data || !Object.values(loadingState).every((state) => state);
 
@@ -78,40 +83,21 @@ const App: React.FC = () => {
 				<LoadingIcon />
 			</div>
 			<section>
-				{data?.banner && (
-					<>
-						<span>Click the banner to switch colors</span>
-						<header onClick={() => setBackgroundColor((prevState) => !prevState)}>
-							<div className="banner">
-								<Image
-									src={banner}
-									alt="banner"
-									onLoad={(e) => {
-										setColor(getDominantColor(e.target as HTMLImageElement));
-										setLoadingState((prevState) => ({ ...prevState, banner: true }));
-									}}
-								/>
-							</div>
-						</header>
-					</>
-				)}
-
-				<Lanyard id={DISCORD_ID} loaded={(state) => setLoadingState((prevState) => ({ ...prevState, lanyard: state }))} />
-
 				<article className="intro">
 					<div className="avatar">
 						{
-							<Image
+							<Img
 								src={avatar}
 								alt="avatar"
 								onLoad={() => setLoadingState((prevState) => ({ ...prevState, avatar: true }))}
 								onError={(e) => (e.target.src = "https://avatars.githubusercontent.com/u/77577746?v=4")}
 							/>
 						}
-						{data?.avatar_decoration_data && <Image src={decoration} alt="decoration" className="decoration" />}
+						{data?.avatar_decoration_data && <Img src={decoration} alt="decoration" className="decoration" />}
 					</div>
 					<h3>Hi, I'm Kyrie!👋</h3>
 				</article>
+				<Lanyard id={DISCORD_ID} loaded={(state) => setLoadingState((prevState) => ({ ...prevState, lanyard: state }))} />
 
 				<article className="bio">
 					<p>

@@ -89,7 +89,7 @@
 		}
 
 		// If Full App Display is on, sleep on its progress bar instead
-		const banner = document.querySelector(".banner img");
+		const banner = document.querySelector(".time-widget");
 		if (banner) {
 			mousePosX = banner.getBoundingClientRect().right - 32;
 			mousePosY = banner.getBoundingClientRect().top - 12;

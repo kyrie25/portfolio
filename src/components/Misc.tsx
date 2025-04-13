@@ -35,7 +35,7 @@ export const Anchor = ({ href, children, ...props }) => (
 	</a>
 );
 
-export const Image = ({ onLoad = (e) => {}, ...props }) => (
+export const Img = ({ onLoad = (e) => {}, ...props }) => (
 	<img
 		onLoad={(e) => waitTwoFrames(() => onLoad(e))}
 		onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.remove()}

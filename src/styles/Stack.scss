@@ -10,10 +10,14 @@
 		gap: 1rem;
 
 		&.list {
-			border: 1px solid white;
+			border: 1px solid var(--background-color);
 			padding: 1rem;
-			border-radius: 1rem;
+			border-radius: var(--border-radius);
 			margin-bottom: 1rem;
+
+			background-color: var(--box-bg);
+			border-radius: var(--border-radius);
+			box-shadow: var(--box-shadow);
 		}
 
 		.icon {
