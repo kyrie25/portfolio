@@ -92,7 +92,7 @@ export const processDiscordImage = (
 export const ext = (hash: string | null) =>
 	hash?.startsWith("a_") ? "gif" : "webp";
 
-export const activitiesTypes = (type: number) => {
+export const getActivityTypeString = (type: number) => {
 	switch (type) {
 		case 0:
 			return "Playing";

@@ -2,13 +2,14 @@ import React, { useEffect } from "react";
 import { Activity as ActivityType, useLanyardWS } from "use-lanyard";
 import classNames from "classnames";
 import * as Icons from "react-icons/si";
+import { FaGamepad, FaTwitch, FaMusic, FaVideo } from "react-icons/fa6";
 
-import { fetchAPI, ext, waitTwoFrames, processDiscordImage, formatTime, activitiesTypes, check404 } from "../utils";
+import { fetchAPI, ext, waitTwoFrames, processDiscordImage, formatTime, getActivityTypeString, check404 } from "../utils";
 import { Anchor, Cat, Clock, Img } from "./Misc";
 
 import "../styles/Lanyard.scss";
 
-function getActivityIcon(activity: ActivityType) {
+function getActivityIcon(activity: ActivityType, compact = false) {
 	const iconList = Object.keys(Icons);
 	const icon =
 		typeof activity === "string"
@@ -27,7 +28,7 @@ function getActivityIcon(activity: ActivityType) {
 			size: 12,
 			style: {
 				marginRight: -2,
-				paddingLeft: 8,
+				paddingLeft: compact ? 0 : 8,
 				top: 2,
 				position: "relative",
 			},
@@ -35,6 +36,22 @@ function getActivityIcon(activity: ActivityType) {
 	}
 
 	return "";
+}
+
+function getActivityTypeIcon(type: number) {
+	switch (type) {
+		case 0:
+			return <FaGamepad />;
+		case 1:
+			return <FaTwitch />;
+		case 2:
+			return <FaMusic />;
+		case 3:
+			return <FaVideo />;
+		case 4:
+		default:
+			return null;
+	}
 }
 
 const ActivityImages = ({ activity }) => {
@@ -109,7 +126,7 @@ const ActivityImages = ({ activity }) => {
 	);
 };
 
-const Activity = ({ activity }) => {
+const Activity = ({ activity, compact = false }) => {
 	const [, forceRender] = React.useReducer((s) => s + 1, 0);
 
 	useEffect(() => {
@@ -127,8 +144,14 @@ const Activity = ({ activity }) => {
 				</div>
 				<div className="activity-info-text">
 					<p className="activity-info-text-name">
-						{activitiesTypes(activity.type)}
-						{getActivityIcon(activity)}
+						{compact ? (
+							getActivityIcon(activity, compact) || getActivityTypeIcon(activity.type)
+						) : (
+							<>
+								{getActivityTypeString(activity.type)}
+								{getActivityIcon(activity, compact)}
+							</>
+						)}
 						<span>{activity?.name}</span>
 					</p>
 					{activity?.details &&
@@ -203,6 +226,7 @@ const Activity = ({ activity }) => {
 export const Lanyard = ({ id, loaded }: { id: `${bigint}`; loaded: (loaded: boolean) => void }) => {
 	const data = useLanyardWS(id);
 	const [centered, setCentered] = React.useState(false);
+	const [compact, setCompact] = React.useState(false);
 	const lanyard = React.useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -215,6 +239,7 @@ export const Lanyard = ({ id, loaded }: { id: `${bigint}`; loaded: (loaded: bool
 		const resizeObserver = new ResizeObserver((entries) => {
 			const { width } = entries[0].contentRect;
 			setCentered(Math.floor(width / 300) <= 1);
+			setCompact(width <= 500);
 		});
 
 		if (lanyard.current?.parentElement) resizeObserver.observe(lanyard.current.parentElement);
@@ -232,7 +257,7 @@ export const Lanyard = ({ id, loaded }: { id: `${bigint}`; loaded: (loaded: bool
 					{data.activities
 						.filter((activity) => ![4, 6].includes(activity.type))
 						.map((activity) => (
-							<Activity activity={activity} key={activity.id} />
+							<Activity activity={activity} key={activity.id} compact={compact} />
 						))}
 				</div>
 			) : (

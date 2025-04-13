@@ -76,9 +76,11 @@
 			width: 100%;
 			max-width: 350px;
 			display: block;
+
 			background-color: var(--box-bg);
 			border-radius: var(--border-radius);
 			box-shadow: var(--box-shadow);
+			padding: 1rem !important;
 
 			.activity-info {
 				flex-direction: row !important;
@@ -91,6 +93,18 @@
 
 				* {
 					text-align: left !important;
+				}
+			}
+
+			@media screen and (max-width: 500px) {
+				width: 100%;
+				max-width: 300px;
+
+				&-info-text {
+					max-width: 200px !important;
+					&-name {
+						text-overflow: ellipsis;
+					}
 				}
 			}
 		}
