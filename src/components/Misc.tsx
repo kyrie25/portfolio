@@ -115,7 +115,7 @@ export const Cat = () => {
 		"ㅇㅅㅇ",
 	];
 
-	const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+	const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 1;
 	const [cat, setCat] = React.useState<number>(Math.floor(Math.random() * cats.length));
 
 	return (
