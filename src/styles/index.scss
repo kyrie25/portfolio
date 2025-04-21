@@ -6,8 +6,7 @@ html {
 	--box-bg: rgba(var(--background-color), 0.5);
 	--box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
 
-	background-color: var(--background-color);
-	background-image: var(--background-image);
+	background-color: rgb(var(--background-color));
 	background-position: center top;
 	background-repeat: no-repeat;
 	background-size: auto 100lvh;
@@ -20,6 +19,18 @@ html {
 
 body {
 	font-family: "JetBrains Mono", monospace;
+
+	.background {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		// Center horizontally only
+		left: 50%;
+		transform: translateX(-50%);
+		width: auto;
+		height: 100lvh;
+		z-index: -1;
+	}
 }
 
 main {

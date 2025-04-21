@@ -21,6 +21,7 @@ inject();
 
 const App: React.FC = () => {
 	const [data, setData] = React.useState<Record<any, any> | null>(null);
+	const backgroundImg = React.useRef<HTMLImageElement>(null);
 
 	// Loading states
 	const [loadingState, setLoadingState] = React.useState({
@@ -36,7 +37,7 @@ const App: React.FC = () => {
 
 	const avatar = `https://cdn.discordapp.com/avatars/${data?.id}/${data?.avatar}.${ext(data?.avatar)}?size=256`;
 	const banner = `https://cdn.discordapp.com/banners/${data?.id}/${data?.banner}.${ext(data?.banner)}?size=${
-		ext(data?.banner) === "gif" ? 512 : 4096
+		ext(data?.banner) === "gif" ? 2048 : 4096
 	}`;
 	const decoration = `https://cdn.discordapp.com/avatar-decoration-presets/${data?.avatar_decoration_data?.asset}.png`;
 
@@ -53,26 +54,51 @@ const App: React.FC = () => {
 	}, [data]);
 
 	useEffect(() => {
-		if (!data?.banner) return;
+		if (!data?.banner || !backgroundImg.current) return;
 
-		const image = new Image();
-		image.src = banner;
-		image.crossOrigin = "Anonymous";
-		image.onload = () => {
-			document.documentElement.style.setProperty("--background-image", `url(${banner})`);
-			waitTwoFrames(() => {
-				setLoadingState((prevState) => ({
-					...prevState,
-					banner: true,
-				}));
-			});
-		};
+		if (banner?.includes("gif")) {
+			// Load placeholder (webp) first
+			const placeholder = banner.replace(/\.gif/, ".webp");
+			backgroundImg.current.src = placeholder;
+			backgroundImg.current.crossOrigin = "Anonymous";
+			backgroundImg.current.onload = () => {
+				waitTwoFrames(() => {
+					setLoadingState((prevState) => ({
+						...prevState,
+						banner: true,
+					}));
+					// Now load the gif
+					const image = new Image();
+					image.crossOrigin = "Anonymous";
+					image.src = banner;
+					image.onload = () => {
+						waitTwoFrames(() => {
+							backgroundImg.current!.src = banner;
+						});
+					};
+				});
+
+				backgroundImg.current!.onload = () => {};
+			};
+		} else {
+			// Not a gif, load directly to ref
+			backgroundImg.current.src = banner;
+			backgroundImg.current.onload = () => {
+				waitTwoFrames(() => {
+					setLoadingState((prevState) => ({
+						...prevState,
+						banner: true,
+					}));
+				});
+			};
+		}
 	}, [data?.banner]);
 
 	const loading = !data || !Object.values(loadingState).every((state) => state);
 
 	return (
 		<main>
+			<Img className="background" ref={backgroundImg} />
 			<Tooltip
 				id="tooltip"
 				style={{
@@ -85,14 +111,13 @@ const App: React.FC = () => {
 			<section>
 				<article className="intro">
 					<div className="avatar">
-						{
-							<Img
-								src={avatar}
-								alt="avatar"
-								onLoad={() => setLoadingState((prevState) => ({ ...prevState, avatar: true }))}
-								onError={(e) => (e.target.src = "https://avatars.githubusercontent.com/u/77577746?v=4")}
-							/>
-						}
+						<Img
+							src={avatar}
+							alt="avatar"
+							onLoad={() => setLoadingState((prevState) => ({ ...prevState, avatar: true }))}
+							onError={(e) => (e.target.src = "https://avatars.githubusercontent.com/u/77577746?v=4")}
+						/>
+
 						{data?.avatar_decoration_data && <Img src={decoration} alt="decoration" className="decoration" />}
 					</div>
 					<h3>Hi, I'm Kyrie!👋</h3>

@@ -299,7 +299,7 @@
 		const mousemove = (e) => {
 			const clientX = e.clientX ?? e.touches[0].clientX;
 			const clientY = e.clientY ?? e.touches[0].clientY;
-			console.log(clientX, clientY);
+			// console.log(clientX, clientY);
 
 			const deltaX = clientX - startX;
 			const deltaY = clientY - startY;
