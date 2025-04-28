@@ -290,6 +290,8 @@
 
 	function handleOnekoClick(e) {
 		grabbing = true;
+		nekoEl.style.cursor = "grabbing";
+
 		let startX = e.clientX ?? e.touches[0].clientX;
 		let startY = e.clientY ?? e.touches[0].clientY;
 		let startNekoX = nekoPosX;
@@ -335,6 +337,8 @@
 		const mouseup = () => {
 			grabbing = false;
 			nudge = true;
+			nekoEl.style.cursor = "grab";
+
 			resetIdleAnimation();
 			window.removeEventListener("mousemove", mousemove);
 			window.removeEventListener("mouseup", mouseup);
