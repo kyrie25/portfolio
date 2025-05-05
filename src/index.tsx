@@ -33,11 +33,11 @@ const App: React.FC = () => {
 		// github: false,
 	});
 
-	const ext = (hash: string | null) => (hash?.startsWith("a_") ? "gif" : "webp");
-
-	const avatar = `https://cdn.discordapp.com/avatars/${data?.id}/${data?.avatar}.${ext(data?.avatar)}?size=256`;
-	const banner = `https://cdn.discordapp.com/banners/${data?.id}/${data?.banner}.${ext(data?.banner)}?size=${
-		ext(data?.banner) === "gif" ? 2048 : 4096
+	const avatar = `https://cdn.discordapp.com/avatars/${data?.id}/${data?.avatar}.webp?size=256&${
+		data?.avatar.startsWith("a_") ? "animated=true" : ""
+	}`;
+	const banner = `https://cdn.discordapp.com/banners/${data?.id}/${data?.banner}.webp?${
+		data?.banner.startsWith("a_") ? "animated=true&size=2048" : "size=4096"
 	}`;
 	const decoration = `https://cdn.discordapp.com/avatar-decoration-presets/${data?.avatar_decoration_data?.asset}.png`;
 
@@ -56,9 +56,9 @@ const App: React.FC = () => {
 	useEffect(() => {
 		if (!data?.banner || !backgroundImg.current) return;
 
-		if (banner?.includes("gif")) {
+		if (banner?.includes("animated")) {
 			// Load placeholder (webp) first
-			const placeholder = banner.replace(/\.gif/, ".webp");
+			const placeholder = banner.replace("animated=true", "animated=false");
 			backgroundImg.current.src = placeholder;
 			backgroundImg.current.crossOrigin = "Anonymous";
 			backgroundImg.current.onload = () => {
@@ -115,7 +115,7 @@ const App: React.FC = () => {
 							src={avatar}
 							alt="avatar"
 							onLoad={() => setLoadingState((prevState) => ({ ...prevState, avatar: true }))}
-							onError={(e) => (e.target.src = "https://avatars.githubusercontent.com/u/77577746?v=4")}
+							onError={(e) => (e.currentTarget.src = "https://avatars.githubusercontent.com/u/77577746?v=4")}
 						/>
 
 						{data?.avatar_decoration_data && <Img src={decoration} alt="decoration" className="decoration" />}

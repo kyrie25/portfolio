@@ -35,13 +35,18 @@ export const Anchor = ({ href, children, ...props }) => (
 	</a>
 );
 
-export const Img = ({ onLoad = (e) => {}, ...props }) => (
+type ImgProps = React.ImgHTMLAttributes<HTMLImageElement> & {
+	onLoad?: (e: React.SyntheticEvent<HTMLImageElement, Event>) => void;
+};
+
+export const Img = React.forwardRef<HTMLImageElement, ImgProps>(({ onLoad = () => {}, ...props }, ref) => (
 	<img
+		ref={ref}
 		onLoad={(e) => waitTwoFrames(() => onLoad(e))}
 		onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.remove()}
 		{...props}
 	/>
-);
+));
 
 export const LoadingIcon = () => {
 	return (
