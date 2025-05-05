@@ -80,7 +80,7 @@ const ActivityImages = ({ activity }) => {
 		<>
 			{(activity.assets?.large_image || appIcon) && (
 				<Img
-					src={processDiscordImage(activity.assets?.large_image, activity.application_id) || appIcon}
+					src={processDiscordImage(activity.assets?.large_image, activity.application_id) || appIcon || ""}
 					className="activity-image-large"
 					alt="activity"
 					data-tooltip-id="tooltip"
