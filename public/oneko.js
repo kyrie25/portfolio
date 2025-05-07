@@ -88,11 +88,10 @@
 			return;
 		}
 
-		// If Full App Display is on, sleep on its progress bar instead
-		const banner = document.querySelector(".time-widget");
-		if (banner) {
-			mousePosX = banner.getBoundingClientRect().right - 32;
-			mousePosY = banner.getBoundingClientRect().top - 12;
+		const widget = document.querySelector(".time-widget");
+		if (widget) {
+			mousePosX = widget.getBoundingClientRect().right - 32;
+			mousePosY = widget.getBoundingClientRect().top - 12;
 			return;
 		}
 	}
