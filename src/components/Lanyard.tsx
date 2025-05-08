@@ -223,7 +223,15 @@ const Activity = ({ activity, compact = false }) => {
 	);
 };
 
-export const Lanyard = ({ id, loaded }: { id: `${bigint}`; loaded: (loaded: boolean) => void }) => {
+export const Lanyard = ({
+	id,
+	loaded,
+	setKV,
+}: {
+	id: `${bigint}`;
+	loaded: (loaded: boolean) => void;
+	setKV: (kv: Record<string, string>) => void;
+}) => {
 	const data = useLanyardWS(id);
 	const [centered, setCentered] = React.useState(false);
 	const [compact, setCompact] = React.useState(false);
@@ -232,6 +240,7 @@ export const Lanyard = ({ id, loaded }: { id: `${bigint}`; loaded: (loaded: bool
 	useEffect(() => {
 		if (data) {
 			waitTwoFrames(() => loaded(true));
+			setKV(data.kv);
 		}
 	}, [data]);
 

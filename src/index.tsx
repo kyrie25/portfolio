@@ -4,6 +4,8 @@ import classNames from "classnames";
 import { inject } from "@vercel/analytics";
 import { Tooltip } from "react-tooltip";
 import { SiDiscord, SiX, SiMinutemailer, SiGithub, SiBluesky } from "react-icons/si";
+import { FaImage, FaCircleUser } from "react-icons/fa6";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 import "./styles/index.scss";
 import "react-tooltip/dist/react-tooltip.css";
@@ -21,6 +23,7 @@ inject();
 
 const App: React.FC = () => {
 	const [data, setData] = React.useState<Record<any, any> | null>(null);
+	const [KV, setKV] = React.useState<Record<any, any>>({});
 	const backgroundImg = React.useRef<HTMLImageElement>(null);
 
 	// Loading states
@@ -105,7 +108,7 @@ const App: React.FC = () => {
 					zIndex: 9999999,
 				}}
 			/>
-			<div className={classNames("loading", { "fade-out": !loading })}>
+			<div className={classNames("loading", { "fade-out": !loading }, "test")}>
 				<LoadingIcon />
 			</div>
 			<section>
@@ -120,9 +123,25 @@ const App: React.FC = () => {
 
 						{data?.avatar_decoration_data && <Img src={decoration} alt="decoration" className="decoration" />}
 					</div>
-					<h3>Hi, I'm Kyrie!👋</h3>
+					<h3>Hi, I'm Kyrie!</h3>
+					<div className="sources">
+						{KV.avatar && (
+							<Anchor href={KV.avatar} title="Avatar source">
+								<FaCircleUser size={16} />
+								<span>Avatar source</span>
+								<FaExternalLinkAlt size={16} />
+							</Anchor>
+						)}
+						{KV.banner && (
+							<Anchor href={KV.banner} title="Banner source">
+								<FaImage size={16} />
+								<span>Banner source</span>
+								<FaExternalLinkAlt size={16} />
+							</Anchor>
+						)}
+					</div>
 				</article>
-				<Lanyard id={DISCORD_ID} loaded={(state) => setLoadingState((prevState) => ({ ...prevState, lanyard: state }))} />
+				<Lanyard id={DISCORD_ID} loaded={(state) => setLoadingState((prevState) => ({ ...prevState, lanyard: state }))} setKV={setKV} />
 
 				<article className="bio">
 					<p>
