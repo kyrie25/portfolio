@@ -5,7 +5,7 @@ import * as Icons from "react-icons/si";
 import { FaGamepad, FaTwitch, FaMusic, FaVideo } from "react-icons/fa6";
 
 import { fetchAPI, ext, waitTwoFrames, processDiscordImage, formatTime, getActivityTypeString, check404 } from "../utils";
-import { Anchor, Cat, Clock, Img } from "./Misc";
+import { Anchor, Img } from "./Misc";
 
 import "../styles/Lanyard.scss";
 
@@ -210,7 +210,7 @@ const Activity = ({ activity, compact = false }) => {
 							<span className="activity-info-text-timestamp">
 								{/* Total time */}
 								{formatTime({ end: Date.now() + (activity.timestamps.end - activity.timestamps.start) }, true)}
-							</span>
+							</span>{" "}
 						</div>
 					) : (
 						(activity?.timestamps?.end || activity?.timestamps?.start) && (
@@ -257,10 +257,6 @@ export const Lanyard = ({
 
 	return (
 		<>
-			<div className="header">
-				<Cat />
-				<Clock />
-			</div>
 			{!!data?.activities?.filter((activity) => ![4, 6].includes(activity.type)).length ? (
 				<div className={classNames("lanyard", { centered })} ref={lanyard}>
 					{data.activities

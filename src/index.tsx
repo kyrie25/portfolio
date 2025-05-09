@@ -12,7 +12,7 @@ import "react-tooltip/dist/react-tooltip.css";
 
 import { Lanyard } from "./components/Lanyard";
 import { Stack } from "./components/Stack";
-import { LoadingIcon, Anchor, Img, Age } from "./components/Misc";
+import { LoadingIcon, Anchor, Img, Age, Clock, Cat } from "./components/Misc";
 import { fetchAPI, getDominantColor, waitTwoFrames, WCGACheckColor } from "./utils";
 import { Stats } from "./components/Stats";
 
@@ -124,6 +124,10 @@ const App: React.FC = () => {
 						{data?.avatar_decoration_data && <Img src={decoration} alt="decoration" className="decoration" />}
 					</div>
 					<h3>Hi, I'm Kyrie!</h3>
+				</article>
+				<div className="header">
+					<Cat />
+					<Clock />
 					<div className="sources">
 						{KV.avatar && (
 							<Anchor href={KV.avatar} title="Avatar source">
@@ -140,7 +144,7 @@ const App: React.FC = () => {
 							</Anchor>
 						)}
 					</div>
-				</article>
+				</div>
 				<Lanyard id={DISCORD_ID} loaded={(state) => setLoadingState((prevState) => ({ ...prevState, lanyard: state }))} setKV={setKV} />
 
 				<article className="bio">
