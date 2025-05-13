@@ -83,60 +83,25 @@ main {
 			padding-bottom: 0.5rem;
 		}
 
-		.clock-header {
-			padding-bottom: 0.5rem;
-		}
-
-		.clock {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			gap: 1rem;
-
-			.date-widget,
-			.time-widget {
-				position: relative;
-				display: flex;
-				align-items: center;
-				padding: 3px 7px;
-				color: #000;
-				border-radius: 2px;
-				box-shadow: 0 5px 10px rgba(255, 255, 255, 0.12);
-				transition: box-shadow 0.5s linear;
-			}
-
-			.date-widget {
-				background-color: #7eddde;
-			}
-
-			.time-widget {
-				background-color: #ffd484;
-
-				.time-widget-filler {
-					position: absolute;
-					top: 0;
-					left: 0;
-					width: 100%;
-					height: 100%;
-					transform: scaleX(0);
-					background-color: rgba(0, 0, 0, 0.15);
-					border-radius: inherit;
-					transform-origin: left;
-				}
-			}
-		}
-
-		.sources {
-			margin: 1rem;
-			z-index: 2;
-
+		.widgets {
+			margin: 0.75rem;
 			display: flex;
 			flex-direction: row;
 			gap: 1rem;
 			align-items: center;
-			flex-wrap: wrap;
+			justify-content: center;
 
-			a {
+			.date-widget {
+				--background-color: 126, 221, 222;
+				color: black;
+			}
+
+			.time-widget {
+				--background-color: 255, 212, 132;
+				color: black;
+			}
+
+			&-content {
 				color: white;
 				text-decoration: none;
 				font-size: 0.8rem;

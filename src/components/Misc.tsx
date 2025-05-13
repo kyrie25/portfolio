@@ -175,15 +175,14 @@ export const Clock = () => {
 	return (
 		<>
 			<span className="clock-header">Local Time:</span>
-			<div className="clock">
-				<div className="date-widget">
-					<FaCalendarAlt style={{ paddingRight: "0.5rem" }} />
+			<div className="widgets">
+				<div className="widgets-content date-widget">
+					<FaCalendarAlt size={16} />
 					{date}
 				</div>
-				<div className="time-widget">
-					<FaClock style={{ paddingRight: "0.5rem" }} />
+				<div className="widgets-content time-widget">
+					<FaClock size={16} />
 					{time}
-					<div className="time-widget-filler" style={{ transform: `scaleX(${percentOfDay})` }} />
 				</div>
 			</div>
 		</>

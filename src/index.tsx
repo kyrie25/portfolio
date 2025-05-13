@@ -128,16 +128,16 @@ const App: React.FC = () => {
 				<div className="header">
 					<Cat />
 					<Clock />
-					<div className="sources">
+					<div className="widgets">
 						{KV.avatar && (
-							<Anchor href={KV.avatar} title="Avatar source">
+							<Anchor href={KV.avatar} title="Avatar source" className="widgets-content">
 								<FaCircleUser size={16} />
 								<span>Avatar source</span>
 								<FaExternalLinkAlt size={16} />
 							</Anchor>
 						)}
 						{KV.banner && (
-							<Anchor href={KV.banner} title="Banner source">
+							<Anchor href={KV.banner} title="Banner source" className="widgets-content">
 								<FaImage size={16} />
 								<span>Banner source</span>
 								<FaExternalLinkAlt size={16} />
