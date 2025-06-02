@@ -145,6 +145,7 @@ const App: React.FC = () => {
 						)}
 					</div>
 				</div>
+
 				<Lanyard id={DISCORD_ID} loaded={(state) => setLoadingState((prevState) => ({ ...prevState, lanyard: state }))} setKV={setKV} />
 
 				<article className="bio">
@@ -158,10 +159,32 @@ const App: React.FC = () => {
 						Outside of work, I enjoy playing rougelite and hack-n-slash games (as seen from my <Anchor href="https://steam.kyrie25.dev">
 							Steam
 						</Anchor>{" "}
-						profile), and listening to indie music. You can see the songs I'm listening to or the games I'm playing{" "}
+						profile), and listening to <i>whatever</i> doesn't make my ears bleed. You can see the songs I'm listening to or the games I'm playing{" "}
 						<a href="#">on the top of the page</a>.
 					</p>
 				</article>
+
+				{(KV.playlist1 || KV.playlist2) && (
+					<article className="music">
+						<h3>My playlists</h3>
+						<div className="music">
+							{KV.playlist1 && (
+								<iframe
+									allow="autoplay *; encrypted-media *;"
+									sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+									src={KV.playlist1}
+								/>
+							)}
+							{KV.playlist2 && (
+								<iframe
+									allow="autoplay *; encrypted-media *;"
+									sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+									src={KV.playlist2}
+								/>
+							)}
+						</div>
+					</article>
+				)}
 
 				<Stack />
 

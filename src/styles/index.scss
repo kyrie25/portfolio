@@ -158,6 +158,25 @@ main {
 				color: white;
 			}
 
+			.music {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: center;
+				width: 100%;
+				flex-wrap: wrap;
+
+				iframe {
+					height: 450px;
+					width: 50%;
+					max-width: 660px;
+					min-width: 300px;
+					overflow: hidden;
+					background: transparent;
+					border: none;
+				}
+			}
+
 			&.intro {
 				margin-top: 1rem;
 
