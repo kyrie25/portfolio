@@ -32,6 +32,14 @@ body {
 		height: 100lvh;
 		z-index: -1;
 	}
+
+	&.light {
+		.header widgets-content,
+		section,
+		a {
+			color: black !important;
+		}
+	}
 }
 
 main {

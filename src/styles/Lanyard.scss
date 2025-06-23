@@ -211,14 +211,14 @@
 
 				&-name {
 					svg {
-						color: #fff;
+						color: unset;
 						transition: color 0.5s linear;
 						top: 2px;
 						position: relative;
 					}
 
 					span {
-						color: #fff;
+						color: unset;
 						font-weight: bold;
 						overflow: hidden;
 						white-space: nowrap;

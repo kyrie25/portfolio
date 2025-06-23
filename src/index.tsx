@@ -50,6 +50,9 @@ const App: React.FC = () => {
 			(data) => {
 				setData(data.user);
 				if (data.user_profile?.theme_colors && data.user_profile.theme_colors.length > 0) {
+					const whiteContrast = WCGACheckColor(data.user_profile.theme_colors[0].toString(16));
+					document.body.classList.toggle("light", whiteContrast);
+
 					const rgb = data.user_profile.theme_colors.map((color: number) => hexToRgb(color.toString(16)));
 					document.documentElement.style.setProperty("--primary-color", rgb[0].join(","));
 					document.documentElement.style.setProperty("--secondary-color", rgb[1].join(","));
