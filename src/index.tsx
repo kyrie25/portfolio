@@ -13,7 +13,7 @@ import "react-tooltip/dist/react-tooltip.css";
 import { Lanyard } from "./components/Lanyard";
 import { Stack } from "./components/Stack";
 import { LoadingIcon, Anchor, Img, Age, Clock, Cat } from "./components/Misc";
-import { fetchAPI, getDominantColor, waitTwoFrames, WCGACheckColor } from "./utils";
+import { fetchAPI, getDominantColor, hexToRgb, waitTwoFrames, WCGACheckColor } from "./utils";
 import { Stats } from "./components/Stats";
 
 const DISCORD_ID = import.meta.env.VITE_DISCORD_ID;
@@ -37,15 +37,26 @@ const App: React.FC = () => {
 	});
 
 	const avatar = `https://cdn.discordapp.com/avatars/${data?.id}/${data?.avatar}.webp?size=256&${
-		data?.avatar.startsWith("a_") ? "animated=true" : ""
+		data?.avatar?.startsWith("a_") ? "animated=true" : ""
 	}`;
 	const banner = `https://cdn.discordapp.com/banners/${data?.id}/${data?.banner}.webp?${
-		data?.banner.startsWith("a_") ? "animated=true&size=2048" : "size=4096"
+		data?.banner?.startsWith("a_") ? "animated=true&size=2048" : "size=4096"
 	}`;
 	const decoration = `https://cdn.discordapp.com/avatar-decoration-presets/${data?.avatar_decoration_data?.asset}.png`;
 
 	useEffect(() => {
-		fetchAPI(DISCORD_ID, setData, () => setData({}));
+		fetchAPI(
+			DISCORD_ID,
+			(data) => {
+				setData(data.user);
+				if (data.user_profile?.theme_colors && data.user_profile.theme_colors.length > 0) {
+					const rgb = data.user_profile.theme_colors.map((color: number) => hexToRgb(color.toString(16)));
+					document.documentElement.style.setProperty("--primary-color", rgb[0].join(","));
+					document.documentElement.style.setProperty("--secondary-color", rgb[1].join(","));
+				}
+			},
+			() => setData({})
+		);
 	}, []);
 
 	useEffect(() => {

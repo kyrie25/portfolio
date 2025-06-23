@@ -43,11 +43,23 @@ export const formatTime = (
 	return str;
 };
 
-export const fetchAPI = (id, callback, onError) =>
+export const fetchUser = (id, callback, onError) =>
 	fetch(`https://api.kyrie25.dev/discord/${id}`)
 		.then((response) => response.json())
+		.then((data) => {
+			user: data;
+		})
 		.then(callback)
 		.catch(onError);
+
+export const fetchAPI = (id, callback, onError) =>
+	fetch(`https://dcdn.dstn.to/profile/${id}`)
+		.then((response) => response.json())
+		.then(callback)
+		.catch((err) => {
+			console.error("Failed to fetch API:", err);
+			fetchUser(id, callback, onError);
+		});
 
 export const fetchGitHubStats = (username, callback, onError) =>
 	fetch(
@@ -123,9 +135,27 @@ export function getDominantColor(imageObject: HTMLImageElement) {
 
 // Check against white text
 export function WCGACheckColor(color: string) {
-	const r = parseInt(color.substr(0, 2), 16);
-	const g = parseInt(color.substr(2, 2), 16);
-	const b = parseInt(color.substr(4, 2), 16);
+	const r = parseInt(color.slice(0, 1), 16);
+	const g = parseInt(color.slice(2, 3), 16);
+	const b = parseInt(color.slice(4, 5), 16);
+	if (isNaN(r) || isNaN(g) || isNaN(b)) return false;
 	const brightness = (r * 299 + g * 587 + b * 114) / 1000;
 	return brightness > 125;
+}
+
+export function hexToRgb(hex: string) {
+	// Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+	const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+	hex = hex.replace(shorthandRegex, (m: any, r: any, g: any, b: any) => {
+		return r + r + g + g + b + b;
+	});
+
+	const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+	return result
+		? [
+				parseInt(result[1], 16),
+				parseInt(result[2], 16),
+				parseInt(result[3], 16),
+		  ]
+		: null;
 }
