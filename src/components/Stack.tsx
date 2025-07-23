@@ -8,6 +8,7 @@ import {
 	SiJavascript,
 	SiTypescript,
 	SiPhp,
+	SiC,
 	SiCplusplus,
 	SiGo,
 	SiVuedotjs,
@@ -26,6 +27,7 @@ import {
 	SiSqlite,
 	SiGraphql,
 	SiKotlin,
+	SiSwift,
 } from "react-icons/si";
 
 import "../styles/Stack.scss";
@@ -50,9 +52,11 @@ export const Stack = () => {
 				<IconWithTooltip icon={SiJavascript} tooltip="JavaScript" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" />
 				<IconWithTooltip icon={SiTypescript} tooltip="TypeScript" href="https://www.typescriptlang.org/" />
 				<IconWithTooltip icon={SiPhp} tooltip="PHP" href="https://www.php.net/" />
-				<IconWithTooltip icon={SiCplusplus} tooltip="C++" href="https://www.cplusplus.com/" />
+				<IconWithTooltip icon={SiC} tooltip="C" href="https://www.c-language.org/" />
+				<IconWithTooltip icon={SiCplusplus} tooltip="C++" href="https://isocpp.org/" />
 				<IconWithTooltip icon={SiGo} tooltip="Go" href="https://golang.org/" />
 				<IconWithTooltip icon={SiKotlin} tooltip="Kotlin" href="https://kotlinlang.org/" />
+				<IconWithTooltip icon={SiSwift} tooltip="Swift" href="https://swift.org/" />
 			</div>
 
 			<h3>Front-end stack</h3>
