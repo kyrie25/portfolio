@@ -140,7 +140,7 @@ export function WCGACheckColor(color: string) {
 	const b = parseInt(color.slice(4, 5), 16);
 	if (isNaN(r) || isNaN(g) || isNaN(b)) return false;
 	const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-	return brightness > 125;
+	return brightness > 7.5;
 }
 
 export function hexToRgb(hex: string) {
