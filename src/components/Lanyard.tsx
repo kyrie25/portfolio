@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { Activity as ActivityType, useLanyardWS } from "use-lanyard";
+import { Types, useLanyardWS } from "use-lanyard";
 import classNames from "classnames";
-import * as Icons from "react-icons/si";
+// import * as Icons from "react-icons/si";
 import { FaGamepad, FaTwitch, FaMusic, FaVideo } from "react-icons/fa6";
 
 import { fetchAPI, ext, waitTwoFrames, processDiscordImage, formatTime, getActivityTypeString, check404 } from "../utils";
@@ -9,34 +9,35 @@ import { Anchor, Img } from "./Misc";
 
 import "../styles/Lanyard.scss";
 
-function getActivityIcon(activity: ActivityType, compact = false) {
-	const iconList = Object.keys(Icons);
-	const icon =
-		typeof activity === "string"
-			? activity
-			: iconList.find(
-					(icon) =>
-						icon.replace("Si", "").toLowerCase() ===
-						activity.name
-							.replaceAll(" ", "")
-							.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
-							.toLowerCase()
-			  );
+// Chunk size too large
+// function getActivityIcon(activity: Types.Activity, compact = false) {
+// 	const iconList = Object.keys(Icons);
+// 	const icon =
+// 		typeof activity === "string"
+// 			? activity
+// 			: iconList.find(
+// 					(icon) =>
+// 						icon.replace("Si", "").toLowerCase() ===
+// 						activity.name
+// 							.replaceAll(" ", "")
+// 							.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
+// 							.toLowerCase()
+// 			  );
 
-	if (icon) {
-		return Icons[icon]({
-			size: 12,
-			style: {
-				marginRight: -2,
-				paddingLeft: compact ? 0 : 8,
-				top: 2,
-				position: "relative",
-			},
-		});
-	}
+// 	if (icon) {
+// 		return Icons[icon]({
+// 			size: 12,
+// 			style: {
+// 				marginRight: -2,
+// 				paddingLeft: compact ? 0 : 8,
+// 				top: 2,
+// 				position: "relative",
+// 			},
+// 		});
+// 	}
 
-	return "";
-}
+// 	return "";
+// }
 
 function getActivityTypeIcon(type: number) {
 	switch (type) {
@@ -144,14 +145,14 @@ const Activity = ({ activity, compact = false }) => {
 				</div>
 				<div className="activity-info-text">
 					<p className="activity-info-text-name">
-						{compact ? (
+						{/* {compact ? (
 							getActivityIcon(activity, compact) || getActivityTypeIcon(activity.type)
 						) : (
 							<>
 								{getActivityTypeString(activity.type)}
 								{getActivityIcon(activity, compact)}
 							</>
-						)}
+						)} */}
 						<span>{activity?.name}</span>
 					</p>
 					{activity?.details &&
