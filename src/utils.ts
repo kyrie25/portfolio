@@ -133,38 +133,16 @@ export function getDominantColor(imageObject: HTMLImageElement) {
 	return ((1 << 24) + (i[0] << 16) + (i[1] << 8) + i[2]).toString(16).slice(1);
 }
 
-// Check against white text
-export function WCGACheckColor(hex: string) {
-	// Remove leading '#' if present
-	hex = hex.replace(/^#/, "");
-	// Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
-	if (hex.length === 3) {
-		hex = hex
-			.split("")
-			.map((c) => c + c)
-			.join("");
-	}
-	if (hex.length !== 6) return false;
+// Get contrasting color (black or white) based on luminance
+export function WCGACheckColor(color: string | number[]): boolean {
+	return luma(color) >= 165;
+}
 
-	const r = parseInt(hex.slice(0, 2), 16);
-	const g = parseInt(hex.slice(2, 4), 16);
-	const b = parseInt(hex.slice(4, 6), 16);
-
-	if ([r, g, b].some((v) => isNaN(v))) return false;
-
-	// Calculate relative luminance
-	const [R, G, B] = [r, g, b].map((v) => {
-		const c = v / 255;
-		return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
-	});
-	const luminance = 0.2126 * R + 0.7152 * G + 0.0722 * B;
-
-	// Contrast ratio with white (#fff)
-	const whiteLuminance = 1;
-	const contrast = (whiteLuminance + 0.05) / (luminance + 0.05);
-
-	// WCAG recommends a minimum contrast ratio of 4.5:1 for normal text
-	return contrast >= 4.5;
+// Calculate luminance using SMPTE C, Rec. 709 weightings
+export function luma(color: string | number[]): number {
+	const rgb = typeof color === "string" ? hexToRgb(color) : color;
+	if (!rgb) return 0;
+	return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
 }
 
 export function hexToRgb(hex: string) {
