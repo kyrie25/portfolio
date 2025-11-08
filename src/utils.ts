@@ -45,19 +45,30 @@ export const formatTime = (
 
 export const fetchUser = (id, callback, onError) =>
 	fetch(`https://api.kyrie25.dev/discord/${id}`)
-		.then((response) => response.json())
-		.then((data) => {
-			user: data;
+		.then((response) => {
+			if (!response.ok) {
+				throw new Error("Network response was not ok");
+			}
+			return response;
 		})
+		.then((response) => response.json())
+		.then((data) => ({
+			user: data,
+		}))
 		.then(callback)
 		.catch(onError);
 
 export const fetchAPI = (id, callback, onError) =>
 	fetch(`https://dcdn.dstn.to/profile/${id}`)
+		.then((response) => {
+			if (!response.ok) {
+				throw new Error("Network response was not ok");
+			}
+			return response;
+		})
 		.then((response) => response.json())
 		.then(callback)
 		.catch((err) => {
-			console.error("Failed to fetch API:", err);
 			fetchUser(id, callback, onError);
 		});
 

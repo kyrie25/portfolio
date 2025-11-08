@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import classNames from "classnames";
 import { inject } from "@vercel/analytics";
@@ -13,7 +13,7 @@ import "react-tooltip/dist/react-tooltip.css";
 import { Lanyard } from "./components/Lanyard";
 import { Stack } from "./components/Stack";
 import { LoadingIcon, Anchor, Img, Age, Clock, Cat } from "./components/Misc";
-import { fetchAPI, getDominantColor, hexToRgb, waitTwoFrames, WCGACheckColor } from "./utils";
+import { fetchAPI, fetchUser, getDominantColor, hexToRgb, waitTwoFrames, WCGACheckColor } from "./utils";
 import { Stats } from "./components/Stats";
 
 const DISCORD_ID = import.meta.env.VITE_DISCORD_ID;
@@ -36,6 +36,18 @@ const App: React.FC = () => {
 		// github: false,
 	});
 
+	const setUser = (res) => {
+		setData(res.user);
+		if (res.user.user_profile?.theme_colors && res.user.user_profile.theme_colors.length > 0) {
+			const whiteContrast = WCGACheckColor(res.user.user_profile.theme_colors[0].toString(16));
+			document.body.classList.toggle("light", whiteContrast);
+
+			const rgb = res.user.user_profile.theme_colors.map((color: number) => hexToRgb(color.toString(16)));
+			document.documentElement.style.setProperty("--primary-color", rgb[0].join(","));
+			document.documentElement.style.setProperty("--secondary-color", rgb[1].join(","));
+		}
+	};
+
 	const avatar = `https://cdn.discordapp.com/avatars/${data?.id}/${data?.avatar}.webp?size=256&${
 		data?.avatar?.startsWith("a_") ? "animated=true" : ""
 	}`;
@@ -47,18 +59,8 @@ const App: React.FC = () => {
 	useEffect(() => {
 		fetchAPI(
 			DISCORD_ID,
-			(data) => {
-				setData(data.user);
-				if (data.user_profile?.theme_colors && data.user_profile.theme_colors.length > 0) {
-					const whiteContrast = WCGACheckColor(data.user_profile.theme_colors[0].toString(16));
-					document.body.classList.toggle("light", whiteContrast);
-
-					const rgb = data.user_profile.theme_colors.map((color: number) => hexToRgb(color.toString(16)));
-					document.documentElement.style.setProperty("--primary-color", rgb[0].join(","));
-					document.documentElement.style.setProperty("--secondary-color", rgb[1].join(","));
-				}
-			},
-			() => setData({})
+			setUser,
+			fetchUser(DISCORD_ID, setUser, () => setData({}))
 		);
 	}, []);
 
@@ -132,7 +134,10 @@ const App: React.FC = () => {
 							src={avatar}
 							alt="avatar"
 							onLoad={() => setLoadingState((prevState) => ({ ...prevState, avatar: true }))}
-							onError={(e) => (e.currentTarget.src = "https://avatars.githubusercontent.com/u/77577746?v=4")}
+							onError={(e) => {
+								e.currentTarget.src = "https://avatars.githubusercontent.com/u/77577746?v=4";
+								setLoadingState((prevState) => ({ ...prevState, avatar: true }));
+							}}
 						/>
 
 						{data?.avatar_decoration_data && <Img src={decoration} alt="decoration" className="decoration" />}
