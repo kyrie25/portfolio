@@ -65,14 +65,6 @@ const App: React.FC = () => {
 	}, []);
 
 	useEffect(() => {
-		setLoadingState((prevState) => ({
-			...prevState,
-			avatar: !data?.avatar,
-			banner: !data?.banner,
-		}));
-	}, [data]);
-
-	useEffect(() => {
 		if (!data?.banner || !backgroundImg.current) return;
 
 		if (banner?.includes("animated")) {
