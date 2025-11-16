@@ -1,4 +1,22 @@
+import { Color, generateColorShades } from "./color";
+
 const DISCORD_CDN = "https://cdn.discordapp.com";
+
+export enum DisplayNameStyleEffectID {
+	UNKNOWN,
+	SOLID,
+	GRADIENT,
+	NEON,
+	TOON,
+	POP,
+	GLOW,
+}
+
+export interface DisplayNameStyles {
+	colors: number[];
+	effect_id: DisplayNameStyleEffectID;
+	font_id: number;
+}
 
 export const getTimeFormatString = (timestamp: number) => {
 	if (timestamp < 0) return `00:00`;
@@ -171,4 +189,62 @@ export function hexToRgb(hex: string) {
 				parseInt(result[3], 16),
 		  ]
 		: null;
+}
+
+export function getDisplayNameStyleEffectVars(
+	styles: Record<string, any> | null
+): Record<string, string> {
+	console.log(styles);
+	if (!styles) return {};
+
+	const { effect_id, colors } = styles;
+	if (!colors || colors.length === 0) return {};
+
+	const mainColor = new Color().setFromInt(colors[0]).toHex();
+	if (colors.length === 2 && effect_id === DisplayNameStyleEffectID.GRADIENT) {
+		return {
+			"--custom-display-name-styles-main-color": mainColor,
+			"--custom-display-name-styles-gradient-start-color": mainColor,
+			"--custom-display-name-styles-gradient-end-color": new Color()
+				.setFromInt(colors[1])
+				.toHex(),
+		};
+	}
+
+	const colorShades = generateColorShades(
+		new Color().setFromInt(colors[0]).toHex()
+	);
+	return {
+		"--custom-display-name-styles-main-color": colorShades.main,
+		"--custom-display-name-styles-light-1-color": colorShades.light1,
+		"--custom-display-name-styles-light-2-color": colorShades.light2,
+		"--custom-display-name-styles-dark-1-color": colorShades.dark1,
+		"--custom-display-name-styles-dark-2-color": colorShades.dark2,
+	};
+}
+
+export function getDisplayNameStyleClassname(
+	data: Record<string, any> | null
+): string {
+	console.log(data);
+	if (!data) return "";
+
+	const { effect_id } = data;
+
+	switch (effect_id) {
+		case DisplayNameStyleEffectID.SOLID:
+			return "solid";
+		case DisplayNameStyleEffectID.GRADIENT:
+			return "gradient";
+		case DisplayNameStyleEffectID.NEON:
+			return "neon";
+		case DisplayNameStyleEffectID.TOON:
+			return "toon";
+		case DisplayNameStyleEffectID.POP:
+			return "pop";
+		case DisplayNameStyleEffectID.GLOW:
+			return "glow";
+		default:
+			return "";
+	}
 }

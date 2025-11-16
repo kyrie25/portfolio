@@ -30,7 +30,7 @@ export const Age = ({ date }: { date: string }) => {
 };
 
 export const Anchor = ({ href, children, ...props }) => (
-	<a href={href} target="_blank" rel="noreferrer" {...props}>
+	<a className="link" href={href} target="_blank" rel="noreferrer" {...props}>
 		{children}
 	</a>
 );

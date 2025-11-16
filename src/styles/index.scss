@@ -30,7 +30,6 @@ body {
 		transform: translateX(-50%);
 		width: auto;
 		height: 100lvh;
-		z-index: -1;
 	}
 
 	&.light {
@@ -52,6 +51,22 @@ main {
 
 	* {
 		text-align: center;
+	}
+
+	.link:hover {
+		color: rgb(var(--primary-color)) !important;
+	}
+
+	.icon {
+		width: auto;
+		height: 1.5rem;
+
+		&.inline {
+			margin: auto 0.25rem;
+			top: 0.125rem;
+			position: relative;
+			transform: translateY(1px);
+		}
 	}
 
 	// Overlay the page with a loading screen
@@ -212,8 +227,15 @@ main {
 					img {
 						// Round
 						border-radius: 50%;
-						width: 100px;
-						height: 100px;
+						width: 150px;
+						height: 150px;
+						object-fit: cover;
+						transition: transform 0.2s ease-in-out;
+						cursor: pointer;
+
+						&:hover {
+							transform: scale(1.05);
+						}
 					}
 
 					.decoration {

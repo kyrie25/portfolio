@@ -8,12 +8,22 @@ import { FaImage, FaCircleUser } from "react-icons/fa6";
 import { FaExternalLinkAlt } from "react-icons/fa";
 
 import "./styles/index.scss";
+import "./styles/Username.scss";
 import "react-tooltip/dist/react-tooltip.css";
 
 import { Lanyard } from "./components/Lanyard";
 import { Stack } from "./components/Stack";
 import { LoadingIcon, Anchor, Img, Age, Clock, Cat } from "./components/Misc";
-import { fetchAPI, fetchUser, getDominantColor, hexToRgb, waitTwoFrames, WCGACheckColor } from "./utils";
+import {
+	fetchAPI,
+	fetchUser,
+	getDisplayNameStyleClassname,
+	getDisplayNameStyleEffectVars,
+	getDominantColor,
+	hexToRgb,
+	waitTwoFrames,
+	WCGACheckColor,
+} from "./utils";
 import { Stats } from "./components/Stats";
 
 const DISCORD_ID = import.meta.env.VITE_DISCORD_ID;
@@ -38,11 +48,12 @@ const App: React.FC = () => {
 
 	const setUser = (res) => {
 		setData(res.user);
-		if (res.user.user_profile?.theme_colors && res.user.user_profile.theme_colors.length > 0) {
-			const whiteContrast = WCGACheckColor(res.user.user_profile.theme_colors[0].toString(16));
+		const userProfile = res.user_profile || res.user.user_profile;
+		if (userProfile?.theme_colors && userProfile.theme_colors.length > 0) {
+			const whiteContrast = WCGACheckColor(userProfile.theme_colors[0].toString(16));
 			document.body.classList.toggle("light", whiteContrast);
 
-			const rgb = res.user.user_profile.theme_colors.map((color: number) => hexToRgb(color.toString(16)));
+			const rgb = userProfile.theme_colors.map((color: number) => hexToRgb(color.toString(16)));
 			document.documentElement.style.setProperty("--primary-color", rgb[0].join(","));
 			document.documentElement.style.setProperty("--secondary-color", rgb[1].join(","));
 		}
@@ -116,7 +127,7 @@ const App: React.FC = () => {
 					zIndex: 9999999,
 				}}
 			/>
-			<div className={classNames("loading", { "fade-out": !loading }, "test")}>
+			<div className={classNames("loading", { "fade-out": !loading })}>
 				<LoadingIcon />
 			</div>
 			<section>
@@ -125,6 +136,7 @@ const App: React.FC = () => {
 						<Img
 							src={avatar}
 							alt="avatar"
+							onClick={() => window.open(avatar.replace("size=256", "size=4096"), "_blank")}
 							onLoad={() => setLoadingState((prevState) => ({ ...prevState, avatar: true }))}
 							onError={(e) => {
 								e.currentTarget.src = "https://avatars.githubusercontent.com/u/77577746?v=4";
@@ -134,27 +146,36 @@ const App: React.FC = () => {
 
 						{data?.avatar_decoration_data && <Img src={decoration} alt="decoration" className="decoration" />}
 					</div>
-					<h3>Hi, I'm Kyrie!</h3>
+					<h2>
+						Hi, I'm{" "}
+						<span
+							className={classNames("username", getDisplayNameStyleClassname(data?.display_name_styles))}
+							style={getDisplayNameStyleEffectVars(data?.display_name_styles)}
+						>
+							Kyrie
+						</span>
+						!
+					</h2>
 				</article>
 				<div className="header">
 					<Cat />
 					<Clock />
-					<div className="widgets">
-						{KV.avatar && (
-							<Anchor href={KV.avatar} title="Avatar source" className="widgets-content">
-								<FaCircleUser size={16} />
-								<span>Avatar source</span>
-								<FaExternalLinkAlt size={16} />
-							</Anchor>
-						)}
-						{KV.banner && (
-							<Anchor href={KV.banner} title="Banner source" className="widgets-content">
-								<FaImage size={16} />
-								<span>Banner source</span>
-								<FaExternalLinkAlt size={16} />
-							</Anchor>
-						)}
-					</div>
+					{KV.avatar || KV.banner ? (
+						<div className="widgets">
+							{KV.avatar && (
+								<Anchor href={KV.avatar} title="Avatar source" className="media-link">
+									<FaCircleUser size={16} />
+									<span>Avatar</span>
+								</Anchor>
+							)}
+							{KV.banner && (
+								<Anchor href={KV.banner} title="Banner source" className="media-link">
+									<FaImage size={16} />
+									<span>Banner</span>
+								</Anchor>
+							)}
+						</div>
+					) : null}
 				</div>
 
 				<Lanyard id={DISCORD_ID} loaded={(state) => setLoadingState((prevState) => ({ ...prevState, lanyard: state }))} setKV={setKV} />
@@ -165,6 +186,11 @@ const App: React.FC = () => {
 						undergraduate at fit@
 						<Anchor href="https://en.hcmus.edu.vn/">hcmus</Anchor>. Starting as a self-taught developer and have been coding since 2021, my expertise
 						focuses mainly on web & app development.
+						<br />
+						<br />
+						You may have seen some of my open-source contributions on my <Anchor href="https://github.kyrie25.dev">GitHub</Anchor>, namely the
+						<Img src="https://spicetify.app/images/spicetify.png" className="icon inline" />
+						<Anchor href="https://spicetify.app/">Spicetify</Anchor> CLI.
 						<br />
 						<br />
 						Outside of work, I enjoy playing rougelite and hack-n-slash games (as seen from my <Anchor href="https://steam.kyrie25.dev">
