@@ -30,6 +30,8 @@ body {
 		transform: translateX(-50%);
 		width: auto;
 		height: 100lvh;
+		z-index: 0;
+		filter: blur(8px) brightness(0.8);
 	}
 
 	&.light {
@@ -155,7 +157,7 @@ main {
 	section {
 		background-color: rgba(var(--secondary-color), 0.6);
 		color: white;
-		backdrop-filter: blur(10px);
+		// backdrop-filter: blur(10px);
 		border: 5px solid rgba(var(--primary-color), 0.8);
 		border-radius: var(--border-radius);
 		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
@@ -169,6 +171,7 @@ main {
 		margin-top: 1rem;
 		width: fit-content;
 		max-width: min(calc(100% - 2rem), 1000px);
+		z-index: 1;
 
 		article {
 			display: flex;
