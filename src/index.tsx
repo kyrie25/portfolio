@@ -163,13 +163,13 @@ const App: React.FC = () => {
 					{KV.avatar || KV.banner ? (
 						<div className="widgets">
 							{KV.avatar && (
-								<Anchor href={KV.avatar} title="Avatar source" className="media-link">
+								<Anchor href={KV.avatar} title="Avatar source" className="widgets-content media-link">
 									<FaCircleUser size={16} />
 									<span>Avatar</span>
 								</Anchor>
 							)}
 							{KV.banner && (
-								<Anchor href={KV.banner} title="Banner source" className="media-link">
+								<Anchor href={KV.banner} title="Banner source" className="widgets-content media-link">
 									<FaImage size={16} />
 									<span>Banner</span>
 								</Anchor>
