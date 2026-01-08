@@ -121,6 +121,11 @@ const App: React.FC = () => {
 	return (
 		<main>
 			<Img className="background" ref={backgroundImg} />
+			{KV.banner && (
+				<Anchor href={KV.banner} title="Banner source" className="media-link icon" data-tooltip-id="tooltip" data-tooltip-content="Banner source">
+					<FaExternalLinkAlt />
+				</Anchor>
+			)}
 			<Tooltip
 				id="tooltip"
 				style={{
@@ -132,20 +137,30 @@ const App: React.FC = () => {
 			</div>
 			<section>
 				<article className="intro">
-					<div className="avatar">
-						<Img
-							src={avatar}
-							alt="avatar"
-							onClick={() => window.open(avatar.replace("size=256", "size=4096"), "_blank")}
-							onLoad={() => setLoadingState((prevState) => ({ ...prevState, avatar: true }))}
-							onError={(e) => {
-								e.currentTarget.src = "https://avatars.githubusercontent.com/u/77577746?v=4";
-								setLoadingState((prevState) => ({ ...prevState, avatar: true }));
-							}}
-						/>
+					{(() => {
+						const avatarContent = (
+							<>
+								<Img
+									src={avatar}
+									alt="avatar"
+									onLoad={() => setLoadingState((prevState) => ({ ...prevState, avatar: true }))}
+									onError={(e) => {
+										e.currentTarget.src = "https://avatars.githubusercontent.com/u/77577746?v=4";
+										setLoadingState((prevState) => ({ ...prevState, avatar: true }));
+									}}
+								/>
+								{data?.avatar_decoration_data && <Img src={decoration} alt="decoration" className="decoration" />}
+							</>
+						);
 
-						{data?.avatar_decoration_data && <Img src={decoration} alt="decoration" className="decoration" />}
-					</div>
+						return KV.avatar ? (
+							<Anchor href={KV.avatar} title="Avatar source" className="avatar" data-tooltip-id="tooltip" data-tooltip-content="Avatar source">
+								{avatarContent}
+							</Anchor>
+						) : (
+							<div className="avatar">{avatarContent}</div>
+						);
+					})()}
 					<h2>
 						Hi, I'm{" "}
 						<span
@@ -160,22 +175,6 @@ const App: React.FC = () => {
 				<div className="header">
 					<Cat />
 					<Clock />
-					{KV.avatar || KV.banner ? (
-						<div className="widgets">
-							{KV.avatar && (
-								<Anchor href={KV.avatar} title="Avatar source" className="widgets-content media-link">
-									<FaCircleUser size={16} />
-									<span>Avatar</span>
-								</Anchor>
-							)}
-							{KV.banner && (
-								<Anchor href={KV.banner} title="Banner source" className="widgets-content media-link">
-									<FaImage size={16} />
-									<span>Banner</span>
-								</Anchor>
-							)}
-						</div>
-					) : null}
 				</div>
 
 				<Lanyard id={DISCORD_ID} loaded={(state) => setLoadingState((prevState) => ({ ...prevState, lanyard: state }))} setKV={setKV} />
