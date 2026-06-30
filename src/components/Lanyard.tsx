@@ -70,7 +70,7 @@ const ActivityImages = ({ activity }) => {
 						? setAppIcon(`https://cdn.discordapp.com/app-icons/${application_id}/${data.avatar}.${ext(data.avatar)}?size=256`)
 						: setAppIcon(`https://cdn.discordapp.com/avatars/${application_id}/${data.avatar}.${ext(data.avatar)}?size=256`);
 				},
-				() => setAppIcon("appIcon")
+				() => setAppIcon("appIcon"),
 			);
 		} else {
 			setAppIcon("appIcon");
@@ -163,7 +163,10 @@ const Activity = ({ activity, compact = false }) => {
 						) : activity.type === 2 ? (
 							<Anchor
 								className="activity-info-text-details"
-								href={`https://www.youtube.com/results?search_query=${encodeURIComponent(activity.details + " " + activity.state)}`.trim()}
+								href={
+									activity.assets?.large_url ||
+									`https://www.youtube.com/results?search_query=${encodeURIComponent(activity.details + " " + activity.state)}`.trim()
+								}
 							>
 								{activity.details}
 							</Anchor>
@@ -191,7 +194,7 @@ const Activity = ({ activity, compact = false }) => {
 												? undefined
 												: Date.now() + (activity.timestamps.end - activity.timestamps.start),
 									},
-									true
+									true,
 								)}
 							</span>
 							<div className="activity-info-progress-bar">

@@ -4,7 +4,7 @@ import {
 	SiHtml5,
 	SiReact,
 	SiNodedotjs,
-	SiCss3,
+	SiCss,
 	SiJavascript,
 	SiTypescript,
 	SiPhp,
@@ -48,7 +48,7 @@ export const Stack = () => {
 			<h3>Languages</h3>
 			<div className="list">
 				<IconWithTooltip icon={SiHtml5} tooltip="HTML5" href="https://developer.mozilla.org/en-US/docs/Web/HTML" />
-				<IconWithTooltip icon={SiCss3} tooltip="CSS3" href="https://developer.mozilla.org/en-US/docs/Web/CSS" />
+				<IconWithTooltip icon={SiCss} tooltip="CSS3" href="https://developer.mozilla.org/en-US/docs/Web/CSS" />
 				<IconWithTooltip icon={SiJavascript} tooltip="JavaScript" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" />
 				<IconWithTooltip icon={SiTypescript} tooltip="TypeScript" href="https://www.typescriptlang.org/" />
 				<IconWithTooltip icon={SiPhp} tooltip="PHP" href="https://www.php.net/" />
