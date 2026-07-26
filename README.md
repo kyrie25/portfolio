@@ -7,4 +7,4 @@ bored
 ```bash
 yarn
 yarn dev
-````.
+```
