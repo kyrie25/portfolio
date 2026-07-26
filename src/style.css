@@ -1,0 +1,289 @@
+:root {
+  color-scheme: dark;
+  --paper: #f4eee2;
+  --muted: rgba(244, 238, 226, 0.56);
+  --hairline: rgba(244, 238, 226, 0.22);
+  --accent: #89b1ba;
+  --accent-two: #437fff;
+  background: #050505;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#sketch,
+.experience {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  background:
+    radial-gradient(circle at 50% 52%, rgba(255, 255, 255, 0.025), transparent 42%),
+    #050505;
+  color: var(--paper);
+  cursor: crosshair;
+  overscroll-behavior: none;
+  touch-action: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.experience {
+  position: relative;
+  isolation: isolate;
+}
+
+#sketch,
+#sketch canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+#sketch canvas {
+  animation: canvas-in 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.instructions,
+.edition,
+.corner {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+}
+
+.instructions p,
+.edition,
+.motion-toggle {
+  margin: 0;
+  font-family: "SFMono-Regular", "Cascadia Code", "Liberation Mono", monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.19em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.github-link {
+  position: absolute;
+  z-index: 3;
+  top: max(32px, env(safe-area-inset-top));
+  left: max(34px, env(safe-area-inset-left));
+  display: inline-flex;
+  height: 22px;
+  gap: 8px;
+  align-items: center;
+  color: var(--muted);
+  font-family: "SFMono-Regular", "Cascadia Code", "Liberation Mono", monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.19em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  animation: interface-in 1s 380ms ease-out both;
+  transition: color 180ms ease;
+}
+
+.github-link svg {
+  display: block;
+  flex: none;
+  width: 16px;
+  height: 16px;
+}
+
+.github-link:hover,
+.github-link:focus-visible {
+  color: var(--accent);
+}
+
+.github-link:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 5px;
+}
+
+.instructions {
+  top: max(32px, env(safe-area-inset-top));
+  right: max(34px, env(safe-area-inset-right));
+  color: var(--muted);
+  text-align: right;
+  animation: interface-in 1s 430ms ease-out both;
+}
+
+.instructions p + p {
+  margin-top: 3px;
+}
+
+.edition {
+  left: max(34px, env(safe-area-inset-left));
+  bottom: max(30px, env(safe-area-inset-bottom));
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 14px;
+  align-items: center;
+  animation: interface-in 1s 560ms ease-out both;
+}
+
+.edition__label {
+  color: var(--muted);
+}
+
+.edition__family {
+  color: var(--accent);
+}
+
+.edition__color {
+  color: var(--accent-two);
+}
+
+.edition__value {
+  color: var(--paper);
+}
+
+.motion-toggle {
+  position: absolute;
+  z-index: 3;
+  right: max(34px, env(safe-area-inset-right));
+  bottom: max(30px, env(safe-area-inset-bottom));
+  display: inline-flex;
+  gap: 9px;
+  align-items: center;
+  padding: 6px 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  animation: interface-in 1s 620ms ease-out both;
+}
+
+.motion-toggle__dot {
+  width: 6px;
+  height: 6px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.motion-toggle[aria-pressed="true"] {
+  color: var(--paper);
+}
+
+.motion-toggle[aria-pressed="true"] .motion-toggle__dot {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 70%, transparent);
+}
+
+.motion-toggle:hover,
+.motion-toggle:focus-visible {
+  color: var(--paper);
+}
+
+.motion-toggle:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 5px;
+}
+
+.corner {
+  width: 26px;
+  height: 26px;
+  opacity: 0.72;
+}
+
+.corner--top {
+  top: 13px;
+  right: 13px;
+  border-top: 1px solid var(--hairline);
+  border-right: 1px solid var(--hairline);
+}
+
+.corner--bottom {
+  bottom: 13px;
+  left: 13px;
+  border-bottom: 1px solid var(--hairline);
+  border-left: 1px solid var(--hairline);
+}
+
+@keyframes canvas-in {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes interface-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .github-link {
+    top: max(22px, env(safe-area-inset-top));
+    left: max(20px, env(safe-area-inset-left));
+  }
+
+  .instructions {
+    top: calc(max(22px, env(safe-area-inset-top)) + 34px);
+    right: auto;
+    bottom: auto;
+    left: max(20px, env(safe-area-inset-left));
+    text-align: left;
+  }
+
+  .edition {
+    right: auto;
+    left: max(20px, env(safe-area-inset-left));
+    bottom: max(24px, env(safe-area-inset-bottom));
+    grid-template-columns: 1fr;
+    gap: 1px;
+    text-align: left;
+  }
+
+  .motion-toggle {
+    right: max(20px, env(safe-area-inset-right));
+    bottom: max(24px, env(safe-area-inset-bottom));
+  }
+}
+
+html[data-reduced-motion="true"] #sketch canvas,
+html[data-reduced-motion="true"] .instructions,
+html[data-reduced-motion="true"] .edition,
+html[data-reduced-motion="true"] .motion-toggle,
+html[data-reduced-motion="true"] .github-link {
+  animation-duration: 1ms;
+  animation-delay: 0ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #sketch canvas,
+  .instructions,
+  .edition,
+  .motion-toggle,
+  .github-link {
+    animation-duration: 1ms;
+    animation-delay: 0ms;
+  }
+}

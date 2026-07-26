@@ -1,0 +1,15 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+dist/
+node_modules/
+npm-debug.log*
+
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
