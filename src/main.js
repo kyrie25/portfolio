@@ -1,10 +1,13 @@
 import p5 from "p5";
 import "./style.css";
 
+document.documentElement.classList.add("js");
+
 const seedLabel = document.querySelector("#seed-label");
 const familyLabel = document.querySelector("#family-label");
 const colorLabel = document.querySelector("#color-label");
 const sketchRoot = document.querySelector("#sketch");
+const experienceRoot = document.querySelector(".experience");
 const motionToggle = document.querySelector("#motion-toggle");
 const motionLabel = document.querySelector("#motion-label");
 const systemReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -492,15 +495,43 @@ function getFormPoint(form, index, pointCount, time, includeBreath = true) {
 }
 
 function installCanvasControls(canvas) {
-  canvas.style.touchAction = "none";
+  let pointerStart = null;
+
+  canvas.style.touchAction = "pan-y";
   canvas.addEventListener("pointerdown", (event) => {
-    event.preventDefault();
-    requestNewForm?.();
+    if (!event.isPrimary) return;
+    pointerStart = {
+      id: event.pointerId,
+      x: event.clientX,
+      y: event.clientY,
+      time: performance.now(),
+    };
+  });
+  canvas.addEventListener("pointerup", (event) => {
+    if (!pointerStart || event.pointerId !== pointerStart.id) return;
+    const distance = Math.hypot(
+      event.clientX - pointerStart.x,
+      event.clientY - pointerStart.y,
+    );
+    const duration = performance.now() - pointerStart.time;
+
+    if (distance < 12 && duration < 600) requestNewForm?.();
+    pointerStart = null;
+  });
+  canvas.addEventListener("pointercancel", () => {
+    pointerStart = null;
   });
 }
 
 window.addEventListener("keydown", (event) => {
   if (event.code !== "Space" && event.code !== "Enter") return;
+  if (window.scrollY > experienceRoot.clientHeight * 0.45) return;
+  if (
+    event.target instanceof Element &&
+    event.target.closest("a, button, input, textarea, select")
+  ) {
+    return;
+  }
   event.preventDefault();
   requestNewForm?.();
 });
@@ -511,6 +542,14 @@ const sketch = (p) => {
   let animationTime = 0;
   let hardClear = true;
   let canvas;
+
+  function resizeCanvasToRoot() {
+    const width = sketchRoot.clientWidth;
+    const height = sketchRoot.clientHeight;
+    if (!width || !height || (p.width === width && p.height === height)) return;
+    p.resizeCanvas(width, height);
+    hardClear = true;
+  }
 
   function setForm(seed = createSeed(), familyOverride) {
     const family = familyOverride ?? chooseFamily(seed, form.family);
@@ -617,11 +656,16 @@ const sketch = (p) => {
 
   p.setup = () => {
     p.pixelDensity(Math.min(window.devicePixelRatio || 1, 1.5));
-    canvas = p.createCanvas(window.innerWidth, window.innerHeight).elt;
+    canvas = p.createCanvas(sketchRoot.clientWidth, sketchRoot.clientHeight).elt;
     p.frameRate(60);
     installCanvasControls(canvas);
     requestNewForm = setForm;
     setForm(form.seed, form.family);
+
+    const rootResizeObserver = new ResizeObserver(() => {
+      requestAnimationFrame(resizeCanvasToRoot);
+    });
+    rootResizeObserver.observe(sketchRoot);
   };
 
   p.draw = () => {
@@ -633,9 +677,246 @@ const sketch = (p) => {
   };
 
   p.windowResized = () => {
-    p.resizeCanvas(window.innerWidth, window.innerHeight);
-    hardClear = true;
+    requestAnimationFrame(resizeCanvasToRoot);
   };
 };
 
 new p5(sketch, sketchRoot);
+
+function initializeScrollReveals() {
+  const elements = [...document.querySelectorAll(".reveal")];
+
+  if (reducedMotionEnabled || !("IntersectionObserver" in window)) {
+    elements.forEach((element) => element.classList.add("is-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    },
+    { rootMargin: "0px 0px -9%", threshold: 0.08 },
+  );
+
+  elements.forEach((element) => observer.observe(element));
+}
+
+const LANYARD_USER_ID = "368399721494216706";
+const LANYARD_URL = `https://api.lanyard.rest/v1/users/${LANYARD_USER_ID}`;
+const signalStatus = document.querySelector("#signal-status");
+const signalHandle = document.querySelector("#signal-handle");
+const signalAvatar = document.querySelector("#signal-avatar");
+const signalActivities = document.querySelector("#signal-activities");
+const signalUpdated = document.querySelector("#signal-updated");
+
+const STATUS_LABELS = {
+  online: "online",
+  idle: "idle",
+  dnd: "busy",
+  offline: "offline",
+};
+const ACTIVITY_LABELS = {
+  0: "Playing",
+  1: "Streaming",
+  2: "Listening to",
+  3: "Watching",
+  5: "Competing in",
+};
+
+function processDiscordImage(imageHash, applicationId) {
+  if (!imageHash) return "";
+  if (imageHash.startsWith("mp:external/")) {
+    return `https://media.discordapp.net/external/${imageHash.replace("mp:external/", "")}`;
+  }
+  if (imageHash.startsWith("mp:attachments/")) {
+    return `https://media.discordapp.net/attachments/${imageHash.replace("mp:attachments/", "")}`;
+  }
+  if (imageHash.startsWith("spotify:")) {
+    return imageHash.replace("spotify:", "https://i.scdn.co/image/");
+  }
+  if (!applicationId) return "";
+  return `https://cdn.discordapp.com/app-assets/${applicationId}/${imageHash}.png`;
+}
+
+function formatDuration(milliseconds) {
+  const totalSeconds = Math.max(0, Math.floor(milliseconds / 1000));
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  const parts = [minutes, seconds].map((value) => String(value).padStart(2, "0"));
+
+  if (hours) parts.unshift(String(hours).padStart(2, "0"));
+  return parts.join(":");
+}
+
+function updateActivityTimes() {
+  document.querySelectorAll("[data-activity-time]").forEach((element) => {
+    const start = Number(element.dataset.start) || null;
+    const end = Number(element.dataset.end) || null;
+    const now = Date.now();
+
+    if (start && end) {
+      const total = Math.max(1, end - start);
+      const elapsed = clamp(now - start, 0, total);
+      element.textContent = `${formatDuration(elapsed)} / ${formatDuration(total)}`;
+      const fill = element.parentElement.querySelector(".activity-progress__fill");
+      if (fill) fill.style.width = `${(elapsed / total) * 100}%`;
+    } else if (start) {
+      element.textContent = `${formatDuration(now - start)} elapsed`;
+    } else if (end) {
+      element.textContent = `${formatDuration(end - now)} left`;
+    }
+  });
+}
+
+function createActivityCard(activity) {
+  const card = document.createElement("article");
+  const media = document.createElement("div");
+  const body = document.createElement("div");
+  const type = document.createElement("p");
+  const name = document.createElement("h3");
+  const detail = document.createElement("p");
+  const state = document.createElement("p");
+  const imageUrl = processDiscordImage(
+    activity.assets?.large_image,
+    activity.application_id,
+  );
+
+  card.className = "activity-card";
+  media.className = "activity-card__image";
+  type.className = "activity-card__type";
+  detail.className = "activity-card__detail";
+  state.className = "activity-card__state";
+
+  media.textContent = activity.name?.charAt(0)?.toUpperCase() || "~";
+  type.textContent = ACTIVITY_LABELS[activity.type] || "Active in";
+  name.textContent = activity.name || "Unknown activity";
+
+  if (imageUrl) {
+    const image = new Image();
+    image.alt = "";
+    image.src = imageUrl;
+    image.addEventListener("load", () => media.replaceChildren(image));
+  }
+
+  if (activity.details) {
+    const activityUrl = activity.sync_id
+      ? `https://open.spotify.com/track/${activity.sync_id}`
+      : activity.assets?.large_url;
+
+    if (activityUrl?.startsWith("http")) {
+      const link = document.createElement("a");
+      link.href = activityUrl;
+      link.target = "_blank";
+      link.rel = "noreferrer";
+      link.textContent = activity.details;
+      detail.append(link);
+    } else {
+      detail.textContent = activity.details;
+    }
+  }
+
+  if (activity.state) {
+    const party = activity.party?.size
+      ? ` (${activity.party.size[0]} of ${activity.party.size[1]})`
+      : "";
+    state.textContent = `${activity.state}${party}`;
+  }
+
+  body.append(type, name);
+  if (activity.details) body.append(detail);
+  if (activity.state) body.append(state);
+
+  if (activity.timestamps?.start || activity.timestamps?.end) {
+    const timeWrap = document.createElement("div");
+    const time = document.createElement("p");
+    timeWrap.className = "activity-card__time-wrap";
+    time.className = "activity-card__time";
+    time.dataset.activityTime = "true";
+    if (activity.timestamps.start) time.dataset.start = activity.timestamps.start;
+    if (activity.timestamps.end) time.dataset.end = activity.timestamps.end;
+    timeWrap.append(time);
+
+    if (activity.timestamps.start && activity.timestamps.end) {
+      const progress = document.createElement("div");
+      const fill = document.createElement("span");
+      progress.className = "activity-progress";
+      fill.className = "activity-progress__fill";
+      progress.append(fill);
+      timeWrap.append(progress);
+    }
+
+    body.append(timeWrap);
+  }
+
+  card.append(media, body);
+  return card;
+}
+
+function renderLanyard(data) {
+  const user = data.discord_user;
+  const status = STATUS_LABELS[data.discord_status] || "offline";
+  const activities = (data.activities || []).filter(
+    (activity) => ![4, 6].includes(activity.type),
+  );
+
+  signalStatus.textContent = status;
+  signalHandle.textContent = `@${user.username}`;
+  signalUpdated.textContent = `Signal synced / ${new Date().toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  })}`;
+
+  if (user.avatar) {
+    const extension = user.avatar.startsWith("a_") ? "gif" : "webp";
+    const avatar = new Image();
+    avatar.alt = "";
+    avatar.src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${extension}?size=160`;
+    avatar.addEventListener("load", () => signalAvatar.replaceChildren(avatar));
+  }
+
+  if (!activities.length) {
+    const placeholder = document.createElement("p");
+    placeholder.className = "signal-placeholder";
+    placeholder.textContent =
+      status === "offline"
+        ? "The line is quiet. Probably building, studying, or away from Discord."
+        : "Online, but not broadcasting an activity right now.";
+    signalActivities.replaceChildren(placeholder);
+    return;
+  }
+
+  signalActivities.replaceChildren(...activities.map(createActivityCard));
+  updateActivityTimes();
+}
+
+async function refreshLanyard() {
+  try {
+    const response = await fetch(LANYARD_URL);
+    if (!response.ok) throw new Error(`Lanyard returned ${response.status}`);
+    const payload = await response.json();
+    if (!payload.success || !payload.data) throw new Error("Lanyard response was incomplete");
+    renderLanyard(payload.data);
+  } catch {
+    if (signalStatus.textContent !== "connecting") {
+      signalUpdated.textContent = "Live signal delayed";
+      return;
+    }
+
+    signalStatus.textContent = "temporarily unreachable";
+    signalUpdated.textContent = "Lanyard unavailable";
+    const placeholder = document.createElement("p");
+    placeholder.className = "signal-placeholder";
+    placeholder.textContent = "The live line could not be reached. The rest of the archive is still online.";
+    signalActivities.replaceChildren(placeholder);
+  }
+}
+
+initializeScrollReveals();
+refreshLanyard();
+window.setInterval(refreshLanyard, 30_000);
+window.setInterval(updateActivityTimes, 1_000);

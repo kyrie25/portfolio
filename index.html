@@ -1,64 +1,252 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#050505" />
-    <meta
-      name="description"
-      content="A generative field of abstract and animal-like procedural light drawn with p5.js."
-    />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%23050505%22/><path d=%22M12 37C24 10 35 54 52 23%22 fill=%22none%22 stroke=%22%23f4eee2%22 stroke-width=%223%22 stroke-linecap=%22round%22/></svg>"
-    />
-    <title>Drift Index — Generative Field</title>
-  </head>
-  <body>
-    <main class="experience" aria-label="Generative procedural artwork">
-      <div id="sketch" aria-hidden="true"></div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+		<meta name="theme-color" content="#050505" />
+		<meta
+			name="description"
+			content="The generative portfolio of Nam Anh Pham, a full-stack developer and Software Engineering undergraduate in Ho Chi Minh City."
+		/>
+		<link
+			rel="icon"
+			href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%23050505%22/><path d=%22M12 37C24 10 35 54 52 23%22 fill=%22none%22 stroke=%22%23f4eee2%22 stroke-width=%223%22 stroke-linecap=%22round%22/></svg>"
+		/>
+		<title>Nam Anh Pham — Software Engineer</title>
+	</head>
+	<body>
+		<main class="site">
+			<section id="top" class="experience" aria-label="Generative procedural artwork">
+				<div id="sketch" aria-hidden="true"></div>
 
-      <a
-        class="github-link"
-        href="https://github.com/kyrie25"
-        target="_blank"
-        rel="noreferrer"
-        aria-label="GitHub profile for kyrie25"
-      >
-        <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-          <path
-            fill="currentColor"
-            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"
-          />
-        </svg>
-        <span aria-hidden="true">/ kyrie25</span>
-      </a>
+				<a class="github-link" href="https://github.com/kyrie25" target="_blank" rel="noreferrer" aria-label="GitHub profile for kyrie25">
+					<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+						<path
+							fill="currentColor"
+							d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"
+						/>
+					</svg>
+					<span aria-hidden="true">/ kyrie25</span>
+				</a>
 
-      <section class="instructions" aria-label="Controls">
-        <p>Click or tap to re-form</p>
-      </section>
+				<div class="instructions" aria-label="Controls">
+					<p>Click or tap to re-form</p>
+				</div>
 
-      <div class="edition" aria-live="polite" aria-atomic="true">
-        <span class="edition__label">Current form</span>
-        <span id="family-label" class="edition__family">plume</span>
-        <span id="color-label" class="edition__color">tide / solid</span>
-        <span id="seed-label" class="edition__value">000000</span>
-      </div>
+				<div class="edition" aria-live="polite" aria-atomic="true">
+					<span class="edition__label">Current form</span>
+					<span id="family-label" class="edition__family">plume</span>
+					<span id="color-label" class="edition__color">tide / solid</span>
+					<span id="seed-label" class="edition__value">000000</span>
+				</div>
 
-      <button
-        id="motion-toggle"
-        class="motion-toggle"
-        type="button"
-        aria-pressed="false"
-      >
-        <span class="motion-toggle__dot" aria-hidden="true"></span>
-        <span id="motion-label">Reduced motion / off</span>
-      </button>
+				<a class="scroll-cue" href="#portfolio" aria-label="Scroll to portfolio">
+					<span>Profile</span>
+					<span class="scroll-cue__line" aria-hidden="true"></span>
+				</a>
 
-      <div class="corner corner--top" aria-hidden="true"></div>
-      <div class="corner corner--bottom" aria-hidden="true"></div>
-    </main>
+				<button id="motion-toggle" class="motion-toggle" type="button" aria-pressed="false">
+					<span class="motion-toggle__dot" aria-hidden="true"></span>
+					<span id="motion-label">Reduced motion / off</span>
+				</button>
 
-    <script type="module" src="/src/main.js"></script>
-  </body>
+				<div class="corner corner--top" aria-hidden="true"></div>
+				<div class="corner corner--bottom" aria-hidden="true"></div>
+			</section>
+
+			<div id="portfolio" class="portfolio">
+				<div class="portfolio__glow" aria-hidden="true"></div>
+
+				<section class="portfolio-intro content-shell reveal" aria-labelledby="intro-title">
+					<div class="section-index">
+						<span>00 / Identity</span>
+						<span>HCMC, VN</span>
+					</div>
+
+					<div class="intro-grid">
+						<div>
+							<p class="kicker">Full-stack developer / Software engineer</p>
+							<h1 id="intro-title">Anh <span>(Quoc Nam)</span> Pham</h1>
+						</div>
+						<div class="intro-copy">
+							<p>I build web and app systems, take software apart to understand it, and contribute to open-source tools.</p>
+							<p class="intro-copy__meta">
+								Software Engineering undergraduate at VNUHCM University of Science. Full-stack developer at Designveloper. Self-taught since 2021.
+							</p>
+							<div class="link-row" aria-label="Profile links">
+								<a href="https://github.com/kyrie25" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+								<a href="https://www.linkedin.com/in/anhpqn/" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a>
+								<a href="mailto:contact@kyrie25.dev">Email <span>↗</span></a>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="capabilities content-shell" aria-labelledby="capabilities-title">
+					<div class="section-index reveal">
+						<span>01 / Working vocabulary</span>
+						<span>Tools change / fundamentals travel</span>
+					</div>
+					<div class="capability-grid">
+						<div class="reveal">
+							<p class="kicker">Strongest signals</p>
+							<h2 id="capabilities-title">JavaScript, full-stack development, reverse engineering.</h2>
+						</div>
+						<div class="capability-field reveal" aria-label="Technology experience">
+							<span>TypeScript</span><span>React</span><span>Vue</span><span>Svelte</span> <span>Node.js</span><span>PHP</span><span>Laravel</span
+							><span>Go</span> <span>C / C++</span><span>Kotlin</span><span>Swift</span><span>Docker</span> <span>PostgreSQL</span><span>MySQL</span
+							><span>GraphQL</span><span>Vite</span>
+						</div>
+					</div>
+				</section>
+
+				<section class="projects content-shell" aria-labelledby="projects-title">
+					<div class="section-index reveal">
+						<span>02 / Selected transmissions</span>
+						<span>Open source + experiments</span>
+					</div>
+					<h2 id="projects-title" class="section-title reveal">Work in the wild.</h2>
+
+					<div class="project-grid">
+						<a class="project-card reveal" href="https://github.com/spicetify/cli" target="_blank" rel="noreferrer">
+							<span class="project-card__number">01</span>
+							<div>
+								<p class="project-card__type">Open-source contributor</p>
+								<h3>Spicetify CLI</h3>
+								<p class="project-card__description">
+									A command-line customization layer for Spotify, maintained in public with a global contributor community.
+								</p>
+								<ul class="project-card__stack" aria-label="Prominent technologies">
+									<li>JavaScript</li>
+									<li>Go</li>
+									<li>esbuild</li>
+								</ul>
+							</div>
+							<span class="project-card__arrow" aria-hidden="true">↗</span>
+						</a>
+
+						<a class="project-card reveal" href="https://github.com/spicetify/marketplace" target="_blank" rel="noreferrer">
+							<span class="project-card__number">02</span>
+							<div>
+								<p class="project-card__type">Open-source contributor</p>
+								<h3>Spicetify Marketplace</h3>
+								<p class="project-card__description">The discovery and installation surface for community themes, extensions, and custom apps.</p>
+								<ul class="project-card__stack" aria-label="Prominent technologies">
+									<li>TypeScript</li>
+									<li>React</li>
+									<li>SCSS</li>
+									<li>Spicetify Creator</li>
+								</ul>
+							</div>
+							<span class="project-card__arrow" aria-hidden="true">↗</span>
+						</a>
+
+						<a class="project-card reveal" href="https://github.com/kyrie25/spicetify-oneko" target="_blank" rel="noreferrer">
+							<span class="project-card__number">03</span>
+							<div>
+								<p class="project-card__type">Playful software</p>
+								<h3>Spicetify Oneko</h3>
+								<p class="project-card__description">
+									A tiny animated companion that wanders across Spotify without asking for productive justification.
+								</p>
+								<ul class="project-card__stack" aria-label="Prominent technologies">
+									<li>JavaScript</li>
+									<li>DOM APIs</li>
+									<li>Sprite animation</li>
+								</ul>
+							</div>
+							<span class="project-card__arrow" aria-hidden="true">↗</span>
+						</a>
+
+						<a class="project-card reveal" href="https://github.com/kyrie25/lanyard-profile-readme" target="_blank" rel="noreferrer">
+							<span class="project-card__number">04</span>
+							<div>
+								<p class="project-card__type">Presence experiment</p>
+								<h3>Lanyard Profile README</h3>
+								<p class="project-card__description">Live Discord presence translated into a dynamic GitHub profile surface.</p>
+								<ul class="project-card__stack" aria-label="Prominent technologies">
+									<li>TypeScript</li>
+									<li>Next.js</li>
+									<li>React</li>
+									<li>Redis</li>
+								</ul>
+							</div>
+							<span class="project-card__arrow" aria-hidden="true">↗</span>
+						</a>
+					</div>
+				</section>
+
+				<section class="path content-shell" aria-labelledby="path-title">
+					<div class="section-index reveal">
+						<span>03 / Current coordinates</span>
+						<span>Practice + study</span>
+					</div>
+					<h2 id="path-title" class="section-title reveal">Building while learning.</h2>
+
+					<div class="path-list">
+						<article class="path-item reveal">
+							<span class="path-item__marker">A</span>
+							<p class="path-item__place">Designveloper</p>
+							<div>
+								<h3>Full-stack developer</h3>
+								<p>Working across web and application development, from interfaces to the systems behind them.</p>
+							</div>
+						</article>
+						<article class="path-item reveal">
+							<span class="path-item__marker">B</span>
+							<p class="path-item__place">HCMUS / VNU-HCM</p>
+							<div>
+								<h3>Software Engineering undergraduate</h3>
+								<p>K2023 student turning formal computer science into things that ship, move, and occasionally glow.</p>
+							</div>
+						</article>
+						<article class="path-item reveal">
+							<span class="path-item__marker">C</span>
+							<p class="path-item__place">Open source</p>
+							<div>
+								<h3>Contributor and reverse engineer</h3>
+								<p>Especially interested in JavaScript systems, extensibility, customization, and understanding software from the inside out.</p>
+							</div>
+						</article>
+					</div>
+				</section>
+
+				<section class="live-signal content-shell" aria-labelledby="signal-title">
+					<div class="section-index reveal">
+						<span>04 / Live signal</span>
+						<span id="signal-updated">Awaiting Lanyard</span>
+					</div>
+
+					<div class="signal-grid reveal">
+						<div class="signal-identity">
+							<div id="signal-avatar" class="signal-avatar" aria-hidden="true">K</div>
+							<div>
+								<p class="kicker">Discord presence</p>
+								<h2 id="signal-title">Kyrie is <span id="signal-status">connecting</span>.</h2>
+								<p id="signal-handle" class="signal-handle">@kyrie_is_wired</p>
+							</div>
+						</div>
+						<div id="signal-activities" class="signal-activities" aria-live="polite">
+							<p class="signal-placeholder">Scanning for a live transmission...</p>
+						</div>
+					</div>
+				</section>
+
+				<footer class="portfolio-footer content-shell reveal">
+					<p class="kicker">05 / Open channel</p>
+					<a class="footer-callout" href="mailto:contact@kyrie25.dev">
+						<span>Have something interesting?</span>
+						<strong>Send a signal.</strong>
+					</a>
+					<div class="footer-meta">
+						<span>Nam Anh Pham / 2026</span>
+						<a href="#portfolio">Back to profile</a>
+						<a href="#top" id="back-to-field">Back to field</a>
+					</div>
+				</footer>
+			</div>
+		</main>
+
+		<script type="module" src="/src/main.js"></script>
+	</body>
 </html>
