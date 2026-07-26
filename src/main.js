@@ -494,12 +494,12 @@ function getFormPoint(form, index, pointCount, time, includeBreath = true) {
   }
 }
 
-function installCanvasControls(canvas) {
+function installCanvasControls(target) {
   let pointerStart = null;
 
-  canvas.style.touchAction = "pan-y";
-  canvas.addEventListener("pointerdown", (event) => {
+  target.addEventListener("pointerdown", (event) => {
     if (!event.isPrimary) return;
+    if (event.target instanceof Element && event.target.closest("a, button")) return;
     pointerStart = {
       id: event.pointerId,
       x: event.clientX,
@@ -507,7 +507,7 @@ function installCanvasControls(canvas) {
       time: performance.now(),
     };
   });
-  canvas.addEventListener("pointerup", (event) => {
+  target.addEventListener("pointerup", (event) => {
     if (!pointerStart || event.pointerId !== pointerStart.id) return;
     const distance = Math.hypot(
       event.clientX - pointerStart.x,
@@ -518,7 +518,7 @@ function installCanvasControls(canvas) {
     if (distance < 12 && duration < 600) requestNewForm?.();
     pointerStart = null;
   });
-  canvas.addEventListener("pointercancel", () => {
+  target.addEventListener("pointercancel", () => {
     pointerStart = null;
   });
 }
@@ -658,7 +658,7 @@ const sketch = (p) => {
     p.pixelDensity(Math.min(window.devicePixelRatio || 1, 1.5));
     canvas = p.createCanvas(sketchRoot.clientWidth, sketchRoot.clientHeight).elt;
     p.frameRate(60);
-    installCanvasControls(canvas);
+    installCanvasControls(experienceRoot);
     requestNewForm = setForm;
     setForm(form.seed, form.family);
 
