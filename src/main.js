@@ -135,10 +135,23 @@ function createSeed() {
   return values[0];
 }
 
-function chooseFamily(seed, previousFamily) {
+function createFamilyBag(seed, previousFamily) {
   const random = mulberry32(seed ^ 0x9e3779b9);
-  const choices = FORM_FAMILIES.filter((family) => family !== previousFamily);
-  return choices[Math.floor(random() * choices.length)];
+  const families = [...FORM_FAMILIES];
+
+  for (let index = families.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(random() * (index + 1));
+    [families[index], families[swapIndex]] = [families[swapIndex], families[index]];
+  }
+
+  if (families.at(-1) === previousFamily) {
+    [families[0], families[families.length - 1]] = [
+      families[families.length - 1],
+      families[0],
+    ];
+  }
+
+  return families;
 }
 
 function createForm(seed, familyOverride) {
@@ -538,7 +551,8 @@ window.addEventListener("keydown", (event) => {
 
 const sketch = (p) => {
   const background = [5, 5, 5];
-  let form = createForm(createSeed());
+  let form = null;
+  let familyBag = [];
   let animationTime = 0;
   let hardClear = true;
   let canvas;
@@ -551,8 +565,12 @@ const sketch = (p) => {
     hardClear = true;
   }
 
-  function setForm(seed = createSeed(), familyOverride) {
-    const family = familyOverride ?? chooseFamily(seed, form.family);
+  function setForm(seed = createSeed()) {
+    if (familyBag.length === 0) {
+      familyBag = createFamilyBag(seed, form?.family);
+    }
+
+    const family = familyBag.pop();
     form = createForm(seed, family);
     animationTime = 0;
     hardClear = true;
@@ -660,7 +678,7 @@ const sketch = (p) => {
     p.frameRate(60);
     installCanvasControls(experienceRoot);
     requestNewForm = setForm;
-    setForm(form.seed, form.family);
+    setForm();
 
     const rootResizeObserver = new ResizeObserver(() => {
       requestAnimationFrame(resizeCanvasToRoot);
