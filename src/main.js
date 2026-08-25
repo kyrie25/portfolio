@@ -824,6 +824,7 @@ function createActivityCard(activity) {
         link.href = activity.assets.large_url;
         link.target = "_blank";
         link.rel = "noreferrer";
+        link.ariaLabel = activity.assets.large_text || `Open ${activity.name || "activity"}`;
         link.append(image);
         media.replaceChildren(link);
       } else {
