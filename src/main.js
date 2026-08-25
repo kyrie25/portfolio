@@ -818,13 +818,26 @@ function createActivityCard(activity) {
     const image = new Image();
     image.alt = "";
     image.src = imageUrl;
-    image.addEventListener("load", () => media.replaceChildren(image));
+    image.addEventListener("load", () => {
+      if (activity.assets?.large_url?.startsWith("http")) {
+        const link = document.createElement("a");
+        link.href = activity.assets.large_url;
+        link.target = "_blank";
+        link.rel = "noreferrer";
+        link.append(image);
+        media.replaceChildren(link);
+      } else {
+        media.replaceChildren(image);
+      }
+    });
   }
 
   if (activity.details) {
-    const activityUrl = activity.sync_id
-      ? `https://open.spotify.com/track/${activity.sync_id}`
-      : activity.assets?.large_url;
+    const activityUrl =
+      activity.details_url ||
+      (activity.sync_id
+        ? `https://open.spotify.com/track/${activity.sync_id}`
+        : "");
 
     if (activityUrl?.startsWith("http")) {
       const link = document.createElement("a");
@@ -842,7 +855,18 @@ function createActivityCard(activity) {
     const party = activity.party?.size
       ? ` (${activity.party.size[0]} of ${activity.party.size[1]})`
       : "";
-    state.textContent = `${activity.state}${party}`;
+    const stateText = `${activity.state}${party}`;
+
+    if (activity.state_url?.startsWith("http")) {
+      const link = document.createElement("a");
+      link.href = activity.state_url;
+      link.target = "_blank";
+      link.rel = "noreferrer";
+      link.textContent = stateText;
+      state.append(link);
+    } else {
+      state.textContent = stateText;
+    }
   }
 
   body.append(type, name);
